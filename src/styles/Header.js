@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     "& h1, & button": {
       cursor:'pointer',
     },
-
+    background:'powderblue'
   },
   
 });
