@@ -13,6 +13,7 @@ import useStyles from "./styles/App";
 import UserAccount from "./screens/UserAccount";
 import MyAccount from "./screens/MyAccount";
 import History from "./screens/History";
+import MemberStatus from "./screens/MemberStatus";
 
 function App() {
   const classes = useStyles();
@@ -22,7 +23,7 @@ function App() {
       <Header />
       <div className={classes.root}>
         <SideBar />
-        <div>
+        <div className={classes.routesContainer}>
           <Routes>
             <Route path="/" element={<Login />} />
             {/* <Route element={<AuthLayout />}> */}
@@ -31,6 +32,7 @@ function App() {
               <Route path="/setting_admin/my_account" element={<MyAccount />} />
               <Route path="/setting_admin/history" element={<History />} />
               <Route path="/member" element={<Member />} />
+              <Route path="/member/member_status" element={<MemberStatus />} />
               <Route path="/service" element={<Service />} />
               <Route path="/statistics" element={<Statistics />} />
               <Route path="/notice" element={<Notice />} />
