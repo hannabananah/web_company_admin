@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Navigation } from "react-minimal-side-navigation";
 import { menu } from "../../util/sidenav_menu";
 import useStyles from "../../styles/SideBar";
+import "../../styles/SideBar.css";
 
 const SideBar = () => {
   const location = useLocation();
