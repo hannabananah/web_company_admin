@@ -9,12 +9,15 @@ import Service from "./screens/Service";
 import Statistics from "./screens/Statistics";
 import Notice from "./screens/Notice";
 import SystemSettings from "./screens/SystemSettings";
+import useStyles from "./styles/App";
 
 function App() {
+  const classes = useStyles();
+
   return (
     <BrowserRouter>
       <Header />
-      <div>
+      <div className={classes.root}>
         <SideBar />
         <Routes>
           <Route path="/" element={<Login />} />

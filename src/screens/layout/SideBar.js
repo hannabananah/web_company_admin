@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Navigation } from "react-minimal-side-navigation";
 import { menu } from "../../util/sidenav_menu";
+import useStyles from "../../styles/SideBar";
 
 const SideBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const classes = useStyles();
 
   let isEmpty = false;
 
@@ -21,7 +23,7 @@ const SideBar = () => {
   return (
     <>
     {isEmpty ? null :
-      <div style={{ minWidth: "300px" }}>
+      <div className={classes.root}>
       <Navigation
         activeItemId={location.pathname}
         onSelect={({ itemId }) => {
