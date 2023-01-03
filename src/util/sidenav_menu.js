@@ -30,12 +30,12 @@ export const menu = [
   {
     title: "회원 관리",
     itemId: "/member",
-    subNav: [
-      {
-        title: "회원 현황",
-        itemId: "/member/member_status",
-      },
-    ],
+    // subNav: [
+    //   {
+    //     title: "회원 현황",
+    //     itemId: "/member/member_status",
+    //   },
+    // ],
   },
   {
     title: "서비스 관리",
