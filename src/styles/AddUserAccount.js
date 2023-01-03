@@ -3,6 +3,8 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
   userAccContainer: {
     width: "100%",
+    display: "flex",
+    flexDirection: "column",
   },
   tableStyle: {
     width: "100%",
