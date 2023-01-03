@@ -10,6 +10,9 @@ import Statistics from "./screens/Statistics";
 import Notice from "./screens/Notice";
 import SystemSettings from "./screens/SystemSettings";
 import useStyles from "./styles/App";
+import UserAccount from "./screens/UserAccount";
+import MyAccount from "./screens/MyAccount";
+import History from "./screens/History";
 
 function App() {
   const classes = useStyles();
@@ -19,17 +22,22 @@ function App() {
       <Header />
       <div className={classes.root}>
         <SideBar />
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route element={<AuthLayout />}>
-            <Route path="/setting_admin" element={<SettingAdmin />} />
-            <Route path="/member" element={<Member />} />
-            <Route path="/service" element={<Service />} />
-            <Route path="/statistics" element={<Statistics />} />
-            <Route path="/notice" element={<Notice />} />
-            <Route path="/system_settings" element={<SystemSettings />} />
-          </Route>
-        </Routes>
+        <div>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            {/* <Route element={<AuthLayout />}> */}
+              <Route path="/setting_admin" element={<SettingAdmin />} />
+              <Route path="/setting_admin/user_account" element={<UserAccount />} />
+              <Route path="/setting_admin/my_account" element={<MyAccount />} />
+              <Route path="/setting_admin/history" element={<History />} />
+              <Route path="/member" element={<Member />} />
+              <Route path="/service" element={<Service />} />
+              <Route path="/statistics" element={<Statistics />} />
+              <Route path="/notice" element={<Notice />} />
+              <Route path="/system_settings" element={<SystemSettings />} />
+            {/* </Route> */}
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
   );
