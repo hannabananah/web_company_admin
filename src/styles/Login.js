@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   container: {
-    width: "100%",
+    width: "100vw",
     height: "100vh",
     display: "flex",
     alignItems: "center",
