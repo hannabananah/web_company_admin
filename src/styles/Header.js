@@ -6,7 +6,7 @@ const useStyles = makeStyles({
     display:'flex',
     alignItems:'center',
     justifyContent:'space-between',
-    "& h1, & button":{
+    "& h1, & button": {
       cursor:'pointer',
     },
 
