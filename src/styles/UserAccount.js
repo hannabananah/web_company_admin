@@ -95,7 +95,7 @@ const useStyles = makeStyles({
     position: "absolute",
     color: "#fff",
     fontSize: 9,
-    left: "50%",
+    // left: "50%",
     transform: "translateX(73%)",
   },
   submitBtns: {
