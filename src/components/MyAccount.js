@@ -61,25 +61,25 @@ const MyAccountContent = ({ backState }) => {
                 </th>
                 <td className={classes.contentStyle}>사용</td>
               </tr>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftbodyext}>등록일</label>
+                </th>
+                <td className={classes.contentStyle}>0000-00-00 00:00</td>
+              </tr>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftbodyext}>등록자</label>
+                </th>
+                <td className={classes.contentStyle}>홍길동</td>
+              </tr>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftbodyext}>수정일</label>
+                </th>
+                <td className={classes.contentStyle}>0000-00-00 00:00</td>
+              </tr>
             </tbody>
-            <tr className={classes.contentInput}>
-              <th className={classes.leftLayout}>
-                <label className={classes.leftbodyext}>등록일</label>
-              </th>
-              <td className={classes.contentStyle}>0000-00-00 00:00</td>
-            </tr>
-            <tr className={classes.contentInput}>
-              <th className={classes.leftLayout}>
-                <label className={classes.leftbodyext}>등록자</label>
-              </th>
-              <td className={classes.contentStyle}>홍길동</td>
-            </tr>
-            <tr className={classes.contentInput}>
-              <th className={classes.leftLayout}>
-                <label className={classes.leftbodyext}>수정일</label>
-              </th>
-              <td className={classes.contentStyle}>0000-00-00 00:00</td>
-            </tr>
           </table>
           <div className={classes.submitBtns}>
             <button onClick={backState} className={classes.backBtn}>
