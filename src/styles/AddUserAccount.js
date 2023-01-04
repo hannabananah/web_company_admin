@@ -44,6 +44,15 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
   },
+  contentStyle: {
+    boxSizing: "border-box",
+    width: "100%",
+    height: "100%",
+    paddingLeft: "10px",
+    border: "1px solid #999",
+    display: "flex",
+    alignItems: "center",
+  },
   inputStyle: {
     boxSizing: "border-box",
     width: "180px",
@@ -115,6 +124,7 @@ const useStyles = makeStyles({
     fontSize: "12px",
     width: "40px",
     cursor: "pointer",
+    color: "#000",
   },
   saveBtn: {
     boxSizing: "border-box",
@@ -124,6 +134,24 @@ const useStyles = makeStyles({
     width: "40px",
     color: "#fff",
     cursor: "pointer",
+  },
+  editBtn: {
+    boxSizing: "border-box",
+    backgroundColor: "#333",
+    border: "1px solid #333",
+    fontSize: "12px",
+    width: "40px",
+    cursor: "pointer",
+    color: "#fff",
+  },
+  deleteBtn: {
+    boxSizing: "border-box",
+    backgroundColor: "#333",
+    border: "1px solid #333",
+    fontSize: "12px",
+    width: "40px",
+    cursor: "pointer",
+    color: "#fff",
   },
 });
 export default useStyles;
