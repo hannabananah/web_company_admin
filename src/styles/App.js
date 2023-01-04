@@ -3,6 +3,7 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles({
   root: {
     display: 'flex',
+    flex: 1,
   },
   routesContainer: {
     flex: 1, 
