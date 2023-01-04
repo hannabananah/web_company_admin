@@ -1,7 +1,26 @@
+import { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+
 import useStyles from "../styles/Login";
 
 const Login = () => {
   const classes = useStyles();
+  const [id, setId] = useState("anychat");
+  const [password, setPassword] = useState("anychat21!@");
+  const navigate = useNavigate();
+  const [invalid, setInvalid] = useState(false);
+
+  const onChangeId = (e) => {
+    setId(e.target.value);
+  };
+  const onChangePw = (e) => {
+    setPassword(e.target.value);
+  };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    navigate("/user_account");
+  };
 
   return (
     <div className={classes.container}>
@@ -11,7 +30,7 @@ const Login = () => {
             <h2 className={classes.loginTitle}>ANYCHAT 관리자 시스템</h2>
           </div>
           <div className={classes.formLayout}>
-            <form className={classes.loginForm}>
+            <form onSubmit={onSubmit} className={classes.loginForm}>
               <div className={classes.formGroup}>
                 <div className={classes.loginInputGroup}>
                   <label htmlFor="id" className={classes.loginLabel}>
@@ -20,6 +39,8 @@ const Login = () => {
                   <input
                     type="text"
                     id="id"
+                    value={id}
+                    onChange={onChangeId}
                     autoComplete="false"
                     placeholder="아이디를 입력해주세요."
                     className={classes.loginInput}
@@ -32,6 +53,8 @@ const Login = () => {
                   <input
                     type="password"
                     id="password"
+                    value={password}
+                    onChange={onChangePw}
                     autoComplete="false"
                     placeholder="비밀번호를 입력해주세요."
                     className={classes.loginInput}
@@ -47,10 +70,13 @@ const Login = () => {
           </div>
 
           {/* 로그인알림메시지 */}
-          {/* <div className="loginAlertMsg">
-          <p>아이디와 패스워드가 일치 하지 않습니다.</p>
-          <p>다른 기기에서 로그인 중입니다.</p>
-        </div> */}
+
+          {invalid && (
+            <div className="loginAlertMsg">
+              <p>아이디와 패스워드가 일치 하지 않습니다.</p>
+              <p>다른 기기에서 로그인 중입니다.</p>
+            </div>
+          )}
           <div className={classes.loginText1}>
             <p>아이디, 비밀번호 분실시 시스템 관리자에게 문의 바랍니다.</p>
             <p className={classes.loginText2}>
