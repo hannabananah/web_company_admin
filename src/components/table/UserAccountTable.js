@@ -6,7 +6,7 @@ import useStyles from "~/styles/Table";
 
 import DetailAccount from "~/components/DetailAccount";
 const UserAccountTable = (props) => {
-  const { changeState, fetchData, isLoaded } = props;
+  const { changeState, fetchData, isLoaded, backState } = props;
   const classes = useStyles();
 
   console.log(fetchData);
@@ -33,7 +33,7 @@ const UserAccountTable = (props) => {
   return (
     <div>
       {editAcc ? (
-        <DetailAccount user={user} backState={() => setEditAcc(false)} />
+        <DetailAccount backState={backState} user={user}  />
       ) : (
         <div>
           <div
