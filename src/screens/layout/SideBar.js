@@ -109,10 +109,12 @@ const SideBar = () => {
     return (
       suvMenu.map((item,index)=>{
         return (
-          <MenuItem key={index}
-            active={window.location.pathname === item.path}
-            routerLink={<Link to={item.path} />}> {item.title} 
-          </MenuItem>
+          // <MenuItem key={index}
+          //   active={window.location.pathname === item.path}
+          //   routerLink={<Link to={item.path} />}> {item.title} 
+          // </MenuItem>
+          <li key={index} onClick={()=>navigate(item.path)}>{item.title}</li>
+          
         )  
       })
     )
@@ -149,6 +151,10 @@ const SideBar = () => {
   //   } 
   // },[window.location.pathname])
 
+  const [activeIndex, setActiveIndex] = useState();
+  const [isClicked, setIsClicked] = useState(false);
+  const [isOpened, setIsOpened] = useState(false);
+
   return (
     <>
     {isEmpty ? null :
@@ -166,6 +172,7 @@ const SideBar = () => {
     //     items={menu}
     //   />
     // </div>
+
     <div style={{ display: 'flex', height: '100%', width: '300px' }}>
       <Sidebar
         rootStyles={{
@@ -233,11 +240,45 @@ const SideBar = () => {
           }
         })}
         </Menu>
+
+
+        <div style={{background:'salmon', padding:'15px', display:'flex', flexDirection:'column', gap:'20px', height:'1000px'}}>
+        {sideNavData.map((item,index)=>{
+          if(item.suvMenu) {
+            return (
+              // <details key={index} onClick={(e)=>setActiveIndex(item.id)} 
+              <details key={index} 
+                open={isOpened}>
+                {/* open={activeIndex == item.id}> */}
+                <summary>{item.title}</summary>
+                <ol>
+                  {renderMenuItems(item.suvMenu)}
+                </ol>
+              </details>
+            )
+          } else {
+            return (
+              <div key={index} onClick={()=>navigate(item.path)}>
+                {item.title}
+              </div>
+            )
+          }
+        })}
+          
+        </div>
+      
+      
       </Sidebar>
+      
       <main>
         <button onClick={() => collapseSidebar()}>Collapse</button>
       </main>
     </div>
+
+
+
+
+    
     }
     </>
   );
