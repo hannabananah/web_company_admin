@@ -15,13 +15,6 @@ const MemberStatus = () => {
     console.log("page  -------------------->", page);
   };
 
-  // 회원 수 임시 설정
-  const memberNum = 1000000;
-  // 천 단위 마다 콤마
-  const cmemberNum = memberNum
-    .toString()
-    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
