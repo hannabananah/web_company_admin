@@ -10,11 +10,11 @@ const UserAccount = () => {
   const classes = useStyles();
   const [add, setAdd] = useState(false);
   const [user, setUser] = useState([]);
-  
+
   const backState = () => {
     setAdd(false); //등록 화면 -> 디폴트 페이지
   };
-  
+
   const changeState = () => {
     setAdd(true); // 디폴트 페이지 -> 등록 화면
   };
@@ -33,15 +33,13 @@ const UserAccount = () => {
       .then(setIsLoaded(true));
   }, []);
 
-  
   const onClickTarget = (user) => {
     setEditAcc(true);
     setUser(user);
   };
   const goBackTable = () => {
     setEditAcc(false);
-  }
-
+  };
 
   console.log(fetchData);
   console.log(isLoaded);
@@ -49,10 +47,9 @@ const UserAccount = () => {
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       {add ? (
         <UserAccAdd backState={backState} />
-      ) : (
-        editAcc ?
+      ) : editAcc ? (
         <DetailAccount backState={goBackTable} user={user} />
-        :
+      ) : (
         <UserAccountTable
           fetchData={fetchData}
           isLoaded={isLoaded}
