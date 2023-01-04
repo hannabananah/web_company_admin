@@ -13,6 +13,7 @@ import useStyles from "~/styles/App";
 import UserAccount from "~/screens/UserAccount";
 import MyAccount from "~/screens/MyAccount";
 import DetailAccount from "~/components/DetailAccount";
+import EditDetailAccount from "~/components/EditDetailAccount";
 import History from "~/screens/History";
 import MemberStatus from "~/screens/MemberStatus";
 
@@ -35,7 +36,15 @@ function App() {
             />
             <Route path="/setting_admin/my_account" element={<MyAccount />} />
             {/*  */}
-            <Route path="/setting_admin/detail_account" element={<DetailAccount />} />
+            <Route
+              path="/setting_admin/detail_account"
+              element={<DetailAccount />}
+            />
+            {/*  */}
+            <Route
+              path="/setting_admin/edit_detail_account"
+              element={<EditDetailAccount />}
+            />
             <Route path="/setting_admin/history" element={<History />} />
             <Route path="/member" element={<Member />} />
             <Route path="/member/member_status" element={<MemberStatus />} />
