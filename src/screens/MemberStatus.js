@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Pagination from "react-js-pagination";
 
@@ -22,6 +22,17 @@ const MemberStatus = () => {
     .toString()
     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
+  const [fetchData, setFetchData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  //더미데이터
+  useEffect(() => {
+    fetch("https://dummyjson.com/users/")
+      .then((res) => res.json())
+      .then((json) => setFetchData(json))
+      .then(setIsLoaded(true));
+  }, []);
+
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -33,13 +44,12 @@ const MemberStatus = () => {
 
         <button>검색</button>
       </div>
-      <div>
-        <p>
-          총 회원 수 : <span>{cmemberNum} 명</span>
-        </p>
-      </div>
+      
 
-      <MemberTable />
+      <MemberTable
+        fetchData={fetchData}
+        isLoaded={isLoaded}
+      />
       <Pagination
         activePage={currentPage}
         totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
