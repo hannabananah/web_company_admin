@@ -4,7 +4,7 @@ import Pagination from "react-js-pagination";
 
 import useStyles from "~/styles/Table";
 
-import EditDetailAccount from "~/components/EditDetailAccount";
+import DetailAccount from "~/components/DetailAccount";
 const UserAccountTable = (props) => {
   const { changeState, fetchData, isLoaded } = props;
   const classes = useStyles();
@@ -22,7 +22,7 @@ const UserAccountTable = (props) => {
     console.log("page  -------------------->", page);
   };
 
-  //타인 계정 수정
+  //타인 계정 상세보기
   const [editAcc, setEditAcc] = useState(false);
   const [user, setUser] = useState([]);
   const onClickTarget = (user) => {
@@ -33,9 +33,9 @@ const UserAccountTable = (props) => {
   return (
     <div>
       {editAcc ? (
-        <EditDetailAccount user={user} backState={() => setEditAcc(false)} />
+        <DetailAccount user={user} backState={() => setEditAcc(false)} />
       ) : (
-        <siv>
+        <div>
           <div
             style={{
               display: "flex",
@@ -118,9 +118,8 @@ const UserAccountTable = (props) => {
               onChange={handlePageChange}
             />
           </figure>
-        </siv>
+        </div>
       )}
-      ;
     </div>
   );
 };
