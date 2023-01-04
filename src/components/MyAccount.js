@@ -1,9 +1,9 @@
 import { useState } from "react";
 import useStyles from "~/styles/AddUserAccount";
 import "~/styles/Toggle.css";
-import EditDetailAccount from "~/components/EditDetailAccount";
+import EditDetailMyAccount from "~/components/EditDetailMyAccount";
 
-const DetailAccount = ({ backState }) => {
+const MyAccountContent = ({ backState }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
   const onEdit = () => {
@@ -13,7 +13,7 @@ const DetailAccount = ({ backState }) => {
   return (
     <div style={{ width: "100%" }}>
       {edit ? (
-        <EditDetailAccount />
+        <EditDetailMyAccount />
       ) : (
         <figure className={classes.userAccContainer}>
           <table
@@ -29,7 +29,7 @@ const DetailAccount = ({ backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftbodyext}>아이디</label>
                 </th>
-                <td className={classes.contentStyle}>admin</td>
+                <td className={classes.contentStyle}>나의 admin</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
@@ -88,11 +88,10 @@ const DetailAccount = ({ backState }) => {
             <button onClick={onEdit} className={classes.editBtn}>
               수정
             </button>
-            <button className={classes.deleteBtn}>삭제</button>
           </div>
         </figure>
       )}
     </div>
   );
 };
-export default DetailAccount;
+export default MyAccountContent;

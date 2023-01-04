@@ -1,6 +1,10 @@
+import MyAccountContent from "~/components/MyAccount";
+
 const MyAccount = () => {
   return (
-    <>MyAccount</>
-  )
-}
+    <>
+      <MyAccountContent />
+    </>
+  );
+};
 export default MyAccount;
