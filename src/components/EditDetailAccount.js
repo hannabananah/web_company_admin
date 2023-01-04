@@ -2,8 +2,30 @@ import { useState } from "react";
 import useStyles from "~/styles/AddUserAccount";
 import "~/styles/Toggle.css";
 
-const EditDetailAccount = ({ backState, user }) => {
+const EditDetailAccount = ({ gobackstate, user }) => {
   const classes = useStyles();
+
+  //user info state
+  const [userInfo, setUserInfo] = useState({
+    id: user.firstName,
+    auth: user.bloodGroup,
+    pwd: "",
+    chkPwd: "",
+    phone: user.phone,
+    email: user.email,
+    ip: user.ip,
+    use_yn: user.gender,
+  });
+  const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } =
+    userInfo;
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    const newInfo = {
+      ...userInfo,
+      [name]: value, //e.target의 name과 value이다.
+    };
+    setUserInfo(newInfo);
+  };
 
   return (
     <figure className={classes.userAccContainer}>
@@ -20,7 +42,7 @@ const EditDetailAccount = ({ backState, user }) => {
             <th className={classes.leftLayout}>
               <label className={classes.leftbodyext}>아이디</label>
             </th>
-            <td className={classes.contentStyle}>{user.firstName}</td>
+            <td className={classes.contentStyle}>{userInfo.id}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
@@ -28,7 +50,8 @@ const EditDetailAccount = ({ backState, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={user.bloodGroup}
+                value={userInfo.auth}
+                onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
                 name="name"
@@ -43,6 +66,8 @@ const EditDetailAccount = ({ backState, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
+                value={userInfo.pwd}
+                onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
                 name="name"
@@ -57,6 +82,8 @@ const EditDetailAccount = ({ backState, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
+                value={userInfo.chkPwd}
+                onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
                 name="name"
@@ -72,6 +99,7 @@ const EditDetailAccount = ({ backState, user }) => {
             <td className={classes.inputLayout}>
               <input
                 type="tel"
+                onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone1"
                 id="name"
@@ -80,6 +108,7 @@ const EditDetailAccount = ({ backState, user }) => {
               &nbsp;-&nbsp;
               <input
                 type="tel"
+                onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone2"
                 id="name"
@@ -88,6 +117,7 @@ const EditDetailAccount = ({ backState, user }) => {
               &nbsp;-&nbsp;
               <input
                 type="tel"
+                onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone3"
                 id="name"
@@ -101,7 +131,8 @@ const EditDetailAccount = ({ backState, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={user.email}
+                value={userInfo.email}
+                onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
                 name="name"
@@ -116,7 +147,8 @@ const EditDetailAccount = ({ backState, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={user.ip}
+                value={userInfo.ip}
+                onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
                 name="name"
@@ -132,9 +164,11 @@ const EditDetailAccount = ({ backState, user }) => {
             <td className={classes.inputLayout}>
               <label className={`auggleToggle ${classes.userToggle}`}>
                 <input
+                  value={userInfo.use_yn}
+                  onChange={onChange}
                   role="switch"
                   type="checkbox"
-                  defaultChecked={user.gender == "male" ? true : false}
+                  defaultChecked={userInfo.use_yn == "male" ? true : false}
                 />
                 <span className={classes.toggleText}>알람</span>
               </label>
@@ -143,7 +177,7 @@ const EditDetailAccount = ({ backState, user }) => {
         </tbody>
       </table>
       <div className={classes.submitBtns}>
-        <button onClick={backState} className={classes.backBtn}>
+        <button onClick={gobackstate} className={classes.backBtn}>
           이전
         </button>
         <input type="submit" value="저장" className={classes.saveBtn} />
