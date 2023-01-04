@@ -3,7 +3,7 @@ import { useState } from "react";
 import useStyles from "~/styles/AddUserAccount";
 import "~/styles/Toggle.css";
 import UserAccAdd from "~/components/AddUserAccount";
-import UserAccTable from "~/components/table/TableUserAccount.js";
+import UserAccTable from "~/components/table/UserAccountTable.js";
 
 const UserAccount = () => {
   const classes = useStyles();

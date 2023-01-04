@@ -3,7 +3,7 @@ import { useState } from "react";
 import Pagination from "react-js-pagination";
 
 import useStyles from "~/styles/Table";
-const TableUserAccount = ({ changeState }) => {
+const UserAccountTable = ({ changeState }) => {
   const classes = useStyles();
   
   // 페이지네이션
@@ -122,4 +122,4 @@ const TableUserAccount = ({ changeState }) => {
     </figure>
   );
 };
-export default TableUserAccount;
+export default UserAccountTable;
