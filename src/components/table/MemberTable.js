@@ -1,54 +1,38 @@
-import { useState } from "react";
-
-import Pagination from "react-js-pagination";
-
 import useStyles from "../../styles/Table";
-const TableUserAccount = ({ changeState }) => {
-  const classes = useStyles();
-  
-  // 페이지네이션
-  const [totalPage, setTotalPage] = useState(5); //임시
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 10;
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-    console.log("page  -------------------->", page);
-  };
+const MemberTable = () => {
+  const classes = useStyles();
 
   return (
     <figure className={classes.root}>
-      <button onClick={changeState}>등록</button>
       <table className={classes.tableStyle}>
         <thead className={classes.theadStyle}>
           <tr>
-            <td className={classes.td} style={{ width: "100px" }}>
+            <td className={classes.td} style={{ width: "30px" }}>
               번호
             </td>
-
             <td
               className={classes.td}
               style={{
-                width: "150px",
+                width: "200px",
               }}
             >
-              작업 날짜
+              계정
             </td>
-
-            <td className={classes.td} style={{ width: "120px" }}>
-              관리자 ID
+            <td className={classes.td} style={{ width: "50px" }}>
+              OS
             </td>
-
-            <td className={classes.td} style={{ width: "120px" }}>
-              로그인 완료 시간
+            <td className={classes.td} style={{ width: "100px" }}>
+              생일
             </td>
-
-            <td className={classes.td} style={{ width: "120px" }}>
-              수행 시간
+            <td className={classes.td} style={{ width: "100px" }}>
+              가입일
             </td>
-
-            <td className={classes.td} style={{ width: "150px" }}>
-              작업 내용
+            <td className={classes.td} style={{ width: "100px" }}>
+              탈퇴일
+            </td>
+            <td className={classes.td} style={{ width: "180px" }}>
+              최근 접속일
             </td>
           </tr>
         </thead>
@@ -110,16 +94,8 @@ const TableUserAccount = ({ changeState }) => {
             })}
           </tbody> */}
       </table>
-      <Pagination
-        activePage={currentPage}
-        totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
-        itemsCountPerPage={postsPerPage} // 페이지당 보여줄 포스트 갯수
-        pageRangeDisplayed={10} // 페이저 갯수
-        prevPageText={"‹"}
-        nextPageText={"›"}
-        onChange={handlePageChange}
-      />
     </figure>
   );
 };
-export default TableUserAccount;
+
+export default MemberTable;

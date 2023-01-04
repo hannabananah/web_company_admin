@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import useStyles from "../styles/AddUserAccount";
 import "../styles/Toggle.css";
 import UserAccAdd from "../components/AddUserAccount";
@@ -13,8 +14,6 @@ const UserAccount = () => {
   const backState = () => {
     setAdd(false);
   };
-
-  console.log(add);
 
   return (
     <div style={{ width: "100%" }}>
