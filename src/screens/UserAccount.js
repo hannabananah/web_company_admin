@@ -19,15 +19,13 @@ const UserAccount = () => {
     setAdd(true); // 디폴트 페이지 -> 등록 화면
   };
 
-
-
-
   //타인 계정 상세보기
   const [editAcc, setEditAcc] = useState(false);
 
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  //더미데이터
   useEffect(() => {
     fetch("https://dummyjson.com/users/")
       .then((res) => res.json())
@@ -50,7 +48,7 @@ const UserAccount = () => {
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       {add ? (
-        <UserAccAdd fetchData={fetchData} backState={backState} />
+        <UserAccAdd backState={backState} />
       ) : (
         editAcc ?
         <DetailAccount backState={goBackTable} user={user} />
