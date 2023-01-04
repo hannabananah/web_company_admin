@@ -134,7 +134,7 @@ const EditDetailAccount = ({ backState, user }) => {
                 <input
                   role="switch"
                   type="checkbox"
-                  checked={user.gender == "male" ? true : false}
+                  defaultChecked={user.gender == "male" ? true : false}
                 />
                 <span className={classes.toggleText}>알람</span>
               </label>
