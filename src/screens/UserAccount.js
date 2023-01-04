@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import useStyles from "../styles/AddUserAccount";
-import "../styles/Toggle.css";
-import UserAccAdd from "../components/AddUserAccount";
-import UserAccTable from "../components/table/TableUserAccount.js";
+import useStyles from "~/styles/AddUserAccount";
+import "~/styles/Toggle.css";
+import UserAccAdd from "~/components/AddUserAccount";
+import UserAccTable from "~/components/table/TableUserAccount.js";
 
 const UserAccount = () => {
   const classes = useStyles();

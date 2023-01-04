@@ -1,4 +1,4 @@
-import useStyles from "../../styles/Table";
+import useStyles from "~/styles/Table";
 
 const MemberTable = () => {
   const classes = useStyles();

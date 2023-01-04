@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Pagination from "react-js-pagination";
 
-import useStyles from "../../styles/Table";
+import useStyles from "~/styles/Table";
 const TableUserAccount = ({ changeState }) => {
   const classes = useStyles();
   
