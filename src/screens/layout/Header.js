@@ -1,4 +1,4 @@
-import useStyles from "../../styles/Header";
+import useStyles from "~/styles/Header";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {

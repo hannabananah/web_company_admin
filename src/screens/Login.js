@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import useStyles from "../styles/Login";
+import useStyles from "~/styles/Login";
 
 const Login = () => {
   const classes = useStyles();

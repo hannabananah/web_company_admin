@@ -1,4 +1,4 @@
-import HistoryTable from '../components/table/HistoryTable';
+import HistoryTable from '~/components/table/HistoryTable';
 import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from 'dayjs';
 import TextField from '@mui/material/TextField';
@@ -6,7 +6,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Pagination from "react-js-pagination";
-import "../styles/pagination.css";
+import "~/styles/pagination.css";
 
 const History = () => {
   // 페이지네이션

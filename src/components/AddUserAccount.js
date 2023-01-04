@@ -1,6 +1,6 @@
 import { useState } from "react";
-import useStyles from "../styles/AddUserAccount";
-import "../styles/Toggle.css";
+import useStyles from "~/styles/AddUserAccount";
+import "~/styles/Toggle.css";
 
 const AddUserAccount = ({ backState }) => {
   const classes = useStyles();

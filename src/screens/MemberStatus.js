@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Pagination from "react-js-pagination";
 
-import MemberTable from "../components/table/MemberTable";
+import MemberTable from "~/components/table/MemberTable";
 
 const MemberStatus = () => {
   // 페이지네이션
