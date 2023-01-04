@@ -1,10 +1,11 @@
 import useStyles from "../../styles/Table";
 
-const TableUserAccount = () => {
+const TableUserAccount = ({changeState}) => {
   const classes = useStyles();
 
   return (
     <figure className={classes.root}>
+      <button onClick={changeState}>등록</button>
       <table className={classes.tableStyle}>
         <thead className={classes.theadStyle}>
           <tr>

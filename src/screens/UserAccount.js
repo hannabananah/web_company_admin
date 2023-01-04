@@ -18,8 +18,11 @@ const UserAccount = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      <button onClick={changeState}>등록</button>
-      {add ? <UserAccAdd backState={backState} /> : <UserAccTable />}
+      {add ? (
+        <UserAccAdd backState={backState} />
+      ) : (
+        <UserAccTable changeState={changeState} />
+      )}
     </div>
   );
 };
