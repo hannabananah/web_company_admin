@@ -11,13 +11,28 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     auth: user.bloodGroup,
     pwd: "",
     chkPwd: "",
-    phone: user.phone,
+    phone1: user.phone1,
+    phone2: user.phone2,
+    phone3: user.phone3,
     email: user.email,
     ip: user.ip,
     use_yn: user.gender,
   });
-  const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } =
-    userInfo;
+
+  // console.log('userInfo ----------->', userInfo)
+
+  const { 
+    auth, 
+    pwd, 
+    chkPwd, 
+    phone1, 
+    phone2, 
+    phone3, 
+    email, 
+    ip, 
+    use_yn 
+  } = userInfo;
+    
   const onChange = (e) => {
     const { name, value } = e.target;
     const newInfo = {
@@ -54,7 +69,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="name"
+                name="auth"
                 id="name"
                 required
               />
@@ -70,7 +85,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="name"
+                name="pwd"
                 id="name"
                 required
               />
@@ -86,7 +101,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="name"
+                name="chkPwd"
                 id="name"
                 required
               />
@@ -135,7 +150,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="name"
+                name="email"
                 id="name"
                 required
               />
@@ -151,7 +166,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="name"
+                name="ip"
                 id="name"
                 required
               />
@@ -168,6 +183,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                   onChange={onChange}
                   role="switch"
                   type="checkbox"
+                  name="use_yn"
                   defaultChecked={userInfo.use_yn == "male" ? true : false}
                 />
                 <span className={classes.toggleText}>알람</span>
