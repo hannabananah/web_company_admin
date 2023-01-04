@@ -130,7 +130,6 @@ const EditDetailMyAccount = ({ backState }) => {
             </th>
             <td className={classes.inputLayout}>
               <label className={`auggleToggle ${classes.userToggle}`}>
-                {/* <label className="auggleToggle"> */}
                 <input role="switch" type="checkbox" />
                 <span className={classes.toggleText}>알람</span>
               </label>

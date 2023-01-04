@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import useStyles from "~/styles/AddUserAccount";
 import "~/styles/Toggle.css";
@@ -15,12 +15,28 @@ const UserAccount = () => {
     setAdd(false);
   };
 
+  const [fetchData, setFetchData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/users/")
+      .then((res) => res.json())
+      .then((json) => setFetchData(json))
+      .then(setIsLoaded(true));
+  }, []);
+
+  console.log(fetchData);
+  console.log(isLoaded);
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       {add ? (
-        <UserAccAdd backState={backState} />
+        <UserAccAdd fetchData={fetchData} backState={backState} />
       ) : (
-        <UserAccTable changeState={changeState} />
+        <UserAccTable
+          fetchData={fetchData}
+          isLoaded={isLoaded}
+          changeState={changeState}
+        />
       )}
     </div>
   );

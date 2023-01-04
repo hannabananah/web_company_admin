@@ -2,7 +2,7 @@ import { useState } from "react";
 import useStyles from "~/styles/AddUserAccount";
 import "~/styles/Toggle.css";
 
-const EditDetailAccount = ({ backState }) => {
+const EditDetailAccount = ({ backState, user }) => {
   const classes = useStyles();
 
   return (
@@ -20,7 +20,7 @@ const EditDetailAccount = ({ backState }) => {
             <th className={classes.leftLayout}>
               <label className={classes.leftbodyext}>아이디</label>
             </th>
-            <td className={classes.contentStyle}>admin</td>
+            <td className={classes.contentStyle}>{user.firstName}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
@@ -28,6 +28,7 @@ const EditDetailAccount = ({ backState }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
+                value={user.bloodGroup}
                 type="text"
                 className={classes.inputStyle}
                 name="name"
@@ -100,6 +101,7 @@ const EditDetailAccount = ({ backState }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
+                value={user.email}
                 type="text"
                 className={classes.inputStyle}
                 name="name"
@@ -114,6 +116,7 @@ const EditDetailAccount = ({ backState }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
+                value={user.ip}
                 type="text"
                 className={classes.inputStyle}
                 name="name"
@@ -128,8 +131,11 @@ const EditDetailAccount = ({ backState }) => {
             </th>
             <td className={classes.inputLayout}>
               <label className={`auggleToggle ${classes.userToggle}`}>
-                {/* <label className="auggleToggle"> */}
-                <input role="switch" type="checkbox" />
+                <input
+                  role="switch"
+                  type="checkbox"
+                  checked={user.gender == "male" ? true : false}
+                />
                 <span className={classes.toggleText}>알람</span>
               </label>
             </td>
