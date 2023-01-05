@@ -1,6 +1,8 @@
+import Preparations from "~/components/Preparations"
+
 const Notice = () => {
   return (
-    <>Notice</>
+    <Preparations />
   )
 }
 export default Notice;

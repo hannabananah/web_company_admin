@@ -1,6 +1,8 @@
+import Preparations from "~/components/Preparations"
+
 const SystemSettings = () => {
   return (
-    <>SystemSettings</>
+    <Preparations />
   )
 }
 export default SystemSettings;
