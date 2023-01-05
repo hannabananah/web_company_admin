@@ -1,6 +1,8 @@
+import Preparations from "~/components/Preparations"
+
 const Statistics = () => {
   return (
-    <>Statistics</>
+    <Preparations />
   )
 }
 export default Statistics;
