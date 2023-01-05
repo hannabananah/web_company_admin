@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     display:'flex', 
     flexDirection:'column', 
   },
-  suvMenuWrap: {
+  subMenuWrap: {
     display:'flex', 
     flexDirection:'column', 
   },
@@ -25,11 +25,11 @@ const useStyles = makeStyles({
     padding:'15px',
     background:'teal'
   },
-  suvMenuList: {
+  subMenuList: {
     padding:'10px 10px 10px 25px',
     color:'#999'
   },
-  activesuvMenuList: {
+  activesubMenuList: {
     padding:'10px 10px 10px 25px',
     color:'#999',
     background:'teal'

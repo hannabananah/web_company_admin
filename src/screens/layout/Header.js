@@ -1,5 +1,6 @@
 import useStyles from "~/styles/Header";
 import { useLocation, useNavigate } from "react-router-dom";
+import { allPaths } from "../../util/sidenav_data";
 
 const Header = () => {
   const classes = useStyles();
@@ -14,7 +15,7 @@ const Header = () => {
   
   return (
     <>
-      {!isEmpty &&
+      {allPaths.includes(window.location.pathname) && 
       <header className={classes.root}>
         <h1>ANYCHAT 관리자시스템</h1>
         <button>로그아웃</button>
