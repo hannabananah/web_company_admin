@@ -4,7 +4,6 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     flex: 1,
-    overflowY:'scroll'
   },
   routesContainer: {
     flex: 1, 
