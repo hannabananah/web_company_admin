@@ -113,8 +113,7 @@ const SideBar = () => {
           //   active={window.location.pathname === item.path}
           //   routerLink={<Link to={item.path} />}> {item.title} 
           // </MenuItem>
-          <li key={index} onClick={()=>navigate(item.path)}>{item.title}</li>
-          
+          <li key={index} className={item.path == window.location.pathname ?  classes.activesuvMenuList : classes.suvMenuList} onClick={()=>navigate(item.path)}>{item.title}</li>
         )  
       })
     )
@@ -123,23 +122,6 @@ const SideBar = () => {
   const onClickNav = (path) => {
     navigate(path)
   }
-  
-  // const [isOpen, setIsOpen] = useState({
-  //   index:'',
-  //   isOpen: false
-  // })
-  const [isOpen, setIsOpen] = useState(false)
-  console.log('isOpen ------->',isOpen)
-
-  sideNavData.map((item,index)=>{
-    const menu = []
-    menu.push(
-  
-    )
-  })
-  
-
-  
 
   useEffect(()=>{
   //   const subMenuRoots = document.querySelectorAll('.ps-submenu-root');
@@ -154,6 +136,7 @@ const SideBar = () => {
   //   } 
 
     const details = document.querySelectorAll('details');
+    const summarys = document.querySelectorAll('summary');
     // if ( pathsArr(0).includes(window.location.pathname) ) {
     //   for(let i=0; i<details.length; i++) {
     //     details[0].setAttribute('open',true);
@@ -166,6 +149,9 @@ const SideBar = () => {
     for(let i=0; i<details.length; i++) {
         if ( pathsArr(i).includes(window.location.pathname) ) {
         details[i].setAttribute('open',true);
+        summarys[i].classList.add('activeMenu')
+      } else {
+        summarys[i].classList.remove('activeMenu')
       } 
     } 
     
@@ -174,15 +160,15 @@ const SideBar = () => {
   return (
     <>
     {isEmpty ? null : 
-      <div style={{width:'200px', position:'sticky', bottom:0, top:0 }}>
+      <div className={classes.root}>
 
-        <div style={{borderRight:'1px solid #ddd', height:'100%',padding:'15px', display:'flex', flexDirection:'column', gap:'20px'}}>
+        <div className={classes.container}>
           {sideNavData.map((item,index)=>{
             if(item.suvMenu) {
               return (
                 <details key={index} style={{cursor:'pointer'}}>
-                  <summary>{item.title}</summary>
-                  <ol style={{padding:'15px 15px 0', display:'flex', flexDirection:'column', gap:'10px'}}>
+                  <summary className={classes.menu}>{item.title}</summary>
+                  <ol className={classes.suvMenuWrap}>
                     {renderMenuItems(item.suvMenu)}
                   </ol>
                 </details>
@@ -190,7 +176,7 @@ const SideBar = () => {
             } else {
               return (
                 <div key={index} 
-                  className={item.path == window.location.pathname ? 'activeMenu' : null}
+                  className={item.path == window.location.pathname ?  classes.activeMenu : classes.menu}
                   onClick={()=>navigate(item.path)} style={{cursor:'pointer'}}>
                   {item.title}
                 </div>
