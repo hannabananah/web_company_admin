@@ -138,7 +138,10 @@ const SideBar = () => {
     )
   })
   
-  // useEffect(()=>{
+
+  
+
+  useEffect(()=>{
   //   const subMenuRoots = document.querySelectorAll('.ps-submenu-root');
   //   const subMenuContents = document.querySelectorAll('.ps-submenu-content');
 
@@ -149,11 +152,24 @@ const SideBar = () => {
   //       subMenuContents[0].style.display = 'block';
   //     } 
   //   } 
-  // },[window.location.pathname])
 
-  const [activeIndex, setActiveIndex] = useState();
-  const [isClicked, setIsClicked] = useState(false);
-  const [isOpened, setIsOpened] = useState(false);
+    const details = document.querySelectorAll('details');
+    // if ( pathsArr(0).includes(window.location.pathname) ) {
+    //   for(let i=0; i<details.length; i++) {
+    //     details[0].setAttribute('open',true);
+    //   } 
+    // } else if ( pathsArr(1).includes(window.location.pathname) ) {
+    //   for(let i=0; i<details.length; i++) {
+    //     details[1].setAttribute('open',true);
+    //   } 
+    // } 
+    for(let i=0; i<details.length; i++) {
+        if ( pathsArr(i).includes(window.location.pathname) ) {
+        details[i].setAttribute('open',true);
+      } 
+    } 
+    
+  },[window.location.pathname])
 
   return (
     <>
@@ -242,13 +258,11 @@ const SideBar = () => {
         </Menu>
 
 
-        <div style={{background:'salmon', padding:'15px', display:'flex', flexDirection:'column', gap:'20px', height:'1000px'}}>
+        <div style={{cursor:'pointer',background:'salmon', padding:'15px', display:'flex', flexDirection:'column', gap:'20px', height:'1000px'}}>
         {sideNavData.map((item,index)=>{
           if(item.suvMenu) {
             return (
-              // <details key={index} onClick={(e)=>setActiveIndex(item.id)} 
-              <details key={index} 
-                open={isOpened}>
+              <details key={index}>
                 {/* open={activeIndex == item.id}> */}
                 <summary>{item.title}</summary>
                 <ol>
