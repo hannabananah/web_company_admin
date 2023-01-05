@@ -113,8 +113,7 @@ const SideBar = () => {
           //   active={window.location.pathname === item.path}
           //   routerLink={<Link to={item.path} />}> {item.title} 
           // </MenuItem>
-          <li key={index} onClick={()=>navigate(item.path)}>{item.title}</li>
-          
+          <li key={index} className={item.path == window.location.pathname ?  classes.activesuvMenuList : classes.suvMenuList} onClick={()=>navigate(item.path)}>{item.title}</li>
         )  
       })
     )
@@ -123,23 +122,6 @@ const SideBar = () => {
   const onClickNav = (path) => {
     navigate(path)
   }
-  
-  // const [isOpen, setIsOpen] = useState({
-  //   index:'',
-  //   isOpen: false
-  // })
-  const [isOpen, setIsOpen] = useState(false)
-  console.log('isOpen ------->',isOpen)
-
-  sideNavData.map((item,index)=>{
-    const menu = []
-    menu.push(
-  
-    )
-  })
-  
-
-  
 
   useEffect(()=>{
   //   const subMenuRoots = document.querySelectorAll('.ps-submenu-root');
@@ -154,6 +136,7 @@ const SideBar = () => {
   //   } 
 
     const details = document.querySelectorAll('details');
+    const summarys = document.querySelectorAll('summary');
     // if ( pathsArr(0).includes(window.location.pathname) ) {
     //   for(let i=0; i<details.length; i++) {
     //     details[0].setAttribute('open',true);
@@ -166,6 +149,9 @@ const SideBar = () => {
     for(let i=0; i<details.length; i++) {
         if ( pathsArr(i).includes(window.location.pathname) ) {
         details[i].setAttribute('open',true);
+        summarys[i].classList.add('activeMenu')
+      } else {
+        summarys[i].classList.remove('activeMenu')
       } 
     } 
     
@@ -173,126 +159,33 @@ const SideBar = () => {
 
   return (
     <>
-    {isEmpty ? null :
-    //   <div className={classes.root}>
-    //   <Navigation
-    //     // activeItemId={location.pathname}
-    //     activeItemId={currPath}
-    //     onSelect={({ itemId }) => {
-    //       if (!list.includes(itemId)) {
-    //         // navigate(itemId);
-    //         changePath(itemId)
-    //       }
-    //       // setCurrPath(itemId);
-    //     }}
-    //     items={menu}
-    //   />
-    // </div>
+    {isEmpty ? null : 
+      <div className={classes.root}>
 
-    <div style={{ display: 'flex', height: '100%', width: '300px' }}>
-      <Sidebar
-        rootStyles={{
-          // backgroundColor: 'blue',
-        }}
-        // backgroundColor="blue"
-      >
-        <Menu
-          // closeOnClick={true}
-          menuItemStyles={{
-
-            button: ({ level, active, disabled }) => {
-              // only apply styles on first level elements of the tree
-              if (level === 0)
-                return {
-                  // fontWeight:'bold',
-                  // color: disabled ? '#f5d9ff' : '#d359ff',
-                  backgroundColor: active ? '#555' : undefined,
-                  "&:hover":{
-                    background:'#eee'
-                  }
-                };
-              if (level === 1)
-              return {
-                // color: disabled ? 'red' : 'blue',
-                color: active ? 'red' : '#888',
-                backgroundColor: active ? '#ddd' : undefined,
-                "&:hover":{
-                  background:'#eee'
-                }
-              };
-            },
-          }}
-        >
-        {sideNavData.map((item,index)=>{
-          if(item.suvMenu) {
-            return (
-              <SubMenu 
-                onOpenChange={(open)=>{console.log('onOpenChange --------->',item.id,open)}}
-                // onOpenChange={(open)=>{setIsOpen(open)}}
-
-
-
-                // onClick={()=>onClickNav(item.path)}
-                // open={pathsArr(item.id).includes(window.location.pathname)}
-
-
-                // active={pathsArr(item.id).includes(window.location.pathname)}
-                key={index}
-                label={item.title}
-                icon={<img src={images.icons.SVG_NAV_ICON_1ST} alt={item.title} className="icon" />}>
-                {renderMenuItems(item.suvMenu)}
-              </SubMenu>
-            )
-          } 
-          else {
-            return (
-              <MenuItem key={index} 
-                routerLink={<Link to={item.path} />}
-                active={window.location.pathname === item.path}
-                icon={<img src={images.icons.SVG_NAV_ICON_1ST} alt={item.title} className="icon" />}> 
-                {item.title}
-              </MenuItem>
-            )
-          }
-        })}
-        </Menu>
-
-
-        <div style={{cursor:'pointer',background:'salmon', padding:'15px', display:'flex', flexDirection:'column', gap:'20px', height:'1000px'}}>
-        {sideNavData.map((item,index)=>{
-          if(item.suvMenu) {
-            return (
-              <details key={index}>
-                {/* open={activeIndex == item.id}> */}
-                <summary>{item.title}</summary>
-                <ol>
-                  {renderMenuItems(item.suvMenu)}
-                </ol>
-              </details>
-            )
-          } else {
-            return (
-              <div key={index} onClick={()=>navigate(item.path)}>
-                {item.title}
-              </div>
-            )
-          }
-        })}
-          
+        <div className={classes.container}>
+          {sideNavData.map((item,index)=>{
+            if(item.suvMenu) {
+              return (
+                <details key={index} style={{cursor:'pointer'}}>
+                  <summary className={classes.menu}>{item.title}</summary>
+                  <ol className={classes.suvMenuWrap}>
+                    {renderMenuItems(item.suvMenu)}
+                  </ol>
+                </details>
+              )
+            } else {
+              return (
+                <div key={index} 
+                  className={item.path == window.location.pathname ?  classes.activeMenu : classes.menu}
+                  onClick={()=>navigate(item.path)} style={{cursor:'pointer'}}>
+                  {item.title}
+                </div>
+              )
+            }
+          })}
         </div>
-      
-      
-      </Sidebar>
-      
-      <main>
-        <button onClick={() => collapseSidebar()}>Collapse</button>
-      </main>
-    </div>
 
-
-
-
-    
+      </div>
     }
     </>
   );
