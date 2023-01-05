@@ -53,9 +53,7 @@ const MemberTable = (props) => {
                 return (
                   <tr key={index} className={classes.tableTr}>
                     <td className={classes.td}>{i.id}</td>
-                    <td className={`${classes.td} + ${classes.idLink}`}>
-                      {i.firstName}
-                    </td>
+                    <td className={classes.td}>{i.firstName}</td>
                     <td className={classes.td}>{i.bloodGroup}</td>
                     <td className={classes.td}>{i.birthDate}</td>
                     <td className={classes.td}>{i.gender}</td>
