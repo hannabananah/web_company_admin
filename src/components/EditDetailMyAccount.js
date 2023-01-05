@@ -2,7 +2,7 @@ import { useState } from "react";
 import useStyles from "~/styles/AddUserAccount";
 import "~/styles/Toggle.css";
 
-const EditDetailMyAccount = ({ backState }) => {
+const EditDetailMyAccount = ({ goBackState }) => {
   const classes = useStyles();
 
   return (
@@ -138,7 +138,7 @@ const EditDetailMyAccount = ({ backState }) => {
         </tbody>
       </table>
       <div className={classes.submitBtns}>
-        <button onClick={backState} className={classes.backBtn}>
+        <button onClick={goBackState} className={classes.backBtn}>
           이전
         </button>
         <input type="submit" value="저장" className={classes.saveBtn} />
