@@ -1,6 +1,9 @@
+import Preparations from "~/components/Preparations"
+
 const Service = () => {
+
   return (
-    <>Service</>
+    <Preparations />
   )
 }
 export default Service;
