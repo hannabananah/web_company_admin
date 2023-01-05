@@ -1,6 +1,7 @@
 import React from 'react';
 import useStyles from "~/styles/NotFound";
 import { useNavigate } from "react-router-dom";
+import images from "~/assets/js/Images";
 
 const NotFound = () => {
   const classes = useStyles();
@@ -9,9 +10,12 @@ const NotFound = () => {
   return (
     <div className={classes.root}>
       <div className={classes.contents}>
-        <h1>Oops..</h1>
-        <p>We can't find that page</p>
-        <button onClick={()=>{navigate('/')}}>Go back</button>
+        <img src={images.SVG_NOTOUND} className={classes.img} alt="not found" />
+        <div className={classes.text}>
+          <h2>Oops..</h2>
+          <p>We can't find that page</p>
+          <button className={classes.goBackBtn} onClick={()=>{navigate('/')}}>Go back</button>
+        </div>
       </div>
     </div>
   );
