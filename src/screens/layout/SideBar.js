@@ -173,126 +173,33 @@ const SideBar = () => {
 
   return (
     <>
-    {isEmpty ? null :
-    //   <div className={classes.root}>
-    //   <Navigation
-    //     // activeItemId={location.pathname}
-    //     activeItemId={currPath}
-    //     onSelect={({ itemId }) => {
-    //       if (!list.includes(itemId)) {
-    //         // navigate(itemId);
-    //         changePath(itemId)
-    //       }
-    //       // setCurrPath(itemId);
-    //     }}
-    //     items={menu}
-    //   />
-    // </div>
+    {isEmpty ? null : 
+      <div style={{width:'200px', position:'sticky', bottom:0, top:0 }}>
 
-    <div style={{ display: 'flex', height: '100%', width: '300px' }}>
-      <Sidebar
-        rootStyles={{
-          // backgroundColor: 'blue',
-        }}
-        // backgroundColor="blue"
-      >
-        <Menu
-          // closeOnClick={true}
-          menuItemStyles={{
-
-            button: ({ level, active, disabled }) => {
-              // only apply styles on first level elements of the tree
-              if (level === 0)
-                return {
-                  // fontWeight:'bold',
-                  // color: disabled ? '#f5d9ff' : '#d359ff',
-                  backgroundColor: active ? '#555' : undefined,
-                  "&:hover":{
-                    background:'#eee'
-                  }
-                };
-              if (level === 1)
-              return {
-                // color: disabled ? 'red' : 'blue',
-                color: active ? 'red' : '#888',
-                backgroundColor: active ? '#ddd' : undefined,
-                "&:hover":{
-                  background:'#eee'
-                }
-              };
-            },
-          }}
-        >
-        {sideNavData.map((item,index)=>{
-          if(item.suvMenu) {
-            return (
-              <SubMenu 
-                onOpenChange={(open)=>{console.log('onOpenChange --------->',item.id,open)}}
-                // onOpenChange={(open)=>{setIsOpen(open)}}
-
-
-
-                // onClick={()=>onClickNav(item.path)}
-                // open={pathsArr(item.id).includes(window.location.pathname)}
-
-
-                // active={pathsArr(item.id).includes(window.location.pathname)}
-                key={index}
-                label={item.title}
-                icon={<img src={images.icons.SVG_NAV_ICON_1ST} alt={item.title} className="icon" />}>
-                {renderMenuItems(item.suvMenu)}
-              </SubMenu>
-            )
-          } 
-          else {
-            return (
-              <MenuItem key={index} 
-                routerLink={<Link to={item.path} />}
-                active={window.location.pathname === item.path}
-                icon={<img src={images.icons.SVG_NAV_ICON_1ST} alt={item.title} className="icon" />}> 
-                {item.title}
-              </MenuItem>
-            )
-          }
-        })}
-        </Menu>
-
-
-        <div style={{cursor:'pointer',background:'salmon', padding:'15px', display:'flex', flexDirection:'column', gap:'20px', height:'1000px'}}>
-        {sideNavData.map((item,index)=>{
-          if(item.suvMenu) {
-            return (
-              <details key={index}>
-                {/* open={activeIndex == item.id}> */}
-                <summary>{item.title}</summary>
-                <ol>
-                  {renderMenuItems(item.suvMenu)}
-                </ol>
-              </details>
-            )
-          } else {
-            return (
-              <div key={index} onClick={()=>navigate(item.path)}>
-                {item.title}
-              </div>
-            )
-          }
-        })}
-          
+        <div style={{borderRight:'1px solid #ddd', height:'100%',padding:'15px', display:'flex', flexDirection:'column', gap:'20px'}}>
+          {sideNavData.map((item,index)=>{
+            if(item.suvMenu) {
+              return (
+                <details key={index} style={{cursor:'pointer'}}>
+                  <summary>{item.title}</summary>
+                  <ol style={{padding:'15px 15px 0', display:'flex', flexDirection:'column', gap:'10px'}}>
+                    {renderMenuItems(item.suvMenu)}
+                  </ol>
+                </details>
+              )
+            } else {
+              return (
+                <div key={index} 
+                  className={item.path == window.location.pathname ? 'activeMenu' : null}
+                  onClick={()=>navigate(item.path)} style={{cursor:'pointer'}}>
+                  {item.title}
+                </div>
+              )
+            }
+          })}
         </div>
-      
-      
-      </Sidebar>
-      
-      <main>
-        <button onClick={() => collapseSidebar()}>Collapse</button>
-      </main>
-    </div>
 
-
-
-
-    
+      </div>
     }
     </>
   );
