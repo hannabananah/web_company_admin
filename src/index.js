@@ -5,6 +5,13 @@ import reportWebVitals from './reportWebVitals';
 import './styles/reset.css';
 import { ProSidebarProvider } from 'react-pro-sidebar';
 
+// replace console.* for disable log on production
+if (process.env.NODE_ENV === 'production') {
+  console.log = () => {}
+  console.error = () => {}
+  console.debug = () => {}
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
