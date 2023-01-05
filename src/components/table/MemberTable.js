@@ -5,15 +5,14 @@ const MemberTable = (props) => {
   const classes = useStyles();
 
   // 천 단위 마다 콤마
-  const cmemberNum = fetchData.limit
-    .toString()
-    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  const cmemberNum = +fetchData.limit;
+  cmemberNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (
     <div>
       <div>
         <p>
-          총 회원 수 : <span>{cmemberNum} 명</span>
+          총 회원 수 :<span> {cmemberNum}명</span>
         </p>
       </div>
       <figure className={classes.root}>
