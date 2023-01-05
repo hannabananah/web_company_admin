@@ -483,3 +483,6 @@ th {
 [type="checkbox"] {
   appearance: none;
 }
+button {
+  cursor: pointer;
+}
