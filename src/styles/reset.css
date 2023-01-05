@@ -486,3 +486,15 @@ th {
 button {
   cursor: pointer;
 }
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body {
+  height: 100vh;
+}
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
