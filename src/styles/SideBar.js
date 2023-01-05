@@ -20,19 +20,23 @@ const useStyles = makeStyles({
 
   menu: {
     padding:'15px',
+    cursor:'pointer'
   },
   activeMenu: {
     padding:'15px',
-    background:'teal'
+    background:'teal',
+    cursor:'pointer',
   },
   subMenuList: {
     padding:'10px 10px 10px 25px',
-    color:'#999'
+    color:'#999',
+    cursor:'pointer',
   },
   activesubMenuList: {
     padding:'10px 10px 10px 25px',
     color:'#999',
-    background:'teal'
+    background:'teal',
+    cursor:'pointer',
   }
   
 });
