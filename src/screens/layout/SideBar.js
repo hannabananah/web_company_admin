@@ -2,87 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { Navigation } from "react-minimal-side-navigation";
-import { menu } from "../../util/sidenav_menu";
+import { sidenav_data, allPaths } from "../../util/sidenav_data";
 import useStyles from "../../styles/SideBar";
 import "../../styles/SideBar.css";
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
 import SVG_NAV_ICON_1ST from "../../assets/images/icon_navi_1.svg";
 import images from "../../assets/js/Images";
 
-// var me = 
-// {
-//   name:"KMJ",
-//   contact:"hi.minjungkim@gmail.com",
-//   location:"Seoul",
-//   "what I like": {
-//     food: [{
-//           name: "맥도날드",
-//             price: 5600
-//         }, {
-//           name: "밀크티",
-//           price: 4000
-//         }],
-//         things: ["돈", "집"]
-//     }
-// };
-// // console.log(me["what I like"].food[1].name)
-// console.log(me.name)
-
-
-const sideNavData = [
-  {
-    id:0,
-    title:"관리자 설정",
-    path:"/setting_admin",
-    suvMenu: [
-      {
-        title:"계정 관리",
-        path:"/setting_admin/user_account"
-      },
-      {
-        title:"내 계정 관리",
-        path:"/setting_admin/my_account"
-      },
-      {
-        title:"관리 이력",
-        path:"/setting_admin/history"
-      }
-    ]
-  },
-  {
-    id:1,
-    title:"회원 관리",
-    path:"/member",
-    suvMenu: [
-      {
-        title:"회원 현황",
-        path:"/member/member_status"
-      },
-    ]
-  },
-  {
-    title:"서비스 관리",
-    path:"/service"
-  },
-  {
-    title:"통계 관리",
-    path:"/statistics"
-  },
-  {
-    title:"공지 관리",
-    path:"/notice"
-  },
-  {
-    title:"시스템 설정",
-    path:"/system_settings"
-  },
-]
-
 const pathsArr = (index) => {
-  let List = sideNavData.filter((item)=>{ return item.id == index })
+  let List = sidenav_data.filter((item)=>{ return item.id == index })
   let paths;
-  if ( List[0].suvMenu ) {
-    paths = List[0].suvMenu.map((i,index)=>{ return i.path });
+  if ( List[0].subMenu ) {
+    paths = List[0].subMenu.map((i,index)=>{ return i.path });
     paths.unshift(List[0]['path'])
   } else {
     paths = List[0]['path']
@@ -104,16 +35,19 @@ const SideBar = () => {
     if (url == location.pathname) isEmpty = true;
   });
 
-  const renderMenuItems = (suvMenu) => {
-    console.log(suvMenu)
+  const renderMenuItems = (subMenu) => {
+    console.log(subMenu)
     return (
-      suvMenu.map((item,index)=>{
+      subMenu.map((item,index)=>{
         return (
-          // <MenuItem key={index}
-          //   active={window.location.pathname === item.path}
-          //   routerLink={<Link to={item.path} />}> {item.title} 
-          // </MenuItem>
-          <li key={index} className={item.path == window.location.pathname ?  classes.activesuvMenuList : classes.suvMenuList} onClick={()=>navigate(item.path)}>{item.title}</li>
+          <li 
+            key={index} 
+            className={
+              item.path == window.location.pathname 
+              ? classes.activesubMenuList 
+              : classes.subMenuList} 
+            onClick={()=>navigate(item.path)}>{item.title}
+          </li>
         )  
       })
     )
@@ -159,17 +93,46 @@ const SideBar = () => {
 
   return (
     <>
-    {isEmpty ? null : 
+    {allPaths.includes(window.location.pathname) && 
+      <div className={classes.root}>
+
+      <div className={classes.container}>
+        {sidenav_data.map((item,index)=>{
+          if(item.subMenu) {
+            return (
+              <details key={index} style={{cursor:'pointer'}}>
+                <summary className={classes.menu}>{item.title}</summary>
+                <ol className={classes.subMenuWrap}>
+                  {renderMenuItems(item.subMenu)}
+                </ol>
+              </details>
+            )
+          } else {
+            return (
+              <div key={index} 
+                className={item.path == window.location.pathname ?  classes.activeMenu : classes.menu}
+                onClick={()=>navigate(item.path)} style={{cursor:'pointer'}}>
+                {item.title}
+              </div>
+            )
+          }
+        })}
+      </div>
+
+      </div>
+    }
+
+    {/* {isEmpty ? null : 
       <div className={classes.root}>
 
         <div className={classes.container}>
-          {sideNavData.map((item,index)=>{
-            if(item.suvMenu) {
+          {sidenav_data.map((item,index)=>{
+            if(item.subMenu) {
               return (
                 <details key={index} style={{cursor:'pointer'}}>
                   <summary className={classes.menu}>{item.title}</summary>
-                  <ol className={classes.suvMenuWrap}>
-                    {renderMenuItems(item.suvMenu)}
+                  <ol className={classes.subMenuWrap}>
+                    {renderMenuItems(item.subMenu)}
                   </ol>
                 </details>
               )
@@ -186,7 +149,7 @@ const SideBar = () => {
         </div>
 
       </div>
-    }
+    } */}
     </>
   );
 };
