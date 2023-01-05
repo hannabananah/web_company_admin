@@ -16,6 +16,7 @@ import DetailAccount from "~/components/DetailAccount";
 import EditDetailAccount from "~/components/EditDetailAccount";
 import History from "~/screens/History";
 import MemberStatus from "~/screens/MemberStatus";
+import NotFound from "~/screens/NotFound";
 
 function App() {
   const classes = useStyles();
@@ -28,31 +29,30 @@ function App() {
         <div className={classes.routesContainer}>
           <Routes>
             <Route path="/" element={<Login />} />
-            {/* <Route element={<AuthLayout />}> */}
-            <Route path="/setting_admin" element={<SettingAdmin />} />
-            <Route
-              path="/setting_admin/user_account"
-              element={<UserAccount />}
-            />
-            <Route path="/setting_admin/my_account" element={<MyAccount />} />
-            {/*  */}
-            <Route
-              path="/setting_admin/detail_account"
-              element={<DetailAccount />}
-            />
-            {/*  */}
-            <Route
-              path="/setting_admin/edit_detail_account"
-              element={<EditDetailAccount />}
-            />
-            <Route path="/setting_admin/history" element={<History />} />
-            <Route path="/member" element={<Member />} />
-            <Route path="/member/member_status" element={<MemberStatus />} />
-            <Route path="/service" element={<Service />} />
-            <Route path="/statistics" element={<Statistics />} />
-            <Route path="/notice" element={<Notice />} />
-            <Route path="/system_settings" element={<SystemSettings />} />
-            {/* </Route> */}
+            <Route element={<AuthLayout />}>
+              {/* <Route path="/setting_admin" element={<SettingAdmin />} /> */}
+              <Route
+                path="/setting_admin/user_account"
+                element={<UserAccount />}
+              />
+              <Route path="/setting_admin/my_account" element={<MyAccount />} />
+              <Route
+                path="/setting_admin/detail_account"
+                element={<DetailAccount />}
+              />
+              <Route
+                path="/setting_admin/edit_detail_account"
+                element={<EditDetailAccount />}
+              />
+              <Route path="/setting_admin/history" element={<History />} />
+              {/* <Route path="/member" element={<Member />} /> */}
+              <Route path="/member/member_status" element={<MemberStatus />} />
+              <Route path="/service" element={<Service />} />
+              <Route path="/statistics" element={<Statistics />} />
+              <Route path="/notice" element={<Notice />} />
+              <Route path="/system_settings" element={<SystemSettings />} />
+              <Route path="/*" element={<NotFound />} /> 
+            </Route>
           </Routes>
         </div>
       </div>
