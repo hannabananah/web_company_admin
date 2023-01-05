@@ -1,7 +1,5 @@
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import useStyles from "~/styles/Login";
 
 const Login = () => {
@@ -19,7 +17,7 @@ const Login = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    navigate("/user_account");
+    navigate("/setting_admin/user_account");
   };
 
   return (
