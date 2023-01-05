@@ -9,11 +9,14 @@ const MyAccountContent = ({ backState }) => {
   const onEdit = () => {
     setEdit(true);
   };
+  const goBackState = () => {
+    setEdit(false);
+  };
 
   return (
     <div style={{ width: "100%" }}>
       {edit ? (
-        <EditDetailMyAccount />
+        <EditDetailMyAccount goBackState={goBackState} />
       ) : (
         <figure className={classes.userAccContainer}>
           <table
