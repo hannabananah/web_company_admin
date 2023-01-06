@@ -10,27 +10,34 @@ const useStyles = makeStyles({
     justifyContent: "center",
   },
   loginContainer: {
-    width: "450px",
-    height: "250px",
+    width: "580px",
+    height: "570px",
     display: "flex",
     alignContent: "center",
     flexDirection: "column",
     justifyContent: "center",
+    backgroundColor: "#fff",
+    boxShadow: "0 0 12px 0 rgba(0, 0, 0, 0.1)",
+    borderRadius: "16px",
   },
+  //완료
   loginTitleLayout: {
     textAlign: "center",
-    marginBottom: "30px",
+    marginTop: "73px",
   },
+  //완료
   loginTitle: {
-    fontSize: "24px",
+    color: "#09273C",
+    fontSize: "40px",
     fontWeight: "bold",
+    lineHeight: "150%",
   },
   formLayout: {
     width: "100%",
   },
   loginForm: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-evenly",
     alignItems: "center",
     margin: "16px 0",
@@ -44,19 +51,24 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row",
   },
-  loginLabel: {
-    width: "70px",
-    display: "flex",
-    alignItems: "center",
-  },
   loginInput: {
     width: "200px",
+    "&::placeholder": {
+      color: "#d1d1d1",
+    },
   },
+  //완료
   loginBtn: {
-    padding: "20px 10px",
-    backgroundColor: "beige",
+    boxSizing: "border-box",
+    padding: "15px 197px",
+    backgroundColor: "#7C4DFF",
     cursor: "pointer",
     border: "none",
+    color: "white",
+    borderRadius: "8px",
+    lineHeight: "150%",
+    fontSize: "20px",
+    fontWeight: "semiBold",
   },
   loginText1: {
     display: "flex",
