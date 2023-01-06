@@ -1,10 +1,10 @@
-import HistoryTable from '~/components/table/HistoryTable';
+import HistoryTable from "~/components/table/HistoryTable";
 import React, { useEffect, useState } from "react";
-import dayjs, { Dayjs } from 'dayjs';
-import TextField from '@mui/material/TextField';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import dayjs, { Dayjs } from "dayjs";
+import TextField from "@mui/material/TextField";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import Pagination from "react-js-pagination";
 import "~/styles/pagination.css";
 
@@ -20,17 +20,29 @@ const History = () => {
   };
 
   // 데이트픽커
-  let now = dayjs().format('YYYY-MM-DD');
+  let now = dayjs().format("YYYY-MM-DD");
   const [start, setStart] = useState(dayjs(now));
   const [end, setEnd] = useState(start);
 
-  useEffect(()=>{
-    setEnd(start)
-  },[start])
+  useEffect(() => {
+    setEnd(start);
+  }, [start]);
+
+  //더미데이터
+
+  const [fetchData, setFetchData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/users/")
+      .then((res) => res.json())
+      .then((json) => setFetchData(json))
+      .then(setIsLoaded(true));
+  }, []);
 
   return (
     <div>
-      <div style={{display:'flex', alignItems:'center'}}>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <select>
           <option>아이디</option>
           <option>내용</option>
@@ -42,7 +54,7 @@ const History = () => {
           <DesktopDatePicker
             label="start"
             value={start}
-            minDate={dayjs('2017-01-01')}
+            minDate={dayjs("2017-01-01")}
             // disableMaskedInput={false}
             onChange={(newValue) => {
               // console.log(newValue)
@@ -50,7 +62,7 @@ const History = () => {
             }}
             renderInput={(params) => <TextField {...params} />}
             // renderInput={({ inputRef, inputProps, InputProps }) => (
-              // console.log( inputRef, inputProps, InputProps)
+            // console.log( inputRef, inputProps, InputProps)
             //   <div>
             //     <input ref={inputRef} {...inputProps} onClick={onClickDate} />
             //     {InputProps?.endAdornment}
@@ -61,15 +73,13 @@ const History = () => {
           <DesktopDatePicker
             label="end"
             value={end}
-            minDate={dayjs('2017-01-01')}
+            minDate={dayjs("2017-01-01")}
             onChange={(newValue) => {
               setEnd(newValue);
             }}
             renderInput={(params) => <TextField {...params} />}
             inputFormat="YYYY-MM-DD"
           />
-
-
 
           {/* <DatePicker
             label="Custom input"
@@ -84,15 +94,12 @@ const History = () => {
               </Box>
             )}
           /> */}
-
         </LocalizationProvider>
 
         <button>검색</button>
       </div>
-      
 
-      <HistoryTable />
-
+      <HistoryTable fetchData={fetchData} isLoaded={isLoaded} />
 
       <Pagination
         activePage={currentPage}
@@ -103,8 +110,7 @@ const History = () => {
         nextPageText={"›"}
         onChange={handlePageChange}
       />
-
     </div>
-  )
-}
+  );
+};
 export default History;
