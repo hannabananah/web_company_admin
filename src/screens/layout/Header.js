@@ -19,11 +19,14 @@ const Header = () => {
     <>
       {allPaths.includes(window.location.pathname) && 
       <header className={classes.root}>
+        {/* <div> */}
         <div className={classes.userInfoSection}>
           <figure className={classes.figure}>
             <img src={images.icons.ANYCHAT_CI_HEADER} alt="anychat logo"/>
           </figure>
           <span className={classes.user}>{}님</span>안녕하세요!
+        {/* </div> */}
+
         </div>
         <div>bread crumbs</div>
       </header>
