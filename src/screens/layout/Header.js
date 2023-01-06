@@ -1,6 +1,7 @@
 import useStyles from "~/styles/Header";
 import { useLocation, useNavigate } from "react-router-dom";
 import { allPaths } from "../../util/sidenav_data";
+import images from "~/assets/js/Images";
 
 const Header = () => {
   const classes = useStyles();
@@ -14,16 +15,17 @@ const Header = () => {
     if (url == location.pathname) isEmpty = true;
   });
 
-  const logOut = () => {
-    navigate('/')
-  }
-
   return (
     <>
       {allPaths.includes(window.location.pathname) && 
       <header className={classes.root}>
-        <h1>ANYCHAT 관리자시스템</h1>
-        <button onClick={logOut}>로그아웃</button>
+        <div className={classes.userInfoSection}>
+          <figure className={classes.figure}>
+            <img src={images.icons.ANYCHAT_CI_HEADER} alt="anychat logo"/>
+          </figure>
+          <span className={classes.user}>{}님</span>안녕하세요!
+        </div>
+        <div>bread crumbs</div>
       </header>
       }
     </>

@@ -61,7 +61,18 @@
 
 
 
-
-.activeMenu {
+  /* ----- 사이드바 styles ----- */
+/* .details summary::-webkit-details-marker,
+.details summary::marker {
+ display: none; 
+ content: "";
+}
+.details > summary:after {
+  content: " +";
+}
+.details[open] > summary:after {
+  content: " -";
+} */
+.details[open] > summary {
   /* background-color: #7c4dff; */
 }

@@ -17,16 +17,18 @@ import EditDetailAccount from "~/components/EditDetailAccount";
 import History from "~/screens/History";
 import MemberStatus from "~/screens/MemberStatus";
 import NotFound from "~/screens/NotFound";
+import '~/App.css'
 
 function App() {
   const classes = useStyles();
 
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header /> */}
       <div className={classes.root}>
         <SideBar />
         <div className={classes.routesContainer}>
+          <Header />
           <Routes>
             <Route path="/" element={<Login />} />
             <Route element={<AuthLayout />}>
