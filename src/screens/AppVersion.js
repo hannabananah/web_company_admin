@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
-import UserAccAdd from "~/components/AddUserAccount";
-import UserAccountTable from "~/components/table/UserAccountTable";
-import DetailAccount from "~/components/DetailAccount";
+import AddAppVersion from "~/components/AddAppVersion";
+import AppVersionTable from "~/components/table/AppVersionTable";
+import DetailStore from "~/components/DetailStore";
 
-const UserAccount = () => {
+const AppVersion = () => {
   const classes = useStyles();
   const [add, setAdd] = useState(false);
   const [user, setUser] = useState([]);
@@ -46,11 +46,11 @@ const UserAccount = () => {
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       {add ? (
-        <UserAccAdd backState={backState} />
+        <AddAppVersion backState={backState} />
       ) : editAcc ? (
-        <DetailAccount backState={goBackTable} user={user} />
+        <DetailStore backState={goBackTable} user={user} />
       ) : (
-        <UserAccountTable
+        <AppVersionTable
           fetchData={fetchData}
           isLoaded={isLoaded}
           changeState={changeState}
@@ -62,4 +62,4 @@ const UserAccount = () => {
     </div>
   );
 };
-export default UserAccount;
+export default AppVersion;

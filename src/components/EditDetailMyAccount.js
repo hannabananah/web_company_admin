@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useStyles from "~/styles/AddUserAccount";
+import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 
 const EditDetailMyAccount = ({ goBackState }) => {
