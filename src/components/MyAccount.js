@@ -3,7 +3,7 @@ import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import EditDetailMyAccount from "~/components/EditDetailMyAccount";
 
-const MyAccountContent = ({ backState }) => {
+const MyAccountContent = () => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
   const onEdit = () => {
@@ -85,9 +85,6 @@ const MyAccountContent = ({ backState }) => {
             </tbody>
           </table>
           <div className={classes.submitBtns}>
-            <button onClick={backState} className={classes.backBtn}>
-              이전
-            </button>
             <button onClick={onEdit} className={classes.editBtn}>
               수정
             </button>
