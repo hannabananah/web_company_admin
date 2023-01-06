@@ -44,7 +44,7 @@ const SideBar = () => {
               item.path == window.location.pathname 
               ? classes.activesubMenuList 
               : classes.subMenuList} 
-            onClick={()=>navigate(item.path)}>{item.title}
+            onClick={()=>navigate(item.path)}>- {item.title}
           </li>
         )  
       })
@@ -58,23 +58,30 @@ const SideBar = () => {
     for(let i=0; i<details.length; i++) {
         if ( pathsArr(i).includes(window.location.pathname) ) {
         details[i].setAttribute('open',true);
-        summarys[i].classList.add('activeMenu')
+        // summarys[i].classList.add('activeMenu')
       } else {
-        summarys[i].classList.remove('activeMenu')
+        // summarys[i].classList.remove('activeMenu')
       } 
     } 
   },[window.location.pathname])
+
+  const logOut = () => {
+    navigate('/')
+  }
 
   return (
     <>
     {allPaths.includes(window.location.pathname) && 
       <div className={classes.root}>
-
         <div className={classes.container}>
+          <h1 className={classes.h1}>
+            <img src={images.icons.ANYCHAT_LOGO} alt="anychat 관리시스템" />
+            <span>관리시스템</span>
+          </h1>
           {sidenav_data.map((item,index)=>{
             if(item.subMenu) {
               return (
-                <details key={index}>
+                <details key={index} className={`${classes.details} details`}>
                   <summary className={classes.menu}>{item.title}</summary>
                   <ol className={classes.subMenuWrap}>
                     {renderMenuItems(item.subMenu)}
@@ -94,8 +101,8 @@ const SideBar = () => {
               )
             }
           })}
+          <button style={{marginTop:'auto'}} onClick={logOut}>로그아웃</button>
         </div>
-
       </div>
     }
 
