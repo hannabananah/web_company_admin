@@ -4,13 +4,13 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     flex: 1,
-    overflowY:'auto'
+    overflowY:'auto',
   },
   routesContainer: {
     flex: 1, 
     display: 'flex',
-    justifyContent: 'center',
-    padding:'0 30px'
+    // justifyContent: 'center',
+    flexDirection: 'column'
   }
   
 });
