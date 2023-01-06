@@ -3,7 +3,7 @@ import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import EditDetailAccount from "~/components/EditDetailAccount";
 
-const DetailAccount = ({ user, backState }) => {
+const DetailStore = ({ user, backState }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
   const onEdit = () => {
@@ -99,4 +99,4 @@ const DetailAccount = ({ user, backState }) => {
     </div>
   );
 };
-export default DetailAccount;
+export default DetailStore;

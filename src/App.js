@@ -16,6 +16,7 @@ import DetailAccount from "~/components/DetailAccount";
 import EditDetailAccount from "~/components/EditDetailAccount";
 import History from "~/screens/History";
 import MemberStatus from "~/screens/MemberStatus";
+import AppVersion from "~/screens/AppVersion";
 import NotFound from "~/screens/NotFound";
 
 function App() {
@@ -47,17 +48,17 @@ function App() {
               <Route path="/setting_admin/history" element={<History />} />
               {/* <Route path="/member" element={<Member />} /> */}
               <Route path="/member/member_status" element={<MemberStatus />} />
-              <Route path="/service" element={<Service />} />
+              {/* <Route path="/service" element={<Service />} /> */}
+              <Route path="/service/app_version" element={<AppVersion />} />
               <Route path="/statistics" element={<Statistics />} />
               <Route path="/notice" element={<Notice />} />
               <Route path="/system_settings" element={<SystemSettings />} />
-              <Route path="/*" element={<NotFound />} /> 
+              <Route path="/*" element={<NotFound />} />
             </Route>
           </Routes>
         </div>
       </div>
     </BrowserRouter>
-    
   );
 }
 
