@@ -7,8 +7,10 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import Pagination from "react-js-pagination";
 import "~/styles/pagination.css";
+import useStyles from "~/styles/History";
 
 const History = () => {
+  const classes = useStyles();
   // 페이지네이션
   const [totalPage, setTotalPage] = useState(5); //임시
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,8 +43,8 @@ const History = () => {
   }, []);
 
   return (
-    <div>
-      <div style={{ display: "flex", alignItems: "center" }}>
+    <div className={classes.root}>
+      <div>
         <select>
           <option>아이디</option>
           <option>내용</option>
