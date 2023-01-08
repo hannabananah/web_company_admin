@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 // import Cookies from "js-cookie";
+import useStyles from "~/styles/AuthLayout";
 
 const path = [
   "/index.html",
@@ -24,6 +25,7 @@ const path = [
 ];
 
 const AuthLayout = () => {
+  const classes = useStyles();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   // let pathname = window.location.pathname;
@@ -40,7 +42,7 @@ const AuthLayout = () => {
   }, []);
 
   return (
-    <div>
+    <div className={classes.outletRoot}>
       <Outlet />
     </div>
   );
