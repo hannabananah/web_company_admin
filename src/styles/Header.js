@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   root: {
-    padding:'20px',
+    padding:'40px 50px',
     alignItems:'center',
     justifyContent:'space-between',
     "& h1, & button": {
@@ -13,7 +13,8 @@ const useStyles = makeStyles({
   userInfoSection: {
     display:'flex',
     alignItems:'center',
-    gap:'15px'
+    gap:'15px',
+    justifyContent:'flex-end'
   },
   user: {
     fontWeight:'bold',
