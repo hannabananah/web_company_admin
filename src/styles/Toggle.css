@@ -22,8 +22,8 @@
 }
 
 .auggleToggle input[type="checkbox"]:checked {
-  background-color: tomato;
-  border-color: tomato;
+  background-color: #4cd964;
+  border-color: #4cd964;
 }
 
 .auggleToggle input[type="checkbox"]:checked::before {

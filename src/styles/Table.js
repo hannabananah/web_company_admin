@@ -1,9 +1,12 @@
 import { makeStyles } from "@mui/styles";
+import { COLORS } from "~/assets/colors/colors";
 
 const useStyles = makeStyles({
   root: {},
   tableStyle: {
-    border: "1px solid #ccc",
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: COLORS.STORKE.CONTENTS2,
   },
   td: {
     textAlign: "center",
@@ -13,7 +16,7 @@ const useStyles = makeStyles({
   },
   idLink: {
     cursor: "pointer",
-    color: "#000",
+    color: COLORS.COLOR.BLACK,
     textDecoration: "underline",
   },
 });
