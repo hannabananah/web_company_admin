@@ -1,4 +1,5 @@
 import { makeStyles } from "@mui/styles";
+import { COLORS } from "~/assets/colors/colors";
 
 const useStyles = makeStyles({
   container: {
@@ -10,8 +11,8 @@ const useStyles = makeStyles({
     justifyContent: "center",
   },
   loginContainer: {
-    width: "580px",
-    height: "570px",
+    width: "400px",
+    height: "390px",
     display: "flex",
     alignContent: "center",
     flexDirection: "column",
@@ -20,15 +21,13 @@ const useStyles = makeStyles({
     boxShadow: "0 0 12px 0 rgba(0, 0, 0, 0.1)",
     borderRadius: "16px",
   },
-  //완료
   loginTitleLayout: {
     textAlign: "center",
     marginTop: "73px",
   },
-  //완료
   loginTitle: {
     color: "#09273C",
-    fontSize: "40px",
+    fontSize: "28px",
     fontWeight: "bold",
     lineHeight: "150%",
   },
@@ -52,16 +51,20 @@ const useStyles = makeStyles({
     flexDirection: "row",
   },
   loginInput: {
-    width: "200px",
+    width: "230px",
+    height: "40px",
+    border: "none",
+    borderBottomStyle: "solid",
+    borderBlockWidth: "1px",
+    borderBottomColor: COLORS.COLOR.PLACEHOLDER_GRAY,
     "&::placeholder": {
-      color: "#d1d1d1",
+      color: COLORS.COLOR.PLACEHOLDER_GRAY,
     },
   },
-  //완료
   loginBtn: {
     boxSizing: "border-box",
-    padding: "15px 197px",
-    backgroundColor: "#7C4DFF",
+    padding: "10px 112px",
+    backgroundColor: COLORS.COLOR.ANY_PURPLE,
     cursor: "pointer",
     border: "none",
     color: "white",
@@ -80,6 +83,23 @@ const useStyles = makeStyles({
     justifyContent: "center",
     columnGap: "10px",
     padding: "10px 0",
+  },
+  notiTextStyle: {
+    position: "absolute",
+    bottom: "60px",
+    textAlign: "center",
+  },
+  notiText1: {
+    fontWeight: "medium",
+    fontSize: "14px",
+    lineHeight: "120%",
+    color: COLORS.COLOR.DARK_GRAY,
+  },
+  notiText2: {
+    fontWeight: "regular",
+    fontSize: "14px",
+    lineHeight: "120%",
+    color: COLORS.COLOR.DARK_GRAY,
   },
 });
 export default useStyles;
