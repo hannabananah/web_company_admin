@@ -7,7 +7,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import Pagination from "react-js-pagination";
 import "~/styles/pagination.css";
-import useStyles from "~/styles/History";
+import {useStyles , datepickerSX }from "~/styles/History";
 
 const History = () => {
   const classes = useStyles();
@@ -44,17 +44,22 @@ const History = () => {
 
   return (
     <div className={classes.root}>
-      <div>
+      <section className={classes.titleSection}>
+        <h2 className={classes.mainTitle}>관리 이력</h2>
+      </section>
+      
+      <section className={classes.filterSection}>
         <select>
           <option>아이디</option>
           <option>내용</option>
         </select>
 
-        <input />
+        <input className={classes.input} />
 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DesktopDatePicker
-            label="start"
+          <DesktopDatePicker 
+            className={classes.datePickerRoot}
+            // label="start"
             value={start}
             minDate={dayjs("2017-01-01")}
             // disableMaskedInput={false}
@@ -62,7 +67,8 @@ const History = () => {
               // console.log(newValue)
               setStart(newValue);
             }}
-            renderInput={(params) => <TextField {...params} />}
+            
+            renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
             // renderInput={({ inputRef, inputProps, InputProps }) => (
             // console.log( inputRef, inputProps, InputProps)
             //   <div>
@@ -72,14 +78,16 @@ const History = () => {
             // )}
             inputFormat="YYYY-MM-DD"
           />
+          ~
           <DesktopDatePicker
-            label="end"
+            className={classes.datePickerRoot}
+            // label="end"
             value={end}
             minDate={dayjs("2017-01-01")}
             onChange={(newValue) => {
               setEnd(newValue);
             }}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
             inputFormat="YYYY-MM-DD"
           />
 
@@ -98,8 +106,8 @@ const History = () => {
           /> */}
         </LocalizationProvider>
 
-        <button>검색</button>
-      </div>
+        <button className={classes.searchBtn}>검색</button>
+      </section>
 
       <HistoryTable fetchData={fetchData} isLoaded={isLoaded} />
 
