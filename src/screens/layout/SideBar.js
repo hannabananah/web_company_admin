@@ -5,7 +5,6 @@ import { sidenav_data, allPaths } from "../../util/sidenav_data";
 import useStyles from "../../styles/SideBar";
 import "../../styles/SideBar.css";
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
-import SVG_NAV_ICON_1ST from "../../assets/images/icon_navi_1.svg";
 import images from "../../assets/js/Images";
 
 const pathsArr = (index) => {
@@ -19,6 +18,31 @@ const pathsArr = (index) => {
   }
   return paths;
 }
+
+const RenderIcons = ({ title }) => {
+  const classes = useStyles();
+  let imgSrc;
+
+  switch (title) {
+    case '관리자 설정' : imgSrc = images.icons.SETTINGS_ADMIN;
+    break;
+    case '회원 관리' : imgSrc = images.icons.MANAGEMANT_MEMBER
+    break;
+    case '서비스 관리' : imgSrc = images.icons.MANAGEMANT_SERVICE
+    break;
+    case '통계 관리' : imgSrc = images.icons.MONITORING
+    break;
+    case '공지 관리' : imgSrc = ''
+    break;
+    case '시스템 설정' : imgSrc = images.icons.SETTINGS
+    break;
+  }
+  return (
+    <div className={classes.iconsWrap}>
+      <img src={imgSrc} alt={title} className={classes.iconImg} />
+    </div>
+  );
+};
 
 const SideBar = () => {
   const location = useLocation();
@@ -35,7 +59,6 @@ const SideBar = () => {
   });
 
   const renderMenuItems = (subMenu) => {
-    // console.log(subMenu)
     return (
       subMenu.map((item,index)=>{
         return (
@@ -44,7 +67,7 @@ const SideBar = () => {
               item.path == window.location.pathname 
               ? classes.activesubMenuList 
               : classes.subMenuList} 
-            onClick={()=>navigate(item.path)}>- {item.title}
+            onClick={()=>navigate(item.path)}>{item.title}
           </li>
         )  
       })
@@ -78,30 +101,49 @@ const SideBar = () => {
             <img src={images.icons.ANYCHAT_LOGO} alt="anychat 관리시스템" />
             <span>관리시스템</span>
           </h1>
-          {sidenav_data.map((item,index)=>{
-            if(item.subMenu) {
-              return (
-                <details key={index} className={`${classes.details} details`}>
-                  <summary className={classes.menu}>{item.title}</summary>
-                  <ol className={classes.subMenuWrap}>
-                    {renderMenuItems(item.subMenu)}
-                  </ol>
-                </details>
-              )
-            } else {
-              return (
-                <div key={index} 
-                  className={
+
+          <div>
+            {sidenav_data.map((item,index)=>{
+              if(item.subMenu) {
+                return (
+                  <details key={index} className={`${classes.details} details`} open={pathsArr(item.id).includes(window.location.pathname)}>
+                    <summary className={
+                      window.location.pathname.includes(item.path) 
+                      ? classes.activeMenu 
+                      : classes.menu}>
+                      <RenderIcons title={item.title} />
+                      {item.title}
+                      <img src={images.icons.EXPAND_MORE} 
+                        className={
+                          window.location.pathname.includes(item.path)
+                          ? classes.arrowUp
+                          : classes.arrowDown}
+                        alt="메뉴 열기" />
+                    </summary>
+                    <ol className={classes.subMenuWrap}>
+                      {renderMenuItems(item.subMenu)}
+                    </ol>
+                  </details>
+                )
+              } else {
+                return (
+                  <div className={
                     item.path == window.location.pathname 
                     ? classes.activeMenu 
                     : classes.menu}
-                  onClick={()=>navigate(item.path)}>
-                  {item.title}
-                </div>
-              )
-            }
-          })}
-          <button style={{marginTop:'auto'}} onClick={logOut}>로그아웃</button>
+                    onClick={()=>navigate(item.path)}>
+                    <RenderIcons title={item.title} />
+                    {item.title}
+                  </div>
+                )
+              }
+            })}
+          </div>
+          
+          <button className={classes.logoutBtn} onClick={logOut}>
+            로그아웃
+            <img src={images.icons.LOGOUT} alt="logout" />
+          </button>
         </div>
       </div>
     }

@@ -73,6 +73,3 @@
 .details[open] > summary:after {
   content: " -";
 } */
-.details[open] > summary {
-  /* background-color: #7c4dff; */
-}
