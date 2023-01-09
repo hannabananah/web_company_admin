@@ -49,67 +49,71 @@ const History = () => {
       </section>
       
       <section className={classes.filterSection}>
-        <select>
-          <option>아이디</option>
-          <option>내용</option>
-        </select>
+        <div className={classes.filterUnit}>
+          <select>
+            <option>아이디</option>
+            <option>내용</option>
+          </select>
+          <input className={classes.input} />
+        </div>
 
-        <input className={classes.input} />
+        <div className={classes.filterUnit}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DesktopDatePicker 
+              className={classes.datePickerRoot}
+              // label="start"
+              value={start}
+              minDate={dayjs("2017-01-01")}
+              // disableMaskedInput={false}
+              onChange={(newValue) => {
+                // console.log(newValue)
+                setStart(newValue);
+              }}
+              
+              renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
+              // renderInput={({ inputRef, inputProps, InputProps }) => (
+              // console.log( inputRef, inputProps, InputProps)
+              //   <div>
+              //     <input ref={inputRef} {...inputProps} onClick={onClickDate} />
+              //     {InputProps?.endAdornment}
+              //   </div>
+              // )}
+              inputFormat="YYYY-MM-DD"
+            />
+            ~
+            <DesktopDatePicker
+              className={classes.datePickerRoot}
+              // label="end"
+              value={end}
+              minDate={dayjs("2017-01-01")}
+              onChange={(newValue) => {
+                setEnd(newValue);
+              }}
+              renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
+              inputFormat="YYYY-MM-DD"
+            />
 
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DesktopDatePicker 
-            className={classes.datePickerRoot}
-            // label="start"
-            value={start}
-            minDate={dayjs("2017-01-01")}
-            // disableMaskedInput={false}
-            onChange={(newValue) => {
-              // console.log(newValue)
-              setStart(newValue);
-            }}
-            
-            renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
-            // renderInput={({ inputRef, inputProps, InputProps }) => (
-            // console.log( inputRef, inputProps, InputProps)
-            //   <div>
-            //     <input ref={inputRef} {...inputProps} onClick={onClickDate} />
-            //     {InputProps?.endAdornment}
-            //   </div>
-            // )}
-            inputFormat="YYYY-MM-DD"
-          />
-          ~
-          <DesktopDatePicker
-            className={classes.datePickerRoot}
-            // label="end"
-            value={end}
-            minDate={dayjs("2017-01-01")}
-            onChange={(newValue) => {
-              setEnd(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
-            inputFormat="YYYY-MM-DD"
-          />
-
-          {/* <DatePicker
-            label="Custom input"
-            value={value}
-            onChange={(newValue) => {
-              setValue(newValue);
-            }}
-            renderInput={({ inputRef, inputProps, InputProps }) => (
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <input ref={inputRef} {...inputProps} />
-                {InputProps?.endAdornment}
-              </Box>
-            )}
-          /> */}
-        </LocalizationProvider>
-
-        <button className={classes.searchBtn}>검색</button>
+            {/* <DatePicker
+              label="Custom input"
+              value={value}
+              onChange={(newValue) => {
+                setValue(newValue);
+              }}
+              renderInput={({ inputRef, inputProps, InputProps }) => (
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <input ref={inputRef} {...inputProps} />
+                  {InputProps?.endAdornment}
+                </Box>
+              )}
+            /> */}
+          </LocalizationProvider>
+          <button className={classes.searchBtn}>검색</button>
+        </div>
       </section>
 
-      <HistoryTable fetchData={fetchData} isLoaded={isLoaded} />
+      <div style={{border:'1px solid rgba(188, 191, 204, 0.4)', borderRadius:'8px', boxShadow:"0px 4px 22px rgba(0, 0, 0, 0.05)"}}>
+        <HistoryTable fetchData={fetchData} isLoaded={isLoaded} />
+      </div>
 
       <Pagination
         activePage={currentPage}

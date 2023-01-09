@@ -2,19 +2,20 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   root: {
-    padding:'40px 50px',
+    padding:'30px 50px',
     alignItems:'center',
     justifyContent:'space-between',
     "& h1, & button": {
       cursor:'pointer',
     },
-    background:'powderblue'
+    // background:'powderblue'
   },
   userInfoSection: {
     display:'flex',
     alignItems:'center',
     gap:'15px',
-    justifyContent:'flex-end'
+    justifyContent:'flex-end',
+    paddingBottom:'30px'
   },
   user: {
     fontWeight:'bold',
@@ -23,13 +24,33 @@ const useStyles = makeStyles({
   figure: {
     margin:'0',
     border:'1px solid rgba(188, 191, 204,0.8)',
-    width:'50px',
-    height:'50px',
+    width:'34px',
+    height:'34px',
     borderRadius:'50%',
     background:'#fff',
     display:'flex',
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    boxSizing:'border-box', 
+    '& img': {
+      width:'20px'
+    }
+  },
+  breadCrumbs: {
+    cursor:'default',
+    display:'flex',
+    alignItems:'center',
+    gap:'16.5px',
+    fontSize:'14px',
+    color:'#464646',
+    lineHeight:'21px',
+  },
+  breadCrumbsLink: {
+    display:'flex',
+    alignItems:'center',
+    gap:'16.5px',
+    color:'#464646',
+    textDecoration:'none'
   }
   
 });

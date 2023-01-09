@@ -27,12 +27,27 @@ const useStyles = makeStyles({
     width: "250px",
     margin: "0 auto",
     cursor: "pointer",
-    padding: "40px 0",
+    padding: "50px 0",
     "& img": {
       width: "100%",
     },
   },
+  menuContainer: {
+    overflowY:"auto",
+    '&::-webkit-scrollbar': {
+      width:'12px',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      background: 'rgba(0,0,0,.15)',
+      borderRadius: '10px',
+      backgroundClip: 'padding-box',
+      border: '3px solid transparent',
+    },
+    '&::-webkit-scrollbar-track': {
+      background: 'transparent',
 
+    },
+  },
   // ol
   subMenuWrap: {
     display: "flex",
@@ -90,6 +105,14 @@ const useStyles = makeStyles({
       display: "none",
       content: `""`,
     },
+    "& summary .expandMore": {
+      margin:'0 30px 0 auto',
+    },
+    "&[open] summary .expandMore": {
+      transform:'rotate(180deg)',
+      margin:'0 30px 0 auto',
+    },
+
     // "& summary:after" : {
     //   content: `" +"`,
     // },
@@ -106,13 +129,6 @@ const useStyles = makeStyles({
     width:'20px', 
     verticalAlign:'top'
   },
-  arrowUp: {
-    transform:'rotateX(180deg)',
-    margin:'0 30px 0 auto',
-  },
-  arrowDown: {
-    margin:'0 30px 0 auto',
-  },
   logoutBtn: {
     color: "#FF314A",
     margin: "auto 0 40px",
@@ -128,9 +144,6 @@ const useStyles = makeStyles({
     alignItems:'center',
     gap:'15px'
   },
-
-  /* offset-x | offset-y | blur-radius | color */
-  // box-shadow: 10px 5px 5px black;
 });
 
 export default useStyles;

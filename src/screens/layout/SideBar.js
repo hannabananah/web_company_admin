@@ -26,15 +26,15 @@ const RenderIcons = ({ title }) => {
   switch (title) {
     case '관리자 설정' : imgSrc = images.icons.SETTINGS_ADMIN;
     break;
-    case '회원 관리' : imgSrc = images.icons.MANAGEMANT_MEMBER
+    case '회원 관리' : imgSrc = images.icons.MANAGEMANT_MEMBER;
     break;
-    case '서비스 관리' : imgSrc = images.icons.MANAGEMANT_SERVICE
+    case '서비스 관리' : imgSrc = images.icons.MANAGEMANT_SERVICE;
     break;
-    case '통계 관리' : imgSrc = images.icons.MONITORING
+    case '통계 관리' : imgSrc = images.icons.MONITORING;
     break;
-    case '공지 관리' : imgSrc = ''
+    case '공지 관리' : imgSrc = images.icons.NOTICE;
     break;
-    case '시스템 설정' : imgSrc = images.icons.SETTINGS
+    case '시스템 설정' : imgSrc = images.icons.SETTINGS;
     break;
   }
   return (
@@ -74,19 +74,37 @@ const SideBar = () => {
     )
   }
 
+  // details 눌렀을 때
+  // document.querySelectorAll('details').forEach(function(item){
+  //     item.addEventListener("toggle", event => {
+  //     let toggled = event.target;
+  //     if (toggled.attributes.open) {/* 열었으면 */
+  //       /* 나머지 다른 열린 아이템을 닫음 */
+  //       document.querySelectorAll('details[open]').forEach(function(opened){
+  //         if(toggled != opened) /* 현재 열려있는 요소가 아니면 */
+  //           opened.removeAttribute('open'); /* 열림 속성 삭제 */
+  //       });
+  //     }
+  //   })
+  // });
+
+
+  // 뒤로 가기
   useEffect(()=>{
     const details = document.querySelectorAll('details');
+    const openedDetails = document.querySelectorAll('details[open]');
     const summarys = document.querySelectorAll('summary');
 
-    for(let i=0; i<details.length; i++) {
+      for(let i=0; i<details.length; i++) {
         if ( pathsArr(i).includes(window.location.pathname) ) {
-        details[i].setAttribute('open',true);
-        // summarys[i].classList.add('activeMenu')
-      } else {
-        // summarys[i].classList.remove('activeMenu')
-      } 
-    } 
+          details[i].setAttribute('open',true);
+        } else {
+          details[i].removeAttribute('open');
+        }
+      }
+    
   },[window.location.pathname])
+  // },[])
 
   const logOut = () => {
     navigate('/')
@@ -102,23 +120,18 @@ const SideBar = () => {
             <span>관리시스템</span>
           </h1>
 
-          <div>
+          <div className={classes.menuContainer}>
             {sidenav_data.map((item,index)=>{
               if(item.subMenu) {
                 return (
-                  <details key={index} className={`${classes.details} details`} open={pathsArr(item.id).includes(window.location.pathname)}>
+                  <details key={index} className={`${classes.details} details`} > 
                     <summary className={
                       window.location.pathname.includes(item.path) 
                       ? classes.activeMenu 
                       : classes.menu}>
                       <RenderIcons title={item.title} />
                       {item.title}
-                      <img src={images.icons.EXPAND_MORE} 
-                        className={
-                          window.location.pathname.includes(item.path)
-                          ? classes.arrowUp
-                          : classes.arrowDown}
-                        alt="메뉴 열기" />
+                      <img src={images.icons.EXPAND_MORE} className="expandMore" alt="메뉴 열기" />
                     </summary>
                     <ol className={classes.subMenuWrap}>
                       {renderMenuItems(item.subMenu)}
@@ -127,7 +140,7 @@ const SideBar = () => {
                 )
               } else {
                 return (
-                  <div className={
+                  <div key={index} className={
                     item.path == window.location.pathname 
                     ? classes.activeMenu 
                     : classes.menu}

@@ -4,12 +4,13 @@
   width: 100%;
   justify-content: center;
   gap: 20px;
-  padding-left: 0;
+  padding:25px 0 0
 }
-.pagination li.active {
+.pagination li.active a {
   font-weight: bold;
+  color: #7C4DFF;
 }
 .pagination a {
   text-decoration: none;
-  color: #000;
+  color: #909090;
 }
