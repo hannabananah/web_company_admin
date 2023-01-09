@@ -55,7 +55,6 @@ const Login = () => {
         </div>
 
         {/* 로그인알림메시지 */}
-
         {invalid && (
           <div className="loginAlertMsg">
             <p>아이디와 패스워드가 일치 하지 않습니다.</p>
@@ -70,7 +69,14 @@ const Login = () => {
           </p>
         </div>
       </fieldset>
-      <p>ANYCHAT 관리자 시스템은 Chrome 브라우저에 최적화 되어 있습니다.</p>
+      <div className={classes.notiTextStyle}>
+        <p className={classes.notiText1}>
+          ANYCHAT 관리자 시스템은 Chrome 브라우저에 최적화 되어 있습니다.
+        </p>
+        <p className={classes.notiText2}>
+          Copyright&#169; ANYCHAT ALL right reserved.
+        </p>
+      </div>
     </div>
   );
 };
