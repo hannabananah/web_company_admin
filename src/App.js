@@ -18,7 +18,7 @@ import History from "~/screens/History";
 import MemberStatus from "~/screens/MemberStatus";
 import AppVersion from "~/screens/AppVersion";
 import NotFound from "~/screens/NotFound";
-import '~/App.css'
+import "~/App.css";
 
 function App() {
   const classes = useStyles();

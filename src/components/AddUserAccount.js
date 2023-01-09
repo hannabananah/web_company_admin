@@ -6,6 +6,9 @@ const AddUserAccount = ({ backState }) => {
   const classes = useStyles();
   return (
     <figure className={classes.userAccContainer}>
+      <section className={classes.titleSection}>
+        <h2 className={classes.mainTitle}>사용자 추가</h2>
+      </section>
       <table
         style={{ borderCollapse: "collapse", borderSpacing: 0 }}
         className={classes.tableStyle}
@@ -141,7 +144,7 @@ const AddUserAccount = ({ backState }) => {
             <td className={classes.inputLayout}>
               <label className={`auggleToggle ${classes.userToggle}`}>
                 <input role="switch" type="checkbox" />
-                <span className={classes.toggleText}>알람</span>
+                <span className={classes.toggleText}>사용</span>
               </label>
             </td>
           </tr>
