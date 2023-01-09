@@ -2,10 +2,12 @@ import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles({
   root: {
-    
+    width:'100%',
+    maxWidth:'1320px',
   },
   titleSection: {
     position:'relative',
+    // margin:'30px 0 70px',
     "&:before": {
       content:`''`,
       position:'absolute',
@@ -26,7 +28,15 @@ export const useStyles = makeStyles({
   filterSection: {
     display:'flex',
     alignItems:'center',
-    height:'40px'
+    height:'40px',
+    justifyContent:'space-between',
+    padding:"40px 0 20px"
+  },
+  filterUnit: {
+    height:'100%',
+    display:'flex',
+    gap:'10px',
+    alignItems:'center'
   },
   input: {
     border:'1px solid #D1D1D1',
@@ -34,6 +44,7 @@ export const useStyles = makeStyles({
     borderRadius:'8px',
     height:'100%',
     padding:'0',
+    boxSizing:'border-box'
   },
   searchBtn: {
     border:'none',
@@ -49,15 +60,17 @@ export const useStyles = makeStyles({
     '& .MuiInputBase-root.MuiOutlinedInput-root': {
       position:'relative',
       padding:'0',
-
+      height:'100%',
+      borderRadius:'8px'
     }
   }
   
 });
 
 export const datepickerSX = {
-
-
+  '&.MuiFormControl-root.MuiTextField-root': {
+    height:'100%',
+  },
   '& .MuiInputBase-input':{
     padding:'0',
     cursor:'pointer',
@@ -65,11 +78,7 @@ export const datepickerSX = {
     textAlign:'center',
     color:'#D1D1D1',
     fontSize:'14px',
-
-
     height:'100%',
-
-
     // background:'salmon',
   },
   '& .MuiInputAdornment-root.MuiInputAdornment-positionEnd': {
@@ -79,13 +88,15 @@ export const datepickerSX = {
     top:'0',
     bottom:'0',
     margin:'0',
-    height:'100%'
+    height:'100%',
+    maxHeight:'100%'
   },
   '& .MuiIconButton-edgeEnd.MuiIconButton-sizeMedium': {
     // background:'teal',
     borderRadius:'0',
     width:'100%',
     padding:'0',
+    height:'100%',
     '& svg': {
       opacity:'0',
       visibility:'hidden'

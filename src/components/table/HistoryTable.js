@@ -12,13 +12,13 @@ const HistoryTable = (props) => {
     <figure className={classes.root}>
       <table className={classes.tableStyle}>
         <thead className={classes.theadStyle}>
-          <tr>
-            <td className={classes.td} style={{ width: "30px" }}>
+          <tr style={{borderBottom:'1px solid rgba(188, 191, 204, 0.2)'}}>
+            <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>
 
             <td
-              className={classes.td}
+              className={classes.th_td}
               style={{
                 width: "100px",
               }}
@@ -26,26 +26,26 @@ const HistoryTable = (props) => {
               작업 날짜
             </td>
 
-            <td className={classes.td} style={{ width: "80px" }}>
+            <td className={classes.th_td} style={{ width: "80px" }}>
               관리자 ID
             </td>
 
-            <td className={classes.td} style={{ width: "100px" }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               로그인 완료 시간
             </td>
 
-            <td className={classes.td} style={{ width: "60px" }}>
+            <td className={classes.th_td} style={{ width: "80px" }}>
               수행 시간
             </td>
 
-            <td className={classes.td} style={{ width: "400px" }}>
+            <td className={classes.th_td} style={{ width: "400px" }}>
               작업 내용
             </td>
           </tr>
         </thead>
         <tbody>
           {isLoaded &&
-            fetchData?.users?.map((i, index) => {
+            fetchData?.users?.slice(0,10).map((i, index) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   <td className={classes.td}>{i.id}</td>
