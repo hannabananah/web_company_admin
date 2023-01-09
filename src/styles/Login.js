@@ -1,5 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import { COLORS } from "~/assets/colors/colors";
+import images from "~/assets/js/Images";
 
 const useStyles = makeStyles({
   container: {
@@ -9,8 +10,16 @@ const useStyles = makeStyles({
     alignItems: "center",
     flexDirection: "column",
     justifyContent: "center",
+    backgroundImage: `url(${images.LOGIN_BG})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "100% 100% cover",
+    backgroundPosition: "center",
+  },
+  loginLogo: {
+    marginBottom: "3 0px",
   },
   loginContainer: {
+    boxSizing: "border-box",
     width: "400px",
     height: "390px",
     display: "flex",
@@ -23,7 +32,7 @@ const useStyles = makeStyles({
   },
   loginTitleLayout: {
     textAlign: "center",
-    marginTop: "73px",
+    margin: "36px 32px",
   },
   loginTitle: {
     color: "#09273C",
@@ -39,7 +48,6 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "space-evenly",
     alignItems: "center",
-    margin: "16px 0",
   },
   formGroup: {
     display: "flex",
@@ -49,17 +57,41 @@ const useStyles = makeStyles({
   loginInputGroup: {
     display: "flex",
     flexDirection: "row",
+    position: "relative",
+  },
+  loginIcon1: {
+    position: "absolute",
+    top: "5px",
+    left: "5px",
+  },
+  loginIcon2: {
+    position: "absolute",
+    left: "0",
   },
   loginInput: {
     width: "230px",
     height: "40px",
     border: "none",
+    color: COLORS.COLOR.BLACK,
     borderBottomStyle: "solid",
     borderBlockWidth: "1px",
+    paddingLeft: "53px",
     borderBottomColor: COLORS.COLOR.PLACEHOLDER_GRAY,
     "&::placeholder": {
       color: COLORS.COLOR.PLACEHOLDER_GRAY,
     },
+    "&:focus": {
+      outline: "none !important",
+      borderBottom: "1px solid transparent",
+      borderImage: COLORS.GRADIENT.MAGENTA_PURPLE,
+      borderImageSlice: "1",
+      width: "100%",
+    },
+  },
+  loginErrorIcon: {
+    position: "absolute",
+    top: "10px",
+    right: "10px",
   },
   loginBtn: {
     boxSizing: "border-box",
@@ -72,17 +104,15 @@ const useStyles = makeStyles({
     lineHeight: "150%",
     fontSize: "20px",
     fontWeight: "semiBold",
+    margin: "35px 0",
   },
-  loginText1: {
-    display: "flex",
-    flexDirection: "column",
-    padding: "20px 0",
+  loginTextStyle: {
+    textAlign: "center",
   },
-  loginText2: {
-    display: "flex",
-    justifyContent: "center",
-    columnGap: "10px",
-    padding: "10px 0",
+  loginText: {
+    fontSize: "12px",
+    lineHeight: "106%",
+    color: COLORS.COLOR.INFORMATION_GRAY,
   },
   notiTextStyle: {
     position: "absolute",

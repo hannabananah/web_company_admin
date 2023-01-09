@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Navigation } from "react-minimal-side-navigation";
-import { sidenav_data, allPaths } from "../../util/sidenav_data";
-import useStyles from "../../styles/SideBar";
-import "../../styles/SideBar.css";
+import { sidenav_data, allPaths } from "~/util/sidenav_data";
+import useStyles from "~/styles/SideBar";
+import "~/styles/SideBar.css";
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
-import SVG_NAV_ICON_1ST from "../../assets/images/icon_navi_1.svg";
-import images from "../../assets/js/Images";
+import SVG_NAV_ICON_1ST from "~/assets/images/icon_navi_1.svg";
+import images from "~/assets/js/Images";
 
 const pathsArr = (index) => {
   let List = sidenav_data.filter((item)=>{ return item.id == index })
