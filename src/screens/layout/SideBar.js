@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Navigation } from "react-minimal-side-navigation";
-import { sidenav_data, allPaths } from "../../util/sidenav_data";
-import useStyles from "../../styles/SideBar";
-import "../../styles/SideBar.css";
+import { sidenav_data, allPaths } from "~/util/sidenav_data";
+import useStyles from "~/styles/SideBar";
+import "~/styles/SideBar.css";
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
 import images from "../../assets/js/Images";
 
