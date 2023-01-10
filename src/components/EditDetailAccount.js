@@ -11,9 +11,12 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     auth: user.bloodGroup,
     pwd: "",
     chkPwd: "",
-    phone1: user.phone1,
-    phone2: user.phone2,
-    phone3: user.phone3,
+    // phone1: user.phone1,
+    // phone2: user.phone2,
+    // phone3: user.phone3,
+    phone1: '',
+    phone2: '',
+    phone3: '',
     email: user.email,
     ip: user.ip,
     use_yn: user.gender,
@@ -25,13 +28,15 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     userInfo;
 
   const onChange = (e) => {
-    const { name, value } = e.target;
-    console.log("e.target.name:::::::", e.target.name);
-    console.log("e.target.value:::::::::", e.target.value);
-    console.log("e.target.checked:::::::::", e.target.checked);
+    const { name, value , checked } = e.target;
+    console.log("e.target.name:::::::", name);
+    console.log("e.target.value:::::::::", value);
+    console.log("e.target.checked:::::::::", checked);
+
     const newInfo = {
       ...userInfo,
-      [name]: value, //e.target의 name과 value이다.
+      // [name]: value
+      [name]: name == 'use_yn' ? checked == true ? 'female' : 'male' : value, //e.target의 name과 value이다.
     };
     setUserInfo(newInfo);
   };
@@ -108,6 +113,8 @@ const EditDetailAccount = ({ gobackstate, user }) => {
             <td className={classes.inputLayout}>
               <input
                 type="tel"
+                value={userInfo.phone1}
+                onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone1"
                 id="name"
@@ -116,6 +123,8 @@ const EditDetailAccount = ({ gobackstate, user }) => {
               <span className={classes.inputDash}>&nbsp;&ndash;&nbsp;</span>
               <input
                 type="tel"
+                value={userInfo.phone2}
+                onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone2"
                 id="name"
@@ -124,6 +133,8 @@ const EditDetailAccount = ({ gobackstate, user }) => {
               <span className={classes.inputDash}>&nbsp;&ndash;&nbsp;</span>
               <input
                 type="tel"
+                value={userInfo.phone3}
+                onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone3"
                 id="name"
@@ -171,14 +182,14 @@ const EditDetailAccount = ({ gobackstate, user }) => {
               <label className={`auggleToggle ${classes.userToggle}`}>
                 <input
                   value={userInfo.use_yn == "male" ? true : false}
-                  // checked={userInfo.use_yn == "female"? true: false}
+                  // checked={userInfo.use_yn == "male"? true: false}
                   onChange={onChange}
                   role="switch"
                   type="checkbox"
                   name="use_yn"
                   defaultChecked={userInfo.use_yn == "male" ? true : false}
                 />
-                {userInfo.use_yn ? (
+                {userInfo.use_yn == 'male'? (
                   <span className={classes.toggleText1}>사용</span>
                 ) : (
                   <span className={classes.toggleText2}>미사용</span>
