@@ -16,6 +16,7 @@ import LOGIN_BG from "../images/bg1.svg";
 import LOGIN_INFO from "../images/info.svg";
 import NOTICE from "../images/notice.svg";
 import ARROWRIGHT from "../images/expand_more_breadcrumbs.svg";
+import BELL_IC from "../images/bell_ic.svg";
 
 const images = {
   icons: {
@@ -34,6 +35,7 @@ const images = {
     LOGIN_INFO: LOGIN_INFO,
     NOTICE: NOTICE,
     ARROWRIGHT: ARROWRIGHT,
+    BELL_IC: BELL_IC,
   },
   LOGIN_BG: LOGIN_BG,
   SVG_PREPARATIONS: SVG_PREPARATIONS,
