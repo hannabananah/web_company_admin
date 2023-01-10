@@ -22,7 +22,7 @@ const AppVersionTable = (props) => {
   };
 
   return (
-    <div>
+    <div style={{ maxWidth: "1320px", width: "100%" }}>
       <div
         style={{
           display: "flex",
@@ -77,18 +77,18 @@ const AppVersionTable = (props) => {
                   <tr key={index} className={classes.tableTr}>
                     <td className={classes.td}>{i.id}</td>
                     <td className={classes.td}>{i.birthDate}</td>
-                    <td
-                      onClick={() => onClickTarget(i)}
-                      className={`${classes.td} + ${classes.idLink}`}
-                    >
-                      {i.bloodGroup}
-                    </td>
+                    <td className={classes.td}>{i.bloodGroup}</td>
                     <td className={classes.td}>{i.eyeColor}</td>
-                    <td className={classes.td}>{i.ein}</td>
+                    <td
+                      className={`${classes.td} + ${classes.idLink}`}
+                      onClick={() => onClickTarget(i)}
+                    >
+                      {i.ein}
+                    </td>
                     <td className={classes.td}>{i.gender}</td>
                     <td className={classes.td}>{i.ein}</td>
                     <td className={classes.td}>
-                      <span className={classes.uptInactive}>Update</span>
+                      <span className={classes.uptActiveBlue}>Update</span>
                     </td>
                   </tr>
                 );

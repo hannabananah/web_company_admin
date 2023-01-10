@@ -119,6 +119,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 className={classes.inputNumStyle}
                 name="phone1"
                 id="name"
+                maxLength="3"
                 required
               />
               <span className={classes.inputDash}>&nbsp;&ndash;&nbsp;</span>
@@ -129,6 +130,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 className={classes.inputNumStyle}
                 name="phone2"
                 id="name"
+                maxLength="4"
                 required
               />
               <span className={classes.inputDash}>&nbsp;&ndash;&nbsp;</span>
@@ -139,6 +141,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 className={classes.inputNumStyle}
                 name="phone3"
                 id="name"
+                maxLength="4"
                 required
               />
             </td>
