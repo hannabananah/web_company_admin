@@ -1,17 +1,24 @@
 import HistoryTable from "~/components/table/HistoryTable";
 import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import TextField from "@mui/material/TextField";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import Pagination from "react-js-pagination";
 import "~/styles/pagination.css";
-import {useStyles, datepickerSX , formControlSX }from "~/styles/History";
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import {useStyles}from "~/styles/History";
 import images from "~/assets/js/Images";
+import SelectBox from "~/components/SelectBox";
+import DatePicker from "~/components/DatePicker";
+
+// filter select option
+const option = [
+  {
+    value:"id",
+    name:"아이디"
+  },
+  {
+    value:"contents",
+    name:"내용"
+  },
+]
 
 const History = () => {
   const classes = useStyles();
@@ -59,77 +66,16 @@ const History = () => {
 
       <section className={classes.filterSection}>
         <div className={classes.filterUnit}> 
-          <FormControl sx={formControlSX}>
-          {/* <sapn style={{width:'40px',background:'#464646', position:'absolute',right:0,top:0,bottom:0}}></sapn> */}
-            <Select
-              value={selectVal}
-              onChange={onChangeSelect}
-              displayEmpty
-              inputProps={{ 'aria-label': 'Without label' }}
-              IconComponent={() => (
-                <sapn className={classes.arrowBox}>
-                  <img src={images.icons.ARROWRIGHT} alt="expand select" className={classes.expandSelect}/>
-                </sapn>
-              )}
-              >
-              <MenuItem value='id'>아이디</MenuItem>
-              <MenuItem value='contents'>내용</MenuItem>
-            </Select>
-          </FormControl>
-
+          <SelectBox value={selectVal} onChange={onChangeSelect} option={option} />
           <input className={classes.input} />
         </div>
-
         <div className={classes.filterUnit}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DesktopDatePicker 
-              className={classes.datePickerRoot}
-              // label="start"
-              value={start}
-              minDate={dayjs("2017-01-01")}
-              // disableMaskedInput={false}
-              onChange={(newValue) => {
-                // console.log(newValue)
-                setStart(newValue);
-              }}
-              
-              renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
-              // renderInput={({ inputRef, inputProps, InputProps }) => (
-              // console.log( inputRef, inputProps, InputProps)
-              //   <div>
-              //     <input ref={inputRef} {...inputProps} onClick={onClickDate} />
-              //     {InputProps?.endAdornment}
-              //   </div>
-              // )}
-              inputFormat="YYYY-MM-DD"
-            />
-            ~
-            <DesktopDatePicker
-              className={classes.datePickerRoot}
-              // label="end"
-              value={end}
-              minDate={dayjs("2017-01-01")}
-              onChange={(newValue) => {
-                setEnd(newValue);
-              }}
-              renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
-              inputFormat="YYYY-MM-DD"
-            />
-
-            {/* <DatePicker
-              label="Custom input"
-              value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
-              renderInput={({ inputRef, inputProps, InputProps }) => (
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <input ref={inputRef} {...inputProps} />
-                  {InputProps?.endAdornment}
-                </Box>
-              )}
-            /> */}
-          </LocalizationProvider>
+          <DatePicker 
+            start={start} 
+            setStart={setStart} 
+            end={end} 
+            setEnd={setEnd} 
+          />
           <button className={classes.searchBtn}>검색</button>
         </div>
       </section>
