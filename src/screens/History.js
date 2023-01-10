@@ -1,24 +1,25 @@
 import HistoryTable from "~/components/table/HistoryTable";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import Pagination from "react-js-pagination";
 import "~/styles/pagination.css";
-import {useStyles}from "~/styles/History";
+import { useStyles } from "~/styles/History";
 import images from "~/assets/js/Images";
 import SelectBox from "~/components/SelectBox";
 import DatePicker from "~/components/DatePicker";
+import FilterSection from "~/components/FilterSection";
 
 // filter select option
 const option = [
   {
-    value:"id",
-    name:"아이디"
+    value: "id",
+    name: "아이디",
   },
   {
-    value:"contents",
-    name:"내용"
+    value: "contents",
+    name: "내용",
   },
-]
+];
 
 const History = () => {
   const classes = useStyles();
@@ -52,7 +53,7 @@ const History = () => {
       .then(setIsLoaded(true));
   }, []);
 
-  const [selectVal, setSelectVal] = useState('id');
+  const [selectVal, setSelectVal] = useState("id");
 
   const onChangeSelect = (event) => {
     setSelectVal(event.target.value);
@@ -64,21 +65,24 @@ const History = () => {
         <h2 className={classes.mainTitle}>관리 이력</h2>
       </section>
 
-      <section className={classes.filterSection}>
-        <div className={classes.filterUnit}> 
-          <SelectBox value={selectVal} onChange={onChangeSelect} option={option} />
-          <input className={classes.input} />
-        </div>
-        <div className={classes.filterUnit}>
-          <DatePicker 
-            start={start} 
-            setStart={setStart} 
-            end={end} 
-            setEnd={setEnd} 
-          />
-          <button className={classes.searchBtn}>검색</button>
-        </div>
-      </section>
+      <FilterSection 
+        left={
+          <>
+            <SelectBox value={selectVal} onChange={onChangeSelect} option={option} />
+            <input className={classes.input} />
+          </>
+        } 
+        right={
+          <>
+            <DatePicker 
+              start={start} 
+              setStart={setStart} 
+              end={end} 
+              setEnd={setEnd} 
+            />
+            <button className={classes.searchBtn}>검색</button>
+          </>} 
+        />
 
       <HistoryTable fetchData={fetchData} isLoaded={isLoaded} />
 
