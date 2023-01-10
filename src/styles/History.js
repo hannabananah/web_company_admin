@@ -44,7 +44,9 @@ export const useStyles = makeStyles({
     // lineHeight:'40px',
     borderRadius:'8px',
     height:'100%',
-    padding:'0',
+    padding:'0 10px',
+    width:'100%',
+    maxWidth:'170px',
     boxSizing:'border-box'
   },
   searchBtn: {
@@ -64,6 +66,26 @@ export const useStyles = makeStyles({
       height:'100%',
       borderRadius:'8px'
     }
+  },
+  arrowBox: {
+    width:'40px',
+    background:'#464646', 
+    position:'absolute',
+    right:0,
+    top:0,
+    bottom:0,    
+    height:'100%', 
+    pointerEvents:'none',
+    cursor:'pointer'
+  },
+  expandSelect: {
+    filter: 'invert(100%) sepia(0%) saturate(0%) hue-rotate(194deg) brightness(108%) contrast(102%)',
+    position:'absolute',
+    left:'50%',
+    top:'50%',
+    transform:'rotate(90deg) translate(-50%,-50%)',
+    transformOrigin:'0% 0%',
+
   }
   
 });
@@ -108,20 +130,19 @@ export const datepickerSX = {
 export const formControlSX = {
   '&.MuiFormControl-root': {
     height:'100%',
-    width:'180px',
+    width:'170px',
     border:'1px solid #D1D1D1',
     borderRadius:'8px',
     overflow:'hidden',
     boxSizing:'border-box'
   }, 
   '& .MuiInputBase-root':{
-    height:'100%'
   },
   '& .MuiOutlinedInput-notchedOutline':{
     border:'none',
   },
   '& .MuiSelect-select.MuiSelect-outlined': {
-    lineHeight:'38px',
+    lineHeight:'40px',
     padding:'0 40px 0 14px'
   }
 }
