@@ -63,8 +63,6 @@ const useStyles = makeStyles({
   },
   inputLayoutId: {
     boxSizing: "border-box",
-    width: "100%",
-    height: "100%",
     marginLeft: "30px",
     display: "flex",
     alignItems: "center",
@@ -74,8 +72,6 @@ const useStyles = makeStyles({
   },
   inputLayout: {
     boxSizing: "border-box",
-    width: "100%",
-    height: "100%",
     marginLeft: "30px",
     display: "flex",
     alignItems: "center",
@@ -141,6 +137,7 @@ const useStyles = makeStyles({
     fontSize: "14px",
     lineHeight: "150%",
     color: COLORS.COLOR.BLACK,
+    paddingLeft: "20px",
     "&:focus": {
       outline: "none",
     },
