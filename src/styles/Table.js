@@ -61,5 +61,13 @@ const useStyles = makeStyles({
     borderRadius: "8px",
     cursor: "pointer",
   },
+  noDataText: {
+    width: "100%",
+    textAlign: "center",
+    fontSize: "14px",
+    lineHeight: "150%",
+    color: COLORS.COLOR.INFORMATION_GRAY,
+    padding: "21.5px 0",
+  },
 });
 export default useStyles;
