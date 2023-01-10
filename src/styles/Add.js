@@ -164,18 +164,18 @@ const useStyles = makeStyles({
   },
   toggleText1: {
     position: "absolute",
-    color: COLORS.COLOR.WHITE,
-    fontSize: "10px",
-    lineHeight: "100%",
-    right: "10px",
-    letterSpacing: "0.1px",
-  },
-  toggleText2: {
-    position: "absolute",
     color: COLORS.COLOR.DARK_GRAY,
     fontSize: "10px",
     lineHeight: "100%",
     left: "8px",
+    letterSpacing: "0.1px",
+  },
+  toggleText2: {
+    position: "absolute",
+    color: COLORS.COLOR.WHITE,
+    fontSize: "10px",
+    lineHeight: "100%",
+    right: "10px",
     letterSpacing: "0.1px",
   },
   submitBtns: {
