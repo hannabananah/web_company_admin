@@ -7,7 +7,10 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import Pagination from "react-js-pagination";
 import "~/styles/pagination.css";
-import {useStyles , datepickerSX }from "~/styles/History";
+import {useStyles, datepickerSX , formControlSX }from "~/styles/History";
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 const History = () => {
   const classes = useStyles();
@@ -31,7 +34,6 @@ const History = () => {
   }, [start]);
 
   //더미데이터
-
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -42,18 +44,33 @@ const History = () => {
       .then(setIsLoaded(true));
   }, []);
 
+  const [selectVal, setSelectVal] = useState('id');
+
+  const onChangeSelect = (event) => {
+    setSelectVal(event.target.value);
+  };
+
   return (
     <div className={classes.root}>
       <section className={classes.titleSection}>
         <h2 className={classes.mainTitle}>관리 이력</h2>
       </section>
-      
+
       <section className={classes.filterSection}>
         <div className={classes.filterUnit}>
-          <select>
-            <option>아이디</option>
-            <option>내용</option>
-          </select>
+          <FormControl sx={formControlSX}>
+            <sapn style={{width:'40px',background:'#464646', position:'absolute',right:0,top:0,bottom:0}}></sapn>
+            <Select
+              value={selectVal}
+              onChange={onChangeSelect}
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+              >
+              <MenuItem value='id'>아이디</MenuItem>
+              <MenuItem value='contents'>내용</MenuItem>
+            </Select>
+          </FormControl>
+
           <input className={classes.input} />
         </div>
 

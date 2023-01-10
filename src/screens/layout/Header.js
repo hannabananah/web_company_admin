@@ -42,7 +42,6 @@ const Header = () => {
                 </Link> 
               </React.Fragment>
             )
-
           })}
         </div>
       </header>

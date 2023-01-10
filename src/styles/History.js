@@ -103,3 +103,24 @@ export const datepickerSX = {
     }
   }
 }
+
+export const formControlSX = {
+  '&.MuiFormControl-root': {
+    height:'100%',
+    width:'180px',
+    border:'1px solid #D1D1D1',
+    borderRadius:'8px',
+    overflow:'hidden',
+    boxSizing:'border-box'
+  }, 
+  '& .MuiInputBase-root':{
+    height:'100%'
+  },
+  '& .MuiOutlinedInput-notchedOutline':{
+    border:'none',
+  },
+  '& .MuiSelect-select.MuiSelect-outlined': {
+    lineHeight:'38px',
+    padding:'0 40px 0 14px'
+  }
+}
