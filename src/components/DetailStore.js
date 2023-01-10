@@ -14,7 +14,7 @@ const DetailStore = ({ user, backState }) => {
   };
 
   return (
-    <div>
+    <>
       {edit ? (
         <EditDetailAccount user={user} gobackstate={gobackstate} />
       ) : (
@@ -93,7 +93,7 @@ const DetailStore = ({ user, backState }) => {
           </div>
         </figure>
       )}
-    </div>
+    </>
   );
 };
 export default DetailStore;

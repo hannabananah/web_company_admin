@@ -19,13 +19,16 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     use_yn: user.gender,
   });
 
-  // console.log('userInfo ----------->', userInfo)
+  console.log("userInfo ----------->", userInfo);
 
   const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } =
     userInfo;
 
   const onChange = (e) => {
     const { name, value } = e.target;
+    console.log("e.target.name:::::::", e.target.name);
+    console.log("e.target.value:::::::::", e.target.value);
+    console.log("e.target.checked:::::::::", e.target.checked);
     const newInfo = {
       ...userInfo,
       [name]: value, //e.target의 name과 value이다.
@@ -48,7 +51,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>아이디</label>
             </th>
-            <td className={classes.contentStyle}>{userInfo.id}</td>
+            <td className={classes.inputLayoutId}>{userInfo.id}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
@@ -105,25 +108,22 @@ const EditDetailAccount = ({ gobackstate, user }) => {
             <td className={classes.inputLayout}>
               <input
                 type="tel"
-                onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone1"
                 id="name"
                 required
               />
-              &nbsp;-&nbsp;
+              <span className={classes.inputDash}>&nbsp;&ndash;&nbsp;</span>
               <input
                 type="tel"
-                onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone2"
                 id="name"
                 required
               />
-              &nbsp;-&nbsp;
+              <span className={classes.inputDash}>&nbsp;&ndash;&nbsp;</span>
               <input
                 type="tel"
-                onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone3"
                 id="name"
@@ -170,14 +170,19 @@ const EditDetailAccount = ({ gobackstate, user }) => {
             <td className={classes.inputLayout}>
               <label className={`auggleToggle ${classes.userToggle}`}>
                 <input
-                  value={userInfo.use_yn}
+                  value={userInfo.use_yn == "male" ? true : false}
+                  // checked={userInfo.use_yn == "female"? true: false}
                   onChange={onChange}
                   role="switch"
                   type="checkbox"
                   name="use_yn"
-                  defaultChecked={userInfo.use_yn == "male" ? true : false}
+                  defaultChecked={userInfo.use_yn == "male" ? false : true}
                 />
-                <span className={classes.toggleText}>알람</span>
+                {userInfo.use_yn ? (
+                  <span className={classes.toggleText1}>사용</span>
+                ) : (
+                  <span className={classes.toggleText2}>미사용</span>
+                )}
               </label>
             </td>
           </tr>
