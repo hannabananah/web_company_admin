@@ -57,13 +57,16 @@ const AppVersionTable = (props) => {
                 OS
               </td>
               <td className={classes.td} style={{ width: "80px" }}>
-                APP 버전
+                최신 APP 버전
               </td>
-              <td className={classes.td} style={{ width: "250px" }}>
+              <td className={classes.td} style={{ width: "100px" }}>
+                최소 앱 버전
+              </td>
+              <td className={classes.td} style={{ width: "150px" }}>
                 업데이트 유형
               </td>
               <td className={classes.td} style={{ width: "140px" }}>
-                최소 앱 버전
+                업데이트
               </td>
             </tr>
           </thead>
@@ -84,6 +87,9 @@ const AppVersionTable = (props) => {
                     <td className={classes.td}>{i.ein}</td>
                     <td className={classes.td}>{i.gender}</td>
                     <td className={classes.td}>{i.ein}</td>
+                    <td className={classes.td}>
+                      <span className={classes.uptInactive}>Update</span>
+                    </td>
                   </tr>
                 );
               })}
