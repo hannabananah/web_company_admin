@@ -2,15 +2,26 @@ import { useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import EditDetailAccount from "~/components/EditDetailAccount";
+import Modal from "~/components/Modal";
 
 const DetailAccount = ({ user, backState }) => {
   const classes = useStyles();
+  // 계정수정 페이지로
   const [edit, setEdit] = useState(false);
   const onEdit = () => {
     setEdit(true);
   };
   const gobackstate = () => {
     setEdit(false);
+  };
+  // 계정삭제 모달
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -92,8 +103,13 @@ const DetailAccount = ({ user, backState }) => {
             <button onClick={() => onEdit(true)} className={classes.editBtn}>
               수정
             </button>
-            <button className={classes.deleteBtn}>삭제</button>
+            <button onClick={openModal} className={classes.deleteBtn}>
+              삭제
+            </button>
           </div>
+          <Modal open={modalOpen} close={closeModal} header="계정 삭제">
+            <main>해당 계정을 삭제하시겠습니까?</main>
+          </Modal>
         </figure>
       )}
     </>

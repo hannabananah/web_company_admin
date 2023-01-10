@@ -7,10 +7,10 @@ const EditDetailMyAccount = ({ goBackState }) => {
 
   return (
     <figure className={classes.userAccContainer}>
-      <table
-        style={{ borderCollapse: "collapse", borderSpacing: 0 }}
-        className={classes.tableStyle}
-      >
+      <section className={classes.titleSection}>
+        <h2 className={classes.mainTitle}>내 계정 정보 수정</h2>
+      </section>
+      <table className={classes.tableStyle}>
         <colgroup>
           <col />
           <col />
@@ -18,15 +18,15 @@ const EditDetailMyAccount = ({ goBackState }) => {
         <tbody>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>아이디</label>
+              <label className={classes.leftText}>사용자 아이디</label>
             </th>
-            <td className={classes.contentStyle}>
+            <td className={classes.inputLayoutId}>
               나의 계정 관리, 나의 아이디입니다
             </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>관리자 권한</label>
+              <label className={classes.leftText}>관리자 권한</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -40,7 +40,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>비밀번호</label>
+              <label className={classes.leftText}>비밀번호</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -54,7 +54,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>비밀번호 확인</label>
+              <label className={classes.leftText}>비밀번호 확인</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -68,7 +68,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>전화번호</label>
+              <label className={classes.leftText}>전화번호</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -98,7 +98,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>이메일</label>
+              <label className={classes.leftText}>이메일</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -112,7 +112,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>접속허가 IP</label>
+              <label className={classes.leftText}>접속허가 IP</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -126,12 +126,25 @@ const EditDetailMyAccount = ({ goBackState }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>사용여부</label>
+              <label className={classes.leftText}>사용여부</label>
             </th>
             <td className={classes.inputLayout}>
               <label className={`auggleToggle ${classes.userToggle}`}>
-                <input role="switch" type="checkbox" />
-                <span className={classes.toggleText}>알람</span>
+                <input
+                  // value={userInfo.use_yn}
+                  // onChange={onChange}
+                  role="switch"
+                  type="checkbox"
+                  name="use_yn"
+                  // defaultChecked={userInfo.use_yn}
+                  defaultChecked={true}
+                />
+                {/* {userInfo.use_yn ? (
+                  <span className={classes.toggleText1}>사용</span>
+                ) : (
+                  <span className={classes.toggleText2}>미사용</span>
+                )} */}
+                <span className={classes.toggleText1}>사용</span>
               </label>
             </td>
           </tr>
