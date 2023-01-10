@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     backgroundPosition: "center",
   },
   loginLogo: {
-    marginBottom: "3 0px",
+    marginBottom: "30px",
   },
   loginContainer: {
     boxSizing: "border-box",
@@ -130,6 +130,6 @@ const useStyles = makeStyles({
     fontSize: "14px",
     lineHeight: "120%",
     color: COLORS.COLOR.DARK_GRAY,
-  },
+   },
 });
 export default useStyles;

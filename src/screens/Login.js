@@ -49,6 +49,9 @@ const Login = () => {
                   autoComplete="false"
                   placeholder="관리자 아이디"
                   className={classes.loginInput}
+                  minLength="4"
+                  maxLength="30"
+                  // required
                 />
               </div>
               <div className={classes.loginInputGroup}>
@@ -64,6 +67,9 @@ const Login = () => {
                   autoComplete="false"
                   placeholder="비밀번호"
                   className={classes.loginInput}
+                  minLength="8"
+                  maxLength="16"
+                  // required
                 />
                 {/* 로그인 오류 아이콘 */}
                 {invaild && (
