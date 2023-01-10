@@ -2,6 +2,10 @@ import { makeStyles } from "@mui/styles";
 import { COLORS } from "~/assets/colors/colors";
 
 const useStyles = makeStyles({
+  root: {
+    width: "100%",
+    maxWidth: "1320px",
+  },
   userAccContainer: {
     maxWidth: "1320px",
     width: "100%",
@@ -222,10 +226,9 @@ const useStyles = makeStyles({
   },
   input: {
     border: "1px solid #D1D1D1",
-    // lineHeight:'40px',
     borderRadius: "8px",
     height: "100%",
-    padding: "0 10px",
+    padding: "0 20px",
     width: "100%",
     maxWidth: "170px",
     boxSizing: "border-box",
