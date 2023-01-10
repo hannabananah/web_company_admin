@@ -19,7 +19,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     phone3: "",
     email: user.email,
     ip: user.ip,
-    use_yn: user.gender == "male" ? false : true,
+    use_yn: user.gender == "male" ? false : true, //male:N, female:Y
   });
 
   const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } =
