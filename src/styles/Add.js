@@ -45,9 +45,6 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
-    "&:last-child": {
-      borderBottom: "none",
-    },
   },
   leftLayout: {
     boxSizing: "border-box",
@@ -64,6 +61,17 @@ const useStyles = makeStyles({
     lineHeight: "150%",
     color: "#272833",
   },
+  inputLayoutId: {
+    boxSizing: "border-box",
+    width: "100%",
+    height: "100%",
+    marginLeft: "30px",
+    display: "flex",
+    alignItems: "center",
+    fontSize: "14px",
+    lineHeight: "150%",
+    color: COLORS.COLOR.INFORMATION_GRAY,
+  },
   inputLayout: {
     boxSizing: "border-box",
     width: "100%",
@@ -73,6 +81,22 @@ const useStyles = makeStyles({
     alignItems: "center",
   },
   inputStyle: {
+    boxSizing: "border-box",
+    width: "400px",
+    height: "41px",
+    display: "flex",
+    alignContent: "center",
+    border: `1px solid ${COLORS.STORKE.CONTENTS2}`,
+    borderRadius: "8px",
+    fontSize: "14px",
+    lineHeight: "150%",
+    paddingLeft: "20px",
+    color: "#272833 ",
+    "&:focus": {
+      outline: "none",
+    },
+  },
+  contentStyle: {
     boxSizing: "border-box",
     width: "400px",
     height: "41px",
