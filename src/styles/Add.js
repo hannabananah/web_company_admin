@@ -167,7 +167,7 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.WHITE,
     fontSize: "10px",
     lineHeight: "100%",
-    right: "10px",
+    left: "10px",
     letterSpacing: "0.1px",
   },
   toggleText2: {
@@ -175,7 +175,7 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.DARK_GRAY,
     fontSize: "10px",
     lineHeight: "100%",
-    left: "8px",
+    right: "8px",
     letterSpacing: "0.1px",
   },
   submitBtns: {
