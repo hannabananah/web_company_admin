@@ -2,7 +2,7 @@ import { useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import EditDetailAccount from "~/components/EditDetailAccount";
-import Modal from "~/components/Modal";
+import { DeleteModal } from "~/components/Modal";
 
 const DetailAccount = ({ user, backState }) => {
   const classes = useStyles();
@@ -107,9 +107,9 @@ const DetailAccount = ({ user, backState }) => {
               삭제
             </button>
           </div>
-          <Modal open={modalOpen} close={closeModal} header="계정 삭제">
+          <DeleteModal open={modalOpen} close={closeModal} header="계정 삭제">
             <main>해당 계정을 삭제하시겠습니까?</main>
-          </Modal>
+          </DeleteModal>
         </figure>
       )}
     </>

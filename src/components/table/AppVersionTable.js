@@ -1,7 +1,7 @@
 import useStyles from "~/styles/Table";
 
 const AppVersionTable = (props) => {
-  const { changeState, fetchData, isLoaded, onClickTarget } = props;
+  const { openModal, fetchData, isLoaded, onClickTarget } = props;
   const classes = useStyles();
 
   console.log(fetchData);
@@ -56,7 +56,9 @@ const AppVersionTable = (props) => {
                   <td className={classes.td}>{i.gender}</td>
                   <td className={classes.td}>{i.ein}</td>
                   <td className={classes.td}>
-                    <span className={classes.uptActiveRed}>Update</span>
+                    <span onClick={openModal} className={classes.uptActiveRed}>
+                      Update
+                    </span>
                   </td>
                 </tr>
               );

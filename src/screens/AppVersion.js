@@ -8,6 +8,7 @@ import DetailStore from "~/components/DetailStore";
 import Pagination from "react-js-pagination";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
+import { UpdateModal } from "~/components/Modal";
 
 // filter select option
 const option = [
@@ -74,6 +75,14 @@ const AppVersion = () => {
     setSelectVal(event.target.value);
   };
 
+  // 업데이트 알림 모달
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       {add ? (
@@ -111,6 +120,7 @@ const AppVersion = () => {
             user={user}
             setUser={setUser}
             onClickTarget={onClickTarget}
+            openModal={openModal}
           />
           <Pagination
             activePage={currentPage}
@@ -121,6 +131,9 @@ const AppVersion = () => {
             nextPageText={"›"}
             onChange={handlePageChange}
           />
+          <UpdateModal open={modalOpen} close={closeModal} header="업데이트">
+            <main>APP 업데이트를 시작합니다.</main>
+          </UpdateModal>
         </div>
       )}
     </div>
