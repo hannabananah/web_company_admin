@@ -176,7 +176,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                   role="switch"
                   type="checkbox"
                   name="use_yn"
-                  defaultChecked={userInfo.use_yn == "male" ? false : true}
+                  defaultChecked={userInfo.use_yn == "male" ? true : false}
                 />
                 {userInfo.use_yn ? (
                   <span className={classes.toggleText1}>사용</span>
