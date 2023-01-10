@@ -98,13 +98,16 @@ const AppVersion = () => {
                 <button className={classes.searchBtn}>검색</button>
               </>
             }
-            right={<button className={classes.saveBtn}>등록</button>}
+            right={
+              <button onClick={changeState} className={classes.saveBtn}>
+                등록
+              </button>
+            }
           />
 
           <AppVersionTable
             fetchData={fetchData}
             isLoaded={isLoaded}
-            changeState={changeState}
             user={user}
             setUser={setUser}
             onClickTarget={onClickTarget}
