@@ -14,27 +14,27 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     // phone1: user.phone1,
     // phone2: user.phone2,
     // phone3: user.phone3,
-    phone1: '',
-    phone2: '',
-    phone3: '',
+    phone1: "",
+    phone2: "",
+    phone3: "",
     email: user.email,
     ip: user.ip,
-    use_yn: user.gender == 'male' ? true : false,
+    use_yn: user.gender == "male" ? false : true,
   });
 
   const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } =
     userInfo;
 
   const onChange = (e) => {
-    console.log('onchange!!!!!!!!!!!')
-    const { name, value , checked } = e.target;
+    console.log("onchange!!!!!!!!!!!");
+    const { name, value, checked } = e.target;
     console.log("e.target.name:::::::", name);
     console.log("e.target.value:::::::::", value);
     console.log("e.target.checked:::::::::", checked);
 
     const newInfo = {
       ...userInfo,
-      [name]: name == 'use_yn' ? !userInfo.use_yn : value, //e.target의 name과 value이다.
+      [name]: name == "use_yn" ? !userInfo.use_yn : value, //e.target의 name과 value이다.
     };
     setUserInfo(newInfo);
   };

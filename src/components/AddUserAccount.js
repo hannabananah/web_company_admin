@@ -181,6 +181,7 @@ const AddUserAccount = ({ backState }) => {
                 <input
                   role="switch"
                   type="checkbox"
+                  defaultChecked
                   onClick={() => setInactive(!inactive)}
                 />
                 {inactive ? (
