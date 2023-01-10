@@ -5,8 +5,8 @@
   width: 70px;
   height: 32px;
   cursor: pointer;
-  background-color: #4cd964;
-  border: 2px solid #4cd964;
+  border: 2px solid rgba(0, 0, 0, 0.04);
+  background-color: #fff;
 }
 
 .auggleToggle input[type="checkbox"]::before {
@@ -23,8 +23,8 @@
 }
 
 .auggleToggle input[type="checkbox"]:checked {
-  border: 2px solid rgba(0, 0, 0, 0.04);
-  background-color: #fff;
+  background-color: #4cd964;
+  border: 2px solid #4cd964;
 }
 
 .auggleToggle input[type="checkbox"]:checked::before {
