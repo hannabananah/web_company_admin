@@ -69,5 +69,23 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.INFORMATION_GRAY,
     padding: "21.5px 0",
   },
+  useBtn: {
+    padding: "3px 12px",
+    fontSize: "13px",
+    lineHeight: "150%",
+    borderRadius: "2px",
+    backgroundColor: COLORS.COLOR.WHITE,
+    color: "#2E5AAC",
+    border: "1px solid #89A7E0",
+  },
+  unuseBtn: {
+    padding: "3px 12px",
+    fontSize: "13px",
+    lineHeight: "150%",
+    borderRadius: "2px",
+    backgroundColor: COLORS.COLOR.WHITE,
+    color: COLORS.COLOR.DARK_GRAY,
+    border: `1px solid ${COLORS.COLOR.INFORMATION_GRAY}`,
+  },
 });
 export default useStyles;

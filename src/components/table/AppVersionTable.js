@@ -66,7 +66,7 @@ const AppVersionTable = (props) => {
           {/* 검색결과가 없습니다. */}
           {/* <tr>
             <td colSpan="8" className={classes.noDataText}>
-              검색결과가 없습니다.
+              검색 결과가 없습니다.
             </td>
           </tr> */}
         </tbody>

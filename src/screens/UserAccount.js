@@ -7,6 +7,24 @@ import "~/styles/Toggle.css";
 import UserAccAdd from "~/components/AddUserAccount";
 import UserAccountTable from "~/components/table/UserAccountTable";
 import DetailAccount from "~/components/DetailAccount";
+import SelectBox from "~/components/SelectBox";
+import FilterSection from "~/components/FilterSection";
+
+// filter select option
+const option = [
+  {
+    value: "ID",
+    name: "아이디",
+  },
+  {
+    value: "name",
+    name: "사용자명",
+  },
+  {
+    value: "phone",
+    name: "전화번호",
+  },
+];
 
 const UserAccount = () => {
   const classes = useStyles();
@@ -55,6 +73,14 @@ const UserAccount = () => {
 
   console.log(fetchData);
   console.log(isLoaded);
+
+  // 필터
+  const [selectVal, setSelectVal] = useState("ID");
+
+  const onChangeSelect = (event) => {
+    setSelectVal(event.target.value);
+  };
+
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       {add ? (
@@ -62,31 +88,29 @@ const UserAccount = () => {
       ) : editAcc ? (
         <DetailAccount backState={goBackTable} user={user} />
       ) : (
-        <div style={{ maxWidth: "1320px", width: "100%" }}>
+        <div className={classes.root}>
           <section className={classes.titleSection}>
             <h2 className={classes.mainTitle}>계정관리</h2>
           </section>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              marginBottom: "20px",
-            }}
-          >
-            <div>
-              <select>
-                <option>아이디</option>
-                <option>사용자명</option>
-                <option>전화번호</option>
-              </select>
-              <input className={classes.input} />
-              <button className={classes.searchBtn}>검색</button>
-            </div>
-            <button onClick={changeState} className={classes.addBtn}>
-              등록
-            </button>
-          </div>
+          <FilterSection
+            left={
+              <>
+                <SelectBox
+                  value={selectVal}
+                  onChange={onChangeSelect}
+                  option={option}
+                />
+                <input className={classes.input} />
+                <button className={classes.searchBtn}>검색</button>
+              </>
+            }
+            right={
+              <button onClick={changeState} className={classes.saveBtn}>
+                등록
+              </button>
+            }
+          />
+
           <UserAccountTable
             fetchData={fetchData}
             isLoaded={isLoaded}

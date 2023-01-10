@@ -62,12 +62,26 @@ const UserAccountTable = (props) => {
                   </td>
                   <td className={classes.td}>{i.bloodGroup}</td>
                   <td className={classes.td}>{i.phone}</td>
-                  <td className={classes.td}>{i.gender}</td>
+                  <td className={classes.td}>
+                    <span
+                      className={
+                        i.gender == "male" ? classes.unuseBtn : classes.useBtn
+                      }
+                    >
+                      {i.gender}
+                    </span>
+                  </td>
                   <td className={classes.td}>{i.ip}</td>
                   <td className={classes.td}>{i.birthDate}</td>
                 </tr>
               );
             })}
+          {/* 검색결과가 없습니다. */}
+          {/* <tr>
+            <td colSpan="8" className={classes.noDataText}>
+              검색 결과가 없습니다.
+            </td>
+          </tr> */}
         </tbody>
       </table>
     </figure>
