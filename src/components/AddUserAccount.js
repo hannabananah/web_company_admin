@@ -1,15 +1,20 @@
 import { useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
+import images from "~/assets/js/Images";
 
 const AddUserAccount = ({ backState }) => {
   const classes = useStyles();
+  const [inactive, setInactive] = useState(false);
+  const [doubleCheck, setDoubleCheck] = useState(false);
+  const [pwdCheck, setPwdCheck] = useState(false);
+
   return (
     <figure className={classes.userAccContainer}>
-      <table
-        style={{ borderCollapse: "collapse", borderSpacing: 0 }}
-        className={classes.tableStyle}
-      >
+      <section className={classes.titleSection}>
+        <h2 className={classes.mainTitle}>사용자 추가</h2>
+      </section>
+      <table className={classes.tableStyle}>
         <colgroup>
           <col />
           <col />
@@ -17,7 +22,7 @@ const AddUserAccount = ({ backState }) => {
         <tbody>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>아이디</label>
+              <label className={classes.leftText}>아이디</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -25,6 +30,8 @@ const AddUserAccount = ({ backState }) => {
                 className={classes.inputStyle}
                 name="name"
                 id="name"
+                minlength="4"
+                maxlength="30"
                 required
               />
               <input
@@ -32,11 +39,24 @@ const AddUserAccount = ({ backState }) => {
                 value="중복체크"
                 className={classes.checkBtnStyle}
               />
+              {/* 로그인 중복체크 문구*/}
+              {doubleCheck && (
+                <div className={classes.checkIconStyle}>
+                  <img
+                    src={images.icons.LOGIN_INFO}
+                    alt="중복체크 에러 아이콘"
+                    className={classes.checkErrorIcon}
+                  />
+                  <span className={classes.checkErrorText}>
+                    동일한 아이디가 존재합니다.
+                  </span>
+                </div>
+              )}
             </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>관리자 권한</label>
+              <label className={classes.leftText}>관리자 권한</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -50,7 +70,7 @@ const AddUserAccount = ({ backState }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>비밀번호</label>
+              <label className={classes.leftText}>비밀번호</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -58,13 +78,29 @@ const AddUserAccount = ({ backState }) => {
                 className={classes.inputStyle}
                 name="name"
                 id="name"
+                minLength="8"
+                maxLength="16"
                 required
               />
+              {/* 비밀번호 생성 조합 알림문구 */}
+              {pwdCheck && (
+                <div className={classes.checkIconStyle}>
+                  <img
+                    src={images.icons.LOGIN_INFO}
+                    alt="오류 아이콘"
+                    className={classes.checkErrorIcon}
+                  />
+                  <span className={classes.checkErrorText}>
+                    비밀번호는 숫자, 영문자, 특수문자 조합 6자리 이상이어야
+                    합니다.
+                  </span>
+                </div>
+              )}
             </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>비밀번호 확인</label>
+              <label className={classes.leftText}>비밀번호 확인</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -72,13 +108,15 @@ const AddUserAccount = ({ backState }) => {
                 className={classes.inputStyle}
                 name="name"
                 id="name"
+                minLength="8"
+                maxLength="16"
                 required
               />
             </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>전화번호</label>
+              <label className={classes.leftText}>전화번호</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -88,7 +126,7 @@ const AddUserAccount = ({ backState }) => {
                 id="name"
                 required
               />
-              &nbsp;-&nbsp;
+              <span className={classes.inputDash}>&nbsp;&ndash;&nbsp;</span>
               <input
                 type="tel"
                 className={classes.inputNumStyle}
@@ -96,7 +134,7 @@ const AddUserAccount = ({ backState }) => {
                 id="name"
                 required
               />
-              &nbsp;-&nbsp;
+              <span className={classes.inputDash}>&nbsp;&ndash;&nbsp;</span>
               <input
                 type="tel"
                 className={classes.inputNumStyle}
@@ -108,7 +146,7 @@ const AddUserAccount = ({ backState }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>이메일</label>
+              <label className={classes.leftText}>이메일</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -122,7 +160,7 @@ const AddUserAccount = ({ backState }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>접속허가 IP</label>
+              <label className={classes.leftText}>접속허가 IP</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -136,12 +174,21 @@ const AddUserAccount = ({ backState }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>사용여부</label>
+              <label className={classes.leftText}>사용여부</label>
             </th>
             <td className={classes.inputLayout}>
               <label className={`auggleToggle ${classes.userToggle}`}>
-                <input role="switch" type="checkbox" />
-                <span className={classes.toggleText}>알람</span>
+                <input
+                  role="switch"
+                  type="checkbox"
+                  defaultChecked
+                  onClick={() => setInactive(!inactive)}
+                />
+                {inactive ? (
+                  <span className={classes.toggleText2}>미사용</span>
+                ) : (
+                  <span className={classes.toggleText1}>사용</span>
+                )}
               </label>
             </td>
           </tr>

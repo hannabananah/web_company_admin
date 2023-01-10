@@ -1,32 +1,33 @@
 .auggleToggle input[type="checkbox"] {
-  appearance: none;
+  box-sizing: border-box;
   position: relative;
-  bottom: 0.1px;
-  border: max(2px, 0.1em) solid gray;
-  border-radius: 1.25em;
-  width: 3.5em;
-  height: 1.1em;
+  border-radius: 36.5px;
+  width: 70px;
+  height: 32px;
   cursor: pointer;
+  border: 2px solid rgba(0, 0, 0, 0.04);
+  background-color: #fff;
 }
 
 .auggleToggle input[type="checkbox"]::before {
+  box-sizing: border-box;
   content: "";
   position: absolute;
   left: 0;
-  width: 0.9em;
-  height: 0.9em;
-  border-radius: 50%;
-  transform: scale(0.8);
-  background-color: gray;
-  transition: left 250ms linear;
+  width: 28px;
+  height: 28px;
+  border-radius: 100px;
+  transition: left 300ms linear;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+  background-color: #fff;
 }
 
 .auggleToggle input[type="checkbox"]:checked {
-  background-color: tomato;
-  border-color: tomato;
+  background-color: #4cd964;
+  border: 2px solid #4cd964;
 }
 
 .auggleToggle input[type="checkbox"]:checked::before {
-  background-color: white;
-  left: 2.35em;
+  background-color: #fff;
+  left: 2.4em;
 }
