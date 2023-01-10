@@ -22,9 +22,6 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     use_yn: user.gender == 'male' ? true : false,
   });
 
-  console.log("userInfo ----------->", userInfo);
-  console.log("userInfo.use_yn ----------->", userInfo.use_yn);
-
   const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } =
     userInfo;
 
@@ -38,10 +35,29 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     const newInfo = {
       ...userInfo,
       // [name]: value
-      [name]: name == 'use_yn' ? !checked : value, //e.target의 name과 value이다.
+      [name]: name == 'use_yn' ? !userInfo.use_yn : value, //e.target의 name과 value이다.
     };
     setUserInfo(newInfo);
   };
+
+  
+  console.log("userInfo ----------->", userInfo);
+  console.log("userInfo.use_yn ----------->", userInfo.use_yn);
+
+
+  // const onChangeSwitch = (e) => {
+  //   console.log("e.target.checked:::::::::", checked);
+  //   const { name, value , checked } = e.target;
+
+  //   setChecked(!checked)
+
+  //   const newInfo = {
+  //     ...userInfo,
+  //     // [name]: !checked
+  //     [name]: name == 'use_yn' ? !checked : value, //e.target의 name과 value이다.
+  //   };
+  //   setUserInfo(newInfo);
+  // }
 
   return (
     <figure className={classes.userAccContainer}>
@@ -190,14 +206,11 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                   name="use_yn"
                   defaultChecked={userInfo.use_yn}
                 />
-                {/* {userInfo.use_yn ? (
+                {userInfo.use_yn ? (
                   <span className={classes.toggleText1}>사용</span>
                 ) : (
                   <span className={classes.toggleText2}>미사용</span>
-                )} */}
-
-                <span>{userInfo.use_yn ? '사용' : '미사용'}</span>
-              
+                )}
               </label>
             </td>
           </tr>
