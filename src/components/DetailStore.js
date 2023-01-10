@@ -14,15 +14,12 @@ const DetailStore = ({ user, backState }) => {
   };
 
   return (
-    <div style={{ width: "100%" }}>
+    <div>
       {edit ? (
         <EditDetailAccount user={user} gobackstate={gobackstate} />
       ) : (
         <figure className={classes.userAccContainer}>
-          <table
-            style={{ borderCollapse: "collapse", borderSpacing: 0 }}
-            className={classes.tableStyle}
-          >
+          <table className={classes.tableStyle}>
             <colgroup>
               <col />
               <col />

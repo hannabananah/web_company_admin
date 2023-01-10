@@ -21,18 +21,9 @@ const EditDetailAccount = ({ gobackstate, user }) => {
 
   // console.log('userInfo ----------->', userInfo)
 
-  const { 
-    auth, 
-    pwd, 
-    chkPwd, 
-    phone1, 
-    phone2, 
-    phone3, 
-    email, 
-    ip, 
-    use_yn 
-  } = userInfo;
-    
+  const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } =
+    userInfo;
+
   const onChange = (e) => {
     const { name, value } = e.target;
     const newInfo = {
@@ -44,10 +35,10 @@ const EditDetailAccount = ({ gobackstate, user }) => {
 
   return (
     <figure className={classes.userAccContainer}>
-      <table
-        style={{ borderCollapse: "collapse", borderSpacing: 0 }}
-        className={classes.tableStyle}
-      >
+      <section className={classes.titleSection}>
+        <h2 className={classes.mainTitle}>계정 정보 수정</h2>
+      </section>
+      <table className={classes.tableStyle}>
         <colgroup>
           <col />
           <col />
@@ -55,13 +46,13 @@ const EditDetailAccount = ({ gobackstate, user }) => {
         <tbody>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>아이디</label>
+              <label className={classes.leftText}>아이디</label>
             </th>
             <td className={classes.contentStyle}>{userInfo.id}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>관리자 권한</label>
+              <label className={classes.leftText}>관리자 권한</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -77,7 +68,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>비밀번호</label>
+              <label className={classes.leftText}>비밀번호</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -93,7 +84,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>비밀번호 확인</label>
+              <label className={classes.leftText}>비밀번호 확인</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -109,7 +100,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>전화번호</label>
+              <label className={classes.leftText}>전화번호</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -142,7 +133,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>이메일</label>
+              <label className={classes.leftText}>이메일</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -158,7 +149,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>접속허가 IP</label>
+              <label className={classes.leftText}>접속허가 IP</label>
             </th>
             <td className={classes.inputLayout}>
               <input
@@ -174,7 +165,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftbodyext}>사용여부</label>
+              <label className={classes.leftText}>사용여부</label>
             </th>
             <td className={classes.inputLayout}>
               <label className={`auggleToggle ${classes.userToggle}`}>

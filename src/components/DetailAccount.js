@@ -14,7 +14,7 @@ const DetailAccount = ({ user, backState }) => {
   };
 
   return (
-    <div style={{ width: "100%" }}>
+    <>
       {edit ? (
         <EditDetailAccount user={user} gobackstate={gobackstate} />
       ) : (
@@ -96,7 +96,7 @@ const DetailAccount = ({ user, backState }) => {
           </div>
         </figure>
       )}
-    </div>
+    </>
   );
 };
 export default DetailAccount;
