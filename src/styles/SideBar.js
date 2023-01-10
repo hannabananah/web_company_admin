@@ -15,6 +15,14 @@ const useStyles = makeStyles({
     overflow: 'auto',
     "&::-webkit-resizer": {
       background:'red',
+      // position:'absolute !important',
+      // top:'0',
+      // bottom:'0',
+      // right:'0',
+
+      boxShadow: '0 0 10px 10px blue',
+      outline: '2px solid yellow',
+      width:'200px'
     }
   },
   container: {
