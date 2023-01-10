@@ -11,6 +11,7 @@ import {useStyles, datepickerSX , formControlSX }from "~/styles/History";
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import images from "~/assets/js/Images";
 
 const History = () => {
   const classes = useStyles();
@@ -57,14 +58,19 @@ const History = () => {
       </section>
 
       <section className={classes.filterSection}>
-        <div className={classes.filterUnit}>
+        <div className={classes.filterUnit}> 
           <FormControl sx={formControlSX}>
-            <sapn style={{width:'40px',background:'#464646', position:'absolute',right:0,top:0,bottom:0}}></sapn>
+          {/* <sapn style={{width:'40px',background:'#464646', position:'absolute',right:0,top:0,bottom:0}}></sapn> */}
             <Select
               value={selectVal}
               onChange={onChangeSelect}
               displayEmpty
               inputProps={{ 'aria-label': 'Without label' }}
+              IconComponent={() => (
+                <sapn className={classes.arrowBox}>
+                  <img src={images.icons.ARROWRIGHT} alt="expand select" className={classes.expandSelect}/>
+                </sapn>
+              )}
               >
               <MenuItem value='id'>아이디</MenuItem>
               <MenuItem value='contents'>내용</MenuItem>
@@ -128,9 +134,7 @@ const History = () => {
         </div>
       </section>
 
-      
       <HistoryTable fetchData={fetchData} isLoaded={isLoaded} />
-
 
       <Pagination
         activePage={currentPage}
