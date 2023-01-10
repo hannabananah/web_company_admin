@@ -9,6 +9,13 @@ const useStyles = makeStyles({
     bottom: 0,
     top: 0,
     borderRight: "1px solid rgba(188, 191, 204,0.8)",
+
+
+    resize: 'horizontal',
+    overflow: 'auto',
+    "&::-webkit-resizer": {
+      background:'red',
+    }
   },
   container: {
     height: "100%",
