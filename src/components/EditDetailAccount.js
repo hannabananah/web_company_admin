@@ -190,9 +190,9 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                   defaultChecked={userInfo.use_yn == "male" ? true : false}
                 />
                 {userInfo.use_yn == 'male'? (
-                  <span className={classes.toggleText1}>사용</span>
+                  <span className={classes.toggleText1}>미사용</span>
                 ) : (
-                  <span className={classes.toggleText2}>미사용</span>
+                  <span className={classes.toggleText2}>사용</span>
                 )}
               </label>
             </td>
