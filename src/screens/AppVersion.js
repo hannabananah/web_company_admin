@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
+import Pagination from "react-js-pagination";
+
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import AddAppVersion from "~/components/AddAppVersion";
 import AppVersionTable from "~/components/table/AppVersionTable";
 import DetailStore from "~/components/DetailStore";
-import Pagination from "react-js-pagination";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import { UpdateModal } from "~/components/Modal";
@@ -69,6 +70,7 @@ const AppVersion = () => {
   console.log(fetchData);
   console.log(isLoaded);
 
+  // 필터
   const [selectVal, setSelectVal] = useState("OS");
 
   const onChangeSelect = (event) => {
