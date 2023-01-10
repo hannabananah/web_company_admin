@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
   idLink: {
     cursor: "pointer",
-    color: COLORS.COLOR.BLACK,
+    color: COLORS.COLOR.ANY_PURPLE,
     textDecoration: "underline",
   },
   uptActiveRed: {
