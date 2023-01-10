@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 
@@ -19,15 +19,17 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     phone3: '',
     email: user.email,
     ip: user.ip,
-    use_yn: user.gender,
+    use_yn: user.gender == 'male' ? true : false,
   });
 
   console.log("userInfo ----------->", userInfo);
+  console.log("userInfo.use_yn ----------->", userInfo.use_yn);
 
   const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } =
     userInfo;
 
   const onChange = (e) => {
+    console.log('onchange!!!!!!!!!!!')
     const { name, value , checked } = e.target;
     console.log("e.target.name:::::::", name);
     console.log("e.target.value:::::::::", value);
@@ -36,7 +38,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     const newInfo = {
       ...userInfo,
       // [name]: value
-      [name]: name == 'use_yn' ? checked == true ? 'female' : 'male' : value, //e.target의 name과 value이다.
+      [name]: name == 'use_yn' ? !checked : value, //e.target의 name과 value이다.
     };
     setUserInfo(newInfo);
   };
@@ -181,19 +183,21 @@ const EditDetailAccount = ({ gobackstate, user }) => {
             <td className={classes.inputLayout}>
               <label className={`auggleToggle ${classes.userToggle}`}>
                 <input
-                  value={userInfo.use_yn == "male" ? true : false}
-                  // checked={userInfo.use_yn == "male"? true: false}
+                  value={userInfo.use_yn}
                   onChange={onChange}
                   role="switch"
                   type="checkbox"
                   name="use_yn"
-                  defaultChecked={userInfo.use_yn == "male" ? true : false}
+                  defaultChecked={userInfo.use_yn}
                 />
-                {userInfo.use_yn == 'male'? (
+                {/* {userInfo.use_yn ? (
                   <span className={classes.toggleText1}>사용</span>
                 ) : (
                   <span className={classes.toggleText2}>미사용</span>
-                )}
+                )} */}
+
+                <span>{userInfo.use_yn ? '사용' : '미사용'}</span>
+              
               </label>
             </td>
           </tr>
