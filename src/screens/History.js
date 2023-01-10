@@ -128,9 +128,9 @@ const History = () => {
         </div>
       </section>
 
-      <div style={{border:'1px solid rgba(188, 191, 204, 0.4)', borderRadius:'8px', boxShadow:"0px 4px 22px rgba(0, 0, 0, 0.05)"}}>
-        <HistoryTable fetchData={fetchData} isLoaded={isLoaded} />
-      </div>
+      
+      <HistoryTable fetchData={fetchData} isLoaded={isLoaded} />
+
 
       <Pagination
         activePage={currentPage}
