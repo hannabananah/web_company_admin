@@ -34,30 +34,13 @@ const EditDetailAccount = ({ gobackstate, user }) => {
 
     const newInfo = {
       ...userInfo,
-      // [name]: value
       [name]: name == 'use_yn' ? !userInfo.use_yn : value, //e.target의 name과 value이다.
     };
     setUserInfo(newInfo);
   };
 
-  
   console.log("userInfo ----------->", userInfo);
   console.log("userInfo.use_yn ----------->", userInfo.use_yn);
-
-
-  // const onChangeSwitch = (e) => {
-  //   console.log("e.target.checked:::::::::", checked);
-  //   const { name, value , checked } = e.target;
-
-  //   setChecked(!checked)
-
-  //   const newInfo = {
-  //     ...userInfo,
-  //     // [name]: !checked
-  //     [name]: name == 'use_yn' ? !checked : value, //e.target의 name과 value이다.
-  //   };
-  //   setUserInfo(newInfo);
-  // }
 
   return (
     <figure className={classes.userAccContainer}>
