@@ -8,6 +8,7 @@ import images from "~/assets/js/Images";
 import SelectBox from "~/components/SelectBox";
 import DatePicker from "~/components/DatePicker";
 import FilterSection from "~/components/FilterSection";
+import TableHeader from "~/components/TableHeader";
 
 // filter select option
 const option = [
@@ -62,10 +63,7 @@ const History = () => {
 
   return (
     <div className={classes.root}>
-      <section className={classes.titleSection}>
-        <h2 className={classes.mainTitle}>관리 이력</h2>
-      </section>
-
+      <TableHeader title="관리 이력" />
       <FilterSection
         left={
           <>
@@ -89,9 +87,7 @@ const History = () => {
           </>
         }
       />
-
       <HistoryTable fetchData={fetchData} isLoaded={isLoaded} />
-
       <Pagination
         activePage={currentPage}
         totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
