@@ -5,6 +5,9 @@ const useStyles = makeStyles({
     display: 'flex',
     flex: 1,
     overflowY:'auto',
+    "& *": {
+      fontFamily: 'Noto Sans, sans-serif'
+    },
   },
   routesContainer: {
     flex: 1, 
@@ -12,6 +15,5 @@ const useStyles = makeStyles({
     // justifyContent: 'center',
     flexDirection: 'column'
   }
-  
 });
 export default useStyles;
