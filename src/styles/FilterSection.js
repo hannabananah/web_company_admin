@@ -22,7 +22,7 @@ export const useStyles = makeStyles({
     height:'100%',
     padding:'0 10px',
     width:'100%',
-    maxWidth:'170px',
+    maxWidth:'220px',
     boxSizing:'border-box'
   },
   searchBtn: {

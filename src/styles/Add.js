@@ -224,7 +224,7 @@ const useStyles = makeStyles({
     padding: "7.5px 47px",
     borderRadius: "8px",
   },
-  input: {
+  filterInput: {
     border: "1px solid #D1D1D1",
     borderRadius: "8px",
     height: "100%",
@@ -232,6 +232,9 @@ const useStyles = makeStyles({
     width: "100%",
     maxWidth: "170px",
     boxSizing: "border-box",
+    "&:focus": {
+      outline: "none",
+    },
   },
   searchBtn: {
     boxSizing: "border-box",
@@ -252,8 +255,13 @@ const useStyles = makeStyles({
     lineHeight: "150%",
     cursor: "pointer",
     color: COLORS.COLOR.BLACK,
-    padding: "7.5px 47px",
+    padding: "9.5px 47px",
     borderRadius: "8px",
+  },
+  memberNum: {
+    color: COLORS.COLOR.BLACK,
+    fontSize: "14px",
+    lineHeight: "150%",
   },
 });
 export default useStyles;
