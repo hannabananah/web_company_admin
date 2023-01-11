@@ -100,7 +100,7 @@ const SideBar = () => {
       if ( pathsArr(item.id).includes(window.location.pathname) ) {
         details[index].setAttribute('open',true);
       } else {
-        // details[index].removeAttribute('open');
+      // details[index].removeAttribute('open');
       }
     })
     // for(let i=0; i<details.length; i++) {
