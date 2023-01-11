@@ -55,6 +55,22 @@ export const sidenav_data = [
       {
         title: "App Intro 공지",
         path: "/notice/app_intro",
+        subMenu: [
+          {
+            title: "상세",
+            path: "/notice/app_intro/details",
+            subMenu: [
+              {
+                title: "수정",
+                path: "/notice/app_intro/details/edit",
+              }
+            ]
+          },
+          {
+            title: "등록",
+            path: "/notice/app_intro/add",
+          },
+        ]
       },
       {
         title: "App 더보기 공지",
@@ -74,7 +90,6 @@ export const sidenav_data = [
 ];
 
 export const allPaths = [];
-
 sidenav_data.map((item, index) => {
   if (item.subMenu) {
     allPaths.push(item.path);
@@ -86,6 +101,11 @@ sidenav_data.map((item, index) => {
   }
 });
 // console.log('allPaths ------->',allPaths)
+
+
+sidenav_data.filter((item)=>{
+  return item['path']
+});
 
 // ================================================================================
 // const breadcrumbNameMap = {
@@ -227,7 +247,7 @@ export const breadcrumbNameMap = {
     },
   ],
 };
-console.log(breadcrumbNameMap)
+// console.log(breadcrumbNameMap)
 // console.log(breadcrumbNameMap[window.location.pathname])
 
 // console.log('sidenav_data----------->>',sidenav_data)
@@ -295,3 +315,27 @@ sidenav_data.map((item)=>{
 // aa['a'] = 'a'
 // aa['b'] = 'b'
 // console.log(aa)
+// ================================================================================
+
+// const target = { a: 1, b: 2}
+// const source = { c: 3, d: 4}
+
+// const returnedTarget = Object.assign(target, source);
+
+// console.log(target)
+// console.log(source)
+// console.log(returnedTarget)
+// ================================================================================
+
+console.log(sidenav_data)
+
+sidenav_data.map((i)=>{
+  // console.log('Object.keys(i)', Object.keys(i))
+  // console.log('Object.values(i)', Object.values(i))
+
+  let count = 0;
+  if( Object.keys(i).includes('subMenu') ) {
+    
+  }
+  
+})
