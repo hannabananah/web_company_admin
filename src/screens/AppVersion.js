@@ -6,7 +6,7 @@ import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import AddAppVersion from "~/components/AddAppVersion";
 import AppVersionTable from "~/components/table/AppVersionTable";
-import DetailStore from "~/components/DetailStore";
+import AppDetail from "~/components/AppDetail";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import { UpdateModal } from "~/components/Modal";
@@ -90,7 +90,7 @@ const AppVersion = () => {
       {add ? (
         <AddAppVersion backState={backState} />
       ) : editAcc ? (
-        <DetailStore backState={goBackTable} user={user} />
+        <AppDetail backState={goBackTable} user={user} />
       ) : (
         <div className={classes.root}>
           <section className={classes.titleSection}>
