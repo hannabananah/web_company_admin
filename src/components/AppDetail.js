@@ -20,7 +20,7 @@ const AppDetail = ({ user, backState }) => {
       ) : (
         <figure className={classes.userAccContainer}>
           <section className={classes.titleSection}>
-            <h2 className={classes.mainTitle}>APP 버전 상세</h2>
+            <h2 className={classes.mainTitle}>App 버전 상세</h2>
           </section>
           <table className={classes.tableStyle}>
             <colgroup>
@@ -30,37 +30,37 @@ const AppDetail = ({ user, backState }) => {
             <tbody>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
-                  <label className={classes.leftText}>아이디</label>
+                  <label className={classes.leftText}>스토어</label>
                 </th>
                 <td className={classes.contentStyle}>{user.firstName}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
-                  <label className={classes.leftText}>관리자 권한</label>
+                  <label className={classes.leftText}>OS</label>
                 </th>
                 <td className={classes.contentStyle}>{user.bloodGroup}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
-                  <label className={classes.leftText}>전화번호</label>
+                  <label className={classes.leftText}>최신 APP 버전</label>
                 </th>
                 <td className={classes.contentStyle}>{user.phone}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
-                  <label className={classes.leftText}>이메일</label>
+                  <label className={classes.leftText}>최소 APP 버전</label>
                 </th>
                 <td className={classes.contentStyle}>{user.email}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
-                  <label className={classes.leftText}>접속허가 IP</label>
+                  <label className={classes.leftText}>업데이트 유형</label>
                 </th>
                 <td className={classes.contentStyle}>{user.ip}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
-                  <label className={classes.leftText}>사용여부</label>
+                  <label className={classes.leftText}>설명</label>
                 </th>
                 <td className={classes.contentStyle}>{user.gender}</td>
               </tr>
