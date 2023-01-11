@@ -45,16 +45,16 @@ const AppVersionTable = (props) => {
                 <tr key={index} className={classes.tableTr}>
                   <td className={classes.td}>{i.id}</td>
                   <td className={classes.td}>{i.birthDate}</td>
+                  <td className={classes.td}>{i.firstName}</td>
                   <td className={classes.td}>{i.bloodGroup}</td>
-                  <td className={classes.td}>{i.eyeColor}</td>
                   <td
                     className={`${classes.td} + ${classes.idLink}`}
                     onClick={() => onClickTarget(i)}
                   >
-                    {i.ein}
+                    {i.phone}
                   </td>
+                  <td className={classes.td}>{i.email}</td>
                   <td className={classes.td}>{i.gender}</td>
-                  <td className={classes.td}>{i.ein}</td>
                   <td className={classes.td}>
                     <span onClick={openModal} className={classes.uptActiveRed}>
                       Update

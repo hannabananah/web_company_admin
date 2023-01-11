@@ -11,19 +11,19 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     os: user.bloodGroup,
     recentVer: user.phone,
     minVer: user.email,
-    uptType: user.ip,
+    uptType: user.gender,
     desc: user.gender,
     date: user.birthDate,
   });
 
-  const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } =
-    userInfo;
+  const { store, os, recentVer, minVer, uptType, desc, date } = userInfo;
 
   const onChange = (e) => {
     const { name, value, checked } = e.target;
     console.log("e.target.name:::::::", name);
     console.log("e.target.value:::::::::", value);
     console.log("e.target.checked:::::::::", checked);
+    setUserInfo(userInfo);
   };
 
   return (
@@ -91,6 +91,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 id="choice"
                 name="update_type"
                 value="choice"
+                defaultChecked={userInfo.uptType == "female"}
               />
               <label for="choice">선택</label>
               <input
@@ -98,6 +99,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 id="compulsion"
                 name="update_type"
                 value="compulsion"
+                defaultChecked={userInfo.uptType == "male"}
               />
               <label for="compulsion">강제</label>
             </td>
