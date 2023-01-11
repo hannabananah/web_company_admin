@@ -1,28 +1,28 @@
 import { makeStyles } from "@mui/styles";
-import { height } from "@mui/system";
 import images from "~/assets/js/Images";
 
 const useStyles = makeStyles({
   root: {
     width: "300px",
+    maxWidth: "500px",
+    minWidth: "200px",
     position: "sticky",
     bottom: 0,
     top: 0,
     borderRight: "1px solid rgba(188, 191, 204,0.8)",
 
-
     resize: 'horizontal',
     overflow: 'auto',
     "&::-webkit-resizer": {
       background:'red',
-      // position:'absolute !important',
+      boxShadow: '0 0 10px 10px blue',
+      outline: '2px solid yellow',
+
+
+      position:'absolute !important',
       // top:'0',
       // bottom:'0',
       // right:'0',
-
-      boxShadow: '0 0 10px 10px blue',
-      outline: '2px solid yellow',
-      width:'200px'
     }
   },
   container: {
@@ -39,7 +39,8 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    width: "250px",
+    maxWidth: "250px",
+    minWidth: "200px",
     margin: "0 auto",
     cursor: "pointer",
     padding: "50px 0",
