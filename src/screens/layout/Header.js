@@ -1,6 +1,6 @@
 import useStyles from "~/styles/Header";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { allPaths, breadcrumbNameMap } from "../../util/sidenav_data";
+import { allPaths, breadcrumbNameMap, breadCrumbsObj } from "../../util/sidenav_data";
 import images from "~/assets/js/Images";
 import React from "react";
 
@@ -16,8 +16,6 @@ const Header = () => {
     if (url == location.pathname) isEmpty = true;
   });
 
-  console.log(breadcrumbNameMap[window.location.pathname])
-
   return (
     <>
       {allPaths.includes(window.location.pathname) && 
@@ -32,8 +30,7 @@ const Header = () => {
 
         <div className={classes.breadCrumbs}>  
           <Link to={'/'} className={classes.breadCrumbsLink}>홈</Link>
-          {breadcrumbNameMap[window.location.pathname].map((item, index)=>{
-    
+          {breadCrumbsObj[window.location.pathname].map((item, index)=>{
             return (
               <React.Fragment key={index}> 
                 <Link to={item.path} className={classes.breadCrumbsLink}>

@@ -85,9 +85,9 @@ sidenav_data.map((item, index) => {
     allPaths.push(item.path);
   }
 });
-console.log('allPaths ------->',allPaths)
+// console.log('allPaths ------->',allPaths)
 
-
+// ================================================================================
 // const breadcrumbNameMap = {
 //   '/setting_admin': '관리자 설정',
 //   '/setting_admin/user_account': '계정 관리',
@@ -227,4 +227,71 @@ export const breadcrumbNameMap = {
     },
   ],
 };
+console.log(breadcrumbNameMap)
 // console.log(breadcrumbNameMap[window.location.pathname])
+
+// console.log('sidenav_data----------->>',sidenav_data)
+
+// ================================================================================
+const Obj = (title, path) => {
+  return (
+    {
+      [title] : [
+        {
+          title : title,
+          path: path
+        }
+      ],
+    }
+  )
+};
+// let new_obj = Obj('타이틀','/title_path')
+// ================================================================================
+export const breadCrumbsObj = {}
+
+sidenav_data.map((item)=>{
+  breadCrumbsObj[item.path] = [
+    {
+      title : item.title,
+      path : item.path,
+    }
+  ]
+  // 서브 메뉴가 몇개든 커버 해야함..
+  if ( item.subMenu ) {
+    for(let i=0; i<item.subMenu.length; i++) {
+      // console.log(item.subMenu[i].path)
+      breadCrumbsObj[item.subMenu[i].path] = [
+        {
+          title : item.title,
+          path : false,
+        },
+        {
+          title : item.subMenu[i].title,
+          path : item.subMenu[i].path,
+        }
+      ]
+    }
+  }
+})
+// console.log('breadCrumbsObj ----------->>>',breadCrumbsObj)
+
+// ================================================================================
+sidenav_data.map((item)=>{
+  // 서브 메뉴가 몇개든 커버 해야함
+  // if ( item.subMenu ) {
+  //   console.log(item.subMenu)
+  //   for(let i=0; i<item.subMenu.length; i++) {
+  //     console.log(item.subMenu[i].path)
+  //   }
+  // }
+  // if ( item.subMenu ) {
+  //   console.log('item has a sub menu -----> ',item)
+  // } else {
+  //   console.log('item dose not have sub menu -----> ',item)
+  // }
+})
+// ================================================================================
+// const aa = {}
+// aa['a'] = 'a'
+// aa['b'] = 'b'
+// console.log(aa)
