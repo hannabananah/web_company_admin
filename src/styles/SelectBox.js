@@ -13,7 +13,8 @@ export const formControlSX = {
     border:'1px solid #D1D1D1',
     borderRadius:'8px',
     overflow:'hidden',
-    boxSizing:'border-box'
+    boxSizing:'border-box',
+    background:'#fff',
   }, 
   '& .MuiInputBase-root':{
   },
