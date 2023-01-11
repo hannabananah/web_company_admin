@@ -100,17 +100,16 @@ const UserAccount = () => {
                   onChange={onChangeSelect}
                   option={option}
                 />
-                <input className={classes.input} />
+                <input className={classes.filterInput} />
                 <button className={classes.searchBtn}>검색</button>
               </>
             }
             right={
-              <button onClick={changeState} className={classes.saveBtn}>
+              <button onClick={changeState} className={classes.addBtn}>
                 등록
               </button>
             }
           />
-
           <UserAccountTable
             fetchData={fetchData}
             isLoaded={isLoaded}

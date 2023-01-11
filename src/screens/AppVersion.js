@@ -105,7 +105,7 @@ const AppVersion = () => {
                   onChange={onChangeSelect}
                   option={option}
                 />
-                <input className={classes.input} />
+                <input className={classes.filterInput} />
                 <button className={classes.searchBtn}>검색</button>
               </>
             }

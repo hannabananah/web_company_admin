@@ -2,9 +2,26 @@ import { useEffect, useState } from "react";
 
 import Pagination from "react-js-pagination";
 
+import useStyles from "~/styles/Add";
 import MemberTable from "~/components/table/MemberTable";
+import SelectBox from "~/components/SelectBox";
+import FilterSection from "~/components/FilterSection";
+
+// filter select option
+const option = [
+  {
+    value: "Phone",
+    name: "전화번호",
+  },
+  {
+    value: "Email",
+    name: "이메일",
+  },
+];
 
 const MemberStatus = () => {
+  const classes = useStyles();
+
   // 페이지네이션
   const [totalPage, setTotalPage] = useState(5); //임시
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,23 +43,44 @@ const MemberStatus = () => {
       .then(setIsLoaded(true));
   }, []);
 
+  // 필터
+  const [selectVal, setSelectVal] = useState("Phone");
+
+  const onChangeSelect = (event) => {
+    setSelectVal(event.target.value);
+  };
+
+  // 총 회원 수
+  const cmemberNum = +fetchData.limit;
+  // 천 단위 마다 콤마
+  cmemberNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   return (
-    <div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <select>
-          <option>전화번호</option>
-          <option>이메일</option>
-        </select>
-        <input />
+    <div className={classes.root}>
+      <section className={classes.titleSection}>
+        <h2 className={classes.mainTitle}>App 버전 관리</h2>
+      </section>
 
-        <button>검색</button>
-      </div>
-      
-
-      <MemberTable
-        fetchData={fetchData}
-        isLoaded={isLoaded}
+      <FilterSection
+        left={
+          <>
+            <SelectBox
+              value={selectVal}
+              onChange={onChangeSelect}
+              option={option}
+            />
+            <input className={classes.filterInput} />
+            <button className={classes.searchBtn}>검색</button>
+          </>
+        }
+        right={
+          <p className={classes.memberNum}>
+            총 회원 수 :<span> {cmemberNum}명</span>
+          </p>
+        }
       />
+
+      <MemberTable fetchData={fetchData} isLoaded={isLoaded} />
       <Pagination
         activePage={currentPage}
         totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수

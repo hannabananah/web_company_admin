@@ -53,6 +53,7 @@ const History = () => {
       .then(setIsLoaded(true));
   }, []);
 
+  // 필터
   const [selectVal, setSelectVal] = useState("id");
 
   const onChangeSelect = (event) => {
@@ -65,24 +66,29 @@ const History = () => {
         <h2 className={classes.mainTitle}>관리 이력</h2>
       </section>
 
-      <FilterSection 
+      <FilterSection
         left={
           <>
-            <SelectBox value={selectVal} onChange={onChangeSelect} option={option} />
+            <SelectBox
+              value={selectVal}
+              onChange={onChangeSelect}
+              option={option}
+            />
             <input className={classes.input} />
           </>
-        } 
+        }
         right={
           <>
-            <DatePicker 
-              start={start} 
-              setStart={setStart} 
-              end={end} 
-              setEnd={setEnd} 
+            <DatePicker
+              start={start}
+              setStart={setStart}
+              end={end}
+              setEnd={setEnd}
             />
             <button className={classes.searchBtn}>검색</button>
-          </>} 
-        />
+          </>
+        }
+      />
 
       <HistoryTable fetchData={fetchData} isLoaded={isLoaded} />
 
