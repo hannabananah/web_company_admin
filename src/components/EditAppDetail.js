@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
+import { UptConfirmModal } from "~/components/Modal";
 
 const EditDetailAccount = ({ gobackstate, user }) => {
   const classes = useStyles();
@@ -24,6 +25,16 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     console.log("e.target.value:::::::::", value);
     console.log("e.target.checked:::::::::", checked);
     setUserInfo(userInfo);
+  };
+
+  // 저장완료 모달
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -86,22 +97,28 @@ const EditDetailAccount = ({ gobackstate, user }) => {
               <label className={classes.leftText}>업데이트 유형</label>
             </th>
             <td className={classes.inputLayout}>
-              <input
-                type="radio"
-                id="choice"
-                name="update_type"
-                value="choice"
-                defaultChecked={userInfo.uptType == "female"}
-              />
-              <label for="choice">선택</label>
-              <input
-                type="radio"
-                id="compulsion"
-                name="update_type"
-                value="compulsion"
-                defaultChecked={userInfo.uptType == "male"}
-              />
-              <label for="compulsion">강제</label>
+              <div className={classes.radioBtnLayout2}>
+                <input
+                  type="radio"
+                  id="choice"
+                  name="update_type"
+                  value="choice"
+                  className={classes.radioBtn}
+                  defaultChecked={userInfo.uptType == "female"}
+                />
+                <label for="choice">선택</label>
+              </div>
+              <div className={classes.radioBtnLayout2}>
+                <input
+                  type="radio"
+                  id="compulsion"
+                  name="update_type"
+                  value="compulsion"
+                  className={classes.radioBtn}
+                  defaultChecked={userInfo.uptType == "male"}
+                />
+                <label for="compulsion">강제</label>
+              </div>
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -132,8 +149,16 @@ const EditDetailAccount = ({ gobackstate, user }) => {
         <button onClick={gobackstate} className={classes.backBtn}>
           이전
         </button>
-        <input type="submit" value="저장" className={classes.saveBtn} />
+        <input
+          type="submit"
+          value="저장"
+          onClick={openModal}
+          className={classes.saveBtn}
+        />
       </div>
+      <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
+        <main>저장했습니다.</main>
+      </UptConfirmModal>
     </figure>
   );
 };
