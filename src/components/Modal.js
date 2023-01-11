@@ -7,7 +7,6 @@ export const DeleteModal = (props) => {
   const { open, close, header } = props;
 
   return (
-    // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? "openModal modal" : "modal"}>
       {open ? (
         <section>
@@ -40,14 +39,42 @@ export const UpdateModal = (props) => {
   const { open, close, header } = props;
 
   return (
-    // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? "openModal modal" : "modal"}>
       {open ? (
         <section>
           <header>
             <img
-              src={images.icons.BELL_IC}
+              src={images.icons.BELL_IC_R}
               alt="업데이트 알림 아이콘"
+              className="modalIcon"
+            />
+            {header}
+          </header>
+          <main>{props.children}</main>
+          <footer class="modalBtns">
+            {/* onClick 바꿔야함 */}
+            <button className={classes.backBtn} onClick={close}>
+              확인
+            </button>
+          </footer>
+        </section>
+      ) : null}
+    </div>
+  );
+};
+
+export const UptConfirmModal = (props) => {
+  const classes = useStyles();
+  const { open, close, header } = props;
+
+  return (
+    <div className={open ? "openModal modal" : "modal"}>
+      {open ? (
+        <section>
+          <header>
+            <img
+              src={images.icons.BELL_IC_P}
+              alt="등록완료 알림 아이콘"
               className="modalIcon"
             />
             {header}
