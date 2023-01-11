@@ -76,6 +76,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
                 className={classes.inputNumStyle}
                 name="phone1"
                 id="name"
+                maxLength="3"
                 required
               />
               &nbsp;-&nbsp;
@@ -84,6 +85,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
                 className={classes.inputNumStyle}
                 name="phone2"
                 id="name"
+                maxLength="4"
                 required
               />
               &nbsp;-&nbsp;
@@ -92,6 +94,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
                 className={classes.inputNumStyle}
                 name="phone3"
                 id="name"
+                maxLength="4"
                 required
               />
             </td>
