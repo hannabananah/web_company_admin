@@ -8,6 +8,9 @@ import Member from "~/screens/Member";
 import Service from "~/screens/Service";
 import Statistics from "~/screens/Statistics";
 import Notice from "~/screens/Notice";
+import NoticeAppIntro from "~/screens/NoticeAppIntro";
+import NoticeAppViewMore from "~/screens/NoticeAppViewMore";
+import NoticeUserEmail from "~/screens/NoticeUserEmail";
 import SystemSettings from "~/screens/SystemSettings";
 import useStyles from "~/styles/App";
 import UserAccount from "~/screens/UserAccount";
@@ -53,7 +56,10 @@ function App() {
               {/* <Route path="/service" element={<Service />} /> */}
               <Route path="/service/app_version" element={<AppVersion />} />
               <Route path="/statistics" element={<Statistics />} />
-              <Route path="/notice" element={<Notice />} />
+              {/* <Route path="/notice" element={<Notice />} /> */}
+              <Route path="/notice/app_intro" element={<NoticeAppIntro />} />
+              <Route path="/notice/app_viewmore" element={<NoticeAppViewMore />} />
+              <Route path="/notice/user_email" element={<NoticeUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />
               <Route path="/*" element={<NotFound />} />
             </Route>

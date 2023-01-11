@@ -5,7 +5,6 @@ export const sidenav_data = [
     id: 0,
     title: "관리자 설정",
     path: "/setting_admin",
-    open: false,
     subMenu: [
       {
         title: "계정 관리",
@@ -25,7 +24,6 @@ export const sidenav_data = [
     id: 1,
     title: "회원 관리",
     path: "/member",
-    open: false,
     subMenu: [
       {
         title: "회원 현황",
@@ -37,7 +35,6 @@ export const sidenav_data = [
     id: 2,
     title: "서비스 관리",
     path: "/service",
-    open: false,
     subMenu: [
       {
         title: "App 버전 관리",
@@ -54,6 +51,20 @@ export const sidenav_data = [
     id: 4,
     title: "공지 관리",
     path: "/notice",
+    subMenu: [
+      {
+        title: "App Intro 공지",
+        path: "/notice/app_intro",
+      },
+      {
+        title: "App 더보기 공지",
+        path: "/notice/app_viewmore",
+      },
+      {
+        title: "사용자 이메일 공지",
+        path: "/notice/user_email",
+      },
+    ],
   },
   {
     id: 5,
@@ -177,6 +188,36 @@ export const breadcrumbNameMap = {
     {
       title:'공지 관리',
       path:'/notice'
+    },
+  ],
+  '/notice/app_intro': [
+    {
+      title:'공지 관리',
+      path: false,
+    },
+    {
+      title: "App Intro 공지",
+      path: "/notice/app_intro",
+    },
+  ],
+  '/notice/app_viewmore': [
+    {
+      title:'공지 관리',
+      path: false,
+    },
+    {
+      title: "App 더보기 공지",
+      path: "/notice/app_viewmore",
+    },
+  ],
+  '/notice/user_email': [
+    {
+      title:'공지 관리',
+      path: false,
+    },
+    {
+      title: "사용자 이메일 공지",
+      path: "/notice/user_email",
     },
   ],
   '/system_settings': [
