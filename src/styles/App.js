@@ -5,6 +5,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flex: 1,
     overflowY:'auto',
+    background:'#FCFCFF',
     "& *": {
       fontFamily: 'Noto Sans, sans-serif'
     },

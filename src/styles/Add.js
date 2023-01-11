@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   mainTitle: {
     fontSize: "20px",
     lineHeight: "25px",
-    fontWeight: "semibold",
+    fontWeight: "600",
     marginLeft: "20px",
   },
   tableStyle: {
