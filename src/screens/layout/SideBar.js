@@ -98,9 +98,9 @@ const SideBar = () => {
 
     collapseNavs.map((item, index)=>{
       if ( pathsArr(item.id).includes(window.location.pathname) ) {
-        details[index].setAttribute('open',true);
+        // details[item.id].setAttribute('open',true);
       } else {
-        details[index].removeAttribute('open');
+        // details[item.id].removeAttribute('open');
       }
     })
     // for(let i=0; i<details.length; i++) {
