@@ -65,7 +65,8 @@ const SideBar = () => {
         return (
           <li key={index} 
             className={
-              item.path == window.location.pathname 
+              // item.path == window.location.pathname 
+              window.location.pathname.includes(item.path)
               ? classes.activesubMenuList 
               : classes.subMenuList} 
             onClick={()=>navigate(item.path)}>{item.title}
@@ -74,6 +75,8 @@ const SideBar = () => {
       })
     )
   }
+
+  // console.log(pathsArr(4))
 
   // details 눌렀을 때
   // document.querySelectorAll('details').forEach(function(item){
@@ -96,9 +99,14 @@ const SideBar = () => {
     const summarys = document.querySelectorAll('summary');
     const collapseNavs = sidenav_data.filter((item)=>{return item['subMenu']})
 
+    // console.log('collapseNavs ----------->', collapseNavs)
+
+    // console.log('details ----------->', details)
+    // console.log('openedDetails ----------->', openedDetails)
+
     collapseNavs.map((item, index)=>{
       if ( pathsArr(item.id).includes(window.location.pathname) ) {
-        // details[item.id].setAttribute('open',true);
+        // details[index].setAttribute('open',true);
       } else {
         // details[item.id].removeAttribute('open');
       }
@@ -118,7 +126,8 @@ const SideBar = () => {
 
   return (
     <>
-    {allPaths.includes(window.location.pathname) && 
+    {/* {allPaths.includes(window.location.pathname) &&  */}
+    {isEmpty ? null : 
       <div className={classes.root}>
         <div className={classes.container}>
           <h1 className={classes.h1}>

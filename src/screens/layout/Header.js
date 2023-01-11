@@ -18,7 +18,8 @@ const Header = () => {
 
   return (
     <>
-      {allPaths.includes(window.location.pathname) && 
+      {/* {allPaths.includes(window.location.pathname) &&  */}
+      {isEmpty ? null : 
       <header className={classes.root}>
 
         <div className={classes.userInfoSection}>
@@ -30,7 +31,7 @@ const Header = () => {
 
         <div className={classes.breadCrumbs}>  
           <Link to={'/'} className={classes.breadCrumbsLink}>홈</Link>
-          {breadCrumbsObj[window.location.pathname].map((item, index)=>{
+          {/* {breadCrumbsObj[window.location.pathname].map((item, index)=>{
             return (
               <React.Fragment key={index}> 
                 <Link to={item.path} className={classes.breadCrumbsLink}>
@@ -39,7 +40,7 @@ const Header = () => {
                 </Link> 
               </React.Fragment>
             )
-          })}
+          })} */}
         </div>
       </header>
       }

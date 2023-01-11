@@ -71,6 +71,11 @@ const NoticeAppIntro = () => {
         nextPageText={"›"}
         onChange={handlePageChange}
       />
+
+
+
+
+      
     </div>
   )
 }
