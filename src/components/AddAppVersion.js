@@ -7,7 +7,7 @@ const osList = ["Android", "iOS", "Windows", "Mac"];
 
 const AddAppVersion = ({ backState }) => {
   const classes = useStyles();
-  const [radioValue, setRadioValue] = useState(false);
+  const [radioValue, setRadioValue] = useState('Google Play');
   const onChangeRadio = (e) => {
     setRadioValue(e.target.value);
   };
@@ -47,6 +47,7 @@ const AddAppVersion = ({ backState }) => {
                       value={item}
                       onChange={onChangeRadio}
                       className={classes.radioBtn}
+                      defaultChecked={radioValue == item}
                       required
                     />
                     <label htmlFor={item}>{item}</label>
@@ -119,6 +120,7 @@ const AddAppVersion = ({ backState }) => {
                   name="upt_type"
                   value="choice"
                   className={classes.radioBtn}
+                  defaultChecked
                 />
                 <label htmlFor="choice">선택</label>
               </div>
