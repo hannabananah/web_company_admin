@@ -29,22 +29,22 @@ const UserAccountTable = (props) => {
                 width: "140px",
               }}
             >
-              아이디
+              공지 등록일
             </td>
             <td className={classes.th_td} style={{ width: "100px" }}>
-              관리자 권한
+              App Intro 공지 노출 기간
             </td>
             <td className={classes.th_td} style={{ width: "120px" }}>
-              전화번호
+              공지 유형
             </td>
             <td className={classes.th_td} style={{ width: "60px" }}>
-              사용여부
+              공지 제목
             </td>
             <td className={classes.th_td} style={{ width: "150px" }}>
-              최근 접속
+              OS
             </td>
             <td className={classes.th_td} style={{ width: "150px" }}>
-              수정일
+              공지 활성
             </td>
           </tr>
         </thead>
@@ -54,25 +54,20 @@ const UserAccountTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   <td className={classes.td}>{i.id}</td>
-                  <td
-                    onClick={() => onClickTarget(i)}
-                    className={`${classes.td} + ${classes.idLink}`}
-                  >
+                  <td onClick={() => onClickTarget(i)} className={classes.td}>
                     {i.firstName}
                   </td>
                   <td className={classes.td}>{i.bloodGroup}</td>
                   <td className={classes.td}>{i.phone}</td>
                   <td className={classes.td}>
-                    <span
-                      className={
-                        i.gender == "male" ? classes.unuseBtn : classes.useBtn
-                      }
-                    >
+                    <span className={`${classes.td} + ${classes.idLink}`}>
                       {i.gender}
                     </span>
                   </td>
                   <td className={classes.td}>{i.ip}</td>
-                  <td className={classes.td}>{i.birthDate}</td>
+                  <td className={classes.td}>
+                    <span className={classes.activeLive}>Live</span>
+                  </td>
                 </tr>
               );
             })}
