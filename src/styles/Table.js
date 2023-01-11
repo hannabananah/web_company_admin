@@ -6,6 +6,7 @@ const useStyles = makeStyles({
     border: `1px solid ${COLORS.STORKE.CONTENTS2}`,
     borderRadius: "8px",
     boxShadow: "0px 4px 22px rgba(0, 0, 0, 0.05)",
+    background:'#fff',
   },
   tableStyle: {
     width: "100%",
