@@ -103,7 +103,7 @@ const useStyles = makeStyles({
     borderRadius: "8px",
     lineHeight: "150%",
     fontSize: "20px",
-    fontWeight: "semiBold",
+    fontWeight: "600",
     margin: "35px 0",
   },
   loginTextStyle: {
