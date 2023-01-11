@@ -18,6 +18,7 @@ const pathsArr = (index) => {
   }
   return paths;
 }
+// console.log(pathsArr(3)) // details는 반드시 순서대로 있지 않아서 index로 확인하면 에러 발생. id로 해야함
 
 const RenderIcons = ({ title }) => {
   const classes = useStyles();
@@ -88,23 +89,28 @@ const SideBar = () => {
   //   })
   // });
 
-
   // 뒤로 가기
   useEffect(()=>{
     const details = document.querySelectorAll('details');
     const openedDetails = document.querySelectorAll('details[open]');
     const summarys = document.querySelectorAll('summary');
+    const collapseNavs = sidenav_data.filter((item)=>{return item['subMenu']})
 
-      for(let i=0; i<details.length; i++) {
-        if ( pathsArr(i).includes(window.location.pathname) ) {
-          details[i].setAttribute('open',true);
-        } else {
-          details[i].removeAttribute('open');
-        }
+    collapseNavs.map((item, index)=>{
+      if ( pathsArr(item.id).includes(window.location.pathname) ) {
+        details[index].setAttribute('open',true);
+      } else {
+        details[index].removeAttribute('open');
       }
-    
+    })
+    // for(let i=0; i<details.length; i++) {
+    //   if ( pathsArr(i).includes(window.location.pathname) ) {
+    //     details[i].setAttribute('open',true);
+    //   } else {
+    //     details[i].removeAttribute('open');
+    //   }
+    // }
   },[window.location.pathname])
-  // },[])
 
   const logOut = () => {
     navigate('/')
