@@ -1,10 +1,30 @@
 import { useEffect, useState } from "react";
 
+import Pagination from "react-js-pagination";
+
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import UserAccAdd from "~/components/AddUserAccount";
 import UserAccountTable from "~/components/table/UserAccountTable";
 import DetailAccount from "~/components/DetailAccount";
+import SelectBox from "~/components/SelectBox";
+import FilterSection from "~/components/FilterSection";
+
+// filter select option
+const option = [
+  {
+    value: "ID",
+    name: "아이디",
+  },
+  {
+    value: "name",
+    name: "사용자명",
+  },
+  {
+    value: "phone",
+    name: "전화번호",
+  },
+];
 
 const UserAccount = () => {
   const classes = useStyles();
@@ -41,8 +61,26 @@ const UserAccount = () => {
     setEditAcc(false);
   };
 
+  // 페이지네이션
+  const [totalPage, setTotalPage] = useState(5); //임시
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 10;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    console.log("page  -------------------->", page);
+  };
+
   console.log(fetchData);
   console.log(isLoaded);
+
+  // 필터
+  const [selectVal, setSelectVal] = useState("ID");
+
+  const onChangeSelect = (event) => {
+    setSelectVal(event.target.value);
+  };
+
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       {add ? (
@@ -50,14 +88,46 @@ const UserAccount = () => {
       ) : editAcc ? (
         <DetailAccount backState={goBackTable} user={user} />
       ) : (
-        <UserAccountTable
-          fetchData={fetchData}
-          isLoaded={isLoaded}
-          changeState={changeState}
-          user={user}
-          setUser={setUser}
-          onClickTarget={onClickTarget}
-        />
+        <div className={classes.root}>
+          <section className={classes.titleSection}>
+            <h2 className={classes.mainTitle}>계정관리</h2>
+          </section>
+          <FilterSection
+            left={
+              <>
+                <SelectBox
+                  value={selectVal}
+                  onChange={onChangeSelect}
+                  option={option}
+                />
+                <input className={classes.filterInput} />
+                <button className={classes.searchBtn}>검색</button>
+              </>
+            }
+            right={
+              <button onClick={changeState} className={classes.addBtn}>
+                등록
+              </button>
+            }
+          />
+          <UserAccountTable
+            fetchData={fetchData}
+            isLoaded={isLoaded}
+            changeState={changeState}
+            user={user}
+            setUser={setUser}
+            onClickTarget={onClickTarget}
+          />
+          <Pagination
+            activePage={currentPage}
+            totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
+            itemsCountPerPage={postsPerPage} // 페이지당 보여줄 포스트 갯수
+            pageRangeDisplayed={10} // 페이저 갯수
+            prevPageText={"‹"}
+            nextPageText={"›"}
+            onChange={handlePageChange}
+          />
+        </div>
       )}
     </div>
   );

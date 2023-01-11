@@ -2,6 +2,10 @@ import { makeStyles } from "@mui/styles";
 import { COLORS } from "~/assets/colors/colors";
 
 const useStyles = makeStyles({
+  root: {
+    width: "100%",
+    maxWidth: "1320px",
+  },
   userAccContainer: {
     maxWidth: "1320px",
     width: "100%",
@@ -219,6 +223,45 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.WRANING,
     padding: "7.5px 47px",
     borderRadius: "8px",
+  },
+  filterInput: {
+    border: "1px solid #D1D1D1",
+    borderRadius: "8px",
+    height: "100%",
+    padding: "0 20px",
+    width: "100%",
+    maxWidth: "170px",
+    boxSizing: "border-box",
+    "&:focus": {
+      outline: "none",
+    },
+  },
+  searchBtn: {
+    boxSizing: "border-box",
+    backgroundColor: "#E3E3E6",
+    border: "none",
+    fontSize: "14px",
+    lineHeight: "150%",
+    cursor: "pointer",
+    color: COLORS.COLOR.BLACK,
+    padding: "9.5px 25px",
+    borderRadius: "8px",
+  },
+  addBtn: {
+    boxSizing: "border-box",
+    backgroundColor: COLORS.COLOR.MIDDLE_PURPLE,
+    border: "none",
+    fontSize: "14px",
+    lineHeight: "150%",
+    cursor: "pointer",
+    color: COLORS.COLOR.BLACK,
+    padding: "9.5px 47px",
+    borderRadius: "8px",
+  },
+  memberNum: {
+    color: COLORS.COLOR.BLACK,
+    fontSize: "14px",
+    lineHeight: "150%",
   },
 });
 export default useStyles;

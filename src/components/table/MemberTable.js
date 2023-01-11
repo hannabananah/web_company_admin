@@ -4,17 +4,8 @@ const MemberTable = (props) => {
   const { fetchData, isLoaded } = props;
   const classes = useStyles();
 
-  // 천 단위 마다 콤마
-  const cmemberNum = +fetchData.limit;
-  cmemberNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
   return (
     <div>
-      <div>
-        <p>
-          총 회원 수 :<span> {cmemberNum}명</span>
-        </p>
-      </div>
       <figure className={classes.root}>
         <table className={classes.tableStyle}>
           <thead className={classes.theadStyle}>
@@ -49,7 +40,7 @@ const MemberTable = (props) => {
           </thead>
           <tbody>
             {isLoaded &&
-              fetchData?.users?.map((i, index) => {
+              fetchData?.users?.slice(0, 10).map((i, index) => {
                 return (
                   <tr key={index} className={classes.tableTr}>
                     <td className={classes.td}>{i.id}</td>
@@ -62,6 +53,12 @@ const MemberTable = (props) => {
                   </tr>
                 );
               })}
+            {/* 검색결과가 없습니다. */}
+            {/* <tr>
+            <td colSpan="8" className={classes.noDataText}>
+              검색 결과가 없습니다.
+            </td>
+          </tr> */}
           </tbody>
         </table>
       </figure>
