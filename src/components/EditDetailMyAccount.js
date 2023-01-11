@@ -20,7 +20,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>사용자 아이디</label>
             </th>
-            <td className={classes.inputLayoutId}>
+            <td className={classes.fixedLayout}>
               나의 계정 관리, 나의 아이디입니다
             </td>
           </tr>

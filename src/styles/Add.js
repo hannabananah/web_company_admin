@@ -65,7 +65,7 @@ const useStyles = makeStyles({
     lineHeight: "150%",
     color: "#272833",
   },
-  inputLayoutId: {
+  fixedLayout: {
     boxSizing: "border-box",
     marginLeft: "30px",
     display: "flex",
@@ -262,6 +262,25 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.BLACK,
     fontSize: "14px",
     lineHeight: "150%",
+  },
+  radioBtnLayout1: {
+    display: "flex",
+    columnGap: "5px",
+    marginRight: "40px",
+    width: "120px",
+  },
+  radioBtnLayout2: {
+    display: "flex",
+    columnGap: "5px",
+    marginRight: "40px",
+    width: "fit-content",
+  },
+  radioBtn: {
+    width: "24px",
+    height: "auto",
+    "&:checked": {
+      accentColor: "#359f47",
+    },
   },
 });
 export default useStyles;

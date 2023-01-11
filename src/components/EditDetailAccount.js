@@ -57,7 +57,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>아이디</label>
             </th>
-            <td className={classes.inputLayoutId}>{userInfo.id}</td>
+            <td className={classes.fixedLayout}>{userInfo.id}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
