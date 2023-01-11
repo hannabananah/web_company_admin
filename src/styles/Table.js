@@ -6,7 +6,7 @@ const useStyles = makeStyles({
     border: `1px solid ${COLORS.STORKE.CONTENTS2}`,
     borderRadius: "8px",
     boxShadow: "0px 4px 22px rgba(0, 0, 0, 0.05)",
-    background:'#fff',
+    background: "#fff",
   },
   tableStyle: {
     width: "100%",
@@ -87,6 +87,28 @@ const useStyles = makeStyles({
     backgroundColor: COLORS.COLOR.WHITE,
     color: COLORS.COLOR.DARK_GRAY,
     border: `1px solid ${COLORS.COLOR.INFORMATION_GRAY}`,
+  },
+  activeLive: {
+    boxSizing: "border-box",
+    padding: "10px 21.5px",
+    color: COLORS.COLOR.WRANING,
+    backgroundColor: "rgba(255,49,74,0.1)",
+    fontWeight: "Medium",
+    fontSize: "14px",
+    lineHeight: "100%",
+    borderRadius: "8px",
+    cursor: "pointer",
+  },
+  inactiveLive: {
+    boxSizing: "border-box",
+    padding: "10px 21.5px",
+    color: COLORS.COLOR.INFORMATION_GRAY,
+    backgroundColor: COLORS.COLOR.BACKGROUND_GRAY,
+    fontWeight: "Medium",
+    fontSize: "14px",
+    lineHeight: "100%",
+    borderRadius: "8px",
+    cursor: "pointer",
   },
 });
 export default useStyles;

@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     // lineHeight:'40px',
     borderRadius:'8px',
     height:'100%',
-    padding:'0 10px',
+    padding:'0 20px',
     width:'100%',
     maxWidth:'170px',
     boxSizing:'border-box'
