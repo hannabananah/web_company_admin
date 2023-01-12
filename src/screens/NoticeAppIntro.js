@@ -10,7 +10,7 @@ import SearchInput from "~/components/SearchInput";
 import { SearchBtn, SaveBtn } from "~/components/button/Buttons";
 import "~/styles/Toggle.css";
 import AppNotiAdd from "~/components/AddAppNotification";
-import UserAccountTable from "~/components/table/UserAccountTable";
+import NoticeIntroTable from "~/components/table/NoticeIntroTable";
 import DetailNoti from "~/components/DetailNoti";
 
 // filter select option
@@ -103,7 +103,7 @@ const NoticeAppIntro = () => {
             }
             right={<SaveBtn changeState={changeState} />}
           />
-          <UserAccountTable
+          <NoticeIntroTable
             fetchData={fetchData}
             isLoaded={isLoaded}
             changeState={changeState}
