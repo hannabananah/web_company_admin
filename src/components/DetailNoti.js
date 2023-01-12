@@ -2,7 +2,6 @@ import { useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import EditAppIntroNotice from "~/components/EditAppIntroNotice";
-import { DeleteModal } from "~/components/Modal";
 
 const DetailNoti = ({ user, backState }) => {
   const classes = useStyles();
@@ -14,15 +13,6 @@ const DetailNoti = ({ user, backState }) => {
   const gobackstate = () => {
     setEdit(false);
   };
-  // 계정삭제 모달
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-  };
 
   return (
     <>
@@ -31,7 +21,7 @@ const DetailNoti = ({ user, backState }) => {
       ) : (
         <figure className={classes.userAccContainer}>
           <section className={classes.titleSection}>
-            <h2 className={classes.mainTitle}>앱 인트로 공지 상세</h2>
+            <h2 className={classes.mainTitle}>App Intro 공지 상세</h2>
           </section>
           <table className={classes.tableStyle}>
             <colgroup>
@@ -43,13 +33,21 @@ const DetailNoti = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>OS</label>
                 </th>
-                <td className={classes.contentStyle}>{user.firstName}</td>
+                <td className={classes.contentStyle}>{user.ip}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>공지 유형</label>
                 </th>
-                <td className={classes.contentStyle}>{user.bloodGroup}</td>
+                <td className={classes.contentStyle}>
+                  <span
+                    className={
+                      user.gender == "male" ? classes.urgentText : null
+                    }
+                  >
+                    {user.gender}
+                  </span>
+                </td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
@@ -61,7 +59,7 @@ const DetailNoti = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>공지 제목</label>
                 </th>
-                <td className={classes.contentStyle}>{user.email}</td>
+                <td className={classes.contentStyle}>{user.eyeColor}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
@@ -75,12 +73,11 @@ const DetailNoti = ({ user, backState }) => {
                 </th>
                 <td className={classes.contentStyle}>{user.gender}</td>
               </tr>
-
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록일</label>
                 </th>
-                <td className={classes.contentStyle}>{user.birthDate}</td>
+                <td className={classes.contentStyle}>{user.firstName}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>

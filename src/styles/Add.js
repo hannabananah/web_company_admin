@@ -282,5 +282,13 @@ const useStyles = makeStyles({
       accentColor: "#359f47",
     },
   },
+  urgentText: {
+    textAlign: "center",
+    cursor: "default",
+    fontSize: "12px",
+    padding: "21px 0",
+    color: COLORS.COLOR.WRANING,
+    lineHeight: "150%",
+  },
 });
 export default useStyles;
