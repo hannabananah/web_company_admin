@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
-import EditDetailAccount from "~/components/EditDetailAccount";
+import EditAppIntroNotice from "~/components/EditAppIntroNotice";
 import { DeleteModal } from "~/components/Modal";
 
 const DetailNoti = ({ user, backState }) => {
@@ -27,7 +27,7 @@ const DetailNoti = ({ user, backState }) => {
   return (
     <>
       {edit ? (
-        <EditDetailAccount user={user} gobackstate={gobackstate} />
+        <EditAppIntroNotice user={user} gobackstate={gobackstate} />
       ) : (
         <figure className={classes.userAccContainer}>
           <section className={classes.titleSection}>
