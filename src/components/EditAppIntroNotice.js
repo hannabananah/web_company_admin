@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import DateWithTimePicker from "~/components/DateTimePicker";
+import { UptConfirmModal } from "~/components/Modal";
 
 const EditAppIntroNotice = ({ gobackstate, user }) => {
   const classes = useStyles();
@@ -36,6 +37,16 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
   console.log("userInfo ----------->", userInfo);
   console.log("userInfo.use_yn ----------->", userInfo.type);
 
+  // 수정완료 모달
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <figure className={classes.userAccContainer}>
       <section className={classes.titleSection}>
@@ -58,15 +69,30 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
               <label className={classes.leftText}>공지 유형</label>
             </th>
             <td className={classes.inputLayout}>
-              <input
-                value={userInfo.type}
-                onChange={onChange}
-                type="text"
-                className={classes.inputStyle}
-                name="type"
-                id="introNoti"
-                required
-              />
+              <div className={classes.radioBtnLayout2}>
+                <input
+                  type="radio"
+                  id="urgent"
+                  onChange={onChange}
+                  name="type"
+                  value="urgent"
+                  className={classes.radioBtn}
+                  defaultChecked={userInfo.type == "male"}
+                />
+                <label htmlFor="urgent">긴급</label>
+              </div>
+              <div className={classes.radioBtnLayout2}>
+                <input
+                  type="radio"
+                  id="normal"
+                  onChange={onChange}
+                  name="type"
+                  value="normal"
+                  className={classes.radioBtn}
+                  defaultChecked={userInfo.type == "female"}
+                />
+                <label htmlFor="normal">일반</label>
+              </div>
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -107,7 +133,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
               <label className={classes.leftText}>공지 내용</label>
             </th>
             <td className={classes.inputLayout}>
-              <input
+              {/* <input
                 type="tel"
                 value={userInfo.content}
                 onChange={onChange}
@@ -116,7 +142,8 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
                 id="introNoti"
                 maxLength="3"
                 required
-              />
+              /> */}
+              {/* 공지 내용 */}
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -140,8 +167,16 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
         <button onClick={gobackstate} className={classes.backBtn}>
           이전
         </button>
-        <input type="submit" value="저장" className={classes.saveBtn} />
+        <input
+          onClick={openModal}
+          type="submit"
+          value="저장"
+          className={classes.saveBtn}
+        />
       </div>
+      <UptConfirmModal open={modalOpen} close={closeModal} header="수정 완료">
+        <main>App Intro 공지를 수정했습니다.</main>
+      </UptConfirmModal>
     </figure>
   );
 };
