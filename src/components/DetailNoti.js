@@ -71,7 +71,7 @@ const DetailNoti = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>설명</label>
                 </th>
-                <td className={classes.contentStyle}>{user.gender}</td>
+                <td className={classes.contentStyle}>{user.userAgent}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
