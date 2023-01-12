@@ -21,6 +21,7 @@ import History from "~/screens/History";
 import MemberStatus from "~/screens/MemberStatus";
 import AppVersion from "~/screens/AppVersion";
 import NotFound from "~/screens/NotFound";
+import EditorTool from "~/components/Editor";
 import "~/App.css";
 
 function App() {
@@ -58,9 +59,13 @@ function App() {
               <Route path="/statistics" element={<Statistics />} />
               {/* <Route path="/notice" element={<Notice />} /> */}
               <Route path="/notice/app_intro" element={<NoticeAppIntro />} />
-              <Route path="/notice/app_viewmore" element={<NoticeAppViewMore />} />
+              <Route
+                path="/notice/app_viewmore"
+                element={<NoticeAppViewMore />}
+              />
               <Route path="/notice/user_email" element={<NoticeUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />
+              <Route path="/hannah_test" element={<EditorTool />} />
               <Route path="/*" element={<NotFound />} />
             </Route>
           </Routes>
