@@ -33,6 +33,69 @@ const DetailNoti = ({ user, backState }) => {
           <section className={classes.titleSection}>
             <h2 className={classes.mainTitle}>앱 인트로 공지 상세</h2>
           </section>
+          <table className={classes.tableStyle}>
+            <colgroup>
+              <col />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftText}>OS</label>
+                </th>
+                <td className={classes.contentStyle}>{user.firstName}</td>
+              </tr>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftText}>공지 유형</label>
+                </th>
+                <td className={classes.contentStyle}>{user.bloodGroup}</td>
+              </tr>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftText}>공지 노출 기간</label>
+                </th>
+                <td className={classes.contentStyle}>{user.phone}</td>
+              </tr>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftText}>공지 제목</label>
+                </th>
+                <td className={classes.contentStyle}>{user.email}</td>
+              </tr>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftText}>공지 내용</label>
+                </th>
+                <td className={classes.contentStyle}>{user.ip}</td>
+              </tr>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftText}>설명</label>
+                </th>
+                <td className={classes.contentStyle}>{user.gender}</td>
+              </tr>
+
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftText}>등록일</label>
+                </th>
+                <td className={classes.contentStyle}>{user.birthDate}</td>
+              </tr>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftText}>등록자</label>
+                </th>
+                <td className={classes.contentStyle}>{user.username}</td>
+              </tr>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftText}>수정일</label>
+                </th>
+                <td className={classes.contentStyle}>{user.birthDate}</td>
+              </tr>
+            </tbody>
+          </table>
           <div className={classes.submitBtns}>
             <button onClick={backState} className={classes.backBtn}>
               이전

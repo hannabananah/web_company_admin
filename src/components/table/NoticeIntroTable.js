@@ -66,9 +66,13 @@ const NoticeIntroTable = (props) => {
             fetchData?.users?.slice(0, 10).map((i, index) => {
               return (
                 <tr key={index} className={classes.tableTr}>
+                  {/* 번호 */}
                   <td className={classes.td}>{i.id}</td>
+                  {/* 공지 등록일 */}
                   <td className={classes.td}>{i.firstName}</td>
+                  {/* APP Intro 공지 노출 기간 */}
                   <td className={classes.td}>{i.bloodGroup}</td>
+                  {/* 공지 유형 */}
                   <td className={classes.td}>
                     <span
                       className={i.gender == "male" ? classes.urgentText : null}
@@ -76,6 +80,7 @@ const NoticeIntroTable = (props) => {
                       {i.gender}
                     </span>
                   </td>
+                  {/* 공지 제목 */}
                   <td className={classes.td}>
                     <span
                       onClick={() => onClickTarget(i)}
@@ -84,7 +89,9 @@ const NoticeIntroTable = (props) => {
                       {i.eyeColor}
                     </span>
                   </td>
+                  {/* OS */}
                   <td className={classes.td}>{i.ip}</td>
+                  {/* 공지 활성 */}
                   <td className={classes.td}>
                     <span onClick={openModal} className={classes.activeLive}>
                       Live
