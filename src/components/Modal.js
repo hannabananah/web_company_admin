@@ -34,7 +34,7 @@ export const DeleteModal = (props) => {
   );
 };
 
-export const UpdateModal = (props) => {
+export const AlertModal = (props) => {
   const classes = useStyles();
   const { open, close, header } = props;
 
