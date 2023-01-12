@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 import useStyles from "~/styles/Table";
+import { AlertModal } from "~/components/Modal";
 
 const NoticeIntroTable = (props) => {
   const {
@@ -14,6 +17,16 @@ const NoticeIntroTable = (props) => {
 
   console.log(fetchData);
   console.log(isLoaded);
+
+  // 공지활성화 알림 모달
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <figure className={classes.root}>
@@ -73,7 +86,9 @@ const NoticeIntroTable = (props) => {
                   </td>
                   <td className={classes.td}>{i.ip}</td>
                   <td className={classes.td}>
-                    <span className={classes.activeLive}>Live</span>
+                    <span onClick={openModal} className={classes.activeLive}>
+                      Live
+                    </span>
                   </td>
                 </tr>
               );
@@ -86,6 +101,9 @@ const NoticeIntroTable = (props) => {
           </tr> */}
         </tbody>
       </table>
+      <AlertModal open={modalOpen} close={closeModal} header="공지 활성화">
+        <main>App Intro 공지를 노출합니다.</main>
+      </AlertModal>
     </figure>
   );
 };

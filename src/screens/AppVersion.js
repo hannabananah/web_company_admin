@@ -9,7 +9,7 @@ import AppVersionTable from "~/components/table/AppVersionTable";
 import AppDetail from "~/components/AppDetail";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
-import { UpdateModal } from "~/components/Modal";
+import { AlertModal } from "~/components/Modal";
 
 // filter select option
 const option = [
@@ -133,9 +133,9 @@ const AppVersion = () => {
             nextPageText={"›"}
             onChange={handlePageChange}
           />
-          <UpdateModal open={modalOpen} close={closeModal} header="업데이트">
+          <AlertModal open={modalOpen} close={closeModal} header="업데이트">
             <main>APP 업데이트를 시작합니다.</main>
-          </UpdateModal>
+          </AlertModal>
         </div>
       )}
     </div>
