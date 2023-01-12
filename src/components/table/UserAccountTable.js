@@ -62,7 +62,13 @@ const UserAccountTable = (props) => {
                   <td className={classes.td}>{i.bloodGroup}</td>
                   <td className={classes.td}>{i.phone}</td>
                   <td className={classes.td}>
-                    <span className={classes.td}>{i.gender}</span>
+                    <span
+                      className={
+                        i.gender == "male" ? classes.unuseBtn : classes.useBtn
+                      }
+                    >
+                      {i.gender}
+                    </span>
                   </td>
                   <td className={classes.td}>{i.ip}</td>
                   <td className={classes.td}>{i.birthDate}</td>
