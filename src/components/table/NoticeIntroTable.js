@@ -54,14 +54,21 @@ const NoticeIntroTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   <td className={classes.td}>{i.id}</td>
-                  <td onClick={() => onClickTarget(i)} className={classes.td}>
-                    {i.firstName}
-                  </td>
+                  <td className={classes.td}>{i.firstName}</td>
                   <td className={classes.td}>{i.bloodGroup}</td>
-                  <td className={classes.td}>{i.phone}</td>
                   <td className={classes.td}>
-                    <span className={`${classes.td} + ${classes.idLink}`}>
+                    <span
+                      className={i.gender == "male" ? classes.urgentText : null}
+                    >
                       {i.gender}
+                    </span>
+                  </td>
+                  <td className={classes.td}>
+                    <span
+                      onClick={() => onClickTarget(i)}
+                      className={`${classes.td} + ${classes.idLink}`}
+                    >
+                      {i.eyeColor}
                     </span>
                   </td>
                   <td className={classes.td}>{i.ip}</td>
