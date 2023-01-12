@@ -53,10 +53,11 @@ const UserAccountTable = (props) => {
             fetchData?.users?.slice(0, 10).map((i, index) => {
               return (
                 <tr key={index} className={classes.tableTr}>
-                  <td className={`${classes.td} + ${classes.idLink}`}>
-                    {i.id}
-                  </td>
-                  <td onClick={() => onClickTarget(i)} className={classes.td}>
+                  <td className={classes.td}>{i.id}</td>
+                  <td
+                    onClick={() => onClickTarget(i)}
+                    className={`${classes.td} + ${classes.idLink}`}
+                  >
                     {i.firstName}
                   </td>
                   <td className={classes.td}>{i.bloodGroup}</td>

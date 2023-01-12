@@ -14,15 +14,19 @@ const useStyles = makeStyles({
   th_td: {
     textAlign: "center",
     cursor: "default",
-    fontSize: "12px",
+    fontSize: "14px",
     padding: "21px 0",
-    fontWeight: "bold",
+    fontWeight: "600",
+    color: "#000",
+    lineHeight: "150%",
   },
   td: {
     textAlign: "center",
     cursor: "default",
     fontSize: "12px",
     padding: "21px 0",
+    color: "#000",
+    lineHeight: "150%",
   },
   idLink: {
     cursor: "pointer",
@@ -89,8 +93,7 @@ const useStyles = makeStyles({
     border: `1px solid ${COLORS.COLOR.INFORMATION_GRAY}`,
   },
   activeLive: {
-    boxSizing: "border-box",
-    padding: "10px 21.5px",
+    padding: "8px 20px",
     color: COLORS.COLOR.WRANING,
     backgroundColor: "rgba(255,49,74,0.1)",
     fontWeight: "Medium",
@@ -100,8 +103,7 @@ const useStyles = makeStyles({
     cursor: "pointer",
   },
   inactiveLive: {
-    boxSizing: "border-box",
-    padding: "10px 21.5px",
+    padding: "8px 20px",
     color: COLORS.COLOR.INFORMATION_GRAY,
     backgroundColor: COLORS.COLOR.BACKGROUND_GRAY,
     fontWeight: "Medium",
@@ -109,6 +111,14 @@ const useStyles = makeStyles({
     lineHeight: "100%",
     borderRadius: "8px",
     cursor: "pointer",
+  },
+  urgentText: {
+    textAlign: "center",
+    cursor: "default",
+    fontSize: "12px",
+    padding: "21px 0",
+    color: COLORS.COLOR.WRANING,
+    lineHeight: "150%",
   },
 });
 export default useStyles;
