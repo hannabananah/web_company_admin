@@ -256,51 +256,136 @@ const BreadCrumbs = () => {
 
 
 targetObj.map((item)=>{
-
   const pathArr = []
   const titleArr = []
 
   pathArr.push(item.path)
-  // titleArr.push(item.title)
+  titleArr.push(item.title)
   
-  if (item.subMenu) {
-    for (let i=0; i< item.subMenu.length; i++) {
-      pathArr.push(item.subMenu[i].path)
-      // titleArr.push(item.subMenu[i].title)
+  if (item.subMenu) {    
+    let itemsMenu
+    itemsMenu = item.subMenu
+
+    // 서브메뉴가 있으면 일단 path를 다 넣어야 함.    
+    for (let i=0; i< itemsMenu.length; i++) {
+      pathArr.push(itemsMenu[i].path)
+      titleArr.push(item.subMenu[i].title)
     }
+    // console.log('itemsMenu 1번째 출력 array 3개 나와야함 --- >> ', itemsMenu)
 
+    // itemsMenu.filter((item,index)=>{
+    //   if (item.subMenu) {
+    //     itemsMenu = item.subMenu
 
-    const a = item.subMenu.filter((item,index)=>{
-      return item.subMenu
-    })
+    //     for (let i=0; i< itemsMenu.length; i++) {
+    //       pathArr.push(itemsMenu[i].path)
+    //       // titleArr.push(item.subMenu[i].title)
+    //     }
+    //   }
+    // })
+    // console.log('itemsMenu 2번째 출력 array 2개 나와야함 --- >> ', itemsMenu)
 
-    console.log('a --- >> ', a)
+    // itemsMenu.filter((item,index)=>{
+    //   if (item.subMenu) {
+    //     itemsMenu = item.subMenu;
 
-    const aMap = a.map((item,index)=>{
-      return item.path
-    })
-
-    console.log('aMap --- >> ', aMap)
-  
+    //     for (let i=0; i<itemsMenu.length; i++) {
+    //       pathArr.push(itemsMenu[i].path)
+    //       // titleArr.push(item.subMenu[i].title)
+    //     }
+    //   }
+    // })
+    // console.log('itemsMenu 3번째 출력 array 1개 나와야함 --- >> ', itemsMenu)
     
-  }
-  
+    const currPath = location.pathname.split('/')
+      .filter((item)=>{return item !=''})
 
+    for (let i=0; i<currPath.length-1; i++){
+      itemsMenu.filter((item,index)=>{
+        if (item.subMenu) {
+          itemsMenu = item.subMenu;
+  
+          for (let i=0; i<itemsMenu.length; i++) {
+            pathArr.push(itemsMenu[i].path)
+            titleArr.push(item.subMenu[i].title)
+          }
+        }
+      })
+      console.log(`itemsMenu ${i}번째 출력 array ${itemsMenu.length}개 나와야함 --- >> `, itemsMenu)
+    }
+  } // if subMenu
 
   console.log(pathArr)
+  console.log(titleArr)
+
+
+  const objMap = {}
+  for(let i=0; i<pathArr.length; i++){
+    objMap[pathArr[i]] = titleArr[i]
+  }
+  console.log('objMap ----------- >>>>>>>', objMap)
 })
+// =====================================================
+const drinksObj = [
+  {
+    name:'음료',
+    path:'/drinks',
+    subMenu: [
+      {
+        name:'쥬스',
+        path:'/drinks/juice',
+        subMenu: [
+          {
+            name:'망고 쥬스',
+            path:'/drinks/juice/mango/',
+          },
+          {
+            name:'키위 쥬스',
+            path:'/drinks/juice/kiwi',
+          },  
+        ]
+      },
+      {
+        name:'커피',
+        path:'/drinks/coffee',
+        subMenu: [
+          {
+            name:'아메리카노',
+            path:'/drinks/coffee/americano',
+          }  
+        ]
+      }
+    ]
+  }
+]
+// console.log('drinksObj -----> ',drinksObj)
+drinksObj.map((item)=>{
+  const nameArr = []
+  let itemsMenu
+ //일단 무조건 name키가 있으니까 넣어줌
+  nameArr.push(item.name)
 
+  if (item.subMenu) {    
+    itemsMenu = item.subMenu;
 
+    for(let i=0;i<itemsMenu.length; i++){
+      nameArr.push(itemsMenu[i].name)  
+    }
+    // console.log('itemsMenu ----> 1번째 출력 ', itemsMenu)
 
+    itemsMenu.filter((item)=>{
+      if (item.subMenu) {
+        itemsMenu = item.subMenu;
 
-
-
-
-
-
-
-
-
+        for (let i=0; i<itemsMenu.length; i++) {
+          nameArr.push(itemsMenu[i].name)
+        }
+      }
+    })
+    // console.log('itemsMenu ----> 2번째 출력 ', itemsMenu)
+  }
+  // console.log(nameArr)
+})
 // =====================================================
 // let arr = ['first', 'second', 'third'];
 
