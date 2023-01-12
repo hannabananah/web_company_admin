@@ -64,7 +64,6 @@ const AppDetail = ({ user, backState }) => {
                 </th>
                 <td className={classes.contentStyle}>{user.gender}</td>
               </tr>
-
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록일</label>

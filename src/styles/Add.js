@@ -80,6 +80,13 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
   },
+  pickerLayout: {
+    boxSizing: "border-box",
+    marginLeft: "30px",
+    display: "flex",
+    alignItems: "center",
+    height: "41px",
+  },
   inputStyle: {
     boxSizing: "border-box",
     width: "400px",

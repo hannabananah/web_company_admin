@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
+import DateWithTimePicker from "~/components/DateTimePicker";
 
 const EditAppIntroNotice = ({ gobackstate, user }) => {
   const classes = useStyles();
@@ -71,8 +73,8 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>공지 노출 기간</label>
             </th>
-            <td className={classes.inputLayout}>
-              <input
+            <td className={classes.pickerLayout}>
+              {/* <input
                 value={userInfo.period}
                 onChange={onChange}
                 type="text"
@@ -80,7 +82,8 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
                 name="period"
                 id="introNoti"
                 required
-              />
+              /> */}
+              <DateWithTimePicker />
             </td>
           </tr>
           <tr className={classes.contentInput}>
