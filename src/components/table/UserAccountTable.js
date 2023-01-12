@@ -12,8 +12,8 @@ const UserAccountTable = (props) => {
   } = props;
   const classes = useStyles();
 
-  console.log(fetchData);
-  console.log(isLoaded);
+  // console.log(fetchData);
+  // console.log(isLoaded);
 
   return (
     <figure className={classes.root}>

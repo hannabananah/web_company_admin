@@ -72,7 +72,7 @@ const UserAccount = () => {
   };
 
   console.log(fetchData);
-  console.log(isLoaded);
+  // console.log(isLoaded);
 
   // 필터
   const [selectVal, setSelectVal] = useState("ID");

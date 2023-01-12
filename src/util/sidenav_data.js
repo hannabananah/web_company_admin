@@ -326,16 +326,135 @@ sidenav_data.map((item)=>{
 // console.log(source)
 // console.log(returnedTarget)
 // ================================================================================
-
-console.log(sidenav_data)
-
 sidenav_data.map((i)=>{
   // console.log('Object.keys(i)', Object.keys(i))
   // console.log('Object.values(i)', Object.values(i))
-
-  let count = 0;
   if( Object.keys(i).includes('subMenu') ) {
-    
   }
-  
 })
+// ================================================================================
+
+console.log('sidenav_data ------ >>>> ', sidenav_data)
+
+// 현재 path '/setting_admin/user_account'
+const currPath = window.location.pathname;
+// 현재 path에서 / 기준으로 나눔   ['', 'setting_admin', 'user_account']
+const splitedPathArrOrigin = currPath.split('/')
+// 첫번째 공백 제거
+const splitedPathArr = splitedPathArrOrigin.filter((element, index) => index > 0);
+// console.log(' 첫번째 공백이 제거된 path 배열 ---- >>>', splitedPathArr)
+
+// path depth 개수 확인
+// const pathItemsLength = currPath.split('/').length -1
+// const pathItemsLength = splitedPathArr.length;
+// console.log(' count ---- >>>', pathItemsLength ,'번 들어감')
+
+// 각 path마다 슬래시 붙이기
+// for(let i=0; i<splitedPathArr.length;i++){
+//   console.log(`/${splitedPathArr[i]}`)
+// }
+
+
+// 현재 path에 해당하는 sidenav data obj
+const targetObj = sidenav_data.filter((i)=>{
+  return `/${splitedPathArr[0]}`.includes(i.path)
+})
+// console.log(targetObj)
+
+//   '/notice(3)/app_intro(2)/add(1)'
+
+targetObj.map((item)=>{
+  if (item.subMenu) {
+    // console.log(item.subMenu) // 3 개
+    item.subMenu.map((i)=>{
+      // console.log(i.title)
+      // console.log(i.path)
+    })
+
+      for (let i=0; i<item.subMenu.length; i++){
+        if (item.subMenu[i].subMenu) {
+          // console.log(item.subMenu[i].subMenu) // 2 개
+          item.subMenu[i].subMenu.map((i)=>{
+            // console.log(i.title)
+            // console.log(i.path)
+          })
+  
+          for (let c=0; c<item.subMenu[i].subMenu.length; c++){
+            if (item.subMenu[i].subMenu[c].subMenu) {
+              // console.log(item.subMenu[i].subMenu[c].subMenu) // 1 개
+              item.subMenu[i].subMenu[c].subMenu.map((i)=>{
+                // console.log(i.title)
+                // console.log(i.path)
+              })
+            }
+          }
+  
+  
+        }
+      }
+
+
+  }
+});
+
+// let DATA = {
+//   "el" : [
+//     {
+//       "name" : "Joe",
+//       "age" : "20"
+//     },
+//     {
+//       "name" : "Mary",
+//       "age" : "27",
+//       "book" : [
+//         {
+//           "name" : "Blow",
+//           "age" : "15"
+//         },
+//         {
+//           "name" : "Blow",
+//           "age" : "15",
+//           "book" : [
+//             {
+//               "name" : "kelly",
+//               "age" : "29"
+//             }
+//           ]
+//         }
+//       ]
+//     }
+//   ]
+// }
+
+// function objByName(data, name){
+//   let result
+//   for(let i = 0; i < data.length; i++){
+//     if(data[i].name === name){
+//       data = JSON.stringify(json[i])
+//       result = JSON.parse(data)
+//       return result
+//     }
+//     if(data[i].hasOwnProperty('book')){
+//       return objByName(data[i].book, name)
+//     }
+//   }
+// }
+
+// console.log(  objByName( DATA,'name') )
+
+
+
+// const depthOf = (object) => {
+//   var level = 1;// w w w .  ja v  a 2 s.  co m
+//   var key;
+//   for(key in object) {
+//     if (!object.hasOwnProperty(key)) continue;
+
+//     if(typeof object[key] == 'object'){
+//       var depth = depthOf(object[key]) + 1;
+//       level = Math.max(depth, level);
+//     }
+//   }
+//   return level;
+// }
+// console.log(depthOf(targetObj))

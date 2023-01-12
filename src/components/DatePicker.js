@@ -43,7 +43,7 @@ const DatePicker = (props) => {
         className={classes.root}
         // label="end"
         value={end}
-        minDate={dayjs("2017-01-01")}
+        minDate={start}
         onChange={(newValue) => {
           setEnd(newValue);
         }}
