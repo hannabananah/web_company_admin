@@ -4,6 +4,9 @@ import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import DateWithTimePicker from "~/components/DateTimePicker";
 import { UptConfirmModal } from "~/components/Modal";
+import { EditorTool } from "~/components/Editor";
+
+import { EditorState, convertToRaw } from "draft-js";
 
 const EditAppIntroNotice = ({ gobackstate, user }) => {
   const classes = useStyles();
@@ -45,6 +48,12 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
   };
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  // editor state
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const onEditorStateChange = (editorState) => {
+    setEditorState(editorState);
   };
 
   return (
@@ -128,22 +137,15 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
               />
             </td>
           </tr>
-          <tr className={classes.contentInput}>
+          <tr className={classes.editorInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>공지 내용</label>
             </th>
-            <td className={classes.inputLayout}>
-              {/* <input
-                type="tel"
-                value={userInfo.content}
-                onChange={onChange}
-                className={classes.inputNumStyle}
-                name="content"
-                id="introNoti"
-                maxLength="3"
-                required
-              /> */}
-              {/* 공지 내용 */}
+            <td className={classes.editorLayout}>
+              <EditorTool
+                editorState={editorState}
+                onEditorStateChange={onEditorStateChange}
+              />
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -168,9 +170,9 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
           이전
         </button>
         <input
-          onClick={openModal}
           type="submit"
           value="저장"
+          onClick={openModal}
           className={classes.saveBtn}
         />
       </div>
