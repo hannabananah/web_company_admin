@@ -3,7 +3,7 @@ import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import DateWithTimePicker from "~/components/DateTimePicker";
 import { UptConfirmModal } from "~/components/Modal";
-
+import { EditorTool } from "~/components/Editor";
 const osList = ["Android", "iOS", "Windows", "Mac"];
 const typeList = ["긴급", "일반"];
 
@@ -141,6 +141,7 @@ const AddAppNotification = ({ backState }) => {
           </tr>
         </tbody>
       </table>
+      <EditorTool />
       <div className={classes.submitBtns}>
         <button onClick={backState} className={classes.backBtn}>
           이전
