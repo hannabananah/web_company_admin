@@ -3,9 +3,9 @@ import { COLORS } from "~/assets/colors/colors";
 
 const useStyles = makeStyles({
   wrapper: {
-    width: "50%",
-    margin: "0 auto",
-    marginBottom: "4em",
+    width: "90%",
+    // display: "inline-block",
+    // marginBottom: "4em",
   },
   editor: {
     height: "500px !important",
