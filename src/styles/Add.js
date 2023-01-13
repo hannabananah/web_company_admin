@@ -50,6 +50,14 @@ const useStyles = makeStyles({
     alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
   },
+  editorInput: {
+    boxSizing: "border-box",
+    width: "100%",
+    height: "auto",
+    display: "flex",
+    alignItems: "center",
+    borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
+  },
   leftLayout: {
     boxSizing: "border-box",
     width: "250px",
@@ -86,6 +94,12 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     height: "41px",
+  },
+  editorLayout: {
+    boxSizing: "border-box",
+    marginLeft: "30px",
+    display: "flex",
+    alignItems: "center",
   },
   inputStyle: {
     boxSizing: "border-box",

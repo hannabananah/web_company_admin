@@ -21,9 +21,9 @@ export const EditorTool = () => {
         editorClassName={classes.editor} // 에디터 주변에 적용된 클래스
         toolbarClassName="toolbar-class" // 툴바 주위에 적용된 클래스
         // 한국어 설정
-        // localization={{
-        //   locale: "ko",
-        // }}
+        localization={{
+          locale: "ko",
+        }}
         // 툴바 설정
         toolbar={{
           // inDropdown: 해당 항목과 관련된 항목을 드롭다운으로 나타낼것인지

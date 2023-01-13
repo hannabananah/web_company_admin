@@ -107,11 +107,11 @@ const AddAppNotification = ({ backState }) => {
               />
             </td>
           </tr>
-          <tr className={classes.contentInput}>
+          <tr className={classes.editorInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>공지 내용</label>
             </th>
-            <td className={classes.inputLayout}>
+            <td className={classes.editorLayout}>
               {/* <input
                 type="tel"
                 value={userInfo.content}
@@ -122,7 +122,7 @@ const AddAppNotification = ({ backState }) => {
                 maxLength="3"
                 required
               /> */}
-              {/* 공지 내용 */}
+              <EditorTool />
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -141,7 +141,6 @@ const AddAppNotification = ({ backState }) => {
           </tr>
         </tbody>
       </table>
-      <EditorTool />
       <div className={classes.submitBtns}>
         <button onClick={backState} className={classes.backBtn}>
           이전
