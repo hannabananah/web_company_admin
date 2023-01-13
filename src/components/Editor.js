@@ -26,18 +26,11 @@ export const EditorTool = () => {
         // }}
         // 툴바 설정
         toolbar={{
-          options: ["blockType", "image"],
-          blockType: {
-            inDropdown: true,
-            options: ["H1", "H2"],
-            className: "blockText",
-            dropdownClassName: "blockTextDown",
-          },
-          image: {
-            uploadCallback: EditorTool,
-            inputAccept: "image/gif,image/jpeg,image/jpg,image/png,image/svg",
-            alt: { present: true, mandatory: false },
-          },
+          // inDropdown: 해당 항목과 관련된 항목을 드롭다운으로 나타낼것인지
+          list: { inDropdown: true },
+          textAlign: { inDropdown: true },
+          link: { inDropdown: true },
+          history: { inDropdown: false },
         }}
         placeholder="내용을 작성해주세요."
       />
