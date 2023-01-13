@@ -117,7 +117,7 @@ const UserAccount = () => {
             user={user}
             setUser={setUser}
             onClickTarget={onClickTarget}
-          />
+          /> 
           <Pagination
             activePage={currentPage}
             totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수

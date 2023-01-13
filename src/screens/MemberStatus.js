@@ -58,7 +58,7 @@ const MemberStatus = () => {
   return (
     <div className={classes.root}>
       <section className={classes.titleSection}>
-        <h2 className={classes.mainTitle}>App 버전 관리</h2>
+        <h2 className={classes.mainTitle}>회원현황</h2>
       </section>
 
       <FilterSection

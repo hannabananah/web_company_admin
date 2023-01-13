@@ -12,7 +12,7 @@ const HistoryTable = (props) => {
     <figure className={classes.root}>
       <table className={classes.tableStyle}>
         <thead className={classes.theadStyle}>
-          <tr style={{borderBottom:'1px solid rgba(188, 191, 204, 0.2)'}}>
+          <tr style={{ borderBottom: "1px solid rgba(188, 191, 204, 0.2)" }}>
             <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>
@@ -45,14 +45,20 @@ const HistoryTable = (props) => {
         </thead>
         <tbody>
           {isLoaded &&
-            fetchData?.users?.slice(0,10).map((i, index) => {
+            fetchData?.users?.slice(0, 10).map((i, index) => {
               return (
                 <tr key={index} className={classes.tableTr}>
+                  {/* 번호 */}
                   <td className={classes.td}>{i.id}</td>
+                  {/* 작업 날짜 */}
                   <td className={classes.td}>{i.birthDate}</td>
+                  {/* 관리자 ID */}
                   <td className={classes.td}>{i.maidenName}</td>
+                  {/* 로그인 완료 시간 */}
                   <td className={classes.td}>{i.birthDate}</td>
+                  {/* 수행시간 */}
                   <td className={classes.td}>{i.bank.cardExpire}</td>
+                  {/* 작업 내용 */}
                   <td className={classes.td}>{i.university}</td>
                 </tr>
               );

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
-import EditAppDetail from "~/components/EditAppDetail";
+import EditAppIntroNotice from "~/components/EditAppIntroNotice";
 
-const AppDetail = ({ user, backState }) => {
+const DetailNoti = ({ user, backState }) => {
   const classes = useStyles();
+  // 계정수정 페이지로
   const [edit, setEdit] = useState(false);
   const onEdit = () => {
     setEdit(true);
@@ -16,11 +17,11 @@ const AppDetail = ({ user, backState }) => {
   return (
     <>
       {edit ? (
-        <EditAppDetail user={user} gobackstate={gobackstate} />
+        <EditAppIntroNotice user={user} gobackstate={gobackstate} />
       ) : (
         <figure className={classes.userAccContainer}>
           <section className={classes.titleSection}>
-            <h2 className={classes.mainTitle}>App 버전 상세</h2>
+            <h2 className={classes.mainTitle}>App Intro 공지 상세</h2>
           </section>
           <table className={classes.tableStyle}>
             <colgroup>
@@ -30,31 +31,39 @@ const AppDetail = ({ user, backState }) => {
             <tbody>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
-                  <label className={classes.leftText}>스토어</label>
-                </th>
-                <td className={classes.contentStyle}>{user.firstName}</td>
-              </tr>
-              <tr className={classes.contentInput}>
-                <th className={classes.leftLayout}>
                   <label className={classes.leftText}>OS</label>
                 </th>
-                <td className={classes.contentStyle}>{user.bloodGroup}</td>
+                <td className={classes.contentStyle}>{user.ip}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
-                  <label className={classes.leftText}>최신 APP 버전</label>
+                  <label className={classes.leftText}>공지 유형</label>
+                </th>
+                <td className={classes.contentStyle}>
+                  <span
+                    className={
+                      user.gender == "male" ? classes.urgentText : null
+                    }
+                  >
+                    {user.gender}
+                  </span>
+                </td>
+              </tr>
+              <tr className={classes.contentInput}>
+                <th className={classes.leftLayout}>
+                  <label className={classes.leftText}>공지 노출 기간</label>
                 </th>
                 <td className={classes.contentStyle}>{user.phone}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
-                  <label className={classes.leftText}>최소 APP 버전</label>
+                  <label className={classes.leftText}>공지 제목</label>
                 </th>
-                <td className={classes.contentStyle}>{user.email}</td>
+                <td className={classes.contentStyle}>{user.eyeColor}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
-                  <label className={classes.leftText}>업데이트 유형</label>
+                  <label className={classes.leftText}>공지 내용</label>
                 </th>
                 <td className={classes.contentStyle}>{user.ip}</td>
               </tr>
@@ -62,13 +71,13 @@ const AppDetail = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>설명</label>
                 </th>
-                <td className={classes.contentStyle}>{user.gender}</td>
+                <td className={classes.contentStyle}>{user.userAgent}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록일</label>
                 </th>
-                <td className={classes.contentStyle}>{user.birthDate}</td>
+                <td className={classes.contentStyle}>{user.firstName}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
@@ -97,4 +106,4 @@ const AppDetail = ({ user, backState }) => {
     </>
   );
 };
-export default AppDetail;
+export default DetailNoti;

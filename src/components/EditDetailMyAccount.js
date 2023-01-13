@@ -32,8 +32,8 @@ const EditDetailMyAccount = ({ goBackState }) => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="name"
-                id="name"
+                name="auth"
+                id="myAccount"
                 required
               />
             </td>
@@ -46,8 +46,8 @@ const EditDetailMyAccount = ({ goBackState }) => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="name"
-                id="name"
+                name="pwd"
+                id="myAccount"
                 required
               />
             </td>
@@ -60,8 +60,8 @@ const EditDetailMyAccount = ({ goBackState }) => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="name"
-                id="name"
+                name="chkPwd"
+                id="myAccount"
                 required
               />
             </td>
@@ -75,7 +75,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
                 type="tel"
                 className={classes.inputNumStyle}
                 name="phone1"
-                id="name"
+                id="myAccount"
                 maxLength="3"
                 required
               />
@@ -84,7 +84,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
                 type="tel"
                 className={classes.inputNumStyle}
                 name="phone2"
-                id="name"
+                id="myAccount"
                 maxLength="4"
                 required
               />
@@ -93,7 +93,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
                 type="tel"
                 className={classes.inputNumStyle}
                 name="phone3"
-                id="name"
+                id="myAccount"
                 maxLength="4"
                 required
               />
@@ -107,8 +107,8 @@ const EditDetailMyAccount = ({ goBackState }) => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="name"
-                id="name"
+                name="email"
+                id="myAccount"
                 required
               />
             </td>
@@ -121,8 +121,8 @@ const EditDetailMyAccount = ({ goBackState }) => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="name"
-                id="name"
+                name="ip"
+                id="myAccount"
                 required
               />
             </td>
@@ -141,6 +141,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
                   name="use_yn"
                   // defaultChecked={userInfo.use_yn}
                   defaultChecked={true}
+                  id="myAccount"
                 />
                 {/* {userInfo.use_yn ? (
                   <span className={classes.toggleText1}>사용</span>

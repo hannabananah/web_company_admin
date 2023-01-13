@@ -70,8 +70,8 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="recentVer"
                 id="recentVer"
+                name="app"
                 required
               />
             </td>
@@ -86,8 +86,8 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="minVer"
                 id="minVer"
+                name="app"
                 required
               />
             </td>
@@ -101,7 +101,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 <input
                   type="radio"
                   id="choice"
-                  name="update_type"
+                  name="app"
                   value="choice"
                   className={classes.radioBtn}
                   defaultChecked={userInfo.uptType == "female"}
@@ -112,7 +112,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 <input
                   type="radio"
                   id="compulsion"
-                  name="update_type"
+                  name="app"
                   value="compulsion"
                   className={classes.radioBtn}
                   defaultChecked={userInfo.uptType == "male"}
@@ -131,7 +131,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="description"
+                name="app"
                 id="description"
                 maxLength={40}
               />

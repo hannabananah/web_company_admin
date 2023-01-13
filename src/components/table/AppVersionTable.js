@@ -43,18 +43,26 @@ const AppVersionTable = (props) => {
             fetchData?.users?.slice(0, 10).map((i, index) => {
               return (
                 <tr key={index} className={classes.tableTr}>
+                  {/* 번호 */}
                   <td className={classes.td}>{i.id}</td>
+                  {/* 등록일 */}
                   <td className={classes.td}>{i.birthDate}</td>
+                  {/* 스토어 */}
                   <td className={classes.td}>{i.firstName}</td>
+                  {/* OS */}
                   <td className={classes.td}>{i.bloodGroup}</td>
+                  {/* 최신 APP 버전 */}
                   <td
                     className={`${classes.td} + ${classes.idLink}`}
                     onClick={() => onClickTarget(i)}
                   >
                     {i.phone}
                   </td>
+                  {/* 최소 APP 버전 */}
                   <td className={classes.td}>{i.email}</td>
+                  {/* 업데이트 유형 */}
                   <td className={classes.td}>{i.gender}</td>
+                  {/* 업데이트 */}
                   <td className={classes.td}>
                     <span onClick={openModal} className={classes.uptActiveRed}>
                       Update
