@@ -80,6 +80,13 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
   },
+  pickerLayout: {
+    boxSizing: "border-box",
+    marginLeft: "30px",
+    display: "flex",
+    alignItems: "center",
+    height: "41px",
+  },
   inputStyle: {
     boxSizing: "border-box",
     width: "400px",
@@ -281,6 +288,14 @@ const useStyles = makeStyles({
     "&:checked": {
       accentColor: "#359f47",
     },
+  },
+  urgentText: {
+    textAlign: "center",
+    cursor: "default",
+    fontSize: "12px",
+    padding: "21px 0",
+    color: COLORS.COLOR.WRANING,
+    lineHeight: "150%",
   },
 });
 export default useStyles;

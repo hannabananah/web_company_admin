@@ -3,21 +3,15 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import dayjs, { Dayjs } from "dayjs";
-import {useStyles, datepickerSX }from "~/styles/DatePicker";
+import { useStyles, datepickerSX } from "~/styles/DatePicker";
 
 const DatePicker = (props) => {
-  const {
-    start,
-    setStart,
-    end,
-    setEnd,
-
-  } = props;
+  const { start, setStart, end, setEnd } = props;
   const classes = useStyles();
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DesktopDatePicker 
+      <DesktopDatePicker
         className={classes.root}
         // label="start"
         value={start}
@@ -27,7 +21,6 @@ const DatePicker = (props) => {
           // console.log(newValue)
           setStart(newValue);
         }}
-        
         renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
         // renderInput={({ inputRef, inputProps, InputProps }) => (
         // console.log( inputRef, inputProps, InputProps)
@@ -50,7 +43,6 @@ const DatePicker = (props) => {
         renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
         inputFormat="YYYY-MM-DD"
       />
-
       {/* <DatePicker
         label="Custom input"
         value={value}
@@ -65,6 +57,6 @@ const DatePicker = (props) => {
         )}
       /> */}
     </LocalizationProvider>
-  )
-}
+  );
+};
 export default DatePicker;

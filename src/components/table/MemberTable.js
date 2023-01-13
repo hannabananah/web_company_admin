@@ -43,12 +43,19 @@ const MemberTable = (props) => {
               fetchData?.users?.slice(0, 10).map((i, index) => {
                 return (
                   <tr key={index} className={classes.tableTr}>
+                    {/* 번호 */}
                     <td className={classes.td}>{i.id}</td>
+                    {/* 계정 */}
                     <td className={classes.td}>{i.firstName}</td>
+                    {/* OS */}
                     <td className={classes.td}>{i.bloodGroup}</td>
+                    {/* 생일 */}
                     <td className={classes.td}>{i.birthDate}</td>
+                    {/* 가입일 */}
                     <td className={classes.td}>{i.gender}</td>
+                    {/* 탈퇴일 */}
                     <td className={classes.td}>{i.birthDate}</td>
+                    {/* 최근 접속일 */}
                     <td className={classes.td}>{i.birthDate}</td>
                   </tr>
                 );

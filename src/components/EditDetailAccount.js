@@ -70,7 +70,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 type="text"
                 className={classes.inputStyle}
                 name="auth"
-                id="name"
+                id="account"
                 required
               />
             </td>
@@ -86,7 +86,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 type="text"
                 className={classes.inputStyle}
                 name="pwd"
-                id="name"
+                id="account"
                 required
               />
             </td>
@@ -102,7 +102,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 type="text"
                 className={classes.inputStyle}
                 name="chkPwd"
-                id="name"
+                id="account"
                 required
               />
             </td>
@@ -118,7 +118,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone1"
-                id="name"
+                id="account"
                 maxLength="3"
                 required
               />
@@ -129,7 +129,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone2"
-                id="name"
+                id="account"
                 maxLength="4"
                 required
               />
@@ -140,7 +140,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 onChange={onChange}
                 className={classes.inputNumStyle}
                 name="phone3"
-                id="name"
+                id="account"
                 maxLength="4"
                 required
               />
@@ -157,7 +157,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 type="text"
                 className={classes.inputStyle}
                 name="email"
-                id="name"
+                id="account"
                 required
               />
             </td>
@@ -173,7 +173,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 type="text"
                 className={classes.inputStyle}
                 name="ip"
-                id="name"
+                id="account"
                 required
               />
             </td>
