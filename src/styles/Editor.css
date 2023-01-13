@@ -1,0 +1,22 @@
+.rdw-option-wrapper {
+  min-width: 12px !important;
+  background: transparent !important;
+  border: none;
+}
+.rdw-dropdown-wrapper {
+  background: transparent !important;
+  border: none;
+}
+.rdw-inline-wrapper,
+.rdw-block-wrapper,
+.rdw-fontfamily-wrapper,
+.rdw-fontsize-wrapper,
+.rdw-colorpicker-wrapper,
+.rdw-link-wrapper,
+.rdw-embedded-wrapper,
+.rdw-emoji-wrapper,
+.rdw-image-wrapper,
+.rdw-remove-wrapper,
+.rdw-history-wrapper {
+  margin: 0;
+}

@@ -53,7 +53,7 @@ const useStyles = makeStyles({
   editorInput: {
     boxSizing: "border-box",
     width: "100%",
-    height: "auto",
+    height: "400px",
     display: "flex",
     alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
@@ -99,7 +99,6 @@ const useStyles = makeStyles({
     boxSizing: "border-box",
     marginLeft: "30px",
     display: "flex",
-    alignItems: "center",
   },
   inputStyle: {
     boxSizing: "border-box",
