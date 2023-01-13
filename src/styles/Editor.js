@@ -2,6 +2,11 @@ import { makeStyles } from "@mui/styles";
 import { COLORS } from "~/assets/colors/colors";
 
 const useStyles = makeStyles({
+  wrapper: {
+    width: "50%",
+    margin: "0 auto",
+    marginBottom: "4em",
+  },
   editor: {
     height: "500px !important",
     border: "5px solid #f1f1f1 !important",
