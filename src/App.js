@@ -14,6 +14,7 @@ import NoticeUserEmail from "~/screens/NoticeUserEmail";
 import SystemSettings from "~/screens/SystemSettings";
 import useStyles from "~/styles/App";
 import UserAccount from "~/screens/UserAccount";
+import UserAccountDetails from "~/screens/UserAccountDetails";
 import MyAccount from "~/screens/MyAccount";
 import DetailAccount from "~/components/DetailAccount";
 import EditDetailAccount from "~/components/EditDetailAccount";
@@ -24,6 +25,8 @@ import NotFound from "~/screens/NotFound";
 import NoticeAppIntroDetails from "~/screens/NoticeAppIntroDetails";
 import NoticeAppIntroDetailsEdit from "~/screens/NoticeAppIntroDetailsEdit";
 import NoticeAppIntroAdd from "~/screens/NoticeAppIntroAdd";
+import UserAccountEdit from "~/screens/UserAccountEdit";
+import AddUserAccount from "~/screens/AddUserAccount";
 import "~/App.css";
 
 function App() {
@@ -40,19 +43,14 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route element={<AuthLayout />}>
               {/* <Route path="/setting_admin" element={<SettingAdmin />} /> */}
-              <Route
-                path="/setting_admin/user_account"
-                element={<UserAccount />}
-              />
+              <Route path="/setting_admin/user_account" element={<UserAccount />}/>
+              <Route path="/setting_admin/user_account/details" element={<UserAccountDetails />}/>
+              <Route path="/setting_admin/user_account/edit" element={<UserAccountEdit />}/>
+              <Route path="/setting_admin/user_account/add" element={<AddUserAccount />}/>
+
               <Route path="/setting_admin/my_account" element={<MyAccount />} />
-              <Route
-                path="/setting_admin/detail_account"
-                element={<DetailAccount />}
-              />
-              <Route
-                path="/setting_admin/edit_detail_account"
-                element={<EditDetailAccount />}
-              />
+              <Route path="/setting_admin/detail_account" element={<DetailAccount />} />
+              <Route path="/setting_admin/edit_detail_account" element={<EditDetailAccount />} />
               <Route path="/setting_admin/history" element={<History />} />
               {/* <Route path="/member" element={<Member />} /> */}
               <Route path="/member/member_status" element={<MemberStatus />} />

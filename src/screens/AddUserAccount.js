@@ -1,19 +1,25 @@
-import { useState } from "react";
+import React, { useState }  from "react";
+import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Add";
-import "~/styles/Toggle.css";
+import TableHeader from "~/components/TableHeader";
 import images from "~/assets/js/Images";
+import "~/styles/Toggle.css";
 
-const AddUserAccount = ({ backState }) => {
+const AddUserAccount = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [inactive, setInactive] = useState(false);
   const [doubleCheck, setDoubleCheck] = useState(false);
   const [pwdCheck, setPwdCheck] = useState(false);
 
+  const onClickPrev = () => {
+    // UserAccount.js
+    navigate('/setting_admin/user_account')
+  }
+
   return (
     <figure className={classes.userAccContainer}>
-      <section className={classes.titleSection}>
-        <h2 className={classes.mainTitle}>사용자 추가</h2>
-      </section>
+      <TableHeader title="사용자 추가" /> 
       <table className={classes.tableStyle}>
         <colgroup>
           <col />
@@ -198,12 +204,12 @@ const AddUserAccount = ({ backState }) => {
         </tbody>
       </table>
       <div className={classes.submitBtns}>
-        <button onClick={backState} className={classes.backBtn}>
+        <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
         <input type="submit" value="저장" className={classes.saveBtn} />
       </div>
     </figure>
-  );
-};
-export default AddUserAccount;
+  )
+}
+export default AddUserAccount; 

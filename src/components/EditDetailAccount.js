@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 
-const EditDetailAccount = ({ gobackstate, user }) => {
+const EditDetailAccount = ({ gobackstate }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const user = useLocation().state;
 
   //user info state
   const [userInfo, setUserInfo] = useState({
@@ -39,14 +42,15 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     setUserInfo(newInfo);
   };
 
+  const onClickPrev = () => {
+    // UserAccountDetails.js
+    navigate('/setting_admin/user_account/details', {state:user})
+  }
   console.log("userInfo ----------->", userInfo);
   console.log("userInfo.use_yn ----------->", userInfo.use_yn);
 
   return (
     <figure className={classes.userAccContainer}>
-      <section className={classes.titleSection}>
-        <h2 className={classes.mainTitle}>계정 정보 수정</h2>
-      </section>
       <table className={classes.tableStyle}>
         <colgroup>
           <col />
@@ -203,7 +207,8 @@ const EditDetailAccount = ({ gobackstate, user }) => {
         </tbody>
       </table>
       <div className={classes.submitBtns}>
-        <button onClick={gobackstate} className={classes.backBtn}>
+        {/* <button onClick={gobackstate} className={classes.backBtn}> */}
+        <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
         <input type="submit" value="저장" className={classes.saveBtn} />
