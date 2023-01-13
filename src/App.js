@@ -21,6 +21,9 @@ import History from "~/screens/History";
 import MemberStatus from "~/screens/MemberStatus";
 import AppVersion from "~/screens/AppVersion";
 import NotFound from "~/screens/NotFound";
+import NoticeAppIntroDetails from "~/screens/NoticeAppIntroDetails";
+import NoticeAppIntroDetailsEdit from "~/screens/NoticeAppIntroDetailsEdit";
+import NoticeAppIntroAdd from "~/screens/NoticeAppIntroAdd";
 import "~/App.css";
 
 function App() {
@@ -60,6 +63,13 @@ function App() {
 
               {/* 공지 */}
               <Route path="/notice/app_intro" element={<NoticeAppIntro />} />
+              {/* 공지 > 상세 */}
+              <Route path="/notice/app_intro/details" element={<NoticeAppIntroDetails />} />
+              {/* 공지 > 상세 > 수정 */}
+              <Route path="/notice/app_intro/details/edit" element={<NoticeAppIntroDetailsEdit />} />
+              {/* 공지 > 등록 */}
+              <Route path="/notice/app_intro/add" element={<NoticeAppIntroAdd />} />
+
               <Route path="/notice/app_viewmore" element={<NoticeAppViewMore />} />
               <Route path="/notice/user_email" element={<NoticeUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />
