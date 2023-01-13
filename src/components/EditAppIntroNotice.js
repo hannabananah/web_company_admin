@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import DateWithTimePicker from "~/components/DateTimePicker";
@@ -7,6 +7,7 @@ import { UptConfirmModal } from "~/components/Modal";
 
 const EditAppIntroNotice = ({ gobackstate, user }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   //user info state
   const [userInfo, setUserInfo] = useState({
@@ -46,12 +47,12 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const onClickPrev = () => {
+    navigate('/notice/app_intro/details/', { state : user })
+  }
 
   return (
     <figure className={classes.userAccContainer}>
-      <section className={classes.titleSection}>
-        <h2 className={classes.mainTitle}>App Intro 공지 수정</h2>
-      </section>
       <table className={classes.tableStyle}>
         <colgroup>
           <col />
@@ -164,7 +165,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
         </tbody>
       </table>
       <div className={classes.submitBtns}>
-        <button onClick={gobackstate} className={classes.backBtn}>
+        <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
         <input
