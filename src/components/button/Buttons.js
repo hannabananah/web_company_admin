@@ -5,10 +5,10 @@ export const SearchBtn = () => {
   const classes = useStyles();
   return <button className={classes.searchBtn}>검색</button>;
 };
-export const SaveBtn = ({ changeState }) => {
+export const SaveBtn = ({ onClick }) => {
   const classes = useStyles();
   return (
-    <button onClick={changeState} className={classes.saveBtn}>
+    <button onClick={onClick} className={classes.saveBtn}>
       등록
     </button>
   );

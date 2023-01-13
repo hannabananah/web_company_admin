@@ -30,9 +30,7 @@ const AddAppNotification = ({ backState }) => {
 
   return (
     <figure className={classes.userAccContainer}>
-      <section className={classes.titleSection}>
-        <h2 className={classes.mainTitle}>APP Intro 공지 등록</h2>
-      </section>
+
       <table className={classes.tableStyle}>
         <colgroup>
           <col />
