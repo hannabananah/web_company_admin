@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Table";
 
 const UserAccountTable = (props) => {
@@ -8,12 +9,18 @@ const UserAccountTable = (props) => {
     backState,
     user,
     setUser,
-    onClickTarget,
+    // onClickTarget,
   } = props;
   const classes = useStyles();
+  const navigate = useNavigate();
 
   // console.log(fetchData);
   // console.log(isLoaded);
+
+  const onClickTarget = (i) => {
+    // UserAccountDetails.js
+    navigate('/setting_admin/user_account/details', { state: i })
+  }
 
   return (
     <figure className={classes.root}>
@@ -54,8 +61,7 @@ const UserAccountTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   <td className={classes.td}>{i.id}</td>
-                  <td
-                    onClick={() => onClickTarget(i)}
+                  <td onClick={() => onClickTarget(i)}
                     className={`${classes.td} + ${classes.idLink}`}
                   >
                     {i.firstName}

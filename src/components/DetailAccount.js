@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import EditDetailAccount from "~/components/EditDetailAccount";
@@ -6,6 +7,8 @@ import { DeleteModal } from "~/components/Modal";
 
 const DetailAccount = ({ user, backState }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
+
   // 계정수정 페이지로
   const [edit, setEdit] = useState(false);
   const onEdit = () => {
@@ -23,6 +26,14 @@ const DetailAccount = ({ user, backState }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const onClickPrev = () => {
+    // UserAccount.js
+    navigate('/setting_admin/user_account')
+  }
+  const onClickEdit = () => {
+    // UserAccountEdit.js
+    navigate('/setting_admin/user_account/edit', { state : user })
+  }
 
   return (
     <>
@@ -30,9 +41,6 @@ const DetailAccount = ({ user, backState }) => {
         <EditDetailAccount user={user} gobackstate={gobackstate} />
       ) : (
         <figure className={classes.userAccContainer}>
-          <section className={classes.titleSection}>
-            <h2 className={classes.mainTitle}>계정 상세</h2>
-          </section>
           <table className={classes.tableStyle}>
             <colgroup>
               <col />
@@ -97,10 +105,12 @@ const DetailAccount = ({ user, backState }) => {
             </tbody>
           </table>
           <div className={classes.submitBtns}>
-            <button onClick={backState} className={classes.backBtn}>
+            {/* <button onClick={backState} className={classes.backBtn}> */}
+            <button onClick={onClickPrev} className={classes.backBtn}>
               이전
             </button>
-            <button onClick={() => onEdit(true)} className={classes.editBtn}>
+            {/* <button onClick={() => onEdit(true)} className={classes.editBtn}> */}
+            <button onClick={onClickEdit} className={classes.editBtn}>
               수정
             </button>
             <button onClick={openModal} className={classes.deleteBtn}>

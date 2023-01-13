@@ -9,6 +9,20 @@ export const sidenav_data = [
       {
         title: "계정 관리",
         path: "/setting_admin/user_account",
+        subMenu: [
+          {
+            title: "계정 상세",
+            path: "/setting_admin/user_account/details"
+          },
+          {
+            title: "계정 정보 수정",
+            path: "/setting_admin/user_account/edit"
+          },
+          {
+            title: "사용자 추가",
+            path: "/setting_admin/user_account/add"
+          }
+        ]
       },
       {
         title: "내 계정 관리",
