@@ -17,6 +17,7 @@
 .rdw-emoji-wrapper,
 .rdw-image-wrapper,
 .rdw-remove-wrapper,
-.rdw-history-wrapper {
+.rdw-history-wrapper,
+.public-DraftStyleDefault-block {
   margin: 0;
 }
