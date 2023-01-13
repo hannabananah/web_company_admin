@@ -2,16 +2,12 @@ import { useState } from "react";
 import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
+import "~/styles/Editor.css";
 import useStyles from "~/styles/Editor";
 
-export const EditorTool = () => {
+export const EditorTool = (props) => {
   const classes = useStyles();
-
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const onEditorStateChange = (editorState) => {
-    setEditorState(editorState);
-  };
+  const { editorState, onEditorStateChange } = props;
   return (
     <>
       <Editor
@@ -19,7 +15,7 @@ export const EditorTool = () => {
         onEditorStateChange={onEditorStateChange} // 에디터의 값이 변경될 때마다 onEditorStateChange 호출
         wrapperClassName={classes.wrapper} // 에디터와 툴바 모두에 적용되는 클래스
         editorClassName={classes.editor} // 에디터 주변에 적용된 클래스
-        toolbarClassName="toolbar-class" // 툴바 주위에 적용된 클래스
+        toolbarClassName={classes.toolbar} // 툴바 주위에 적용된 클래스
         // 한국어 설정
         localization={{
           locale: "ko",

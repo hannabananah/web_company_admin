@@ -4,6 +4,9 @@ import "~/styles/Toggle.css";
 import DateWithTimePicker from "~/components/DateTimePicker";
 import { UptConfirmModal } from "~/components/Modal";
 import { EditorTool } from "~/components/Editor";
+
+import { EditorState, convertToRaw } from "draft-js";
+
 const osList = ["Android", "iOS", "Windows", "Mac"];
 const typeList = ["긴급", "일반"];
 
@@ -22,10 +25,17 @@ const AddAppNotification = ({ backState }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
+    console.log(JSON.stringify(editorState, null, 4));
     setModalOpen(true);
   };
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  // editor state
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const onEditorStateChange = (editorState) => {
+    setEditorState(editorState);
   };
 
   return (
@@ -112,17 +122,10 @@ const AddAppNotification = ({ backState }) => {
               <label className={classes.leftText}>공지 내용</label>
             </th>
             <td className={classes.editorLayout}>
-              {/* <input
-                type="tel"
-                value={userInfo.content}
-                onChange={onChange}
-                className={classes.inputNumStyle}
-                name="content"
-                id="introNoti"
-                maxLength="3"
-                required
-              /> */}
-              <EditorTool />
+              <EditorTool
+                editorState={editorState}
+                onEditorStateChange={onEditorStateChange}
+              />
             </td>
           </tr>
           <tr className={classes.contentInput}>
