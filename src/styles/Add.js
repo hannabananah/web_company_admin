@@ -53,7 +53,7 @@ const useStyles = makeStyles({
   editorInput: {
     boxSizing: "border-box",
     width: "100%",
-    height: "400px",
+    height: "450px",
     display: "flex",
     alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
@@ -99,7 +99,7 @@ const useStyles = makeStyles({
   editorLayout: {
     boxSizing: "border-box",
     marginLeft: "30px",
-    display: "flex",
+    // display: "flex",
     // marginTop: "-35px",
 
   },
