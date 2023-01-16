@@ -3,27 +3,12 @@ import images from "~/assets/js/Images";
 
 const useStyles = makeStyles({
   root: {
-    width: "300px",
-    maxWidth: "500px",
-    minWidth: "200px",
+    width: "100%",
+    height:'100%',
     position: "sticky",
     bottom: 0,
     top: 0,
-    borderRight: "1px solid rgba(188, 191, 204,0.8)",
-
-    resize: 'horizontal',
-    overflow: 'auto',
-    "&::-webkit-resizer": {
-      background:'red',
-      boxShadow: '0 0 10px 10px blue',
-      outline: '2px solid yellow',
-
-
-      position:'absolute !important',
-      // top:'0',
-      // bottom:'0',
-      // right:'0',
-    }
+    // borderRight: "1px solid rgba(188, 191, 204,0.8)",
   },
   container: {
     height: "100%",
