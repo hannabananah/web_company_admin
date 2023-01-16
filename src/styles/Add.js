@@ -61,6 +61,7 @@ const useStyles = makeStyles({
   leftLayout: {
     boxSizing: "border-box",
     width: "250px",
+    height:'100%',
     minHeight: "64px",
     display: "flex",
     alignItems: "center",
