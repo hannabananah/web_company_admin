@@ -47,7 +47,7 @@ const AddUserAccount = () => {
                 className={classes.inputStyle}
                 name="name"
                 id="name"
-                minlength="4"
+                minLength="4"
                 maxLength="30"
                 required
               />
