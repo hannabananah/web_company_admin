@@ -8,6 +8,24 @@ import useStyles from "~/styles/Editor";
 export const EditorTool = (props) => {
   const classes = useStyles();
   const { editorState, onEditorStateChange } = props;
+  // const [ ,  ] = useState('');
+
+  const uploadCallback = (file, callback) => {
+    console.log(file);
+    return new Promise((resolve, reject) => {
+      const reader = new window.FileReader();
+      console.log(reader);
+      reader.onloadend = async () => {
+        const form_data = new FormData();
+        form_data.append("file", file);
+        const res = await uploadFile(form_data);
+        setValue("thumbnail", res.data);
+        resolve({ data: { link: process.env.REACT_APP_API + res.data } });
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
 
   return (
     <>
@@ -28,9 +46,32 @@ export const EditorTool = (props) => {
           textAlign: { inDropdown: true },
           link: { inDropdown: true },
           history: { inDropdown: false },
+          image: {
+            uploadCallback: uploadCallback,
+            previewImage: true,
+            alt: { present: true, mandatory: false },
+            inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+          }
         }}
         placeholder="내용을 작성해주세요."
       />
+      <div style={{height:'30px',background:'salmon'}}>
+        <input
+          type="radio"
+          value="Editor"
+          id="editor"
+          // name="os"
+          // value={item}
+          // onChange={onChangeRadio1}
+          // className={classes.radioBtn}
+          // defaultChecked={item == osRadioValue}
+        />
+        <label htmlFor="editor">Editor</label>
+
+        {/* <button>Editor</button>
+        <button>HTML</button>
+        <button>TEXT</button> */}
+      </div>
     </>
   );
 };
