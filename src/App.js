@@ -14,6 +14,7 @@ import NoticeUserEmail from "~/screens/NoticeUserEmail";
 import SystemSettings from "~/screens/SystemSettings";
 import useStyles from "~/styles/App";
 import UserAccount from "~/screens/UserAccount";
+import UserAccountDetails from "~/screens/UserAccountDetails";
 import MyAccount from "~/screens/MyAccount";
 import DetailAccount from "~/components/DetailAccount";
 import EditDetailAccount from "~/components/EditDetailAccount";
@@ -21,6 +22,7 @@ import History from "~/screens/History";
 import MemberStatus from "~/screens/MemberStatus";
 import AppVersion from "~/screens/AppVersion";
 import NotFound from "~/screens/NotFound";
+import EditorTool from "~/components/Editor";
 import "~/App.css";
 
 function App() {
@@ -35,21 +37,17 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/dashboard" element={<DashBoard />} />
             <Route element={<AuthLayout />}>
               {/* <Route path="/setting_admin" element={<SettingAdmin />} /> */}
-              <Route
-                path="/setting_admin/user_account"
-                element={<UserAccount />}
-              />
+              <Route path="/setting_admin/user_account" element={<UserAccount />}/>
+              <Route path="/setting_admin/user_account/details" element={<UserAccountDetails />}/>
+              <Route path="/setting_admin/user_account/edit" element={<UserAccountEdit />}/>
+              <Route path="/setting_admin/user_account/add" element={<AddUserAccount />}/>
+
               <Route path="/setting_admin/my_account" element={<MyAccount />} />
-              <Route
-                path="/setting_admin/detail_account"
-                element={<DetailAccount />}
-              />
-              <Route
-                path="/setting_admin/edit_detail_account"
-                element={<EditDetailAccount />}
-              />
+              <Route path="/setting_admin/detail_account" element={<DetailAccount />} />
+              <Route path="/setting_admin/edit_detail_account" element={<EditDetailAccount />} />
               <Route path="/setting_admin/history" element={<History />} />
               {/* <Route path="/member" element={<Member />} /> */}
               <Route path="/member/member_status" element={<MemberStatus />} />
@@ -57,13 +55,20 @@ function App() {
               <Route path="/service/app_version" element={<AppVersion />} />
               <Route path="/statistics" element={<Statistics />} />
               {/* <Route path="/notice" element={<Notice />} /> */}
+
+              {/* 공지 */}
               <Route path="/notice/app_intro" element={<NoticeAppIntro />} />
-              <Route
-                path="/notice/app_viewmore"
-                element={<NoticeAppViewMore />}
-              />
+              {/* 공지 > 상세 */}
+              <Route path="/notice/app_intro/details" element={<NoticeAppIntroDetails />} />
+              {/* 공지 > 상세 > 수정 */}
+              <Route path="/notice/app_intro/details/edit" element={<NoticeAppIntroDetailsEdit />} />
+              {/* 공지 > 등록 */}
+              <Route path="/notice/app_intro/add" element={<NoticeAppIntroAdd />} />
+
+              <Route path="/notice/app_viewmore" element={<NoticeAppViewMore />} />
               <Route path="/notice/user_email" element={<NoticeUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />
+              <Route path="/hannah_test" element={<EditorTool />} />
               <Route path="/*" element={<NotFound />} />
             </Route>
           </Routes>

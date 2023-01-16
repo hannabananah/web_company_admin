@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-
 import Pagination from "react-js-pagination";
-
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
 import FilterSection from "~/components/FilterSection";
@@ -12,6 +10,7 @@ import "~/styles/Toggle.css";
 import AppNotiAdd from "~/components/AddAppNotification";
 import NoticeIntroTable from "~/components/table/NoticeIntroTable";
 import DetailNoti from "~/components/DetailNoti";
+import { useNavigate } from "react-router-dom";
 
 // filter select option
 const option = [
@@ -31,6 +30,7 @@ const option = [
 
 const NoticeAppIntro = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [add, setAdd] = useState(false);
   const [user, setUser] = useState([]);
 
@@ -38,6 +38,9 @@ const NoticeAppIntro = () => {
     setAdd(false); //등록 화면 -> 디폴트 페이지
   };
 
+  const onClickAddNoti = () => {
+    navigate('/notice/app_intro/add')
+  }
   const changeState = () => {
     setAdd(true); // 디폴트 페이지 -> 등록 화면
   };
@@ -101,15 +104,16 @@ const NoticeAppIntro = () => {
                 <SearchBtn />
               </>
             }
-            right={<SaveBtn changeState={changeState} />}
+            right={<SaveBtn onClick={onClickAddNoti} />}
+            // right={<SaveBtn changeState={changeState} />}
           />
           <NoticeIntroTable
             fetchData={fetchData}
             isLoaded={isLoaded}
-            changeState={changeState}
+            // changeState={changeState}
             user={user}
             setUser={setUser}
-            onClickTarget={onClickTarget}
+            // onClickTarget={onClickTarget}
           />
           <Pagination
             activePage={currentPage}

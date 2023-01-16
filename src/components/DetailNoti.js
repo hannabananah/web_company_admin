@@ -2,9 +2,12 @@ import { useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import EditAppIntroNotice from "~/components/EditAppIntroNotice";
+import { useNavigate } from "react-router-dom";
 
 const DetailNoti = ({ user, backState }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
+
   // 계정수정 페이지로
   const [edit, setEdit] = useState(false);
   const onEdit = () => {
@@ -13,6 +16,12 @@ const DetailNoti = ({ user, backState }) => {
   const gobackstate = () => {
     setEdit(false);
   };
+  const onClickEdit = () => {
+    navigate('/notice/app_intro/details/edit', { state : user })
+  }
+  const onClickPrev = () => {
+    navigate('/notice/app_intro')
+  }
 
   return (
     <>
@@ -20,9 +29,6 @@ const DetailNoti = ({ user, backState }) => {
         <EditAppIntroNotice user={user} gobackstate={gobackstate} />
       ) : (
         <figure className={classes.userAccContainer}>
-          <section className={classes.titleSection}>
-            <h2 className={classes.mainTitle}>App Intro 공지 상세</h2>
-          </section>
           <table className={classes.tableStyle}>
             <colgroup>
               <col />
@@ -94,10 +100,11 @@ const DetailNoti = ({ user, backState }) => {
             </tbody>
           </table>
           <div className={classes.submitBtns}>
-            <button onClick={backState} className={classes.backBtn}>
+            <button onClick={onClickPrev} className={classes.backBtn}>
               이전
             </button>
-            <button onClick={() => onEdit(true)} className={classes.editBtn}>
+            {/* <button onClick={() => onEdit(true)} className={classes.editBtn}> */}
+            <button onClick={onClickEdit} className={classes.editBtn}>
               수정
             </button>
           </div>

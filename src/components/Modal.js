@@ -19,7 +19,7 @@ export const DeleteModal = (props) => {
             {header}
           </header>
           <main>{props.children}</main>
-          <footer class="modalBtns">
+          <footer className="modalBtns">
             <button className={classes.backBtn} onClick={close}>
               취소
             </button>
@@ -51,7 +51,7 @@ export const AlertModal = (props) => {
             {header}
           </header>
           <main>{props.children}</main>
-          <footer class="modalBtns">
+          <footer className="modalBtns">
             {/* onClick 바꿔야함 */}
             <button className={classes.backBtn} onClick={close}>
               확인
@@ -80,7 +80,7 @@ export const UptConfirmModal = (props) => {
             {header}
           </header>
           <main>{props.children}</main>
-          <footer class="modalBtns">
+          <footer className="modalBtns">
             {/* onClick 바꿔야함 */}
             <button className={classes.backBtn} onClick={close}>
               확인
