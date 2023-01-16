@@ -6,14 +6,18 @@ const useStyles = makeStyles({
     boxSizing: "border-box",
     width: "100%",
     maxWidth: "1000px",
-    height: "330px !important",
+    // height: "330px !important",
   },
   editor: {
     boxSizing: "border-box !important",
-    height: "100% !important",
+    // height: "100% !important",
+    height: "330px !important",
     border: "1px solid #d0d1d6 !important",
     padding: "15px 20px !important",
     overflowY: "auto !important",
+    "& > div": {
+      height:'100%'
+    }
   },
   toolbar: {
     boxSizing: "border-box !important",
