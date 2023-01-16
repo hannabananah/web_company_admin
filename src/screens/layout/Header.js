@@ -3,6 +3,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import { allPaths, breadcrumbNameMap, breadCrumbsObj } from "../../util/sidenav_data";
 import images from "~/assets/js/Images";
 import React from "react";
+import BreadCrumbs from "~/components/BreadCrumbs";
 
 const Header = () => {
   const classes = useStyles();
@@ -18,7 +19,8 @@ const Header = () => {
 
   return (
     <>
-      {allPaths.includes(window.location.pathname) && 
+      {/* {allPaths.includes(window.location.pathname) &&  */}
+      {isEmpty ? null : 
       <header className={classes.root}>
 
         <div className={classes.userInfoSection}>
@@ -28,19 +30,7 @@ const Header = () => {
           <span className={classes.user}>{}님</span>안녕하세요!
         </div>
 
-        <div className={classes.breadCrumbs}>  
-          <Link to={'/'} className={classes.breadCrumbsLink}>홈</Link>
-          {breadCrumbsObj[window.location.pathname].map((item, index)=>{
-            return (
-              <React.Fragment key={index}> 
-                <Link to={item.path} className={classes.breadCrumbsLink}>
-                  <img src={images.icons.ARROWRIGHT} alt="arrow right" />
-                  {item.title}
-                </Link> 
-              </React.Fragment>
-            )
-          })}
-        </div>
+        <BreadCrumbs />
       </header>
       }
     </>

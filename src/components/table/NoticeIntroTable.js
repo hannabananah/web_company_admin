@@ -1,7 +1,7 @@
 import { useState } from "react";
-
 import useStyles from "~/styles/Table";
 import { AlertModal } from "~/components/Modal";
+import { useNavigate } from "react-router-dom";
 
 const NoticeIntroTable = (props) => {
   const {
@@ -14,7 +14,7 @@ const NoticeIntroTable = (props) => {
     onClickTarget,
   } = props;
   const classes = useStyles();
-
+  const navigate = useNavigate();
   console.log(fetchData);
   console.log(isLoaded);
 
@@ -83,7 +83,7 @@ const NoticeIntroTable = (props) => {
                   {/* 공지 제목 */}
                   <td className={classes.td}>
                     <span
-                      onClick={() => onClickTarget(i)}
+                      onClick={() => navigate('/notice/app_intro/details', { state : i })}
                       className={`${classes.td} + ${classes.idLink}`}
                     >
                       {i.eyeColor}

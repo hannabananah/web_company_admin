@@ -18,7 +18,7 @@ const Login = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    navigate("/setting_admin/user_account");
+    navigate("/dashboard");
   };
 
   return (

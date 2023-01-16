@@ -22,7 +22,7 @@ const DateWithTimePicker = (props) => {
       <DateTimePicker
         className={classes.root}
         value={value}
-        minDate={value}
+        minDate={dayjs(new Date())}
         onChange={(newValue) => setValue(newValue)}
         renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
         ampm={ampm}
