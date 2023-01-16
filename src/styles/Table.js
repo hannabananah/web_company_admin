@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     fontWeight: "600",
     color: "#000",
     lineHeight: "150%",
+    wordBreak: "keep-all",
   },
   td: {
     textAlign: "center",

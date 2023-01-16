@@ -1,9 +1,10 @@
-import React, { useState }  from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
 import images from "~/assets/js/Images";
 import "~/styles/Toggle.css";
+import { UptConfirmModal } from "~/components/Modal";
 
 const AddUserAccount = () => {
   const classes = useStyles();
@@ -14,12 +15,22 @@ const AddUserAccount = () => {
 
   const onClickPrev = () => {
     // UserAccount.js
-    navigate('/setting_admin/user_account')
-  }
+    navigate("/setting_admin/user_account");
+  };
+
+  // 저장완료 모달
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <figure className={classes.userAccContainer}>
-      <TableHeader title="사용자 추가" /> 
+      <TableHeader title="사용자 추가" />
       <table className={classes.tableStyle}>
         <colgroup>
           <col />
@@ -207,9 +218,17 @@ const AddUserAccount = () => {
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
-        <input type="submit" value="저장" className={classes.saveBtn} />
+        <input
+          type="submit"
+          value="저장"
+          onClick={openModal}
+          className={classes.saveBtn}
+        />
       </div>
+      <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
+        <main>저장했습니다.</main>
+      </UptConfirmModal>
     </figure>
-  )
-}
-export default AddUserAccount; 
+  );
+};
+export default AddUserAccount;

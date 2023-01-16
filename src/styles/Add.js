@@ -45,7 +45,7 @@ const useStyles = makeStyles({
   contentInput: {
     boxSizing: "border-box",
     width: "100%",
-    height: "64px",
+    minHeight: "64px",
     display: "flex",
     alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
@@ -61,7 +61,7 @@ const useStyles = makeStyles({
   leftLayout: {
     boxSizing: "border-box",
     width: "250px",
-    height: "100%",
+    minHeight: "64px",
     display: "flex",
     alignItems: "center",
     paddingLeft: "30px",
@@ -124,6 +124,7 @@ const useStyles = makeStyles({
     fontSize: "14px",
     lineHeight: "150%",
     paddingLeft: "30px",
+    width: "100%",
     color: "#272833 ",
   },
   checkBtnStyle: {
@@ -211,6 +212,8 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.BLACK,
     padding: "7.5px 47px",
     borderRadius: "8px",
+    height: "36px",
+    wordBreak: "keep-all",
   },
   saveBtn: {
     boxSizing: "border-box",
@@ -222,6 +225,8 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.BLACK,
     padding: "7.5px 47px",
     borderRadius: "8px",
+    height: "36px",
+    wordBreak: "keep-all",
   },
   editBtn: {
     boxSizing: "border-box",
@@ -233,6 +238,8 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.BLACK,
     padding: "7.5px 47px",
     borderRadius: "8px",
+    height: "36px",
+    wordBreak: "keep-all",
   },
   deleteBtn: {
     boxSizing: "border-box",
@@ -244,6 +251,8 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.WRANING,
     padding: "7.5px 47px",
     borderRadius: "8px",
+    height: "36px",
+    wordBreak: "keep-all",
   },
   filterInput: {
     border: "1px solid #D1D1D1",
@@ -267,6 +276,8 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.BLACK,
     padding: "9.5px 25px",
     borderRadius: "8px",
+    height: "40px",
+    wordBreak: "keep-all",
   },
   addBtn: {
     boxSizing: "border-box",
@@ -278,6 +289,8 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.BLACK,
     padding: "9.5px 47px",
     borderRadius: "8px",
+    height: "40px",
+    wordBreak: "keep-all",
   },
   memberNum: {
     color: COLORS.COLOR.BLACK,
