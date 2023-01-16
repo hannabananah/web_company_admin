@@ -77,7 +77,7 @@ const AddAppNotification = ({ backState }) => {
             <td className={classes.inputLayout}>
               {typeList.map((item, index) => {
                 return (
-                  <div key={index} className={classes.radioBtnLayout1}>
+                  <div key={index} className={classes.radioBtnLayout2}>
                     <input
                       type="radio"
                       id={item}
