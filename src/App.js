@@ -27,6 +27,7 @@ import NoticeAppIntroDetailsEdit from "~/screens/NoticeAppIntroDetailsEdit";
 import NoticeAppIntroAdd from "~/screens/NoticeAppIntroAdd";
 import UserAccountEdit from "~/screens/UserAccountEdit";
 import AddUserAccount from "~/screens/AddUserAccount";
+import DashBoard from "~/screens/DashBoard";
 import "~/App.css";
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/dashboard" element={<DashBoard />} />
             <Route element={<AuthLayout />}>
               {/* <Route path="/setting_admin" element={<SettingAdmin />} /> */}
               <Route path="/setting_admin/user_account" element={<UserAccount />}/>

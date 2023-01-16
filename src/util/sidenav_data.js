@@ -101,6 +101,11 @@ export const sidenav_data = [
     title: "시스템 설정",
     path: "/system_settings",
   },
+  {
+    id: 6,
+    title: "대시보드",
+    path: "/dashboard",
+  },
 ];
 
 export const allPaths = [];

@@ -4,9 +4,9 @@ const TableHeader = (props) => {
   const classes = useStyles();
   
   return (
-    <section className={classes.root}>
+    <div className={classes.root}>
       <h2 className={classes.mainTitle}>{props.title}</h2>
-    </section>
+    </div>
   )
 }
 export default TableHeader; 

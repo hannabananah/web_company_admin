@@ -116,8 +116,15 @@ const SideBar = () => {
     // }
   },[window.location.pathname])
 
+  const onClickLogo = () => {
+    navigate('/dashboard')
+    const openedDetails = document.querySelectorAll('details[open]');
+    for (let i=0; i<openedDetails.length; i++) {
+      openedDetails[i].removeAttribute('open');
+    }
+  }
   const logOut = () => {
-    navigate('/')
+    navigate('/');
   }
 
   return (
@@ -126,40 +133,42 @@ const SideBar = () => {
     {isEmpty ? null : 
       <div className={classes.root}>
         <div className={classes.container}>
-          <h1 className={classes.h1}>
+          <h1 className={classes.h1} onClick={onClickLogo}>
             <img src={images.icons.ANYCHAT_LOGO} alt="anychat 관리시스템" />
             <span>관리시스템</span>
           </h1>
 
           <div className={classes.menuContainer}>
             {sidenav_data.map((item,index)=>{
-              if(item.subMenu) {
-                return (
-                  <details key={index} className={`${classes.details} details`} > 
-                    <summary className={
-                      window.location.pathname.includes(item.path) 
+              if (item.title != "대시보드") {
+                if(item.subMenu) {
+                  return (
+                    <details key={index} className={`${classes.details} details`} > 
+                      <summary className={
+                        window.location.pathname.includes(item.path) 
+                        ? classes.activeMenu 
+                        : classes.menu}>
+                        <RenderIcons title={item.title} />
+                        {item.title}
+                        <img src={images.icons.EXPAND_MORE} className="expandMore" alt="메뉴 열기" />
+                      </summary>
+                      <ol className={classes.subMenuWrap}>
+                        {renderMenuItems(item.subMenu)}
+                      </ol>
+                    </details>
+                  )
+                } else {
+                  return (
+                    <div key={index} className={
+                      item.path == window.location.pathname 
                       ? classes.activeMenu 
-                      : classes.menu}>
+                      : classes.menu}
+                      onClick={()=>navigate(item.path)}>
                       <RenderIcons title={item.title} />
                       {item.title}
-                      <img src={images.icons.EXPAND_MORE} className="expandMore" alt="메뉴 열기" />
-                    </summary>
-                    <ol className={classes.subMenuWrap}>
-                      {renderMenuItems(item.subMenu)}
-                    </ol>
-                  </details>
-                )
-              } else {
-                return (
-                  <div key={index} className={
-                    item.path == window.location.pathname 
-                    ? classes.activeMenu 
-                    : classes.menu}
-                    onClick={()=>navigate(item.path)}>
-                    <RenderIcons title={item.title} />
-                    {item.title}
-                  </div>
-                )
+                    </div>
+                  )
+                } 
               }
             })}
           </div>

@@ -101,23 +101,33 @@ const UserAccount = () => {
     navigate('/setting_admin/user_account/details', { state: i })
   }
 
-  const renderHeader = table_header.map((item, index)=>{
-    return <td key={index} className={classes.th_td} style={{ width: item.width }}>{item.title}</td>
-  })
+  // const renderHeader = () => {
+  //   return (
+  //     <tr style={{ borderBottom: "1px solid rgba(188, 191, 204, 0.2)" }}>
+  //       <td className={classes.th_td} style={{ }}>번호</td>
+  //       <td className={classes.th_td} style={{ }}>아이디</td>
+  //       <td className={classes.th_td} style={{ }}>관리자 권한</td>
+  //       <td className={classes.th_td} style={{ }}>전화번호</td>
+  //       <td className={classes.th_td} style={{ }}>사용여부</td>
+  //       <td className={classes.th_td} style={{ }}>최근접속</td>
+  //       <td className={classes.th_td} style={{ }}>수정일</td>
+  //     </tr>
+  //   )
+  // }
 
-  const renderData = fetchData?.users?.slice(0, 10).map((i, index) => {
-    return (
-      <tr key={index} className={classes.tableTr}>
-        <td className={classes.td}>{i.id}</td>
-        <td onClick={() => onClickTarget(i)} className={`${classes.td} + ${classes.idLink}`}>{i.firstName}</td>
-        <td className={classes.td}>{i.bloodGroup}</td>
-        <td className={classes.td}>{i.phone}</td>
-        <td className={classes.td}><span className={i.gender == "male" ? classes.unuseBtn : classes.useBtn}>{i.gender}</span></td>
-        <td className={classes.td}>{i.ip}</td>
-        <td className={classes.td}>{i.birthDate}</td>
-      </tr>
-    );
-  })
+  // const renderData = fetchData?.users?.slice(0, 10).map((i, index) => {
+  //   return (
+  //     <tr key={index} className={classes.tableTr}>
+  //       <td className={classes.td}>{i.id}</td>
+  //       <td onClick={() => onClickTarget(i)} className={`${classes.td} + ${classes.idLink}`}>{i.firstName}</td>
+  //       <td className={classes.td}>{i.bloodGroup}</td>
+  //       <td className={classes.td}>{i.phone}</td>
+  //       <td className={classes.td}><span className={i.gender == "male" ? classes.unuseBtn : classes.useBtn}>{i.gender}</span></td>
+  //       <td className={classes.td}>{i.ip}</td>
+  //       <td className={classes.td}>{i.birthDate}</td>
+  //     </tr>
+  //   );
+  // })
 
   return (
     <div className={classes.root}>
@@ -139,17 +149,18 @@ const UserAccount = () => {
           <button onClick={onClickAddAccount} className={classes.addBtn}>등록</button>
         }
       />
-      <ColumnHeaderTable 
+
+      {/* <ColumnHeaderTable 
         table_header={renderHeader}   
         table_data={isLoaded && renderData}
-      />
+      /> */}
 
-      {/* <UserAccountTable
+      <UserAccountTable
         fetchData={fetchData}
         isLoaded={isLoaded}
         // user={user}
         // setUser={setUser}
-      />  */}
+      /> 
       
       <Pagination
         activePage={currentPage}
