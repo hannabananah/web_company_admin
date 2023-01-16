@@ -23,6 +23,12 @@ import MemberStatus from "~/screens/MemberStatus";
 import AppVersion from "~/screens/AppVersion";
 import NotFound from "~/screens/NotFound";
 import EditorTool from "~/components/Editor";
+import UserAccountEdit from "~/screens/UserAccountEdit";
+import AddUserAccount from "~/components/Editor";
+import DashBoard from "~/screens/DashBoard";
+import NoticeAppIntroAdd from "~/screens/NoticeAppIntroAdd";
+import NoticeAppIntroDetails from "~/screens/NoticeAppIntroDetails";
+import NoticeAppIntroDetailsEdit from "~/screens/NoticeAppIntroDetailsEdit";
 import "~/App.css";
 
 function App() {
