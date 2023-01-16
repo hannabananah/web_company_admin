@@ -8,6 +8,7 @@ import useStyles from "~/styles/Editor";
 export const EditorTool = (props) => {
   const classes = useStyles();
   const { editorState, onEditorStateChange } = props;
+
   return (
     <>
       <Editor

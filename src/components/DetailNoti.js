@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
-import EditAppIntroNotice from "~/components/EditAppIntroNotice";
+// import EditAppIntroNotice from "~/components/EditAppIntroNotice";
 import { useNavigate } from "react-router-dom";
 
 const DetailNoti = ({ user, backState }) => {
@@ -25,9 +25,9 @@ const DetailNoti = ({ user, backState }) => {
 
   return (
     <>
-      {edit ? (
+      {/* {edit ? (
         <EditAppIntroNotice user={user} gobackstate={gobackstate} />
-      ) : (
+      ) : ( */}
         <figure className={classes.userAccContainer}>
           <table className={classes.tableStyle}>
             <colgroup>
@@ -109,7 +109,7 @@ const DetailNoti = ({ user, backState }) => {
             </button>
           </div>
         </figure>
-      )}
+      {/* )} */}
     </>
   );
 };

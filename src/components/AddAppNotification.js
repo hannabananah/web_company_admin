@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import DateWithTimePicker from "~/components/DateTimePicker";
 import { UptConfirmModal } from "~/components/Modal";
 import { EditorTool } from "~/components/Editor";
-
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
+import draftToHtml from 'draftjs-to-html';
 
 const osList = ["Android", "iOS", "Windows", "Mac"];
 const typeList = ["긴급", "일반"];
 
 const AddAppNotification = ({ backState }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [osRadioValue, setOsRadioValue] = useState("Android");
   const onChangeRadio1 = (e) => {
     setOsRadioValue(e.target.value);
@@ -24,19 +26,26 @@ const AddAppNotification = ({ backState }) => {
   // 등록완료 모달
   const [modalOpen, setModalOpen] = useState(false);
 
-  const openModal = () => {
-    console.log(JSON.stringify(editorState, null, 4));
-    setModalOpen(true);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
   // editor state
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
   };
+  const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+  const openModal = () => {
+    console.log(editorToHtml);
+    console.log(JSON.stringify(editorState, null, 4));
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const onClickPrev = () => {
+    // NoticeAppIntro.js
+    navigate('/notice/app_intro')
+  }
 
   return (
     <figure className={classes.userAccContainer}>
@@ -143,7 +152,8 @@ const AddAppNotification = ({ backState }) => {
         </tbody>
       </table>
       <div className={classes.submitBtns}>
-        <button onClick={backState} className={classes.backBtn}>
+        {/* <button onClick={backState} className={classes.backBtn}> */}
+        <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
         <input
@@ -156,6 +166,9 @@ const AddAppNotification = ({ backState }) => {
       <UptConfirmModal open={modalOpen} close={closeModal} header="등록 완료">
         <main>APP Intro 공지를 등록했습니다.</main>
       </UptConfirmModal>
+
+      {/* <div>{editorToHtml}</div> */}
+
     </figure>
   );
 };
