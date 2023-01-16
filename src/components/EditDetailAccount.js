@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
+import { UptConfirmModal } from "~/components/Modal";
 
 const EditDetailAccount = ({ gobackstate }) => {
   const classes = useStyles();
@@ -44,10 +45,20 @@ const EditDetailAccount = ({ gobackstate }) => {
 
   const onClickPrev = () => {
     // UserAccountDetails.js
-    navigate('/setting_admin/user_account/details', {state:user})
-  }
+    navigate("/setting_admin/user_account/details", { state: user });
+  };
   console.log("userInfo ----------->", userInfo);
   console.log("userInfo.use_yn ----------->", userInfo.use_yn);
+
+  // 저장완료 모달
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <figure className={classes.userAccContainer}>
@@ -211,8 +222,16 @@ const EditDetailAccount = ({ gobackstate }) => {
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
-        <input type="submit" value="저장" className={classes.saveBtn} />
+        <input
+          type="submit"
+          value="저장"
+          onClick={openModal}
+          className={classes.saveBtn}
+        />
       </div>
+      <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
+        <main>저장했습니다.</main>
+      </UptConfirmModal>
     </figure>
   );
 };
