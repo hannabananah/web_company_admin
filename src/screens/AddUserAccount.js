@@ -48,7 +48,7 @@ const AddUserAccount = () => {
                 name="name"
                 id="name"
                 minlength="4"
-                maxlength="30"
+                maxLength="30"
                 required
               />
               <input
