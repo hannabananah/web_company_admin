@@ -24,7 +24,7 @@ import AppVersion from "~/screens/AppVersion";
 import NotFound from "~/screens/NotFound";
 import EditorTool from "~/components/Editor";
 import UserAccountEdit from "~/screens/UserAccountEdit";
-import AddUserAccount from "~/components/Editor";
+import AddUserAccount from "~/screens/AddUserAccount";
 import DashBoard from "~/screens/DashBoard";
 import NoticeAppIntroAdd from "~/screens/NoticeAppIntroAdd";
 import NoticeAppIntroDetails from "~/screens/NoticeAppIntroDetails";
