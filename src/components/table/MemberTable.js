@@ -10,30 +10,30 @@ const MemberTable = (props) => {
         <table className={classes.tableStyle}>
           <thead className={classes.theadStyle}>
             <tr>
-              <td className={classes.td} style={{ width: "30px" }}>
+              <td className={classes.th_td} style={{ width: "30px" }}>
                 번호
               </td>
               <td
-                className={classes.td}
+                className={classes.th_td}
                 style={{
                   width: "200px",
                 }}
               >
                 계정
               </td>
-              <td className={classes.td} style={{ width: "50px" }}>
+              <td className={classes.th_td} style={{ width: "50px" }}>
                 OS
               </td>
-              <td className={classes.td} style={{ width: "100px" }}>
+              <td className={classes.th_td} style={{ width: "100px" }}>
                 생일
               </td>
-              <td className={classes.td} style={{ width: "100px" }}>
+              <td className={classes.th_td} style={{ width: "100px" }}>
                 가입일
               </td>
-              <td className={classes.td} style={{ width: "100px" }}>
+              <td className={classes.th_td} style={{ width: "100px" }}>
                 탈퇴일
               </td>
-              <td className={classes.td} style={{ width: "180px" }}>
+              <td className={classes.th_td} style={{ width: "180px" }}>
                 최근 접속일
               </td>
             </tr>
