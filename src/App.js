@@ -28,7 +28,7 @@ import AddUserAccount from "~/screens/AddUserAccount";
 import DashBoard from "~/screens/DashBoard";
 import NoticeAppIntroAdd from "~/screens/NoticeAppIntroAdd";
 import NoticeAppIntroDetails from "~/screens/NoticeAppIntroDetails";
-import NoticeAppIntroDetailsEdit from "~/screens/NoticeAppIntroDetailsEdit";
+import EditAppIntroNotice from "~/screens/EditAppIntroNotice";
 import "~/App.css";
 
 function App() {
@@ -67,7 +67,7 @@ function App() {
               {/* 공지 > 상세 */}
               <Route path="/notice/app_intro/details" element={<NoticeAppIntroDetails />} />
               {/* 공지 > 상세 > 수정 */}
-              <Route path="/notice/app_intro/details/edit" element={<NoticeAppIntroDetailsEdit />} />
+              <Route path="/notice/app_intro/details/edit" element={<EditAppIntroNotice />} />
               {/* 공지 > 등록 */}
               <Route path="/notice/app_intro/add" element={<NoticeAppIntroAdd />} />
 

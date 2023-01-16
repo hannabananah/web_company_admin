@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
+import TableHeader from "~/components/TableHeader";
 import DateWithTimePicker from "~/components/DateTimePicker";
 import { UptConfirmModal } from "~/components/Modal";
 import { EditorTool } from "~/components/Editor";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
+import htmlToDraft from 'html-to-draftjs';
 
-import { EditorState, convertToRaw } from "draft-js";
-
-const EditAppIntroNotice = ({ gobackstate, user }) => {
+const EditAppIntroNotice = () => {
+  const user = useLocation().state;
+  // console.log('data---->', data)
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -59,9 +62,25 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
   };
+  // 임시
+  const htmlToEditor = `<strong>ㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇ</strong>`;
+
+  useEffect(() => {
+    const blocksFromHtml = htmlToDraft(htmlToEditor);
+    if (blocksFromHtml) {
+      const { contentBlocks, entityMap } = blocksFromHtml;
+      // https://draftjs.org/docs/api-reference-content-state/#createfromblockarray
+      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+      // ContentState를 EditorState기반으로 새 개체를 반환.
+      // https://draftjs.org/docs/api-reference-editor-state/#createwithcontent
+      const editorState = EditorState.createWithContent(contentState);
+      setEditorState(editorState);
+    }
+  },[]);
 
   return (
     <figure className={classes.userAccContainer}>
+      <TableHeader title="App Intro 공지 수정" />
       <table className={classes.tableStyle}>
         <colgroup>
           <col />
@@ -181,6 +200,6 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
         <main>App Intro 공지를 수정했습니다.</main>
       </UptConfirmModal>
     </figure>
-  );
-};
-export default EditAppIntroNotice;
+  )
+}
+export default EditAppIntroNotice
