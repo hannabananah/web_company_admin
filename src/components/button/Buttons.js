@@ -22,6 +22,7 @@ const useStyles = makeStyles({
     borderRadius: "8px",
     padding: "10px 25px",
     height: "100%",
+    wordBreak: "keep-all",
   },
   saveBtn: {
     border: "none",
@@ -32,5 +33,6 @@ const useStyles = makeStyles({
     height: "100%",
     boxSizing: "border-box",
     color: COLORS.COLOR.BLACK,
+    wordBreak: "keep-all",
   },
 });
