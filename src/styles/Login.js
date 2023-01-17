@@ -113,7 +113,7 @@ const useStyles = makeStyles({
     lineHeight: "150%",
     fontSize: "20px",
     fontWeight: "600",
-    margin: "35px 0",
+    margin: "47px 0 35px",
   },
   loginAlertMsgStyle: {
     width: "100%",
@@ -124,8 +124,9 @@ const useStyles = makeStyles({
     transform: "translateX(-50%)",
   },
   loginAlertMsg: {
-    fontSize: "14px",
+    fontSize: "12px",
     textAlign: "center",
+    color: COLORS.COLOR.WRANING,
   },
   loginTextStyle: {
     textAlign: "center",
