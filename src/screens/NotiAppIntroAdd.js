@@ -7,15 +7,13 @@ import "~/styles/Toggle.css";
 import DateWithTimePicker from "~/components/DateTimePicker";
 import { UptConfirmModal } from "~/components/Modal";
 import { EditorTool } from "~/components/Editor";
-import draftToHtml from 'draftjs-to-html';
+import draftToHtml from "draftjs-to-html";
 import { EditorState, convertToRaw } from "draft-js";
 import axios from "axios";
 import dayjs, { Dayjs } from "dayjs";
-import {useNavigate} from "react-router-dom";
 
 const osList = ["Android", "iOS", "Windows", "Mac"];
 const typeList = ["urgent", "normal"];
-
 
 const NotiAppIntroAdd = () => {
   const classes = useStyles();
@@ -35,12 +33,12 @@ const NotiAppIntroAdd = () => {
     setTypeRadioValue(e.target.value);
   };
   // console.log('오전인지 오후인지 보여줄지 말지 ----> ', ampm)
-  console.log('start 시작 날짜 -----> ', start)
-  console.log('end 종료 날짜 -----> ', end)
+  console.log("start 시작 날짜 -----> ", start);
+  console.log("end 종료 날짜 -----> ", end);
 
   const [notiInfo, setNotiInfo] = useState({
-    noti_idx: '',
-    os: '',
+    noti_idx: "",
+    os: "",
     noti_type: "urgent",
     noti_start_dttm: "",
     noti_end_dttm: "",
@@ -62,37 +60,40 @@ const NotiAppIntroAdd = () => {
     setNotiInfo(newInfo);
   };
 
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    notiInfo['noti_start_dttm'] = start;
-    notiInfo['noti_end_dttm'] = end;
+    notiInfo["noti_start_dttm"] = start;
+    notiInfo["noti_end_dttm"] = end;
 
-    notiInfo['os'] = osRadioValue;
-    notiInfo['update_type'] = typeRadioValue;
+    notiInfo["os"] = osRadioValue;
+    notiInfo["update_type"] = typeRadioValue;
 
-    const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    const editorToHtml = draftToHtml(
+      convertToRaw(editorState.getCurrentContent())
+    );
 
     // eslint-disable-next-line no-restricted-globals
     if (confirm("저장 하시겠습니까?")) {
-      axios.post(
+      axios
+        .post(
           `http://localhost:3001/api/notice/create`,
           {
             ...notiInfo,
-              'noti_content' : editorToHtml
+            noti_content: editorToHtml,
           },
           {
             headers: {
               Authorization:
-                  "Bearer " +
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
             },
           }
-      ).then(({data}) => {
-        console.log(data);
-        openModal();
-      });
+        )
+        .then(({ data }) => {
+          console.log(data);
+          openModal();
+        });
     }
   };
 
@@ -101,7 +102,7 @@ const NotiAppIntroAdd = () => {
 
   // editor state
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [uploadedImages, setUploadedImages] = useState([])
+  const [uploadedImages, setUploadedImages] = useState([]);
 
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
@@ -116,7 +117,9 @@ const NotiAppIntroAdd = () => {
     return { data: { link: imageObject.localSrc } };
   };
 
-  const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+  const editorToHtml = draftToHtml(
+    convertToRaw(editorState.getCurrentContent())
+  );
   const openModal = () => {
     console.log(editorToHtml);
     console.log(JSON.stringify(editorState, null, 4));
@@ -129,12 +132,12 @@ const NotiAppIntroAdd = () => {
 
   const onClickPrev = () => {
     // NoticeAppIntro.js
-    navigate('/notice/app_intro')
-  }
+    navigate("/notice/app_intro");
+  };
 
   return (
     <figure className={classes.userAccContainer}>
-      <TableHeader title="App Intro 공지 등록" /> 
+      <TableHeader title="App Intro 공지 등록" />
 
       <table className={classes.tableStyle}>
         <colgroup>
@@ -182,7 +185,9 @@ const NotiAppIntroAdd = () => {
                       className={classes.radioBtn}
                       defaultChecked={item == typeRadioValue}
                     />
-                    <label htmlFor={item}>{index===0?"긴급":"일반"}</label>
+                    <label htmlFor={item}>
+                      {index === 0 ? "긴급" : "일반"}
+                    </label>
                   </div>
                 );
               })}
@@ -200,7 +205,7 @@ const NotiAppIntroAdd = () => {
                 ampm={ampm}
                 start={start}
                 end={end}
-                />
+              />
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -244,7 +249,7 @@ const NotiAppIntroAdd = () => {
                 id="noti_content"
                 maxLength={40}
               />
-            </td  >
+            </td>
           </tr>
         </tbody>
       </table>
@@ -264,8 +269,7 @@ const NotiAppIntroAdd = () => {
       </UptConfirmModal>
 
       {/* <div>{editorToHtml}</div> */}
-
     </figure>
-  )
-}
+  );
+};
 export default NotiAppIntroAdd;

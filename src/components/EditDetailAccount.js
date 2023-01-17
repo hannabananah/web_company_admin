@@ -241,9 +241,9 @@ const EditDetailAccount = ({ gobackstate }) => {
         </button>
         <input type="submit" value="저장" className={classes.saveBtn} onClick={handleSubmit} />
       </div>
-      <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
+      {/* <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
         <main>저장했습니다.</main>
-      </UptConfirmModal>
+      </UptConfirmModal> */}
     </figure>
   );
 };
