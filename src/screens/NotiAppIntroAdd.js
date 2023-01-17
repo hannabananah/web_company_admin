@@ -17,7 +17,6 @@ const typeList = ["긴급", "일반"];
 const NotiAppIntroAdd = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const [value, setValue] = useState(dayjs(new Date()));
   const [start, setStart] = useState(dayjs(new Date()));
   const [end, setEnd] = useState(start);
   const [ampm, setAmpm] = useState(false);
@@ -37,17 +36,13 @@ const NotiAppIntroAdd = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   // editor state
-  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  //----------------------------//
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [uploadedImages, setUploadedImages] = useState([])
-  //----------------------------//
 
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
   };
 
-  //----------------------------//
   const _uploadImageCallBack = async (file) => {
     const imageObject = {
       file: file,
@@ -56,7 +51,6 @@ const NotiAppIntroAdd = () => {
     setUploadedImages([...uploadedImages, imageObject]);
     return { data: { link: imageObject.localSrc } };
   };
-  //----------------------------//
 
   const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
   const openModal = () => {
@@ -73,8 +67,6 @@ const NotiAppIntroAdd = () => {
     // NoticeAppIntro.js
     navigate('/notice/app_intro')
   }
-
-
 
   return (
     <figure className={classes.userAccContainer}>
@@ -138,7 +130,6 @@ const NotiAppIntroAdd = () => {
             </th>
             <td className={classes.pickerLayout}>
               <DateWithTimePicker 
-                value={value}
                 setStart={setStart}
                 setEnd={setEnd}
                 ampm={ampm}
