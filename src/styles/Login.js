@@ -120,13 +120,13 @@ const useStyles = makeStyles({
     textAlign: "center",
   },
   notiText1: {
-    fontWeight: "medium",
+    fontWeight: "500",
     fontSize: "14px",
     lineHeight: "120%",
     color: COLORS.COLOR.DARK_GRAY,
   },
   notiText2: {
-    fontWeight: "regular",
+    fontWeight: "400",
     fontSize: "14px",
     lineHeight: "120%",
     color: COLORS.COLOR.DARK_GRAY,
