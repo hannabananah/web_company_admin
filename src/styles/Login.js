@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     backgroundImage: `url(${images.LOGIN_BG})`,
     backgroundRepeat: "no-repeat",
-    backgroundSize: "100% 100% cover",
+    backgroundSize: "cover",
     backgroundPosition: "center",
   },
   loginLogo: {
@@ -130,6 +130,6 @@ const useStyles = makeStyles({
     fontSize: "14px",
     lineHeight: "120%",
     color: COLORS.COLOR.DARK_GRAY,
-   },
+  },
 });
 export default useStyles;
