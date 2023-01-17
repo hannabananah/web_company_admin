@@ -3,13 +3,8 @@ import useStyles from "~/styles/Table";
 
 const UserAccountTable = (props) => {
   const {
-    changeState,
     fetchData,
     isLoaded,
-    backState,
-    user,
-    setUser,
-    // onClickTarget,
   } = props;
   const classes = useStyles();
   const navigate = useNavigate();
@@ -20,6 +15,10 @@ const UserAccountTable = (props) => {
   const onClickTarget = (i) => {
     // UserAccountDetails.js
     navigate('/setting_admin/user_account/details/', { state: i })
+  }
+
+  const dateFormat = (utc) => {
+    return utc.replace(/T/, ' ').replace(/\..+/, '').substr(0, 16) 
   }
 
   return (
@@ -78,7 +77,7 @@ const UserAccountTable = (props) => {
                     </span>
                   </td>
                   <td className={classes.td}>{i.remote_ip}</td>
-                  <td className={classes.td}>{i.updatedAt}</td>
+                  <td className={classes.td}>{dateFormat(i.updatedAt)}</td>
                 </tr>
               );
             })}
