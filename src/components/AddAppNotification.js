@@ -27,10 +27,32 @@ const AddAppNotification = ({ backState }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   // editor state
+  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+
+  //----------------------------//
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [uploadedImages, setUploadedImages] = useState([])
+  //----------------------------//
+
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
   };
+
+
+
+  //----------------------------//
+  const _uploadImageCallBack = async (file) => {
+    const imageObject = {
+      file: file,
+      localSrc: URL.createObjectURL(file),
+    };
+    setUploadedImages([...uploadedImages, imageObject]);
+    return { data: { link: imageObject.localSrc } };
+  };
+  //----------------------------//
+
+
   const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
   const openModal = () => {
     console.log(editorToHtml);
@@ -132,6 +154,7 @@ const AddAppNotification = ({ backState }) => {
               <EditorTool
                 editorState={editorState}
                 onEditorStateChange={onEditorStateChange}
+                _uploadImageCallBack={_uploadImageCallBack}
               />
             </td>
           </tr>

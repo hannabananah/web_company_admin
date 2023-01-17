@@ -9,7 +9,7 @@ import axios from 'axios';
 
 export const EditorTool = (props) => {
   const classes = useStyles();
-  const { editorState, onEditorStateChange } = props;
+  const { editorState, onEditorStateChange, _uploadImageCallBack } = props;
   // const [ ,  ] = useState('');
 
 
@@ -50,7 +50,7 @@ export const EditorTool = (props) => {
           link: { inDropdown: true },
           history: { inDropdown: false },
           image: {
-            uploadCallback: uploadCallback,
+            uploadCallback: _uploadImageCallBack,
             previewImage: true,
             alt: { present: true, mandatory: false },
             inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
