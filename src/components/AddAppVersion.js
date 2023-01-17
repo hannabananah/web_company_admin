@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useStyles from "~/styles/Add";
 import { UptConfirmModal } from "~/components/Modal";
+import axios from "axios";
 
 const storeList = ["Google Play", "App Store", "Microsoft", "Mac"];
 const osList = ["Android", "iOS", "Windows", "Mac"];
@@ -9,10 +10,71 @@ const AddAppVersion = ({ backState }) => {
   const classes = useStyles();
   const [radioValue, setRadioValue] = useState('Google Play');
   const onChangeRadio = (e) => {
-    setRadioValue(e.target.value);
+    const { name, value, checked } = e.target;
+
+    if (name == "store") {
+      notiInfo['store'] = value;
+      notiInfo['os'] = osList[storeList.indexOf(value)];
+    }
+    if (name == "upt_type") {
+      notiInfo['update_type'] = value;
+    }
+    console.log(notiInfo);
+    const newInfo = {
+      ...notiInfo,
+      [name]: value, //e.target의 name과 value이다.
+    };
+    setRadioValue(value);
+    setNotiInfo(newInfo);
+
   };
   // 등록완료 모달
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [notiInfo, setNotiInfo] = useState({
+    store: "Google Play",
+    os: "Android",
+    late_app_version: "",
+    min_app_version: "",
+    update_type: "choice",
+    status: "",
+    remark: "",
+    reg_id: "",
+    udt_id: "",
+  });
+
+  const onChange = (e) => {
+    const { name, value, checked } = e.target;
+
+    const newInfo = {
+      ...notiInfo,
+      [name]: value, //e.target의 name과 value이다.
+    };
+    setNotiInfo(newInfo);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("저장 하시겠습니까?")) {
+      // notiInfo["store"] = c
+      axios.post(
+          `http://localhost:3001/api/version/create`,
+          {
+            ...notiInfo,
+          },
+          {
+            headers: {
+              Authorization:
+                  "Bearer " +
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            },
+          }
+      ).then(({data}) => {
+        openModal();
+      });
+    }
+  };
 
   const openModal = () => {
     setModalOpen(true);
@@ -72,7 +134,9 @@ const AddAppVersion = ({ backState }) => {
                       onChange={onChangeRadio}
                       className={classes.radioBtn}
                       checked={radioValue == storeList[index]}
-                      disabled
+                      readOnly={true}
+                      color={'#aaa'}
+                      // disabled
                     />
                     <label htmlFor={item}>{item}</label>
                   </div>
@@ -88,8 +152,10 @@ const AddAppVersion = ({ backState }) => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="recentVer"
+                name="late_app_version"
                 id="recentVer"
+                value={notiInfo.late_app_version}
+                onChange={onChange}
                 required
               />
             </td>
@@ -102,8 +168,10 @@ const AddAppVersion = ({ backState }) => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="minVer"
+                name="min_app_version"
                 id="minVer"
+                value={notiInfo.min_app_version}
+                onChange={onChange}
                 required
               />
             </td>
@@ -119,6 +187,7 @@ const AddAppVersion = ({ backState }) => {
                   id="choice"
                   name="upt_type"
                   value="choice"
+                  onChange={onChangeRadio}
                   className={classes.radioBtn}
                   defaultChecked
                 />
@@ -129,6 +198,7 @@ const AddAppVersion = ({ backState }) => {
                   type="radio"
                   id="compulsion"
                   name="upt_type"
+                  onChange={onChangeRadio}
                   value="compulsion"
                   className={classes.radioBtn}
                 />
@@ -144,8 +214,10 @@ const AddAppVersion = ({ backState }) => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="description"
+                name="remark"
                 id="description"
+                value={notiInfo.remark}
+                onChange={onChange}
                 maxLength={40}
               />
             </td>
@@ -159,7 +231,7 @@ const AddAppVersion = ({ backState }) => {
         <input
           type="submit"
           value="등록 "
-          onClick={openModal}
+          onClick={handleSubmit}
           className={classes.saveBtn}
         />
       </div>
