@@ -37,7 +37,7 @@ const useStyles = makeStyles({
     borderCollapse: "separate",
     borderSpacing: "0px",
     backgroundColor: COLORS.COLOR.WHITE,
-    overflow: "hidden",
+    // overflow: "hidden",
     border: `1px solid ${COLORS.STORKE.CONTENTS2}`,
     borderRadius: "8px",
     boxShadow: "0 4px 22px 0 rgba(0, 0, 0, 0.05)",
