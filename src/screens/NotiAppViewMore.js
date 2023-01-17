@@ -1,10 +1,10 @@
 import TableHeader from "~/components/TableHeader";
 
-const NoticeAppViewMore = () => {
+const NotiAppViewMore = () => {
   return (
     <div>
       <TableHeader title="App 더보기 공지" /> 
     </div>
   )
 }
-export default NoticeAppViewMore;
+export default NotiAppViewMore;

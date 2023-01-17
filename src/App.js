@@ -8,9 +8,9 @@ import Member from "~/screens/Member";
 import Service from "~/screens/Service";
 import Statistics from "~/screens/Statistics";
 import Notice from "~/screens/Notice";
-import NoticeAppIntro from "~/screens/NoticeAppIntro";
-import NoticeAppViewMore from "~/screens/NoticeAppViewMore";
-import NoticeUserEmail from "~/screens/NoticeUserEmail";
+import NotiAppIntro from "~/screens/NotiAppIntro";
+import NotiAppViewMore from "~/screens/NotiAppViewMore";
+import NotiUserEmail from "~/screens/NotiUserEmail";
 import SystemSettings from "~/screens/SystemSettings";
 import useStyles from "~/styles/App";
 import UserAccount from "~/screens/UserAccount";
@@ -26,8 +26,8 @@ import EditorTool from "~/components/Editor";
 import UserAccountEdit from "~/screens/UserAccountEdit";
 import AddUserAccount from "~/screens/AddUserAccount";
 import DashBoard from "~/screens/DashBoard";
-import NoticeAppIntroAdd from "~/screens/NoticeAppIntroAdd";
-import NoticeAppIntroDetails from "~/screens/NoticeAppIntroDetails";
+import NotiAppIntroAdd from "~/screens/NotiAppIntroAdd";
+import DetailIntroNoti from "~/screens/DetailIntroNoti";
 import EditAppIntroNotice from "~/screens/EditAppIntroNotice";
 import "~/App.css";
 
@@ -63,16 +63,16 @@ function App() {
               {/* <Route path="/notice" element={<Notice />} /> */}
 
               {/* 공지 */}
-              <Route path="/notice/app_intro" element={<NoticeAppIntro />} />
+              <Route path="/notice/app_intro" element={<NotiAppIntro />} />
               {/* 공지 > 상세 */}
-              <Route path="/notice/app_intro/details" element={<NoticeAppIntroDetails />} />
+              <Route path="/notice/app_intro/details" element={<DetailIntroNoti />} />
               {/* 공지 > 상세 > 수정 */}
               <Route path="/notice/app_intro/details/edit" element={<EditAppIntroNotice />} />
               {/* 공지 > 등록 */}
-              <Route path="/notice/app_intro/add" element={<NoticeAppIntroAdd />} />
+              <Route path="/notice/app_intro/add" element={<NotiAppIntroAdd />} />
 
-              <Route path="/notice/app_viewmore" element={<NoticeAppViewMore />} />
-              <Route path="/notice/user_email" element={<NoticeUserEmail />} />
+              <Route path="/notice/app_viewmore" element={<NotiAppViewMore />} />
+              <Route path="/notice/user_email" element={<NotiUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />
               <Route path="/hannah_test" element={<EditorTool />} />
               <Route path="/*" element={<NotFound />} />
