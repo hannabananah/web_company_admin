@@ -6,8 +6,8 @@ import axios from "axios";
 
 const Login = () => {
   const classes = useStyles();
-  const [id, setId] = useState("anychat");
-  const [password, setPassword] = useState("anychat21!@");
+  const [id, setId] = useState("admin");
+  const [password, setPassword] = useState("11111111");
   const navigate = useNavigate();
   const [invaild, setInvaild] = useState(false);
 
@@ -20,15 +20,15 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     axios
-        .post(`http://localhost:3001/api/auth/login`, { id, password })
-        .then((result) => {
-          if (result.data) {
-            localStorage.setItem("id", result.data.id);
-            localStorage.setItem("adminKey", result.data.adminKey);
-            navigate("/dashboard");
-          }
-        })
-        .catch((err) =>  console.log(err));
+      .post(`http://localhost:3001/api/auth/login`, { id, password })
+      .then((result) => {
+        if (result.data) {
+          localStorage.setItem("id", result.data.id);
+          localStorage.setItem("adminKey", result.data.adminKey);
+          navigate("/dashboard");
+        }
+      })
+      .catch((err) =>  console.log(err));
   };
 
   return (
@@ -54,7 +54,7 @@ const Login = () => {
                 />
                 <input
                   type="text"
-                  // value={id}
+                  value={id}
                   onChange={onChangeId}
                   autoComplete="false"
                   placeholder="관리자 아이디"
@@ -72,7 +72,7 @@ const Login = () => {
                 />
                 <input
                   type="password"
-                  // value={password}
+                  value={password}
                   onChange={onChangePw}
                   autoComplete="false"
                   placeholder="비밀번호"
