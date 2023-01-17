@@ -46,7 +46,7 @@ const EditDetailAccount = ({ gobackstate }) => {
     setUserInfo(newInfo);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     delete userInfo['password'];
 
