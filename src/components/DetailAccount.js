@@ -5,6 +5,7 @@ import "~/styles/Toggle.css";
 import EditDetailAccount from "~/components/EditDetailAccount";
 import { DeleteModal } from "~/components/Modal";
 import axios from "axios";
+import { dateFormat } from "~/util/global";
 
 const DetailAccount = ({ user, backState }) => {
   const classes = useStyles();
@@ -107,7 +108,7 @@ const DetailAccount = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록일</label>
                 </th>
-                <td className={classes.contentStyle}>{userData.createdAt}</td>
+                <td className={classes.contentStyle}>{dateFormat(userData.createdAt)}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
@@ -119,7 +120,7 @@ const DetailAccount = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>수정일</label>
                 </th>
-                <td className={classes.contentStyle}>{userData.updatedAt}</td>
+                <td className={classes.contentStyle}>{dateFormat(userData.updatedAt)}</td>
               </tr>
             </tbody>
           </table>
