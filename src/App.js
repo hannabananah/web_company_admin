@@ -46,14 +46,32 @@ function App() {
             <Route path="/dashboard" element={<DashBoard />} />
             <Route element={<AuthLayout />}>
               {/* <Route path="/setting_admin" element={<SettingAdmin />} /> */}
-              <Route path="/setting_admin/user_account" element={<UserAccount />}/>
-              <Route path="/setting_admin/user_account/details" element={<UserAccountDetails />}/>
-              <Route path="/setting_admin/user_account/edit" element={<UserAccountEdit />}/>
-              <Route path="/setting_admin/user_account/add" element={<AddUserAccount />}/>
+              <Route
+                path="/setting_admin/user_account"
+                element={<UserAccount />}
+              />
+              <Route
+                path="/setting_admin/user_account/details"
+                element={<UserAccountDetails />}
+              />
+              <Route
+                path="/setting_admin/user_account/edit"
+                element={<UserAccountEdit />}
+              />
+              <Route
+                path="/setting_admin/user_account/add"
+                element={<AddUserAccount />}
+              />
 
               <Route path="/setting_admin/my_account" element={<MyAccount />} />
-              <Route path="/setting_admin/detail_account" element={<DetailAccount />} />
-              <Route path="/setting_admin/edit_detail_account" element={<EditDetailAccount />} />
+              <Route
+                path="/setting_admin/detail_account"
+                element={<DetailAccount />}
+              />
+              <Route
+                path="/setting_admin/edit_detail_account"
+                element={<EditDetailAccount />}
+              />
               <Route path="/setting_admin/history" element={<History />} />
               {/* <Route path="/member" element={<Member />} /> */}
               <Route path="/member/member_status" element={<MemberStatus />} />
@@ -65,13 +83,25 @@ function App() {
               {/* 공지 */}
               <Route path="/notice/app_intro" element={<NotiAppIntro />} />
               {/* 공지 > 상세 */}
-              <Route path="/notice/app_intro/details" element={<DetailIntroNoti />} />
+              <Route
+                path="/notice/app_intro/details"
+                element={<DetailIntroNoti />}
+              />
               {/* 공지 > 상세 > 수정 */}
-              <Route path="/notice/app_intro/details/edit" element={<EditAppIntroNotice />} />
+              <Route
+                path="/notice/app_intro/details/edit"
+                element={<EditAppIntroNotice />}
+              />
               {/* 공지 > 등록 */}
-              <Route path="/notice/app_intro/add" element={<NotiAppIntroAdd />} />
+              <Route
+                path="/notice/app_intro/add"
+                element={<NotiAppIntroAdd />}
+              />
 
-              <Route path="/notice/app_viewmore" element={<NotiAppViewMore />} />
+              <Route
+                path="/notice/app_viewmore"
+                element={<NotiAppViewMore />}
+              />
               <Route path="/notice/user_email" element={<NotiUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />
               <Route path="/hannah_test" element={<EditorTool />} />
