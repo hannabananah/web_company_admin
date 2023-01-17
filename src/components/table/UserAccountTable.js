@@ -19,7 +19,7 @@ const UserAccountTable = (props) => {
 
   const onClickTarget = (i) => {
     // UserAccountDetails.js
-    navigate('/setting_admin/user_account/details', { state: i })
+    navigate('/setting_admin/user_account/details/', { state: i })
   }
 
   return (
@@ -57,28 +57,28 @@ const UserAccountTable = (props) => {
         </thead>
         <tbody>
           {isLoaded &&
-            fetchData?.users?.slice(0, 10).map((i, index) => {
+            fetchData?.map((i, index) => {
               return (
                 <tr key={index} className={classes.tableTr}>
-                  <td className={classes.td}>{i.id}</td>
+                  <td className={classes.td}>{i.adminKey}</td>
                   <td onClick={() => onClickTarget(i)}
                     className={`${classes.td} + ${classes.idLink}`}
                   >
-                    {i.firstName}
+                    {i.id}
                   </td>
-                  <td className={classes.td}>{i.bloodGroup}</td>
+                  <td className={classes.td}>{i.grade}</td>
                   <td className={classes.td}>{i.phone}</td>
                   <td className={classes.td}>
                     <span
                       className={
-                        i.gender == "male" ? classes.unuseBtn : classes.useBtn
+                        i.use_yn == "N" ? classes.unuseBtn : classes.useBtn
                       }
                     >
-                      {i.gender}
+                      {i.use_yn}
                     </span>
                   </td>
-                  <td className={classes.td}>{i.ip}</td>
-                  <td className={classes.td}>{i.birthDate}</td>
+                  <td className={classes.td}>{i.remote_ip}</td>
+                  <td className={classes.td}>{i.updatedAt}</td>
                 </tr>
               );
             })}

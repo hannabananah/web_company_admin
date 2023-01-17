@@ -27,7 +27,7 @@ const Header = () => {
           <figure className={classes.figure}>
             <img src={images.icons.ANYCHAT_CI_HEADER} alt="anychat logo"/>
           </figure>
-          <span className={classes.user}>{}님</span>안녕하세요!
+          <span className={classes.user}>{localStorage.getItem("id")}님</span>안녕하세요!
         </div>
 
         <BreadCrumbs />

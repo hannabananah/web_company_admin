@@ -10,6 +10,7 @@ import AppDetail from "~/components/AppDetail";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import { AlertModal } from "~/components/Modal";
+import axios from "axios";
 
 // filter select option
 const option = [
@@ -28,9 +29,41 @@ const AppVersion = () => {
   const [add, setAdd] = useState(false);
   const [user, setUser] = useState([]);
   // 페이지네이션
+  const [totalUser, setTotalUser] = useState(0); //임시
   const [totalPage, setTotalPage] = useState(5); //임시
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
+
+  const getTotalUserCnt = () => {
+    axios
+        .get(`http://localhost:3001/api/version/total?s=${selectVal}&v=${inputVal}`, {
+          headers: {
+            Authorization:
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          },
+        })
+        .then(({data}) => {
+          console.log(data);
+          setTotalUser(data.userCount);
+
+        });
+  }
+
+  const changePage = (page) => {
+    axios
+        .get(`http://localhost:3001/api/version/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`, {
+          headers: {
+            Authorization:
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          },
+        })
+        .then(({data}) => {
+          console.log(data);
+          setFetchData(data);
+        }).then(setIsLoaded(true));
+  }
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -53,10 +86,7 @@ const AppVersion = () => {
 
   //더미데이터
   useEffect(() => {
-    fetch("https://dummyjson.com/users/")
-      .then((res) => res.json())
-      .then((json) => setFetchData(json))
-      .then(setIsLoaded(true));
+    changePage(1);
   }, []);
 
   const onClickTarget = (user) => {
@@ -72,6 +102,11 @@ const AppVersion = () => {
 
   // 필터
   const [selectVal, setSelectVal] = useState("OS");
+  const [inputVal, setInputVal] = useState("");
+
+  const handleNameChange = (e: any) => {
+    setInputVal(e.target.value);
+  };
 
   const onChangeSelect = (event) => {
     setSelectVal(event.target.value);
@@ -105,7 +140,7 @@ const AppVersion = () => {
                   onChange={onChangeSelect}
                   option={option}
                 />
-                <input className={classes.filterInput} />
+                <input className={classes.filterInput} onChange={handleNameChange} />
                 <button className={classes.searchBtn}>검색</button>
               </>
             }

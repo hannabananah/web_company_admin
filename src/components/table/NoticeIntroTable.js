@@ -63,21 +63,21 @@ const NoticeIntroTable = (props) => {
         </thead>
         <tbody>
           {isLoaded &&
-            fetchData?.users?.slice(0, 10).map((i, index) => {
+            fetchData?.map((i, index) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
-                  <td className={classes.td}>{i.id}</td>
+                  <td className={classes.td}>{i.noticeKey}</td>
                   {/* 공지 등록일 */}
-                  <td className={classes.td}>{i.firstName}</td>
+                  <td className={classes.td}>{i.createdAt}</td>
                   {/* APP Intro 공지 노출 기간 */}
-                  <td className={classes.td}>{i.bloodGroup}</td>
+                  <td className={classes.td}>{i.noti_start_dttm}~{i.noti_end_dttm}</td>
                   {/* 공지 유형 */}
                   <td className={classes.td}>
                     <span
                       className={i.gender == "male" ? classes.urgentText : null}
                     >
-                      {i.gender}
+                      {i.noti_type}
                     </span>
                   </td>
                   {/* 공지 제목 */}
@@ -86,11 +86,11 @@ const NoticeIntroTable = (props) => {
                       onClick={() => navigate('/notice/app_intro/details', { state : i })}
                       className={`${classes.td} + ${classes.idLink}`}
                     >
-                      {i.eyeColor}
+                      {i.noti_title}
                     </span>
                   </td>
                   {/* OS */}
-                  <td className={classes.td}>{i.ip}</td>
+                  <td className={classes.td}>{i.os}</td>
                   {/* 공지 활성 */}
                   <td className={classes.td}>
                     <span onClick={openModal} className={classes.activeLive}>
