@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import TableHeader from "~/components/TableHeader";
+// import AppNotiAdd from "~/components/AddAppNotification";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import DateWithTimePicker from "~/components/DateTimePicker";
@@ -12,7 +14,7 @@ import dayjs, { Dayjs } from "dayjs";
 const osList = ["Android", "iOS", "Windows", "Mac"];
 const typeList = ["긴급", "일반"];
 
-const AddAppNotification = ({ backState }) => {
+const NotiAppIntroAdd = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [value, setValue] = useState(dayjs(new Date()));
@@ -72,8 +74,11 @@ const AddAppNotification = ({ backState }) => {
     navigate('/notice/app_intro')
   }
 
+
+
   return (
     <figure className={classes.userAccContainer}>
+      <TableHeader title="App Intro 공지 등록" /> 
 
       <table className={classes.tableStyle}>
         <colgroup>
@@ -185,7 +190,6 @@ const AddAppNotification = ({ backState }) => {
         </tbody>
       </table>
       <div className={classes.submitBtns}>
-        {/* <button onClick={backState} className={classes.backBtn}> */}
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
@@ -203,6 +207,6 @@ const AddAppNotification = ({ backState }) => {
       {/* <div>{editorToHtml}</div> */}
 
     </figure>
-  );
-};
-export default AddAppNotification;
+  )
+}
+export default NotiAppIntroAdd;
