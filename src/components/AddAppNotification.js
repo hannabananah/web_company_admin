@@ -56,7 +56,6 @@ const AddAppNotification = ({ backState }) => {
   };
   //----------------------------//
 
-
   const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
   const openModal = () => {
     console.log(editorToHtml);

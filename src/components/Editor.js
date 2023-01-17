@@ -4,31 +4,25 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "~/styles/Editor.css";
 import useStyles from "~/styles/Editor";
-import PropTypes from 'prop-types';
 import axios from 'axios';
 
 export const EditorTool = (props) => {
   const classes = useStyles();
   const { editorState, onEditorStateChange, _uploadImageCallBack } = props;
-  // const [ ,  ] = useState('');
 
+  // const uploadCallback = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //       const reader = new FileReader();
 
-  const uploadCallback = (file) => {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-
-        reader.onloadend = async () => {
-            const formData = new FormData();
-            formData.append("multipartFiles", file);
-            const res = await axios.post('http://localhost:8080/uploadImage', formData);
-
-            resolve({ data: { link: res.data } });
-        };
-
-        reader.readAsDataURL(file);
-    });
-  };
-
+  //       reader.onloadend = async () => {
+  //           const formData = new FormData();
+  //           formData.append("multipartFiles", file);
+  //           const res = await axios.post('http://localhost:8080/uploadImage', formData);
+  //           resolve({ data: { link: res.data } });
+  //       };
+  //       reader.readAsDataURL(file);
+  //   });
+  // };
 
   return (
     <>
