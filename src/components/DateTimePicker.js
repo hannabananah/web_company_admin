@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/ko";
 import TextField from "@mui/material/TextField";
@@ -11,28 +10,26 @@ import { useStyles, datepickerSX } from "~/styles/DatePicker";
 const locales = ["en", "ko"];
 
 const DateWithTimePicker = (props) => {
+  const { start, setStart, end, setEnd, value, setValue, ampm } = props;
   const classes = useStyles();
-  const { start, setStart, end, setEnd } = props;
   const [locale, setLocale] = useState("ko");
-  const [value, setValue] = useState(dayjs(new Date()));
-  const [ampm, setAmpm] = useState(false);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={locale}>
       <DateTimePicker
         className={classes.root}
-        value={value}
+        value={start}
         minDate={dayjs(new Date())}
-        onChange={(newValue) => setValue(newValue)}
+        onChange={(newValue) => setStart(newValue)}
         renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
         ampm={ampm}
       />
       &nbsp;&sim;&nbsp;
       <DateTimePicker
         className={classes.root}
-        value={value}
+        value={end}
         minDate={start}
-        onChange={(newValue) => setValue(newValue)}
+        onChange={(newValue) => setEnd(newValue)}
         renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
         ampm={ampm}
       />

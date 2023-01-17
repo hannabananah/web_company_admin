@@ -39,7 +39,7 @@ const DetailNoti = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>OS</label>
                 </th>
-                <td className={classes.contentStyle}>{user.ip}</td>
+                <td className={classes.contentStyle}>{user.os}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
@@ -51,7 +51,7 @@ const DetailNoti = ({ user, backState }) => {
                       user.gender == "male" ? classes.urgentText : null
                     }
                   >
-                    {user.gender}
+                    {user.noti_type}
                   </span>
                 </td>
               </tr>
@@ -59,7 +59,7 @@ const DetailNoti = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>공지 노출 기간</label>
                 </th>
-                <td className={classes.contentStyle}>{user.phone}</td>
+                <td className={classes.contentStyle}>{user.noti_start_dttm}~{user.noti_end_dttm}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
@@ -71,31 +71,31 @@ const DetailNoti = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>공지 내용</label>
                 </th>
-                <td className={classes.contentStyle}>{user.ip}</td>
+                <td className={classes.contentStyle}>{user.noti_title}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>설명</label>
                 </th>
-                <td className={classes.contentStyle}>{user.userAgent}</td>
+                <td className={classes.contentStyle}>{user.remark}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록일</label>
                 </th>
-                <td className={classes.contentStyle}>{user.firstName}</td>
+                <td className={classes.contentStyle}>{user.createdAt}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록자</label>
                 </th>
-                <td className={classes.contentStyle}>{user.username}</td>
+                <td className={classes.contentStyle}>{user.reg_id}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>수정일</label>
                 </th>
-                <td className={classes.contentStyle}>{user.birthDate}</td>
+                <td className={classes.contentStyle}>{user.updatedAt}</td>
               </tr>
             </tbody>
           </table>

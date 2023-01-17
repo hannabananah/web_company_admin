@@ -2,30 +2,73 @@ import { useEffect, useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import { UptConfirmModal } from "~/components/Modal";
+import axios from "axios";
 
 const EditDetailAccount = ({ gobackstate, user }) => {
   const classes = useStyles();
 
   //user info state
   const [userInfo, setUserInfo] = useState({
-    store: user.firstName,
-    os: user.bloodGroup,
-    recentVer: user.phone,
-    minVer: user.email,
-    uptType: user.gender,
-    desc: user.gender,
-    date: user.birthDate,
+    store: user.store,
+    os: user.os,
+    late_app_version: user.late_app_version,
+    min_app_version: user.min_app_version,
+    update_type: user.update_type,
+    remark: user.remark,
+    reg_dttm: user.reg_dttm,
   });
 
-  const { store, os, recentVer, minVer, uptType, desc, date } = userInfo;
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("저장 하시겠습니까?")) {
+      axios.post(
+          `http://localhost:3001/api/version/update`,
+          {
+            ...userInfo
+          },
+          {
+            headers: {
+              Authorization:
+                  "Bearer " +
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            },
+          }
+      ).then(({data}) => {
+        console.log(data);
+        openModal()
+      });
+    }
+  };
+
+  useEffect(() => {
+    axios
+        .get(`http://localhost:3001/api/version/${user.version_idx}`, {
+          headers: {
+            Authorization:
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          },
+        })
+        .then(({data}) => {
+          // data.use_yn = data.use_yn  === 'Y' ? true : false
+          // setUserData(data);
+
+          // console.log(userInfo.phone)
+        });
+  }, [])
 
   const onChange = (e) => {
     const { name, value, checked } = e.target;
-    console.log("e.target.name:::::::", name);
-    console.log("e.target.value:::::::::", value);
-    console.log("e.target.checked:::::::::", checked);
-    setUserInfo(userInfo);
+
+    const newInfo = {
+      ...userInfo,
+      [name]: value, //e.target의 name과 value이다.
+    };
+    setUserInfo(newInfo);
   };
+
 
   // 저장완료 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -66,12 +109,12 @@ const EditDetailAccount = ({ gobackstate, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.recentVer}
+                value={userInfo.late_app_version}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
                 id="recentVer"
-                name="app"
+                name="late_app_version"
                 required
               />
             </td>
@@ -82,12 +125,12 @@ const EditDetailAccount = ({ gobackstate, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.minVer}
+                value={userInfo.min_app_version}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
                 id="minVer"
-                name="app"
+                name="min_app_version"
                 required
               />
             </td>
@@ -101,10 +144,10 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 <input
                   type="radio"
                   id="choice"
-                  name="app"
+                  name="update_type"
                   value="choice"
                   className={classes.radioBtn}
-                  defaultChecked={userInfo.uptType == "female"}
+                  defaultChecked={userInfo.update_type === "choice"}
                 />
                 <label for="choice">선택</label>
               </div>
@@ -112,10 +155,10 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 <input
                   type="radio"
                   id="compulsion"
-                  name="app"
+                  name="update_type"
                   value="compulsion"
                   className={classes.radioBtn}
-                  defaultChecked={userInfo.uptType == "male"}
+                  defaultChecked={userInfo.update_type !== "choice"}
                 />
                 <label for="compulsion">강제</label>
               </div>
@@ -127,11 +170,11 @@ const EditDetailAccount = ({ gobackstate, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.desc}
+                value={userInfo.remark}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="app"
+                name="remark"
                 id="description"
                 maxLength={40}
               />
@@ -141,7 +184,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록일</label>
             </th>
-            <td className={classes.fixedLayout}>{userInfo.date}</td>
+            <td className={classes.fixedLayout}>{userInfo.createdAt}</td>
           </tr>
         </tbody>
       </table>
@@ -152,7 +195,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
         <input
           type="submit"
           value="저장"
-          onClick={openModal}
+          onClick={handleSubmit}
           className={classes.saveBtn}
         />
       </div>

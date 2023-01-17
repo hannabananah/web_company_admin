@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Login";
 import images from "~/assets/js/Images";
+import axios from "axios";
 
 const Login = () => {
   const classes = useStyles();
@@ -18,7 +19,16 @@ const Login = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    navigate("/dashboard");
+    axios
+        .post(`http://localhost:3001/api/auth/login`, { id, password })
+        .then((result) => {
+          if (result.data) {
+            localStorage.setItem("id", result.data.id);
+            localStorage.setItem("adminKey", result.data.adminKey);
+            navigate("/dashboard");
+          }
+        })
+        .catch((err) =>  console.log(err));
   };
 
   return (

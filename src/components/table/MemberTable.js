@@ -30,9 +30,9 @@ const MemberTable = (props) => {
               <td className={classes.td} style={{ width: "100px" }}>
                 가입일
               </td>
-              <td className={classes.td} style={{ width: "100px" }}>
-                탈퇴일
-              </td>
+              {/*<td className={classes.td} style={{ width: "100px" }}>*/}
+              {/*  탈퇴일*/}
+              {/*</td>*/}
               <td className={classes.td} style={{ width: "180px" }}>
                 최근 접속일
               </td>
@@ -40,23 +40,23 @@ const MemberTable = (props) => {
           </thead>
           <tbody>
             {isLoaded &&
-              fetchData?.users?.slice(0, 10).map((i, index) => {
+              fetchData?.map((i, index) => {
                 return (
                   <tr key={index} className={classes.tableTr}>
                     {/* 번호 */}
-                    <td className={classes.td}>{i.id}</td>
+                    <td className={classes.td}>{i.phone_no}</td>
                     {/* 계정 */}
-                    <td className={classes.td}>{i.firstName}</td>
+                    <td className={classes.td}>{i.user_id}</td>
                     {/* OS */}
-                    <td className={classes.td}>{i.bloodGroup}</td>
+                    <td className={classes.td}>{i.device_type}</td>
                     {/* 생일 */}
-                    <td className={classes.td}>{i.birthDate}</td>
+                    <td className={classes.td}>{i.birthday}</td>
                     {/* 가입일 */}
-                    <td className={classes.td}>{i.gender}</td>
-                    {/* 탈퇴일 */}
-                    <td className={classes.td}>{i.birthDate}</td>
+                    <td className={classes.td}>{i.reg_dttm}</td>
+                    {/*/!* 탈퇴일 *!/*/}
+                    {/*<td className={classes.td}>{i.last_login_dttm}</td>*/}
                     {/* 최근 접속일 */}
-                    <td className={classes.td}>{i.birthDate}</td>
+                    <td className={classes.td}>{i.last_login_dttm}</td>
                   </tr>
                 );
               })}
