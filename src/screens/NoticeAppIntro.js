@@ -11,6 +11,7 @@ import AppNotiAdd from "~/components/AddAppNotification";
 import NoticeIntroTable from "~/components/table/NoticeIntroTable";
 import DetailNoti from "~/components/DetailNoti";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // filter select option
 const option = [
@@ -33,6 +34,7 @@ const NoticeAppIntro = () => {
   const navigate = useNavigate();
   const [add, setAdd] = useState(false);
   const [user, setUser] = useState([]);
+  const [inputVal, setInputVal] = useState("");
 
   const backState = () => {
     setAdd(false); //등록 화면 -> 디폴트 페이지
@@ -47,16 +49,45 @@ const NoticeAppIntro = () => {
 
   //타인 계정 상세보기
   const [editAcc, setEditAcc] = useState(false);
-
+  const [totalUser, setTotalUser] = useState(0); //임시
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const getTotalUserCnt = () => {
+    axios
+        .get(`http://localhost:3001/api/notice/total?s=${selectVal}&v=${inputVal}`, {
+          headers: {
+            Authorization:
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          },
+        })
+        .then(({data}) => {
+          console.log(data);
+          setTotalUser(data.userCount);
+
+        });
+  }
+
+  const changePage = (page) => {
+    axios
+        .get(`http://localhost:3001/api/notice?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`, {
+          headers: {
+            Authorization:
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          },
+        })
+        .then(({data}) => {
+          console.log(data);
+          setFetchData(data);
+        }).then(setIsLoaded(true));
+  }
+
+
   //더미데이터
   useEffect(() => {
-    fetch("https://dummyjson.com/users/")
-      .then((res) => res.json())
-      .then((json) => setFetchData(json))
-      .then(setIsLoaded(true));
+    changePage(1);
   }, []);
 
   const onClickTarget = (user) => {
@@ -117,7 +148,7 @@ const NoticeAppIntro = () => {
           />
           <Pagination
             activePage={currentPage}
-            totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
+            totalItemsCount={totalUser} // 총 포스트 갯수
             itemsCountPerPage={postsPerPage} // 페이지당 보여줄 포스트 갯수
             pageRangeDisplayed={10} // 페이저 갯수
             prevPageText={"‹"}

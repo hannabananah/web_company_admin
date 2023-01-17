@@ -1,10 +1,32 @@
 import "~/styles/Modal.css";
 import useStyles from "~/styles/Add";
 import images from "~/assets/js/Images";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 export const DeleteModal = (props) => {
   const classes = useStyles();
-  const { open, close, header } = props;
+  const navigate = useNavigate();
+  const { open, close, header, id } = props;
+
+  const deleteAdminID = () => {
+      axios.post(
+          `http://localhost:3001/api/admin/delete`,
+          { id : id },
+          {
+            headers: {
+              Authorization:
+                  "Bearer " +
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            },
+          }
+      ).then(({data}) => {
+        console.log(data);
+        close();
+        navigate("/setting_admin/user_account");
+
+      });
+  };
 
   return (
     <div className={open ? "openModal modal" : "modal"}>
@@ -24,7 +46,7 @@ export const DeleteModal = (props) => {
               취소
             </button>
             {/* onClick 바꿔야함 */}
-            <button className={classes.deleteBtn} onClick={close}>
+            <button className={classes.deleteBtn} onClick={deleteAdminID}>
               확인
             </button>
           </footer>

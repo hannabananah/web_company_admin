@@ -1,9 +1,10 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import EditDetailAccount from "~/components/EditDetailAccount";
 import { DeleteModal } from "~/components/Modal";
+import axios from "axios";
 
 const DetailAccount = ({ user, backState }) => {
   const classes = useStyles();
@@ -11,6 +12,7 @@ const DetailAccount = ({ user, backState }) => {
 
   // 계정수정 페이지로
   const [edit, setEdit] = useState(false);
+  const [userData, setUserData] = useState({});
   const onEdit = () => {
     setEdit(true);
   };
@@ -35,10 +37,27 @@ const DetailAccount = ({ user, backState }) => {
     navigate('/setting_admin/user_account/edit', { state : user })
   }
 
+  useEffect(() => {
+    axios
+        .get(`http://localhost:3001/api/admin/${user.id}`, {
+          headers: {
+            Authorization:
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          },
+        })
+        .then(({data}) => {
+          data.use_yn = data.use_yn ? true : false
+          setUserData( data);
+          // setUserInfo(data);
+          console.log(user.use_yn)
+        });
+  }, [])
+
   return (
     <>
       {edit ? (
-        <EditDetailAccount user={user} gobackstate={gobackstate} />
+        <EditDetailAccount id={user.id} gobackstate={gobackstate} />
       ) : (
         <figure className={classes.userAccContainer}>
           <table className={classes.tableStyle}>
@@ -51,56 +70,56 @@ const DetailAccount = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>아이디</label>
                 </th>
-                <td className={classes.contentStyle}>{user.firstName}</td>
+                <td className={classes.contentStyle}>{userData.id}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>관리자 권한</label>
                 </th>
-                <td className={classes.contentStyle}>{user.bloodGroup}</td>
+                <td className={classes.contentStyle}>{userData.grade}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>전화번호</label>
                 </th>
-                <td className={classes.contentStyle}>{user.phone}</td>
+                <td className={classes.contentStyle}>{userData.phone}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>이메일</label>
                 </th>
-                <td className={classes.contentStyle}>{user.email}</td>
+                <td className={classes.contentStyle}>{userData.email}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>접속허가 IP</label>
                 </th>
-                <td className={classes.contentStyle}>{user.ip}</td>
+                <td className={classes.contentStyle}>{userData.allow_remote_ip}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>사용여부</label>
                 </th>
-                <td className={classes.contentStyle}>{user.gender}</td>
+                <td className={classes.contentStyle}>{userData.use_yn ? 'Y': 'N'}</td>
               </tr>
 
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록일</label>
                 </th>
-                <td className={classes.contentStyle}>{user.birthDate}</td>
+                <td className={classes.contentStyle}>{userData.createdAt}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록자</label>
                 </th>
-                <td className={classes.contentStyle}>{user.username}</td>
+                <td className={classes.contentStyle}>{user.id}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>수정일</label>
                 </th>
-                <td className={classes.contentStyle}>{user.birthDate}</td>
+                <td className={classes.contentStyle}>{userData.updatedAt}</td>
               </tr>
             </tbody>
           </table>
@@ -117,7 +136,7 @@ const DetailAccount = ({ user, backState }) => {
               삭제
             </button>
           </div>
-          <DeleteModal open={modalOpen} close={closeModal} header="계정 삭제">
+          <DeleteModal id={user.id} open={modalOpen} close={closeModal} header="계정 삭제">
             <main>해당 계정을 삭제하시겠습니까?</main>
           </DeleteModal>
         </figure>

@@ -2,34 +2,37 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
+import axios from "axios";
 
 const EditDetailAccount = ({ gobackstate }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const user = useLocation().state;
+  const [userData, setUserData] = useState({});
 
+  useEffect(() => {
+      axios
+          .get(`http://localhost:3001/api/admin/${user.id}`, {
+            headers: {
+              Authorization:
+                  "Bearer " +
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            },
+          })
+          .then(({data}) => {
+            data.use_yn = data.use_yn  === 'Y' ? true : false
+            // setUserData(data);
+            setUserInfo(data);
+            // console.log(userInfo.phone)
+          });
+  }, [])
   //user info state
-  const [userInfo, setUserInfo] = useState({
-    id: user.firstName,
-    auth: user.bloodGroup,
-    pwd: "",
-    chkPwd: "",
-    // phone1: user.phone1,
-    // phone2: user.phone2,
-    // phone3: user.phone3,
-    phone1: "",
-    phone2: "",
-    phone3: "",
-    email: user.email,
-    ip: user.ip,
-    use_yn: user.gender == "male" ? false : true, //male:N, female:Y
-  });
+  //userData.phone.split('-')[2] ? userData.phone.split('-')[2] :
+  const [userInfo, setUserInfo] = useState({});
 
-  const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } =
-    userInfo;
+  // const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } = userInfo;
 
   const onChange = (e) => {
-    console.log("onchange!!!!!!!!!!!");
     const { name, value, checked } = e.target;
     console.log("e.target.name:::::::", name);
     console.log("e.target.value:::::::::", value);
@@ -37,17 +40,54 @@ const EditDetailAccount = ({ gobackstate }) => {
 
     const newInfo = {
       ...userInfo,
-      [name]: name == "use_yn" ? !userInfo.use_yn : value, //e.target의 name과 value이다.
+      [name]: name == "use_yn" ? userInfo.use_yn : value, //e.target의 name과 value이다.
     };
+    console.log(newInfo)
     setUserInfo(newInfo);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    delete userInfo['password'];
+
+    if (userInfo.pwd  != "") {
+      if (userInfo.pwd != userInfo.chkPwd) {
+        alert('비밀번호 확인을 해주세요.');
+        return false;
+      }
+      const newInfo = {
+        ...userInfo,
+        "password":  userInfo.pwd, //e.target의 name과 value이다.
+      };
+      setUserInfo(newInfo);
+    }
+
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("저장 하시겠습니까?")) {
+      axios.post(
+          `http://localhost:3001/api/admin/update`,
+          {
+            ...userInfo,
+          },
+          {
+            headers: {
+              Authorization:
+                  "Bearer " +
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            },
+          }
+      ).then(({data}) => {
+        console.log(data);
+        window.location.reload();
+      });
+    }
   };
 
   const onClickPrev = () => {
     // UserAccountDetails.js
     navigate('/setting_admin/user_account/details', {state:user})
   }
-  console.log("userInfo ----------->", userInfo);
-  console.log("userInfo.use_yn ----------->", userInfo.use_yn);
+
 
   return (
     <figure className={classes.userAccContainer}>
@@ -69,7 +109,7 @@ const EditDetailAccount = ({ gobackstate }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.auth}
+                value={userInfo.grade}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
@@ -118,34 +158,12 @@ const EditDetailAccount = ({ gobackstate }) => {
             <td className={classes.inputLayout}>
               <input
                 type="tel"
-                value={userInfo.phone1}
+                value={ userInfo.phone  }
                 onChange={onChange}
-                className={classes.inputNumStyle}
-                name="phone1"
+                className={classes.inputStyle}
+                name="phone"
                 id="account"
-                maxLength="3"
-                required
-              />
-              <span className={classes.inputDash}>&nbsp;&ndash;&nbsp;</span>
-              <input
-                type="tel"
-                value={userInfo.phone2}
-                onChange={onChange}
-                className={classes.inputNumStyle}
-                name="phone2"
-                id="account"
-                maxLength="4"
-                required
-              />
-              <span className={classes.inputDash}>&nbsp;&ndash;&nbsp;</span>
-              <input
-                type="tel"
-                value={userInfo.phone3}
-                onChange={onChange}
-                className={classes.inputNumStyle}
-                name="phone3"
-                id="account"
-                maxLength="4"
+                maxLength="50"
                 required
               />
             </td>
@@ -172,12 +190,12 @@ const EditDetailAccount = ({ gobackstate }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.ip}
-                onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="ip"
+                name="allow_remote_ip"
                 id="account"
+                value={userInfo.allow_remote_ip}
+                onChange={onChange}
                 required
               />
             </td>
@@ -211,7 +229,7 @@ const EditDetailAccount = ({ gobackstate }) => {
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
-        <input type="submit" value="저장" className={classes.saveBtn} />
+        <input type="submit" value="저장" className={classes.saveBtn} onClick={handleSubmit} />
       </div>
     </figure>
   );

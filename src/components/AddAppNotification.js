@@ -4,21 +4,90 @@ import "~/styles/Toggle.css";
 import DateWithTimePicker from "~/components/DateTimePicker";
 import { UptConfirmModal } from "~/components/Modal";
 import { EditorTool } from "~/components/Editor";
-
+import draftToHtml from 'draftjs-to-html';
 import { EditorState, convertToRaw } from "draft-js";
+import axios from "axios";
+import dayjs, { Dayjs } from "dayjs";
+import {useNavigate} from "react-router-dom";
 
 const osList = ["Android", "iOS", "Windows", "Mac"];
-const typeList = ["긴급", "일반"];
+const typeList = ["urgent", "normal"];
+
 
 const AddAppNotification = ({ backState }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const [value, setValue] = useState(dayjs(new Date()));
+  const [start, setStart] = useState(dayjs(new Date()));
+  const [end, setEnd] = useState(start);
+  const [ampm, setAmpm] = useState(false);
   const [osRadioValue, setOsRadioValue] = useState("Android");
   const onChangeRadio1 = (e) => {
+    notiInfo.os = e.target.value;
     setOsRadioValue(e.target.value);
   };
-  const [typeRadioValue, setTypeRadioValue] = useState("긴급");
+  const [typeRadioValue, setTypeRadioValue] = useState("urgent");
   const onChangeRadio2 = (e) => {
+    notiInfo.update_type = e.target.value;
     setTypeRadioValue(e.target.value);
+  };
+
+  const [notiInfo, setNotiInfo] = useState({
+    noti_idx: '',
+    os: '',
+    noti_type: "urgent",
+    noti_start_dttm: "",
+    noti_end_dttm: "",
+    noti_title: "",
+    en_noti_title: "",
+    noti_content: "",
+    en_noti_content: "",
+    remark: "",
+    reg_id: "",
+  });
+
+  const onChange = (e) => {
+    const { name, value, checked } = e.target;
+
+    const newInfo = {
+      ...notiInfo,
+      [name]: value, //e.target의 name과 value이다.
+    };
+    setNotiInfo(newInfo);
+  };
+
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    notiInfo['noti_start_dttm'] = start;
+    notiInfo['noti_end_dttm'] = end;
+
+    notiInfo['os'] = osRadioValue;
+    notiInfo['update_type'] = typeRadioValue;
+
+    const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("저장 하시겠습니까?")) {
+      axios.post(
+          `http://localhost:3001/api/notice/create`,
+          {
+            ...notiInfo,
+              'noti_content' : editorToHtml
+          },
+          {
+            headers: {
+              Authorization:
+                  "Bearer " +
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            },
+          }
+      ).then(({data}) => {
+        console.log(data);
+        openModal();
+      });
+    }
   };
 
   // 등록완료 모달
@@ -59,7 +128,7 @@ const AddAppNotification = ({ backState }) => {
                       type="radio"
                       id={item}
                       name="os"
-                      value={item}
+                      value={notiInfo.os}
                       onChange={onChangeRadio1}
                       className={classes.radioBtn}
                       defaultChecked={item == osRadioValue}
@@ -81,13 +150,13 @@ const AddAppNotification = ({ backState }) => {
                     <input
                       type="radio"
                       id={item}
-                      name="type"
-                      value={item}
+                      name="noti_type"
+                      value={notiInfo.noti_type}
                       onChange={onChangeRadio2}
                       className={classes.radioBtn}
                       defaultChecked={item == typeRadioValue}
                     />
-                    <label htmlFor={item}>{item}</label>
+                    <label htmlFor={item}>{index===0?"긴급":"일반"}</label>
                   </div>
                 );
               })}
@@ -98,7 +167,14 @@ const AddAppNotification = ({ backState }) => {
               <label className={classes.leftText}>공지 노출 기간</label>
             </th>
             <td className={classes.pickerLayout}>
-              <DateWithTimePicker />
+              <DateWithTimePicker
+                value={value}
+                setStart={setStart}
+                setEnd={setEnd}
+                ampm={ampm}
+                start={start}
+                end={end}
+                />
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -109,7 +185,9 @@ const AddAppNotification = ({ backState }) => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="minVer"
+                value={notiInfo.noti_title}
+                onChange={onChange}
+                name="noti_title"
                 id="minVer"
                 required
               />
@@ -134,11 +212,12 @@ const AddAppNotification = ({ backState }) => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="description"
-                id="description"
+                onChange={onChange}
+                name="remark"
+                id="noti_content"
                 maxLength={40}
               />
-            </td>
+            </td  >
           </tr>
         </tbody>
       </table>
@@ -149,7 +228,7 @@ const AddAppNotification = ({ backState }) => {
         <input
           type="submit"
           value="저장"
-          onClick={openModal}
+          onClick={handleSubmit}
           className={classes.saveBtn}
         />
       </div>

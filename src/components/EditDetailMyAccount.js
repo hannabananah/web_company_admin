@@ -1,9 +1,79 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
-const EditDetailMyAccount = ({ goBackState }) => {
+const EditDetailMyAccount = ({ goBackState, admin }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios
+        .get(`http://localhost:3001/api/admin/${admin.id}`, {
+          headers: {
+            Authorization:
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          },
+        })
+        .then(({data}) => {
+          data.use_yn = data.use_yn  === 'Y' ? true : false
+          // setUserData(data);
+          setUserInfo(data);
+          // console.log(userInfo.phone)
+        });
+  }, [])
+
+  const [userInfo, setUserInfo] = useState({});
+
+  const onChange = (e) => {
+    const { name, value, checked } = e.target;
+
+    const newInfo = {
+      ...userInfo,
+      [name]: name == "use_yn" ? !userInfo.use_yn : value, //e.target의 name과 value이다.
+    };
+    setUserInfo(newInfo);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    delete userInfo['password'];
+
+    if (userInfo.pwd  != "") {
+      if (userInfo.pwd != userInfo.chkPwd) {
+        alert('비밀번호 확인을 해주세요.');
+        return false;
+      }
+      const newInfo = {
+        ...userInfo,
+        "password":  userInfo.pwd, //e.target의 name과 value이다.
+      };
+      setUserInfo(newInfo);
+    }
+
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("저장 하시겠습니까?")) {
+      axios.post(
+              `http://localhost:3001/api/admin/update`,
+              {
+                ...userInfo
+              },
+              {
+                headers: {
+                  Authorization:
+                      "Bearer " +
+                      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+                },
+              }
+          ).then(({data}) => {
+        console.log(data);
+        window.location.reload();
+      });
+    }
+  };
+
 
   return (
     <figure className={classes.userAccContainer}>
@@ -21,7 +91,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
               <label className={classes.leftText}>사용자 아이디</label>
             </th>
             <td className={classes.fixedLayout}>
-              나의 계정 관리, 나의 아이디입니다
+              {userInfo.id}
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -34,6 +104,8 @@ const EditDetailMyAccount = ({ goBackState }) => {
                 className={classes.inputStyle}
                 name="auth"
                 id="myAccount"
+                value={userInfo.grade}
+                onChange={onChange}
                 required
               />
             </td>
@@ -48,6 +120,8 @@ const EditDetailMyAccount = ({ goBackState }) => {
                 className={classes.inputStyle}
                 name="pwd"
                 id="myAccount"
+                value={userInfo.pwd}
+                onChange={onChange}
                 required
               />
             </td>
@@ -62,6 +136,8 @@ const EditDetailMyAccount = ({ goBackState }) => {
                 className={classes.inputStyle}
                 name="chkPwd"
                 id="myAccount"
+                value={userInfo.chkPwd}
+                onChange={onChange}
                 required
               />
             </td>
@@ -73,30 +149,15 @@ const EditDetailMyAccount = ({ goBackState }) => {
             <td className={classes.inputLayout}>
               <input
                 type="tel"
-                className={classes.inputNumStyle}
-                name="phone1"
+                className={classes.inputStyle}
+                name="phone"
                 id="myAccount"
-                maxLength="3"
+                maxLength="30"
+                value={userInfo.phone}
+                onChange={onChange}
                 required
               />
-              &nbsp;-&nbsp;
-              <input
-                type="tel"
-                className={classes.inputNumStyle}
-                name="phone2"
-                id="myAccount"
-                maxLength="4"
-                required
-              />
-              &nbsp;-&nbsp;
-              <input
-                type="tel"
-                className={classes.inputNumStyle}
-                name="phone3"
-                id="myAccount"
-                maxLength="4"
-                required
-              />
+
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -108,6 +169,8 @@ const EditDetailMyAccount = ({ goBackState }) => {
                 type="text"
                 className={classes.inputStyle}
                 name="email"
+                value={userInfo.email}
+                onChange={onChange}
                 id="myAccount"
                 required
               />
@@ -123,6 +186,8 @@ const EditDetailMyAccount = ({ goBackState }) => {
                 className={classes.inputStyle}
                 name="ip"
                 id="myAccount"
+                value={userInfo.allow_remote_ip}
+                onChange={onChange}
                 required
               />
             </td>
@@ -139,7 +204,9 @@ const EditDetailMyAccount = ({ goBackState }) => {
                   role="switch"
                   type="checkbox"
                   name="use_yn"
-                  // defaultChecked={userInfo.use_yn}
+                  value={userInfo.use_yn}
+                  onChange={onChange}
+                    // defaultChecked={userInfo.use_yn}
                   defaultChecked={true}
                   id="myAccount"
                 />
@@ -158,7 +225,7 @@ const EditDetailMyAccount = ({ goBackState }) => {
         <button onClick={goBackState} className={classes.backBtn}>
           이전
         </button>
-        <input type="submit" value="저장" className={classes.saveBtn} />
+        <input type="submit" value="저장" className={classes.saveBtn} onClick={handleSubmit} />
       </div>
     </figure>
   );

@@ -6,40 +6,53 @@ import DateWithTimePicker from "~/components/DateTimePicker";
 import { UptConfirmModal } from "~/components/Modal";
 import { EditorTool } from "~/components/Editor";
 
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw, convertFromHTML } from "draft-js";
+
+import Modifier from "draft-js/lib/DraftModifier";
+import ContentState from "draft-js/lib/ContentState";
+import axios from "axios";
+import dayjs from "dayjs";
 
 const EditAppIntroNotice = ({ gobackstate, user }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [value, setValue] = useState(dayjs(new Date()));
+  const [start, setStart] = useState(dayjs(new Date()));
+  const [end, setEnd] = useState(start);
+  const [ampm, setAmpm] = useState(false);
 
   //user info state
   const [userInfo, setUserInfo] = useState({
-    os: user.ip,
-    type: user.gender,
-    period: user.phone,
-    title: user.eyeColor,
-    content: user.ip,
-    desc: user.userAgent,
+    noticeKey: user.noticeKey,
+    os: user.os,
+    noti_type: user.noti_type,
+    noti_start_dttm: user.noti_start_dttm,
+    noti_end_dttm: user.noti_end_dttm,
+    noti_title: user.noti_title,
+    noti_content: user.noti_content,
+    remark: user.remark,
   });
 
-  const { os, type, period, title, content, desc } = userInfo;
-
   const onChange = (e) => {
-    console.log("onchange!!!!!!!!!!!");
     const { name, value, checked } = e.target;
-    console.log("e.target.name:::::::", name);
-    console.log("e.target.value:::::::::", value);
-    console.log("e.target.checked:::::::::", checked);
 
     const newInfo = {
       ...userInfo,
-      [name]: name == "type" ? !userInfo.type : value, //e.target의 name과 value이다.
+      [name]: value, //e.target의 name과 value이다.
     };
     setUserInfo(newInfo);
   };
 
-  console.log("userInfo ----------->", userInfo);
-  console.log("userInfo.use_yn ----------->", userInfo.type);
+  useEffect(() => {
+    // automatedMessage is the html string I am fetching from my server
+    console.log(user);
+    console.log(userInfo.noti_content);
+    setEditorState(EditorState.createWithContent(ContentState.createFromBlockArray(convertFromHTML(userInfo.noti_content))));
+
+    setStart(userInfo.noti_start_dttm);
+    setEnd(userInfo.noti_start_dttm);
+
+  }, [userInfo]);
 
   // 수정완료 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -53,6 +66,30 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
   const onClickPrev = () => {
     navigate('/notice/app_intro/details/', { state : user })
   }
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    userInfo['noti_start_dttm'] = start;
+    userInfo['noti_end_dttm'] = end;
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("저장 하시겠습니까?")) {
+      axios.post(
+          `http://localhost:3001/api/notice/update`,
+          {
+            ...userInfo
+          },
+          {
+            headers: {
+              Authorization:
+                  "Bearer " +
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            },
+          }
+      ).then(({data}) => {
+        openModal()
+      });
+    }
+  };
 
   // editor state
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -87,7 +124,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
                   name="type"
                   value="urgent"
                   className={classes.radioBtn}
-                  defaultChecked={userInfo.type == "male"}
+                  defaultChecked={userInfo.noti_type == "urgent"}
                 />
                 <label htmlFor="urgent">긴급</label>
               </div>
@@ -99,7 +136,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
                   name="type"
                   value="normal"
                   className={classes.radioBtn}
-                  defaultChecked={userInfo.type == "female"}
+                  defaultChecked={userInfo.noti_type == "normal"}
                 />
                 <label htmlFor="normal">일반</label>
               </div>
@@ -119,7 +156,15 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
                 id="introNoti"
                 required
               /> */}
-              <DateWithTimePicker />
+              <DateWithTimePicker
+                  value={value}
+                  setStart={setStart}
+                  setEnd={setEnd}
+                  ampm={ampm}
+                  start={start}
+                  end={end}
+
+              />
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -128,7 +173,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.title}
+                value={userInfo.noti_title}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
@@ -146,7 +191,9 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
               <EditorTool
                 editorState={editorState}
                 onEditorStateChange={onEditorStateChange}
-              />
+              >
+              </EditorTool>
+
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -155,7 +202,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.desc}
+                value={userInfo.remark}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
@@ -173,7 +220,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
         <input
           type="submit"
           value="저장"
-          onClick={openModal}
+          onClick={handleSubmit}
           className={classes.saveBtn}
         />
       </div>

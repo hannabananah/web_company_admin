@@ -9,6 +9,7 @@ import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import TableHeader from "~/components/TableHeader";
 import ColumnHeaderTable from "~/components/table/ColumnHeaderTable";
+import axios from "axios";
 
 const table_header = [
   {
@@ -67,17 +68,17 @@ const UserAccount = () => {
 
   //더미데이터
   useEffect(() => {
-    fetch("https://dummyjson.com/users/")
-      .then((res) => res.json())
-      .then((json) => setFetchData(json))
-      .then(setIsLoaded(true));
+    changePage(1)
   }, []);
   console.log(fetchData);
   // console.log(isLoaded);
 
   // 페이지네이션
-  const [totalPage, setTotalPage] = useState(5); //임시
+  const [totalUser, setTotalUser] = useState(0); //임시
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectVal, setSelectVal] = useState("ID");
+  const [inputVal, setInputVal] = useState("");
+
   const postsPerPage = 10;
 
   const handlePageChange = (page) => {
@@ -85,15 +86,43 @@ const UserAccount = () => {
     // console.log("page  -------------------->", page);
   };
 
-  // 필터
-  const [selectVal, setSelectVal] = useState("ID");
-
   const onChangeSelect = (event) => {
     setSelectVal(event.target.value);
   };
   const onClickAddAccount = () => {
     // AddUserAccount.js
     navigate('/setting_admin/user_account/add')
+  }
+
+  const getTotalUserCnt = () => {
+    axios
+        .get(`http://localhost:3001/api/admin/total?s=${selectVal}&v=${inputVal}`, {
+          headers: {
+            Authorization:
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          },
+        })
+        .then(({data}) => {
+          console.log(data);
+          setTotalUser(data.userCount);
+
+        });
+  }
+
+  const changePage = (page) => {
+    axios
+        .get(`http://localhost:3001/api/admin?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`, {
+          headers: {
+            Authorization:
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          },
+        })
+        .then(({data}) => {
+          console.log(data);
+          setFetchData(data);
+        }).then(setIsLoaded(true));
   }
 
   const onClickTarget = (i) => {
@@ -164,7 +193,7 @@ const UserAccount = () => {
       
       <Pagination
         activePage={currentPage}
-        totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
+        totalItemsCount={totalUser} // 총 포스트 갯수
         itemsCountPerPage={postsPerPage} // 페이지당 보여줄 포스트 갯수
         pageRangeDisplayed={10} // 페이저 갯수
         prevPageText={"‹"}

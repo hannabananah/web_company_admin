@@ -32,55 +32,55 @@ const AppDetail = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>스토어</label>
                 </th>
-                <td className={classes.contentStyle}>{user.firstName}</td>
+                <td className={classes.contentStyle}>{user.store}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>OS</label>
                 </th>
-                <td className={classes.contentStyle}>{user.bloodGroup}</td>
+                <td className={classes.contentStyle}>{user.os}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>최신 APP 버전</label>
                 </th>
-                <td className={classes.contentStyle}>{user.phone}</td>
+                <td className={classes.contentStyle}>{user.late_app_version}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>최소 APP 버전</label>
                 </th>
-                <td className={classes.contentStyle}>{user.email}</td>
+                <td className={classes.contentStyle}>{user.min_app_version}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>업데이트 유형</label>
                 </th>
-                <td className={classes.contentStyle}>{user.ip}</td>
+                <td className={classes.contentStyle}>{user.update_type}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>설명</label>
                 </th>
-                <td className={classes.contentStyle}>{user.gender}</td>
+                <td className={classes.contentStyle}>{user.remark}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록일</label>
                 </th>
-                <td className={classes.contentStyle}>{user.birthDate}</td>
+                <td className={classes.contentStyle}>{user.reg_dttm}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록자</label>
                 </th>
-                <td className={classes.contentStyle}>{user.username}</td>
+                <td className={classes.contentStyle}>{user.reg_id}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>수정일</label>
                 </th>
-                <td className={classes.contentStyle}>{user.birthDate}</td>
+                <td className={classes.contentStyle}>{user.upt_dttm}</td>
               </tr>
             </tbody>
           </table>

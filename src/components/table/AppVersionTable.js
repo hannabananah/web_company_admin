@@ -40,28 +40,28 @@ const AppVersionTable = (props) => {
         </thead>
         <tbody>
           {isLoaded &&
-            fetchData?.users?.slice(0, 10).map((i, index) => {
+            fetchData?.map((i, index) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
-                  <td className={classes.td}>{i.id}</td>
+                  <td className={classes.td}>{i.version_idx}</td>
                   {/* 등록일 */}
-                  <td className={classes.td}>{i.birthDate}</td>
+                  <td className={classes.td}>{i.reg_dttm}</td>
                   {/* 스토어 */}
-                  <td className={classes.td}>{i.firstName}</td>
+                  <td className={classes.td}>{i.store}</td>
                   {/* OS */}
-                  <td className={classes.td}>{i.bloodGroup}</td>
+                  <td className={classes.td}>{i.os}</td>
                   {/* 최신 APP 버전 */}
                   <td
                     className={`${classes.td} + ${classes.idLink}`}
                     onClick={() => onClickTarget(i)}
                   >
-                    {i.phone}
+                    {i.late_app_version}
                   </td>
                   {/* 최소 APP 버전 */}
-                  <td className={classes.td}>{i.email}</td>
+                  <td className={classes.td}>{i.min_app_version}</td>
                   {/* 업데이트 유형 */}
-                  <td className={classes.td}>{i.gender}</td>
+                  <td className={classes.td}>{i.update_type}</td>
                   {/* 업데이트 */}
                   <td className={classes.td}>
                     <span onClick={openModal} className={classes.uptActiveRed}>
