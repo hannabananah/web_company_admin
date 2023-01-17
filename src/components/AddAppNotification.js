@@ -7,6 +7,7 @@ import { UptConfirmModal } from "~/components/Modal";
 import { EditorTool } from "~/components/Editor";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
 import draftToHtml from 'draftjs-to-html';
+import dayjs, { Dayjs } from "dayjs";
 
 const osList = ["Android", "iOS", "Windows", "Mac"];
 const typeList = ["긴급", "일반"];
@@ -14,6 +15,10 @@ const typeList = ["긴급", "일반"];
 const AddAppNotification = ({ backState }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [value, setValue] = useState(dayjs(new Date()));
+  const [start, setStart] = useState(dayjs(new Date()));
+  const [end, setEnd] = useState(start);
+  const [ampm, setAmpm] = useState(false);
   const [osRadioValue, setOsRadioValue] = useState("Android");
   const onChangeRadio1 = (e) => {
     setOsRadioValue(e.target.value);
@@ -22,14 +27,15 @@ const AddAppNotification = ({ backState }) => {
   const onChangeRadio2 = (e) => {
     setTypeRadioValue(e.target.value);
   };
+  // console.log('오전인지 오후인지 보여줄지 말지 ----> ', ampm)
+  console.log('start 시작 날짜 -----> ', start)
+  console.log('end 종료 날짜 -----> ', end)
 
   // 등록완료 모달
   const [modalOpen, setModalOpen] = useState(false);
 
   // editor state
   // const [editorState, setEditorState] = useState(EditorState.createEmpty());
-
-
   //----------------------------//
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [uploadedImages, setUploadedImages] = useState([])
@@ -38,8 +44,6 @@ const AddAppNotification = ({ backState }) => {
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
   };
-
-
 
   //----------------------------//
   const _uploadImageCallBack = async (file) => {
@@ -129,7 +133,14 @@ const AddAppNotification = ({ backState }) => {
               <label className={classes.leftText}>공지 노출 기간</label>
             </th>
             <td className={classes.pickerLayout}>
-              <DateWithTimePicker />
+              <DateWithTimePicker 
+                value={value}
+                setStart={setStart}
+                setEnd={setEnd}
+                ampm={ampm}
+                start={start} 
+                end={end} 
+                />
             </td>
           </tr>
           <tr className={classes.contentInput}>
