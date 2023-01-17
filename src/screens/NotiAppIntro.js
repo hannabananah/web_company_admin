@@ -40,12 +40,12 @@ const NotiAppIntro = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   //더미데이터
-  useEffect(() => {
-    fetch("https://dummyjson.com/users/")
-      .then((res) => res.json())
-      .then((json) => setFetchData(json))
-      .then(setIsLoaded(true));
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://dummyjson.com/users/")
+  //     .then((res) => res.json())
+  //     .then((json) => setFetchData(json))
+  //     .then(setIsLoaded(true));
+  // }, []);
 
   // 페이지네이션
   const [totalPage, setTotalPage] = useState(5); //임시
@@ -80,11 +80,10 @@ const NotiAppIntro = () => {
         }
         right={<SaveBtn onClick={onClickAddNoti} />}
       />
+      
       <NoticeIntroTable
         fetchData={fetchData}
         isLoaded={isLoaded}
-        user={user}
-        setUser={setUser}
       />
       <Pagination
         activePage={currentPage}

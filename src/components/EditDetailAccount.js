@@ -4,12 +4,39 @@ import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import axios from "axios";
 
-const EditDetailAccount = ({ gobackstate }) => {
+const EditDetailAccount = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const user = useLocation().state;
-  const [userData, setUserData] = useState({});
+  // console.log(user)
 
+  const [userInfo, setUserInfo] = useState({});
+  // const [userInfo, setUserInfo] = useState({
+  //   grade:user.grade,
+  //   pwd:user.pwd,
+  //   chkPwd: user.chkPwd,
+  //   phone: user.phone,
+  //   email: user.email,
+  //   allow_remote_ip:user.allow_remote_ip,
+  //   use_yn: user.use_yn,
+  // });
+
+  const onChange = (e) => {
+    const { name, value, checked } = e.target;
+    console.log("e.target.name:::::::", name);
+    console.log("e.target.value:::::::::", value);
+    console.log("e.target.checked:::::::::", checked);
+
+    const newInfo = {
+      ...userInfo,
+      // [name]: name == "use_yn" ? userInfo.use_yn : value, //e.target의 name과 value이다.
+      [name]: name == "use_yn" ? checked : value, //e.target의 name과 value이다.
+      
+    };
+    console.log(newInfo)
+    setUserInfo(newInfo);
+  };
+  
   useEffect(() => {
       axios
           .get(`http://localhost:3001/api/admin/${user.id}`, {
@@ -20,50 +47,51 @@ const EditDetailAccount = ({ gobackstate }) => {
             },
           })
           .then(({data}) => {
-            data.use_yn = data.use_yn  === 'Y' ? true : false
-            // setUserData(data);
+            console.log('data----------------->',data)
+            data.use_yn = data.use_yn == 'Y' ? true : false
             setUserInfo(data);
-            // console.log(userInfo.phone)
+
           });
   }, [])
+  console.log('userInfo------>',userInfo)
+  console.log(userInfo.use_yn)
+
   //user info state
   //userData.phone.split('-')[2] ? userData.phone.split('-')[2] :
-  const [userInfo, setUserInfo] = useState({});
+  // const [userInfo, setUserInfo] = useState({});
 
   // const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } = userInfo;
 
-  const onChange = (e) => {
-    const { name, value, checked } = e.target;
-    console.log("e.target.name:::::::", name);
-    console.log("e.target.value:::::::::", value);
-    console.log("e.target.checked:::::::::", checked);
-
-    const newInfo = {
-      ...userInfo,
-      [name]: name == "use_yn" ? userInfo.use_yn : value, //e.target의 name과 value이다.
-    };
-    console.log(newInfo)
-    setUserInfo(newInfo);
-  };
-
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    delete userInfo['password'];
 
-    if (userInfo.pwd  != "") {
-      if (userInfo.pwd != userInfo.chkPwd) {
+    if (userInfo.password != "") {
+      if (userInfo.password != userInfo.chkPwd) {
         alert('비밀번호 확인을 해주세요.');
         return false;
+      } else {
+        
+        const newInfo = {
+          ...userInfo,
+          password: userInfo.password, //e.target의 name과 value이다.
+        };
+        setUserInfo(newInfo);
       }
-      const newInfo = {
-        ...userInfo,
-        "password":  userInfo.pwd, //e.target의 name과 value이다.
-      };
-      setUserInfo(newInfo);
     }
+    // const newInfo = {
+    //   ...userInfo,
+    //   use_yn: userInfo.use_yn == true ? "Y" : "N", //e.target의 name과 value이다.
+    // };
+    // setUserInfo(newInfo);
 
-    // eslint-disable-next-line no-restricted-globals
-    if (confirm("저장 하시겠습니까?")) {
+    // delete userInfo['password'];
+    // delete userInfo['chkPwd'];
+      console.log(userInfo)
+
+
+
+    // // eslint-disable-next-line no-restricted-globals
+    // if (confirm("저장 하시겠습니까?")) {
       axios.post(
           `http://localhost:3001/api/admin/update`,
           {
@@ -78,16 +106,17 @@ const EditDetailAccount = ({ gobackstate }) => {
           }
       ).then(({data}) => {
         console.log(data);
-        window.location.reload();
+
+        // window.location.reload();
       });
-    }
+    // }
+
   };
 
   const onClickPrev = () => {
     // UserAccountDetails.js
     navigate('/setting_admin/user_account/details', {state:user})
   }
-
 
   // 저장완료 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -119,12 +148,12 @@ const EditDetailAccount = ({ gobackstate }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.grade}
+                value={userInfo.grade || ""}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
                 name="auth"
-                id="account"
+                id="auth"
                 required
               />
             </td>
@@ -135,12 +164,12 @@ const EditDetailAccount = ({ gobackstate }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.pwd}
+                value={userInfo.password || ""}
                 onChange={onChange}
-                type="text"
+                type="password"
                 className={classes.inputStyle}
-                name="pwd"
-                id="account"
+                name="password"
+                id="password"
                 required
               />
             </td>
@@ -151,12 +180,12 @@ const EditDetailAccount = ({ gobackstate }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.chkPwd}
+                value={userInfo.chkPwd || ""}
                 onChange={onChange}
-                type="text"
+                type="password"
                 className={classes.inputStyle}
                 name="chkPwd"
-                id="account"
+                id="chkPwd"
                 required
               />
             </td>
@@ -168,11 +197,11 @@ const EditDetailAccount = ({ gobackstate }) => {
             <td className={classes.inputLayout}>
               <input
                 type="tel"
-                value={ userInfo.phone  }
+                value={userInfo.phone || ""}
                 onChange={onChange}
                 className={classes.inputStyle}
                 name="phone"
-                id="account"
+                id="phone"
                 maxLength="50"
                 required
               />
@@ -184,12 +213,12 @@ const EditDetailAccount = ({ gobackstate }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.email}
+                value={userInfo.email || ""}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
                 name="email"
-                id="account"
+                id="email"
                 required
               />
             </td>
@@ -203,8 +232,8 @@ const EditDetailAccount = ({ gobackstate }) => {
                 type="text"
                 className={classes.inputStyle}
                 name="allow_remote_ip"
-                id="account"
-                value={userInfo.allow_remote_ip}
+                id="allow_remote_ip"
+                value={userInfo.allow_remote_ip || ""}
                 onChange={onChange}
                 required
               />
@@ -217,12 +246,16 @@ const EditDetailAccount = ({ gobackstate }) => {
             <td className={classes.inputLayout}>
               <label className={`auggleToggle ${classes.userToggle}`}>
                 <input
-                  value={userInfo.use_yn}
+                  // value={userInfo.use_yn || ""}
+                  // value={userInfo.use_yn}
+                  checked={userInfo.use_yn || ""}
                   onChange={onChange}
                   role="switch"
                   type="checkbox"
                   name="use_yn"
-                  defaultChecked={userInfo.use_yn}
+                  id="use_yn"
+                  // defaultChecked={userInfo.use_yn}
+                  // defaultChecked={userInfo.use_yn == "Y" ? true : false}
                 />
                 {userInfo.use_yn ? (
                   <span className={classes.toggleText1}>사용</span>
@@ -247,4 +280,5 @@ const EditDetailAccount = ({ gobackstate }) => {
     </figure>
   );
 };
+
 export default EditDetailAccount;
