@@ -53,7 +53,7 @@ const AddUserAccount = () => {
     setModalOpen(false);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     {
       if (userInfo.pwd != userInfo.chkPwd) {

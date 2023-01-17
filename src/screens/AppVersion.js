@@ -104,7 +104,7 @@ const AppVersion = () => {
   const [selectVal, setSelectVal] = useState("OS");
   const [inputVal, setInputVal] = useState("");
 
-  const handleNameChange = (e: any) => {
+  const handleNameChange = (e) => {
     setInputVal(e.target.value);
   };
 

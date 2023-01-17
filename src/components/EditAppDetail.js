@@ -18,7 +18,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     reg_dttm: user.reg_dttm,
   });
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     // eslint-disable-next-line no-restricted-globals
