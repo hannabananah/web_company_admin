@@ -32,11 +32,9 @@ const NotiAppIntro = () => {
   const [user, setUser] = useState([]);
 
   const onClickAddNoti = () => {
+    // NotiAppIntroAdd.js
     navigate('/notice/app_intro/add')
   }
-
-  //타인 계정 상세보기
-  const [editAcc, setEditAcc] = useState(false);
 
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
