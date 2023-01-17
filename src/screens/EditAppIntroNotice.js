@@ -7,12 +7,9 @@ import DateWithTimePicker from "~/components/DateTimePicker";
 import { UptConfirmModal } from "~/components/Modal";
 import { EditorTool } from "~/components/Editor";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
-import htmlToDraft from 'html-to-draftjs';
-
-import { EditorState, convertToRaw, convertFromHTML } from "draft-js";
-
+import htmlToDraft from "html-to-draftjs";
+import {convertFromHTML} from "draft-convert";
 import Modifier from "draft-js/lib/DraftModifier";
-import ContentState from "draft-js/lib/ContentState";
 import axios from "axios";
 import dayjs from "dayjs";
 
@@ -50,11 +47,16 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
     // automatedMessage is the html string I am fetching from my server
     console.log(user);
     console.log(userInfo.noti_content);
-    setEditorState(EditorState.createWithContent(ContentState.createFromBlockArray(convertFromHTML(userInfo.noti_content))));
+    setEditorState(
+      EditorState.createWithContent(
+        ContentState.createFromBlockArray(
+          convertFromHTML(userInfo.noti_content)
+        )
+      )
+    );
 
     setStart(userInfo.noti_start_dttm);
     setEnd(userInfo.noti_start_dttm);
-
   }, [userInfo]);
 
   // 수정완료 모달
@@ -67,30 +69,32 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
     setModalOpen(false);
   };
   const onClickPrev = () => {
-    navigate('/notice/app_intro/details/', { state : user })
-  }
+    navigate("/notice/app_intro/details/", { state: user });
+  };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    userInfo['noti_start_dttm'] = start;
-    userInfo['noti_end_dttm'] = end;
+    userInfo["noti_start_dttm"] = start;
+    userInfo["noti_end_dttm"] = end;
     // eslint-disable-next-line no-restricted-globals
     if (confirm("저장 하시겠습니까?")) {
-      axios.post(
+      axios
+        .post(
           `http://localhost:3001/api/notice/update`,
           {
-            ...userInfo
+            ...userInfo,
           },
           {
             headers: {
               Authorization:
-                  "Bearer " +
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
             },
           }
-      ).then(({data}) => {
-        openModal()
-      });
+        )
+        .then(({ data }) => {
+          openModal();
+        });
     }
   };
 
@@ -107,13 +111,16 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
     if (blocksFromHtml) {
       const { contentBlocks, entityMap } = blocksFromHtml;
       // https://draftjs.org/docs/api-reference-content-state/#createfromblockarray
-      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+      const contentState = ContentState.createFromBlockArray(
+        contentBlocks,
+        entityMap
+      );
       // ContentState를 EditorState기반으로 새 개체를 반환.
       // https://draftjs.org/docs/api-reference-editor-state/#createwithcontent
       const editorState = EditorState.createWithContent(contentState);
       setEditorState(editorState);
     }
-  },[]);
+  }, []);
 
   return (
     <figure className={classes.userAccContainer}>
@@ -176,13 +183,12 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
                 required
               /> */}
               <DateWithTimePicker
-                  value={value}
-                  setStart={setStart}
-                  setEnd={setEnd}
-                  ampm={ampm}
-                  start={start}
-                  end={end}
-
+                value={value}
+                setStart={setStart}
+                setEnd={setEnd}
+                ampm={ampm}
+                start={start}
+                end={end}
               />
             </td>
           </tr>
@@ -210,9 +216,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
               <EditorTool
                 editorState={editorState}
                 onEditorStateChange={onEditorStateChange}
-              >
-              </EditorTool>
-
+              ></EditorTool>
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -243,10 +247,10 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
           className={classes.saveBtn}
         />
       </div>
-      <UptConfirmModal open={modalOpen} close={closeModal} header="수정 완료">
+      {/* <UptConfirmModal open={modalOpen} close={closeModal} header="수정 완료">
         <main>App Intro 공지를 수정했습니다.</main>
-      </UptConfirmModal>
+      </UptConfirmModal> */}
     </figure>
-  )
-}
-export default EditAppIntroNotice
+  );
+};
+export default EditAppIntroNotice;
