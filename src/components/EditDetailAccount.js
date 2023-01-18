@@ -115,7 +115,7 @@ const EditDetailAccount = () => {
 
   const openModal = () => {
     setModalOpen(true);
-    navigate(-1, {state:userInfo})
+    navigate(-1)
   };
   const closeModal = () => {
     setModalOpen(false);
