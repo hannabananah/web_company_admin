@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import { UptConfirmModal } from "~/components/Modal";
@@ -6,6 +7,7 @@ import axios from "axios";
 
 const EditDetailAccount = ({ gobackstate, user }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const onChangeRadio = (e) => {
     const { name, value } = e.target;
@@ -89,6 +91,10 @@ const EditDetailAccount = ({ gobackstate, user }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  const onClickPrev = () => {
+    navigate(-1)
+  }
 
   return (
     <figure className={classes.userAccContainer}>
@@ -201,7 +207,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
         </tbody>
       </table>
       <div className={classes.submitBtns}>
-        <button onClick={gobackstate} className={classes.backBtn}>
+        <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
         <input

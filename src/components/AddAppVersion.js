@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import { UptConfirmModal } from "~/components/Modal";
 import axios from "axios";
@@ -8,6 +9,7 @@ const osList = ["Android", "iOS", "Windows", "Mac"];
 
 const AddAppVersion = ({ backState }) => {
   const classes = useStyles();
+  const navigate = useNavigate(); 
   const [radioValue, setRadioValue] = useState("Google Play");
   const onChangeRadio = (e) => {
     const { name, value, checked } = e.target;
@@ -83,6 +85,9 @@ const AddAppVersion = ({ backState }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const onClickPrev = () => {
+    navigate(-1)
+  }
 
   return (
     <figure className={classes.userAccContainer}>
@@ -226,7 +231,7 @@ const AddAppVersion = ({ backState }) => {
         </tbody>
       </table>
       <div className={classes.submitBtns}>
-        <button onClick={backState} className={classes.backBtn}>
+        <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
         <input
