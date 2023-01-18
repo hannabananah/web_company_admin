@@ -53,6 +53,22 @@ export const sidenav_data = [
       {
         title: "App 버전 관리",
         path: "/service/app_version",
+        subMenu: [
+          {
+            title: "상세",
+            path: "/service/app_version/details",
+            subMenu: [
+              {
+                title: "수정",
+                path: "/service/app_version/details/edit",
+              },
+            ]
+          },
+          {
+            title: "등록",
+            path: "/service/app_version/add",
+          },
+        ]
       },
     ],
   },

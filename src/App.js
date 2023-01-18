@@ -21,6 +21,9 @@ import EditDetailAccount from "~/components/EditDetailAccount";
 import History from "~/screens/History";
 import MemberStatus from "~/screens/MemberStatus";
 import AppVersion from "~/screens/AppVersion";
+import DetailsAppVer from "~/screens/DetailsAppVer";
+import AddAppVer from "~/screens/AddAppVer";
+import EditAppVer from "~/screens/EditAppVer";
 import NotFound from "~/screens/NotFound";
 import EditorTool from "~/components/Editor";
 import UserAccountEdit from "~/screens/UserAccountEdit";
@@ -77,6 +80,10 @@ function App() {
               <Route path="/member/member_status" element={<MemberStatus />} />
               {/* <Route path="/service" element={<Service />} /> */}
               <Route path="/service/app_version" element={<AppVersion />} />
+              <Route path="/service/app_version/details" element={<DetailsAppVer />} />
+              <Route path="/service/app_version/details/edit" element={<EditAppVer />} />
+              <Route path="/service/app_version/add" element={<AddAppVer />} />
+
               <Route path="/statistics" element={<Statistics />} />
               {/* <Route path="/notice" element={<Notice />} /> */}
 
