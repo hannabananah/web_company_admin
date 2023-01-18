@@ -113,3 +113,32 @@ export const UptConfirmModal = (props) => {
     </div>
   );
 };
+
+export const SaveConfirmModal = (props) => {
+  const classes = useStyles();
+  const { open, close, header } = props;
+
+  return (
+    <div className={open ? "openModal modal" : "modal"}>
+      {open ? (
+        <section>
+          <header>
+            <img
+              src={images.icons.BELL_IC_P}
+              alt="등록완료 알림 아이콘"
+              className="modalIcon"
+            />
+            {header}
+          </header>
+          <main>{props.children}</main>
+          <footer className="modalBtns">
+            {/* onClick 바꿔야함 */}
+            <button className={classes.backBtn} onClick={close}>
+              확인
+            </button>
+          </footer>
+        </section>
+      ) : null}
+    </div>
+  );
+}
