@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useStyles from "~/styles/Table";
-import { AlertModal } from "~/components/Modal";
+import { NoticeAlertModal } from "~/components/Modal";
 import { useNavigate } from "react-router-dom";
 
 const NoticeIntroTable = (props) => {
@@ -71,7 +71,9 @@ const NoticeIntroTable = (props) => {
                   {/* 공지 등록일 */}
                   <td className={classes.td}>{i.createdAt}</td>
                   {/* APP Intro 공지 노출 기간 */}
-                  <td className={classes.td}>{i.noti_start_dttm}~{i.noti_end_dttm}</td>
+                  <td className={classes.td}>
+                    {i.noti_start_dttm}~{i.noti_end_dttm}
+                  </td>
                   {/* 공지 유형 */}
                   <td className={classes.td}>
                     <span
@@ -83,7 +85,9 @@ const NoticeIntroTable = (props) => {
                   {/* 공지 제목 */}
                   <td className={classes.td}>
                     <span
-                      onClick={() => navigate('/notice/app_intro/details', { state : i })}
+                      onClick={() =>
+                        navigate("/notice/app_intro/details", { state: i })
+                      }
                       className={`${classes.td} + ${classes.idLink}`}
                     >
                       {i.noti_title}
@@ -108,9 +112,14 @@ const NoticeIntroTable = (props) => {
           </tr> */}
         </tbody>
       </table>
-      <AlertModal open={modalOpen} close={closeModal} header="공지 활성화">
+      <NoticeAlertModal
+        N
+        open={modalOpen}
+        close={closeModal}
+        header="공지 활성화"
+      >
         <main>App Intro 공지를 노출합니다.</main>
-      </AlertModal>
+      </NoticeAlertModal>
     </figure>
   );
 };
