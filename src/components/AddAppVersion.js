@@ -9,7 +9,7 @@ const osList = ["Android", "iOS", "Windows", "Mac"];
 
 const AddAppVersion = ({ backState }) => {
   const classes = useStyles();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [radioValue, setRadioValue] = useState("Google Play");
   const onChangeRadio = (e) => {
     const { name, value, checked } = e.target;
@@ -84,10 +84,11 @@ const AddAppVersion = ({ backState }) => {
   };
   const closeModal = () => {
     setModalOpen(false);
+    navigate(-1);
   };
   const onClickPrev = () => {
-    navigate(-1)
-  }
+    navigate(-1);
+  };
 
   return (
     <figure className={classes.userAccContainer}>
