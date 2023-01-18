@@ -149,13 +149,13 @@ const AppVersion = () => {
         // } else {
         //   document.getElementById("appTable").className = "uptActiveRed";
         // }
-        if (user.update_type === "choice") {
-          document.getElementById("appTable").classList.remove("uptActiveBlue");
-          document.getElementById("appTable").classList.add("uptActiveRed");
-        } else {
-          document.getElementById("appTable").classList.remove("uptActiveRed");
-          document.getElementById("appTable").classList.add("uptActiveBlue");
-        }
+        // if (user.update_type === "choice") {
+        //   document.getElementById("appTable").classList.remove("uptActiveBlue");
+        //   document.getElementById("appTable").classList.add("uptActiveRed");
+        // } else {
+        //   document.getElementById("appTable").classList.remove("uptActiveRed");
+        //   document.getElementById("appTable").classList.add("uptActiveBlue");
+        // }
       });
     closeModal();
   };
