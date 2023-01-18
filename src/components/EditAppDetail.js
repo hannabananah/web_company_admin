@@ -43,9 +43,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
           },
           {
             headers: {
-              Authorization:
-                "Bearer " +
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
             },
           }
         )
@@ -94,7 +92,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
   };
 
   const onClickPrev = () => {
-    navigate(-1, {state:userInfo});
+    navigate(-1, { state: userInfo });
   };
 
   return (
