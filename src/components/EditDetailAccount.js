@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import axios from "axios";
+import { UptConfirmModal } from "./Modal";
 
 const EditDetailAccount = ({ gobackstate }) => {
   const classes = useStyles();
@@ -11,21 +12,21 @@ const EditDetailAccount = ({ gobackstate }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-      axios
-          .get(`http://localhost:3001/api/admin/${user.id}`, {
-            headers: {
-              Authorization:
-                  "Bearer " +
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-            },
-          })
-          .then(({data}) => {
-            data.use_yn = data.use_yn  === 'Y' ? true : false
-            // setUserData(data);
-            setUserInfo(data);
-            // console.log(userInfo.phone)
-          });
-  }, [])
+    axios
+      .get(`http://localhost:3001/api/admin/${user.id}`, {
+        headers: {
+          Authorization:
+            "Bearer " +
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+        },
+      })
+      .then(({ data }) => {
+        data.use_yn = data.use_yn === "Y" ? true : false;
+        // setUserData(data);
+        setUserInfo(data);
+        // console.log(userInfo.phone)
+      });
+  }, []);
   //user info state
   //userData.phone.split('-')[2] ? userData.phone.split('-')[2] :
   const [userInfo, setUserInfo] = useState({});
@@ -42,52 +43,54 @@ const EditDetailAccount = ({ gobackstate }) => {
       ...userInfo,
       [name]: name == "use_yn" ? userInfo.use_yn : value, //e.target의 name과 value이다.
     };
-    console.log(newInfo)
+    console.log(newInfo);
     setUserInfo(newInfo);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    delete userInfo['password'];
+    delete userInfo["password"];
 
-    if (userInfo.pwd  != "") {
+    if (userInfo.pwd != "") {
       if (userInfo.pwd != userInfo.chkPwd) {
-        alert('비밀번호 확인을 해주세요.');
+        alert("비밀번호 확인을 해주세요.");
         return false;
       }
       const newInfo = {
         ...userInfo,
-        "password":  userInfo.pwd, //e.target의 name과 value이다.
+        password: userInfo.pwd, //e.target의 name과 value이다.
       };
       setUserInfo(newInfo);
     }
 
     // eslint-disable-next-line no-restricted-globals
-    if (confirm("저장 하시겠습니까?")) {
-      axios.post(
-          `http://localhost:3001/api/admin/update`,
-          {
-            ...userInfo,
+    // if (confirm("저장 하시겠습니까?")) {
+    axios
+      .post(
+        `http://localhost:3001/api/admin/update`,
+        {
+          ...userInfo,
+        },
+        {
+          headers: {
+            Authorization:
+              "Bearer " +
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
           },
-          {
-            headers: {
-              Authorization:
-                  "Bearer " +
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-            },
-          }
-      ).then(({data}) => {
+        }
+      )
+      .then(({ data }) => {
         console.log(data);
-        window.location.reload();
+        openModal();
+        // window.location.reload();
       });
-    }
+    // }
   };
 
   const onClickPrev = () => {
     // UserAccountDetails.js
-    navigate('/setting_admin/user_account/details', {state:user})
-  }
-
+    navigate("/setting_admin/user_account/details", { state: user });
+  };
 
   // 저장완료 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -168,7 +171,7 @@ const EditDetailAccount = ({ gobackstate }) => {
             <td className={classes.inputLayout}>
               <input
                 type="tel"
-                value={ userInfo.phone  }
+                value={userInfo.phone}
                 onChange={onChange}
                 className={classes.inputStyle}
                 name="phone"
@@ -239,11 +242,23 @@ const EditDetailAccount = ({ gobackstate }) => {
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
-        <input type="submit" value="저장" className={classes.saveBtn} onClick={handleSubmit} />
+        {/* <input
+          type="submit"
+          value="저장"
+          className={classes.saveBtn}
+          onClick={handleSubmit}
+        /> */}
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className={classes.saveBtn}
+        >
+          저장
+        </button>
       </div>
-      {/* <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
+      <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
         <main>저장했습니다.</main>
-      </UptConfirmModal> */}
+      </UptConfirmModal>
     </figure>
   );
 };
