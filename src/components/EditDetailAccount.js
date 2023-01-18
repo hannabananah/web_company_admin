@@ -281,7 +281,7 @@ const EditDetailAccount = () => {
         </button>
       </div>
       
-      <SaveConfirmModal open={saveConfirm} close={handleSubmit} header="저장">
+      <SaveConfirmModal open={saveConfirm} onClickCancel={()=>setSaveConfirm(false)} onClickConfirm={handleSubmit} header="저장">
         <main>저장 하시겠습니까?</main>
       </SaveConfirmModal>
 
