@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import Pagination from "react-js-pagination";
-
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
+import DetailsAppVer from "~/screens/DetailsAppVer";
 import AddAppVersion from "~/components/AddAppVersion";
 import AppVersionTable from "~/components/table/AppVersionTable";
 import AppDetail from "~/components/AppDetail";
@@ -26,6 +26,7 @@ const option = [
 
 const AppVersion = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [add, setAdd] = useState(false);
   const [user, setUser] = useState([]);
   // 페이지네이션
@@ -78,6 +79,11 @@ const AppVersion = () => {
     setAdd(true); // 디폴트 페이지 -> 등록 화면
   };
 
+  const onClickAddVer = () => {
+    // AddAppVer.js
+    navigate('/service/app_version/add')
+  }
+
   //타인 계정 상세보기
   const [editAcc, setEditAcc] = useState(false);
 
@@ -90,8 +96,9 @@ const AppVersion = () => {
   }, []);
 
   const onClickTarget = (user) => {
-    setEditAcc(true);
-    setUser(user);
+    // setEditAcc(true);
+    // setUser(user);
+    navigate('/service/app_version/details', { state : user })
   };
   const goBackTable = () => {
     setEditAcc(false);
@@ -104,7 +111,7 @@ const AppVersion = () => {
   const [selectVal, setSelectVal] = useState("OS");
   const [inputVal, setInputVal] = useState("");
 
-  const handleNameChange = (e: any) => {
+  const handleNameChange = (e) => {
     setInputVal(e.target.value);
   };
 
@@ -145,7 +152,7 @@ const AppVersion = () => {
               </>
             }
             right={
-              <button onClick={changeState} className={classes.saveBtn}>
+              <button onClick={onClickAddVer} className={classes.saveBtn}>
                 등록
               </button>
             }
