@@ -90,11 +90,12 @@ const EditDetailAccount = ({ gobackstate, user }) => {
   };
   const closeModal = () => {
     setModalOpen(false);
+    navigate(-1);
   };
 
   const onClickPrev = () => {
-    navigate(-1)
-  }
+    navigate(-1, {state:userInfo});
+  };
 
   return (
     <figure className={classes.userAccContainer}>
