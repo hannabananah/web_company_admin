@@ -8,7 +8,7 @@ import { UptConfirmModal } from "~/components/Modal";
 import { EditorTool } from "~/components/Editor";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
 import htmlToDraft from "html-to-draftjs";
-import {convertFromHTML} from "draft-convert";
+import { convertFromHTML } from "draft-convert";
 import Modifier from "draft-js/lib/DraftModifier";
 import axios from "axios";
 import dayjs from "dayjs";
@@ -86,9 +86,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
           },
           {
             headers: {
-              Authorization:
-                "Bearer " +
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
             },
           }
         )

@@ -27,6 +27,7 @@ const Login = () => {
           localStorage.setItem("adminKey", result.data.adminKey);
           localStorage.setItem("access_token", result.data.access_token);
           navigate("/dashboard");
+          console.log(result.data)
         }
       })
       .catch((err) =>  console.log(err));
