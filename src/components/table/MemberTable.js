@@ -30,10 +30,10 @@ const MemberTable = (props) => {
               <td className={classes.th_td} style={{ width: "100px" }}>
                 가입일
               </td>
-              {/*<td className={classes.td} style={{ width: "100px" }}>*/}
+              {/*<td className={classes.th_td} style={{ width: "100px" }}>*/}
               {/*  탈퇴일*/}
               {/*</td>*/}
-              <td className={classes.td} style={{ width: "180px" }}>
+              <td className={classes.th_td} style={{ width: "180px" }}>
                 최근 접속일
               </td>
             </tr>
