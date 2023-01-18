@@ -72,7 +72,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
     navigate("/notice/app_intro/details/", { state: user });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     userInfo["noti_start_dttm"] = start;
     userInfo["noti_end_dttm"] = end;

@@ -60,7 +60,7 @@ const NotiAppIntroAdd = () => {
     setNotiInfo(newInfo);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     notiInfo["noti_start_dttm"] = start;

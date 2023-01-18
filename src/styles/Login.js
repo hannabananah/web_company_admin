@@ -4,18 +4,26 @@ import images from "~/assets/js/Images";
 
 const useStyles = makeStyles({
   container: {
-    width: "100%",
-    height: "100vh",
+    // width: "100%",
+    // height: "100vh",
     display: "flex",
+    flex: "1",
     alignItems: "center",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "space-between",
     backgroundImage: `url(${images.LOGIN_BG})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center",
   },
+  loginContentStyle: {
+    display: "flex",
+    flex: "1",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
   loginLogo: {
+    margin: "0 auto",
     marginBottom: "30px",
   },
   loginContainer: {
@@ -44,6 +52,7 @@ const useStyles = makeStyles({
     width: "100%",
   },
   loginForm: {
+    position: "relative",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-evenly",
@@ -104,7 +113,20 @@ const useStyles = makeStyles({
     lineHeight: "150%",
     fontSize: "20px",
     fontWeight: "600",
-    margin: "35px 0",
+    margin: "47px 0 35px",
+  },
+  loginAlertMsgStyle: {
+    width: "100%",
+    position: "absolute",
+    top: "50%",
+    marginTop: "20",
+    left: "50%",
+    transform: "translateX(-50%)",
+  },
+  loginAlertMsg: {
+    fontSize: "12px",
+    textAlign: "center",
+    color: COLORS.COLOR.WRANING,
   },
   loginTextStyle: {
     textAlign: "center",
@@ -115,18 +137,19 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.INFORMATION_GRAY,
   },
   notiTextStyle: {
-    position: "absolute",
-    bottom: "60px",
+    display: "flex",
+    flexDirection: "column",
     textAlign: "center",
+    margin: "20px 0",
   },
   notiText1: {
-    fontWeight: "medium",
+    fontWeight: "500",
     fontSize: "14px",
     lineHeight: "120%",
     color: COLORS.COLOR.DARK_GRAY,
   },
   notiText2: {
-    fontWeight: "regular",
+    fontWeight: "400",
     fontSize: "14px",
     lineHeight: "120%",
     color: COLORS.COLOR.DARK_GRAY,

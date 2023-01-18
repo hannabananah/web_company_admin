@@ -41,7 +41,7 @@ const MemberStatus = () => {
     const [inputVal, setInputVal] = useState("");
 
 
-    const handleNameChange = (e: any) => {
+    const handleNameChange = (e) => {
         setInputVal(e.target.value);
     };
 
