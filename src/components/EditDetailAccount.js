@@ -123,7 +123,8 @@ const EditDetailAccount = () => {
 
   const onClickPrev = () => {
     // UserAccountDetails.js
-    navigate("/setting_admin/user_account/details", { state: user });
+    // navigate("/setting_admin/user_account/details", { state: user });
+    navigate(-1);
   };
 
   // 저장완료 모달

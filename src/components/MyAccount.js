@@ -1,13 +1,17 @@
 import {useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import EditDetailMyAccount from "~/components/EditDetailMyAccount";
 import axios from "axios";
+import { dateFormat } from "~/util/global";
 
 const MyAccountContent = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [edit, setEdit] = useState(false);
   const [admin, setAdmin] = useState({});
+
   const onEdit = () => {
     setEdit(true);
   };
@@ -29,11 +33,16 @@ const MyAccountContent = () => {
         });
   }
 
-
   const goBackState = () => {
     setEdit(false);
   };
 
+  const onClickEdit = () => {
+    // EditDetailAccount.js
+    // navigate('/setting_admin/edit_detail_account', {state:})
+    navigate('/setting_admin/my_account/edit', {state:admin})
+  }
+  
   return (
     <>
       {edit ? (
@@ -89,7 +98,7 @@ const MyAccountContent = () => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록일</label>
                 </th>
-                <td className={classes.contentStyle}>{admin.createdAt}</td>
+                <td className={classes.contentStyle}>{dateFormat(admin.createdAt)}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
@@ -101,12 +110,12 @@ const MyAccountContent = () => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>수정일</label>
                 </th>
-                <td className={classes.contentStyle}>{admin.updatedAt}</td>
+                <td className={classes.contentStyle}>{dateFormat(admin.updatedAt)}</td>
               </tr>
             </tbody>
           </table>
           <div className={classes.submitBtns}>
-            <button onClick={onEdit} className={classes.editBtn}>
+            <button onClick={onClickEdit} className={classes.editBtn}>
               수정
             </button>
           </div>
