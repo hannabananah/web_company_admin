@@ -4,6 +4,11 @@ const MemberTable = (props) => {
   const { fetchData, isLoaded } = props;
   const classes = useStyles();
 
+  // 생년월일 하이픈 적용
+  const renderBirth = (birth) => {
+    return birth?.replace(/^(\d{4})(\d{2})(\d{2})$/, `$1-$2-$3`);
+  };
+
   return (
     <div>
       <figure className={classes.root}>
@@ -50,7 +55,7 @@ const MemberTable = (props) => {
                     {/* OS */}
                     <td className={classes.td}>{i.device_type}</td>
                     {/* 생일 */}
-                    <td className={classes.td}>{i.birthday}</td>
+                    <td className={classes.td}>{renderBirth(i.birthday)}</td>
                     {/* 가입일 */}
                     <td className={classes.td}>{i.reg_dttm}</td>
                     {/*/!* 탈퇴일 *!/*/}
