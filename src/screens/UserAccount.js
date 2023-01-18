@@ -29,13 +29,13 @@ const option = [
 const UserAccount = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token");
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   //더미데이터
   useEffect(() => {
-    changePage(1)
+    changePage(1);
   }, []);
   // console.log(fetchData);
   // console.log(isLoaded);
@@ -58,45 +58,46 @@ const UserAccount = () => {
   };
   const onClickAddAccount = () => {
     // AddUserAccount.js
-    navigate('/setting_admin/user_account/add')
-  }
+    navigate("/setting_admin/user_account/add");
+  };
 
   const getTotalUserCnt = () => {
     axios
-      .get(`http://localhost:3001/api/admin/total?s=${selectVal}&v=${inputVal}`, {
-        headers: {
-          Authorization:
-              "Bearer " +
-              token,
-              // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-        },
-      })
-      .then(({data}) => {
+      .get(
+        `http://localhost:3001/api/admin/total?s=${selectVal}&v=${inputVal}`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
         console.log(data);
         setTotalUser(data.userCount);
         // console.log('totalUser :::::::::::::::', data.userCount)
       });
-  }
-  
+  };
+
   const changePage = (page) => {
     axios
-        .get(`http://localhost:3001/api/admin?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`, {
+      .get(
+        `http://localhost:3001/api/admin?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
+        {
           headers: {
-            Authorization:
-                "Bearer " +
-                token,
-                // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
-        })
-        .then(({data}) => {
-          console.log('changePage data::::::::::::', data);
-          setFetchData(data);
-        }).then(setIsLoaded(true));
-  }
+        }
+      )
+      .then(({ data }) => {
+        console.log("changePage data::::::::::::", data);
+        setFetchData(data);
+      })
+      .then(setIsLoaded(true));
+  };
 
   const onClickSearch = () => {
-    changePage(currentPage)
-  }
+    changePage(currentPage);
+  };
 
   return (
     <div className={classes.root}>
@@ -111,11 +112,15 @@ const UserAccount = () => {
               option={option}
             />
             <input className={classes.filterInput} />
-            <button className={classes.searchBtn} onClick={onClickSearch}>검색</button>
+            <button className={classes.searchBtn} onClick={onClickSearch}>
+              검색
+            </button>
           </>
         }
         right={
-          <button onClick={onClickAddAccount} className={classes.addBtn}>등록</button>
+          <button onClick={onClickAddAccount} className={classes.addBtn}>
+            등록
+          </button>
         }
       />
 
@@ -124,11 +129,8 @@ const UserAccount = () => {
         table_data={isLoaded && renderData}
       /> */}
 
-      <UserAccountTable
-        fetchData={fetchData}
-        isLoaded={isLoaded}
-      /> 
-      
+      <UserAccountTable fetchData={fetchData} isLoaded={isLoaded} />
+
       <Pagination
         activePage={currentPage}
         totalItemsCount={totalUser} // 총 포스트 갯수

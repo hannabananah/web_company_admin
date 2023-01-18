@@ -11,6 +11,7 @@ import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import { UpdateAlertModal } from "~/components/Modal";
 import axios from "axios";
+import TableHeader from "~/components/TableHeader";
 
 // filter select option
 const option = [
@@ -41,9 +42,7 @@ const AppVersion = () => {
         `http://localhost:3001/api/version/total?s=${selectVal}&v=${inputVal}`,
         {
           headers: {
-            Authorization:
-              "Bearer " +
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
         }
       )
@@ -59,9 +58,7 @@ const AppVersion = () => {
         `http://localhost:3001/api/version/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
         {
           headers: {
-            Authorization:
-              "Bearer " +
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
         }
       )
@@ -141,9 +138,7 @@ const AppVersion = () => {
         { status: "Y" },
         {
           headers: {
-            Authorization:
-              "Bearer " +
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
         }
       )
@@ -172,9 +167,7 @@ const AppVersion = () => {
         <AppDetail backState={goBackTable} user={user} />
       ) : (
         <div className={classes.root}>
-          <section className={classes.titleSection}>
-            <h2 className={classes.mainTitle}>App 버전 관리</h2>
-          </section>
+          <TableHeader title="App 버전 관리" />
 
           <FilterSection
             left={
