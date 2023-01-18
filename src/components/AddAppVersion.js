@@ -8,16 +8,16 @@ const osList = ["Android", "iOS", "Windows", "Mac"];
 
 const AddAppVersion = ({ backState }) => {
   const classes = useStyles();
-  const [radioValue, setRadioValue] = useState('Google Play');
+  const [radioValue, setRadioValue] = useState("Google Play");
   const onChangeRadio = (e) => {
     const { name, value, checked } = e.target;
 
     if (name == "store") {
-      notiInfo['store'] = value;
-      notiInfo['os'] = osList[storeList.indexOf(value)];
+      notiInfo["store"] = value;
+      notiInfo["os"] = osList[storeList.indexOf(value)];
     }
     if (name == "upt_type") {
-      notiInfo['update_type'] = value;
+      notiInfo["update_type"] = value;
     }
     console.log(notiInfo);
     const newInfo = {
@@ -26,7 +26,6 @@ const AddAppVersion = ({ backState }) => {
     };
     setRadioValue(value);
     setNotiInfo(newInfo);
-
   };
   // 등록완료 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -53,12 +52,13 @@ const AddAppVersion = ({ backState }) => {
     setNotiInfo(newInfo);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // eslint-disable-next-line no-restricted-globals
     if (confirm("저장 하시겠습니까?")) {
       // notiInfo["store"] = c
-      axios.post(
+      axios
+        .post(
           `http://localhost:3001/api/version/create`,
           {
             ...notiInfo,
@@ -66,13 +66,14 @@ const AddAppVersion = ({ backState }) => {
           {
             headers: {
               Authorization:
-                  "Bearer " +
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
             },
           }
-      ).then(({data}) => {
-        openModal();
-      });
+        )
+        .then(({ data }) => {
+          openModal();
+        });
     }
   };
 
@@ -135,8 +136,8 @@ const AddAppVersion = ({ backState }) => {
                       className={classes.radioBtn}
                       checked={radioValue == storeList[index]}
                       readOnly={true}
-                      color={'#aaa'}
-                      // disabled
+                      color={"#aaa"}
+                      disabled
                     />
                     <label htmlFor={item}>{item}</label>
                   </div>

@@ -7,6 +7,16 @@ import axios from "axios";
 const EditDetailAccount = ({ gobackstate, user }) => {
   const classes = useStyles();
 
+  const onChangeRadio = (e) => {
+    const { name, value } = e.target;
+
+    if (name == "upt_type") {
+      userInfo["update_type"] = value;
+    }
+    console.log(userInfo);
+    setUserInfo(userInfo);
+  };
+
   //user info state
   const [userInfo, setUserInfo] = useState({
     store: user.store,
@@ -18,46 +28,47 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     reg_dttm: user.reg_dttm,
   });
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     // eslint-disable-next-line no-restricted-globals
     if (confirm("저장 하시겠습니까?")) {
-      axios.post(
+      axios
+        .post(
           `http://localhost:3001/api/version/update`,
           {
-            ...userInfo
+            ...userInfo,
           },
           {
             headers: {
               Authorization:
-                  "Bearer " +
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
             },
           }
-      ).then(({data}) => {
-        console.log(data);
-        openModal()
-      });
+        )
+        .then(({ data }) => {
+          console.log(data);
+          openModal();
+        });
     }
   };
 
   useEffect(() => {
     axios
-        .get(`http://localhost:3001/api/version/${user.version_idx}`, {
-          headers: {
-            Authorization:
-                "Bearer " +
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-          },
-        })
-        .then(({data}) => {
-          // data.use_yn = data.use_yn  === 'Y' ? true : false
-          // setUserData(data);
-
-          // console.log(userInfo.phone)
-        });
-  }, [])
+      .get(`http://localhost:3001/api/version/${user.version_idx}`, {
+        headers: {
+          Authorization:
+            "Bearer " +
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+        },
+      })
+      .then(({ data }) => {
+        // data.use_yn = data.use_yn  === 'Y' ? true : false
+        setUserInfo(data);
+        // console.log(userInfo.phone)
+      });
+  }, []);
 
   const onChange = (e) => {
     const { name, value, checked } = e.target;
@@ -68,7 +79,6 @@ const EditDetailAccount = ({ gobackstate, user }) => {
     };
     setUserInfo(newInfo);
   };
-
 
   // 저장완료 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -144,23 +154,25 @@ const EditDetailAccount = ({ gobackstate, user }) => {
                 <input
                   type="radio"
                   id="choice"
-                  name="update_type"
+                  name="upt_type"
                   value="choice"
                   className={classes.radioBtn}
+                  onClick={onChangeRadio}
                   defaultChecked={userInfo.update_type === "choice"}
                 />
-                <label for="choice">선택</label>
+                <label htmlFor="choice">선택</label>
               </div>
               <div className={classes.radioBtnLayout2}>
                 <input
                   type="radio"
                   id="compulsion"
-                  name="update_type"
+                  name="upt_type"
                   value="compulsion"
                   className={classes.radioBtn}
-                  defaultChecked={userInfo.update_type !== "choice"}
+                  onClick={onChangeRadio}
+                  defaultChecked={userInfo.update_type === "compulsion"}
                 />
-                <label for="compulsion">강제</label>
+                <label htmlFor="compulsion">강제</label>
               </div>
             </td>
           </tr>

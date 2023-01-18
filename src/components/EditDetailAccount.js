@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import axios from "axios";
+import { UptConfirmModal } from "./Modal";
 
 const EditDetailAccount = () => {
   const classes = useStyles();
@@ -36,6 +37,7 @@ const EditDetailAccount = () => {
     console.log(newInfo)
     setUserInfo(newInfo);
   };
+
   
   useEffect(() => {
       axios
@@ -62,12 +64,19 @@ const EditDetailAccount = () => {
 
   // const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } = userInfo;
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    // delete userInfo["password"];
 
-    if (userInfo.password != "") {
-      if (userInfo.password != userInfo.chkPwd) {
-        alert('비밀번호 확인을 해주세요.');
+
+    // if (userInfo.password != "") {
+    //   if (userInfo.password != userInfo.chkPwd) {
+    //     alert('비밀번호 확인을 해주세요.');
+
+    if (userInfo.pwd != "") {
+      if (userInfo.pwd != userInfo.chkPwd) {
+        alert("비밀번호 확인을 해주세요.");
         return false;
       } else {
         
@@ -86,37 +95,33 @@ const EditDetailAccount = () => {
 
     // delete userInfo['password'];
     // delete userInfo['chkPwd'];
-      console.log(userInfo)
+      // console.log(userInfo)
 
 
 
     // // eslint-disable-next-line no-restricted-globals
     // if (confirm("저장 하시겠습니까?")) {
-      axios.post(
-          `http://localhost:3001/api/admin/update`,
-          {
-            ...userInfo,
-          },
-          {
-            headers: {
-              Authorization:
-                  "Bearer " +
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-            },
-          }
-      ).then(({data}) => {
-        console.log(data);
-
-        // window.location.reload();
-      });
+      // axios.post(
+      //     `http://localhost:3001/api/admin/update`,
+      //     {
+      //       ...userInfo,
+      //     },
+      //   }
+      // )
+      // .then(({ data }) => {
+      //   console.log(data);
+      //   openModal();
+      //   // window.location.reload();
+      // });
     // }
-
   };
+  
+  console.log(userInfo)
 
   const onClickPrev = () => {
     // UserAccountDetails.js
-    navigate('/setting_admin/user_account/details', {state:user})
-  }
+    navigate("/setting_admin/user_account/details", { state: user });
+  };
 
   // 저장완료 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -272,11 +277,23 @@ const EditDetailAccount = () => {
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
-        <input type="submit" value="저장" className={classes.saveBtn} onClick={handleSubmit} />
+        {/* <input
+          type="submit"
+          value="저장"
+          className={classes.saveBtn}
+          onClick={handleSubmit}
+        /> */}
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className={classes.saveBtn}
+        >
+          저장
+        </button>
       </div>
-      {/* <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
+      <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
         <main>저장했습니다.</main>
-      </UptConfirmModal> */}
+      </UptConfirmModal>
     </figure>
   );
 };
