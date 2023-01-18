@@ -31,7 +31,7 @@ const EditDetailAccount = () => {
     const newInfo = {
       ...userInfo,
       // [name]: name == "use_yn" ? userInfo.use_yn : value, //e.target의 name과 value이다.
-      [name]: name == "use_yn" ? checked : value, //e.target의 name과 value이다.
+      [name]: name == "use_yn" ? checked? "Y":"N" : value, //e.target의 name과 value이다.
       
     };
     console.log(newInfo)
@@ -40,27 +40,24 @@ const EditDetailAccount = () => {
 
   
   useEffect(() => {
-      axios
-          .get(`http://localhost:3001/api/admin/${user.id}`, {
-            headers: {
-              Authorization:
-                  "Bearer " +
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-            },
-          })
-          .then(({data}) => {
-            console.log('data----------------->',data)
-            data.use_yn = data.use_yn == 'Y' ? true : false
-            setUserInfo(data);
+    axios
+        .get(`http://localhost:3001/api/admin/${user.id}`, {
+          headers: {
+            Authorization:
+                "Bearer " +
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          },
+        })
+        .then(({data}) => {
+          console.log('data----------------->',data)
+          // data.use_yn = data.use_yn == 'Y' ? true : false
+          setUserInfo(data);
+          
 
-          });
+        });
   }, [])
   console.log('userInfo------>',userInfo)
   console.log(userInfo.use_yn)
-
-  //user info state
-  //userData.phone.split('-')[2] ? userData.phone.split('-')[2] :
-  // const [userInfo, setUserInfo] = useState({});
 
   // const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } = userInfo;
 
@@ -69,50 +66,56 @@ const EditDetailAccount = () => {
     e.preventDefault();
     // delete userInfo["password"];
 
-
-    // if (userInfo.password != "") {
-    //   if (userInfo.password != userInfo.chkPwd) {
-    //     alert('비밀번호 확인을 해주세요.');
-
     if (userInfo.pwd != "") {
       if (userInfo.pwd != userInfo.chkPwd) {
-        alert("비밀번호 확인을 해주세요.");
+        alert('비밀번호 확인을 해주세요.');
         return false;
       } else {
         
         const newInfo = {
           ...userInfo,
-          password: userInfo.password, //e.target의 name과 value이다.
+          password: userInfo.pwd,
         };
         setUserInfo(newInfo);
+
+        axios.post(
+            `http://localhost:3001/api/admin/update`,
+            {
+              ...userInfo,
+            },
+            {
+              headers: {
+                Authorization:
+                  "Bearer " +
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+              },
+            }
+          ).then(({ data }) => {
+          console.log(data);
+          openModal();
+          // window.location.reload();
+        });
+
       }
     }
-    // const newInfo = {
-    //   ...userInfo,
-    //   use_yn: userInfo.use_yn == true ? "Y" : "N", //e.target의 name과 value이다.
-    // };
-    // setUserInfo(newInfo);
 
     // delete userInfo['password'];
     // delete userInfo['chkPwd'];
       // console.log(userInfo)
 
 
-
     // // eslint-disable-next-line no-restricted-globals
     // if (confirm("저장 하시겠습니까?")) {
-      // axios.post(
-      //     `http://localhost:3001/api/admin/update`,
-      //     {
-      //       ...userInfo,
-      //     },
-      //   }
-      // )
-      // .then(({ data }) => {
-      //   console.log(data);
-      //   openModal();
-      //   // window.location.reload();
-      // });
+    //   axios.post(
+    //       `http://localhost:3001/api/admin/update`,
+    //       {
+    //         ...userInfo,
+    //       },
+    //     ).then(({ data }) => {
+    //     console.log(data);
+    //     openModal();
+    //     // window.location.reload();
+    //   });
     // }
   };
   
@@ -169,11 +172,12 @@ const EditDetailAccount = () => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.password || ""}
+                value={user.pwd}
                 onChange={onChange}
                 type="password"
                 className={classes.inputStyle}
-                name="password"
+                // name="password"
+                name="pwd"
                 id="password"
                 required
               />
@@ -185,7 +189,7 @@ const EditDetailAccount = () => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.chkPwd || ""}
+                // value=""
                 onChange={onChange}
                 type="password"
                 className={classes.inputStyle}
@@ -253,7 +257,7 @@ const EditDetailAccount = () => {
                 <input
                   // value={userInfo.use_yn || ""}
                   // value={userInfo.use_yn}
-                  checked={userInfo.use_yn || ""}
+                  checked={userInfo.use_yn == "Y" || ""}
                   onChange={onChange}
                   role="switch"
                   type="checkbox"
@@ -262,7 +266,7 @@ const EditDetailAccount = () => {
                   // defaultChecked={userInfo.use_yn}
                   // defaultChecked={userInfo.use_yn == "Y" ? true : false}
                 />
-                {userInfo.use_yn ? (
+                {userInfo.use_yn == "Y" ? (
                   <span className={classes.toggleText1}>사용</span>
                 ) : (
                   <span className={classes.toggleText2}>미사용</span>
