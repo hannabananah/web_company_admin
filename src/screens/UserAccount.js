@@ -4,7 +4,6 @@ import Pagination from "react-js-pagination";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import UserAccountTable from "~/components/table/UserAccountTable";
-import DetailAccount from "~/components/DetailAccount";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import TableHeader from "~/components/TableHeader";
