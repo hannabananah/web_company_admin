@@ -11,6 +11,7 @@ import { DeleteModal } from "~/components/Modal";
 
 const UserAccountDetails = () => {
   const user = useLocation().state;
+  const token = localStorage.getItem("access_token")
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ const UserAccountDetails = () => {
   };
   const onClickPrev = () => {
     // UserAccount.js
-    navigate('/setting_admin/user_account')
+    navigate(-1)
   }
   const onClickEdit = () => {
     // UserAccountEdit.js
@@ -40,7 +41,8 @@ const UserAccountDetails = () => {
           headers: {
             Authorization:
                 "Bearer " +
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+                token,
+                // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
           },
         })
         .then(({data}) => {

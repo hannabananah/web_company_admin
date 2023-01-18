@@ -10,37 +10,6 @@ import TableHeader from "~/components/TableHeader";
 import ColumnHeaderTable from "~/components/table/ColumnHeaderTable";
 import axios from "axios";
 
-const table_header = [
-  {
-    title:"번호",
-    width:"40px",
-  },
-  {
-    title:"아이디",
-    width:"140px",
-  },
-  {
-    title:"관리자 권한",
-    width:"100px",
-  },
-  {
-    title:"전화번호",
-    width:"120px",
-  },
-  {
-    title:"사용여부",
-    width:"60px",
-  },
-  {
-    title:"최근 접속",
-    width:"150px",
-  },
-  {
-    title:"수정일",
-    width:"150px",
-  },
-] 
-
 // filter select option
 const option = [
   {
@@ -60,7 +29,7 @@ const option = [
 const UserAccount = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-
+  const token = localStorage.getItem("access_token")
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -98,7 +67,8 @@ const UserAccount = () => {
         headers: {
           Authorization:
               "Bearer " +
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+              token,
+              // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
         },
       })
       .then(({data}) => {
@@ -114,7 +84,8 @@ const UserAccount = () => {
           headers: {
             Authorization:
                 "Bearer " +
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+                token,
+                // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
           },
         })
         .then(({data}) => {
@@ -122,41 +93,6 @@ const UserAccount = () => {
           setFetchData(data);
         }).then(setIsLoaded(true));
   }
-
-
-  // UserAccountTable.js 로 이동
-  // const onClickTarget = (i) => {
-  //   // UserAccountDetails.js
-  //   navigate('/setting_admin/user_account/details', { state: i })
-  // }
-
-  // const renderHeader = () => {
-  //   return (
-  //     <tr style={{ borderBottom: "1px solid rgba(188, 191, 204, 0.2)" }}>
-  //       <td className={classes.th_td} style={{ }}>번호</td>
-  //       <td className={classes.th_td} style={{ }}>아이디</td>
-  //       <td className={classes.th_td} style={{ }}>관리자 권한</td>
-  //       <td className={classes.th_td} style={{ }}>전화번호</td>
-  //       <td className={classes.th_td} style={{ }}>사용여부</td>
-  //       <td className={classes.th_td} style={{ }}>최근접속</td>
-  //       <td className={classes.th_td} style={{ }}>수정일</td>
-  //     </tr>
-  //   )
-  // }
-
-  // const renderData = fetchData?.users?.slice(0, 10).map((i, index) => {
-  //   return (
-  //     <tr key={index} className={classes.tableTr}>
-  //       <td className={classes.td}>{i.id}</td>
-  //       <td onClick={() => onClickTarget(i)} className={`${classes.td} + ${classes.idLink}`}>{i.firstName}</td>
-  //       <td className={classes.td}>{i.bloodGroup}</td>
-  //       <td className={classes.td}>{i.phone}</td>
-  //       <td className={classes.td}><span className={i.gender == "male" ? classes.unuseBtn : classes.useBtn}>{i.gender}</span></td>
-  //       <td className={classes.td}>{i.ip}</td>
-  //       <td className={classes.td}>{i.birthDate}</td>
-  //     </tr>
-  //   );
-  // })
 
   const onClickSearch = () => {
     changePage(currentPage)
