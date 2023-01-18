@@ -1,27 +1,41 @@
-import { useState } from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
+import axios from "axios";
+
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 
-const AppDetail = ({ user, backState }) => {
+const AppDetail = () => {
   const classes = useStyles();
+  const user = useLocation().state;
   const navigate = useNavigate();
-  const [edit, setEdit] = useState(false);
-  const onEdit = () => {
-    setEdit(true);
-  };
-  const gobackstate = () => {
-    setEdit(false);
-  };
+  const [fetchData, setFetchData] = useState([]);
 
   const onClickPrev = () => {
-    // 
-    navigate(-1)
-  }
+    //
+    navigate(-1);
+  };
   const onClickEdit = () => {
     // EditAppVer.js
-    navigate('/service/app_version/details/edit', { state : user })
-  }
+    navigate("/service/app_version/details/edit", { state: user });
+  };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/api/version/${user.version_idx}`, {
+        headers: {
+          Authorization:
+            "Bearer " +
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+        },
+      })
+      .then(({ data }) => {
+        // data.use_yn = data.use_yn  === 'Y' ? true : false
+        setFetchData(data);
+        // console.log(userInfo.phone)
+        console.log("+++++++++++", data);
+      });
+  }, []);
 
   return (
     <figure className={classes.userAccContainer}>
@@ -38,55 +52,59 @@ const AppDetail = ({ user, backState }) => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>스토어</label>
             </th>
-            <td className={classes.contentStyle}>{user.store}</td>
+            <td className={classes.contentStyle}>{fetchData.store}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>OS</label>
             </th>
-            <td className={classes.contentStyle}>{user.os}</td>
+            <td className={classes.contentStyle}>{fetchData.os}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>최신 APP 버전</label>
             </th>
-            <td className={classes.contentStyle}>{user.late_app_version}</td>
+            <td className={classes.contentStyle}>
+              {fetchData.late_app_version}
+            </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>최소 APP 버전</label>
             </th>
-            <td className={classes.contentStyle}>{user.min_app_version}</td>
+            <td className={classes.contentStyle}>
+              {fetchData.min_app_version}
+            </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>업데이트 유형</label>
             </th>
-            <td className={classes.contentStyle}>{user.update_type}</td>
+            <td className={classes.contentStyle}>{fetchData.update_type}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>설명</label>
             </th>
-            <td className={classes.contentStyle}>{user.remark}</td>
+            <td className={classes.contentStyle}>{fetchData.remark}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록일</label>
             </th>
-            <td className={classes.contentStyle}>{user.reg_dttm}</td>
+            <td className={classes.contentStyle}>{fetchData.createdAt}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록자</label>
             </th>
-            <td className={classes.contentStyle}>{user.reg_id}</td>
+            <td className={classes.contentStyle}>{fetchData.upt_id}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>수정일</label>
             </th>
-            <td className={classes.contentStyle}>{user.upt_dttm}</td>
+            <td className={classes.contentStyle}>{fetchData.updatedAt}</td>
           </tr>
         </tbody>
       </table>
