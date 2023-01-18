@@ -3,9 +3,14 @@ import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Login";
 import images from "~/assets/js/Images";
 import axios from "axios";
+import { intlFormat } from "date-fns-jalali";
 
 const Login = () => {
   const classes = useStyles();
+  const [info, setInfo] = useState({
+    id: 'admin',
+    password: '11111111',
+  })
   const [id, setId] = useState("admin");
   const [password, setPassword] = useState("11111111");
   const navigate = useNavigate();
@@ -17,15 +22,29 @@ const Login = () => {
   const onChangePw = (e) => {
     setPassword(e.target.value);
   };
+  const onChange = (e) => {
+    const { name, value } = e.target
+    const newInfo = {
+      ...info,
+      [name] : value
+    }
+    setInfo(newInfo);
+
+    if (invaild) setInvaild(false)
+  };
+  // console.log(info)
+
   const onSubmit = async (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:3001/api/auth/login`, { id, password })
+      .post(`http://localhost:3001/api/auth/login`, { id : info.id, password : info.password })
       .then((result) => {
         if (result.data) {
           localStorage.setItem("id", result.data.id);
           localStorage.setItem("adminKey", result.data.adminKey);
           navigate("/dashboard");
+        } else {
+          setInvaild(true)
         }
       })
       .catch((err) =>  console.log(err));
@@ -54,8 +73,11 @@ const Login = () => {
                 />
                 <input
                   type="text"
-                  value={id}
-                  onChange={onChangeId}
+                  // value={id}
+                  value={info.id}
+                  name="id"
+                  // onChange={onChangeId}
+                  onChange={onChange}
                   autoComplete="false"
                   placeholder="관리자 아이디"
                   className={classes.loginInput}
@@ -72,8 +94,11 @@ const Login = () => {
                 />
                 <input
                   type="password"
-                  value={password}
-                  onChange={onChangePw}
+                  // value={password}
+                  value={info.password}
+                  name="password"
+                  // onChange={onChangePw}
+                  onChange={onChange}
                   autoComplete="false"
                   placeholder="비밀번호"
                   className={classes.loginInput}
