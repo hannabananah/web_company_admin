@@ -6,8 +6,8 @@ import axios from "axios";
 
 const Login = () => {
   const classes = useStyles();
-  const [id, setId] = useState("anychat");
-  const [password, setPassword] = useState("anychat21!@");
+  const [id, setId] = useState("admin");
+  const [password, setPassword] = useState("11111111");
   const navigate = useNavigate();
   const [invalid, setInvalid] = useState(false);
 
@@ -28,7 +28,7 @@ const Login = () => {
           navigate("/dashboard");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>  console.log(err));
   };
 
   return (
