@@ -115,7 +115,7 @@ export const NoticeAlertModal = (props) => {
               취소
             </button>
             {/* onClick 바꿔야함 */}
-            <button className={classes.saveBtn} onClick={close}>
+            <button className={classes.deleteBtn} onClick={close}>
               확인
             </button>
           </footer>
