@@ -116,7 +116,7 @@ export const UptConfirmModal = (props) => {
 
 export const SaveConfirmModal = (props) => {
   const classes = useStyles();
-  const { open, close, header } = props;
+  const { open, close, header, onClickCancel, onClickConfirm } = props;
 
   return (
     <div className={open ? "openModal modal" : "modal"}>
@@ -133,7 +133,10 @@ export const SaveConfirmModal = (props) => {
           <main>{props.children}</main>
           <footer className="modalBtns">
             {/* onClick 바꿔야함 */}
-            <button className={classes.backBtn} onClick={close}>
+            <button className={classes.backBtn} onClick={onClickCancel}>
+              취소
+            </button>
+            <button className={classes.backBtn} onClick={onClickConfirm}>
               확인
             </button>
           </footer>
