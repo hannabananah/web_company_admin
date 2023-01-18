@@ -28,6 +28,7 @@ import NotFound from "~/screens/NotFound";
 import EditorTool from "~/components/Editor";
 import UserAccountEdit from "~/screens/UserAccountEdit";
 import AddUserAccount from "~/screens/AddUserAccount";
+import ReportTransError from "~/screens/ReportTransError";
 import DashBoard from "~/screens/DashBoard";
 import NotiAppIntroAdd from "~/screens/NotiAppIntroAdd";
 import DetailIntroNoti from "~/screens/DetailIntroNoti";
@@ -63,10 +64,16 @@ function App() {
               {/* <Route path="/member" element={<Member />} /> */}
               <Route path="/member/member_status" element={<MemberStatus />} />
               {/* <Route path="/service" element={<Service />} /> */}
+              {/* 서비스 관리 > App 버전 관리 */}
               <Route path="/service/app_version" element={<AppVersion />} />
+              {/* 서비스 관리 > App 버전 관리 > 상세 */}
               <Route path="/service/app_version/details" element={<DetailsAppVer />} />
+               {/* 서비스 관리 > App 버전 관리 > 상세 > 수정 */}
               <Route path="/service/app_version/details/edit" element={<EditAppVer />} />
+               {/* 서비스 관리 > App 버전 관리 > 등록 */}
               <Route path="/service/app_version/add" element={<AddAppVer />} />
+               {/* 서비스 관리 > 번역 이상 신고 */}
+              <Route path="/service/report_translation_error" element={<ReportTransError />} />
 
               <Route path="/statistics" element={<Statistics />} />
               {/* <Route path="/notice" element={<Notice />} /> */}

@@ -12,17 +12,17 @@ export const sidenav_data = [
         subMenu: [
           {
             title: "계정 상세",
-            path: "/setting_admin/user_account/details"
+            path: "/setting_admin/user_account/details",
           },
           {
             title: "계정 정보 수정",
-            path: "/setting_admin/user_account/edit"
+            path: "/setting_admin/user_account/edit",
           },
           {
             title: "사용자 추가",
-            path: "/setting_admin/user_account/add"
-          }
-        ]
+            path: "/setting_admin/user_account/add",
+          },
+        ],
       },
       {
         title: "내 계정 관리",
@@ -30,9 +30,9 @@ export const sidenav_data = [
         subMenu: [
           {
             title: "수정",
-            path: "/setting_admin/my_account/edit"
+            path: "/setting_admin/my_account/edit",
           },
-        ]
+        ],
       },
       {
         title: "관리 이력",
@@ -68,13 +68,17 @@ export const sidenav_data = [
                 title: "수정",
                 path: "/service/app_version/details/edit",
               },
-            ]
+            ],
           },
           {
             title: "등록",
             path: "/service/app_version/add",
           },
-        ]
+        ],
+      },
+      {
+        title: "번역 이상 신고",
+        path: "/service/report_translation_error",
       },
     ],
   },
@@ -99,14 +103,14 @@ export const sidenav_data = [
               {
                 title: "수정",
                 path: "/notice/app_intro/details/edit",
-              }
-            ]
+              },
+            ],
           },
           {
             title: "등록",
             path: "/notice/app_intro/add",
           },
-        ]
+        ],
       },
       {
         title: "App 더보기 공지",
@@ -143,9 +147,8 @@ sidenav_data.map((item, index) => {
 });
 // console.log('allPaths ------->',allPaths)
 
-
-sidenav_data.filter((item)=>{
-  return item['path']
+sidenav_data.filter((item) => {
+  return item["path"];
 });
 
 // ================================================================================
@@ -164,96 +167,96 @@ sidenav_data.filter((item)=>{
 // console.log(breadcrumbNameMap['/setting_admin'])
 
 export const breadcrumbNameMap = {
-  '/setting_admin': [
+  "/setting_admin": [
     {
-      title:'관리자 설정',
-      // path:'/setting_admin',
-      path: false,
-    }
-  ],
-  '/setting_admin/user_account': [
-    {
-      title:'관리자 설정',
+      title: "관리자 설정",
       // path:'/setting_admin',
       path: false,
     },
-    {
-      title:'계정 관리',
-      path:'/setting_admin/user_account'
-    }
   ],
-  '/setting_admin/my_account': [
+  "/setting_admin/user_account": [
     {
-      title:'관리자 설정',
+      title: "관리자 설정",
       // path:'/setting_admin',
       path: false,
     },
     {
-      title:'내 계정 관리',
-      path:'/setting_admin/my_account'
+      title: "계정 관리",
+      path: "/setting_admin/user_account",
     },
   ],
-  '/setting_admin/history': [
+  "/setting_admin/my_account": [
     {
-      title:'관리자 설정',
+      title: "관리자 설정",
       // path:'/setting_admin',
       path: false,
     },
     {
-      title:'관리 이력',
-      path:'/setting_admin/history'
+      title: "내 계정 관리",
+      path: "/setting_admin/my_account",
     },
   ],
-  '/member': [
+  "/setting_admin/history": [
     {
-      title:'회원 관리',
+      title: "관리자 설정",
+      // path:'/setting_admin',
+      path: false,
+    },
+    {
+      title: "관리 이력",
+      path: "/setting_admin/history",
+    },
+  ],
+  "/member": [
+    {
+      title: "회원 관리",
       // path:'/member',
       path: false,
     },
   ],
-  '/member/member_status': [
+  "/member/member_status": [
     {
-      title:'회원 관리',
+      title: "회원 관리",
       // path:'/member',
       path: false,
     },
     {
-      title:'회원 현황',
-      path:'/member/member_status'
+      title: "회원 현황",
+      path: "/member/member_status",
     },
   ],
-  '/service': [
+  "/service": [
     {
-      title:'서비스 관리',
-      path:'/service'
+      title: "서비스 관리",
+      path: "/service",
     },
   ],
-  '/service/app_version': [
+  "/service/app_version": [
     {
-      title:'서비스 관리',
+      title: "서비스 관리",
       // path:'/service'
       path: false,
     },
     {
-      title:'App 버전 관리',
-      path:'/service/app_version'
+      title: "App 버전 관리",
+      path: "/service/app_version",
     },
   ],
-  '/statistics': [
+  "/statistics": [
     {
-      title:'통계 관리',
-      path:'/statistics'
+      title: "통계 관리",
+      path: "/statistics",
     },
   ],
-  '/notice': [
+  "/notice": [
     {
-      title:'공지 관리',
-      path:'/notice'
+      title: "공지 관리",
+      path: "/notice",
     },
   ],
-  '/notice/app_intro': [
+  "/notice/app_intro": [
     {
-      title:'공지 관리',
+      title: "공지 관리",
       path: false,
     },
     {
@@ -261,9 +264,9 @@ export const breadcrumbNameMap = {
       path: "/notice/app_intro",
     },
   ],
-  '/notice/app_viewmore': [
+  "/notice/app_viewmore": [
     {
-      title:'공지 관리',
+      title: "공지 관리",
       path: false,
     },
     {
@@ -271,9 +274,9 @@ export const breadcrumbNameMap = {
       path: "/notice/app_viewmore",
     },
   ],
-  '/notice/user_email': [
+  "/notice/user_email": [
     {
-      title:'공지 관리',
+      title: "공지 관리",
       path: false,
     },
     {
@@ -281,10 +284,10 @@ export const breadcrumbNameMap = {
       path: "/notice/user_email",
     },
   ],
-  '/system_settings': [
+  "/system_settings": [
     {
-      title:'시스템 설정',
-      path:'/system_settings'
+      title: "시스템 설정",
+      path: "/system_settings",
     },
   ],
 };
@@ -295,49 +298,47 @@ export const breadcrumbNameMap = {
 
 // ================================================================================
 const Obj = (title, path) => {
-  return (
-    {
-      [title] : [
-        {
-          title : title,
-          path: path
-        }
-      ],
-    }
-  )
+  return {
+    [title]: [
+      {
+        title: title,
+        path: path,
+      },
+    ],
+  };
 };
 // let new_obj = Obj('타이틀','/title_path')
 // ================================================================================
-export const breadCrumbsObj = {}
+export const breadCrumbsObj = {};
 
-sidenav_data.map((item)=>{
+sidenav_data.map((item) => {
   breadCrumbsObj[item.path] = [
     {
-      title : item.title,
-      path : item.path,
-    }
-  ]
+      title: item.title,
+      path: item.path,
+    },
+  ];
   // 서브 메뉴가 몇개든 커버 해야함..
-  if ( item.subMenu ) {
-    for(let i=0; i<item.subMenu.length; i++) {
+  if (item.subMenu) {
+    for (let i = 0; i < item.subMenu.length; i++) {
       // console.log(item.subMenu[i].path)
       breadCrumbsObj[item.subMenu[i].path] = [
         {
-          title : item.title,
-          path : false,
+          title: item.title,
+          path: false,
         },
         {
-          title : item.subMenu[i].title,
-          path : item.subMenu[i].path,
-        }
-      ]
+          title: item.subMenu[i].title,
+          path: item.subMenu[i].path,
+        },
+      ];
     }
   }
-})
+});
 // console.log('breadCrumbsObj ----------->>>',breadCrumbsObj)
 
 // ================================================================================
-sidenav_data.map((item)=>{
+sidenav_data.map((item) => {
   // 서브 메뉴가 몇개든 커버 해야함
   // if ( item.subMenu ) {
   //   console.log(item.subMenu)
@@ -350,7 +351,7 @@ sidenav_data.map((item)=>{
   // } else {
   //   console.log('item dose not have sub menu -----> ',item)
   // }
-})
+});
 // ================================================================================
 // const aa = {}
 // aa['a'] = 'a'
@@ -367,22 +368,24 @@ sidenav_data.map((item)=>{
 // console.log(source)
 // console.log(returnedTarget)
 // ================================================================================
-sidenav_data.map((i)=>{
+sidenav_data.map((i) => {
   // console.log('Object.keys(i)', Object.keys(i))
   // console.log('Object.values(i)', Object.values(i))
-  if( Object.keys(i).includes('subMenu') ) {
+  if (Object.keys(i).includes("subMenu")) {
   }
-})
+});
 // ================================================================================
 
-console.log('sidenav_data ------ >>>> ', sidenav_data)
+console.log("sidenav_data ------ >>>> ", sidenav_data);
 
 // 현재 path '/setting_admin/user_account'
 const currPath = window.location.pathname;
 // 현재 path에서 / 기준으로 나눔   ['', 'setting_admin', 'user_account']
-const splitedPathArrOrigin = currPath.split('/')
+const splitedPathArrOrigin = currPath.split("/");
 // 첫번째 공백 제거
-const splitedPathArr = splitedPathArrOrigin.filter((element, index) => index > 0);
+const splitedPathArr = splitedPathArrOrigin.filter(
+  (element, index) => index > 0
+);
 // console.log(' 첫번째 공백이 제거된 path 배열 ---- >>>', splitedPathArr)
 
 // path depth 개수 확인
@@ -395,46 +398,41 @@ const splitedPathArr = splitedPathArrOrigin.filter((element, index) => index > 0
 //   console.log(`/${splitedPathArr[i]}`)
 // }
 
-
 // 현재 path에 해당하는 sidenav data obj
-const targetObj = sidenav_data.filter((i)=>{
-  return `/${splitedPathArr[0]}`.includes(i.path)
-})
+const targetObj = sidenav_data.filter((i) => {
+  return `/${splitedPathArr[0]}`.includes(i.path);
+});
 // console.log(targetObj)
 
 //   '/notice(3)/app_intro(2)/add(1)'
 
-targetObj.map((item)=>{
+targetObj.map((item) => {
   if (item.subMenu) {
     // console.log(item.subMenu) // 3 개
-    item.subMenu.map((i)=>{
+    item.subMenu.map((i) => {
       // console.log(i.title)
       // console.log(i.path)
-    })
+    });
 
-      for (let i=0; i<item.subMenu.length; i++){
-        if (item.subMenu[i].subMenu) {
-          // console.log(item.subMenu[i].subMenu) // 2 개
-          item.subMenu[i].subMenu.map((i)=>{
-            // console.log(i.title)
-            // console.log(i.path)
-          })
-  
-          for (let c=0; c<item.subMenu[i].subMenu.length; c++){
-            if (item.subMenu[i].subMenu[c].subMenu) {
-              // console.log(item.subMenu[i].subMenu[c].subMenu) // 1 개
-              item.subMenu[i].subMenu[c].subMenu.map((i)=>{
-                // console.log(i.title)
-                // console.log(i.path)
-              })
-            }
+    for (let i = 0; i < item.subMenu.length; i++) {
+      if (item.subMenu[i].subMenu) {
+        // console.log(item.subMenu[i].subMenu) // 2 개
+        item.subMenu[i].subMenu.map((i) => {
+          // console.log(i.title)
+          // console.log(i.path)
+        });
+
+        for (let c = 0; c < item.subMenu[i].subMenu.length; c++) {
+          if (item.subMenu[i].subMenu[c].subMenu) {
+            // console.log(item.subMenu[i].subMenu[c].subMenu) // 1 개
+            item.subMenu[i].subMenu[c].subMenu.map((i) => {
+              // console.log(i.title)
+              // console.log(i.path)
+            });
           }
-  
-  
         }
       }
-
-
+    }
   }
 });
 
@@ -482,8 +480,6 @@ targetObj.map((item)=>{
 // }
 
 // console.log(  objByName( DATA,'name') )
-
-
 
 // const depthOf = (object) => {
 //   var level = 1;// w w w .  ja v  a 2 s.  co m
