@@ -3,13 +3,17 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import axios from "axios";
-import { UptConfirmModal } from "./Modal";
+import { UptConfirmModal, SaveConfirmModal } from "~/components/Modal";
 
 const EditDetailAccount = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const user = useLocation().state;
   // console.log(user)
+
+  // 모달
+  const [modalOpen, setModalOpen] = useState(false);
+  const [saveConfirm, setSaveConfirm] = useState(false);
 
   const [userInfo, setUserInfo] = useState({});
   // const [userInfo, setUserInfo] = useState({
@@ -65,13 +69,13 @@ const EditDetailAccount = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // delete userInfo["password"];
+    setSaveConfirm(false)
 
     if (userInfo.pwd != "") {
       if (userInfo.pwd != userInfo.chkPwd) {
         alert('비밀번호 확인을 해주세요.');
         return false;
       } else {
-        
         const newInfo = {
           ...userInfo,
           password: userInfo.pwd,
@@ -95,43 +99,23 @@ const EditDetailAccount = () => {
           openModal();
           // window.location.reload();
         });
-
       }
     }
 
     // delete userInfo['password'];
     // delete userInfo['chkPwd'];
-      // console.log(userInfo)
-
-
-    // // eslint-disable-next-line no-restricted-globals
-    // if (confirm("저장 하시겠습니까?")) {
-    //   axios.post(
-    //       `http://localhost:3001/api/admin/update`,
-    //       {
-    //         ...userInfo,
-    //       },
-    //     ).then(({ data }) => {
-    //     console.log(data);
-    //     openModal();
-    //     // window.location.reload();
-    //   });
-    // }
   };
   
   console.log(userInfo)
 
   const onClickPrev = () => {
-    // UserAccountDetails.js
-    // navigate("/setting_admin/user_account/details", { state: user });
+    // UserAccount.js
     navigate(-1);
   };
 
-  // 저장완료 모달
-  const [modalOpen, setModalOpen] = useState(false);
-
   const openModal = () => {
     setModalOpen(true);
+    navigate(-1, {state:userInfo})
   };
   const closeModal = () => {
     setModalOpen(false);
@@ -290,12 +274,17 @@ const EditDetailAccount = () => {
         /> */}
         <button
           type="submit"
-          onClick={handleSubmit}
+          onClick={()=>setSaveConfirm(true)}
           className={classes.saveBtn}
         >
           저장
         </button>
       </div>
+      
+      <SaveConfirmModal open={saveConfirm} close={handleSubmit} header="저장">
+        <main>저장 하시겠습니까?</main>
+      </SaveConfirmModal>
+
       <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
         <main>저장했습니다.</main>
       </UptConfirmModal>
