@@ -14,7 +14,7 @@ const AddUserAccount = () => {
   const [pwdCheck, setPwdCheck] = useState(false);
 
   const [userInfo, setUserInfo] = useState({
-    id: '',
+    id: "",
     grade: 1,
     pwd: "",
     chkPwd: "",
@@ -57,54 +57,51 @@ const AddUserAccount = () => {
     e.preventDefault();
     {
       if (userInfo.pwd != userInfo.chkPwd) {
-        alert('비밀번호 확인을 해주세요.');
+        alert("비밀번호 확인을 해주세요.");
         return false;
       }
       const newInfo = {
         ...userInfo,
-        "password":  userInfo.pwd, //e.target의 name과 value이다.
+        password: userInfo.pwd, //e.target의 name과 value이다.
       };
       setUserInfo(newInfo);
     }
 
     // eslint-disable-next-line no-restricted-globals
     if (confirm("저장 하시겠습니까?")) {
-      axios.post(
+      axios
+        .post(
           `http://localhost:3001/api/admin/create`,
           {
             ...userInfo,
           },
           {
             headers: {
-              Authorization:
-                  "Bearer " +
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
             },
           }
-      ).then(({data}) => {
-        console.log(data);
-        navigate("/setting_admin/user_account");
-
-      });
+        )
+        .then(({ data }) => {
+          console.log(data);
+          navigate("/setting_admin/user_account");
+        });
     }
   };
 
   const duplicationCheck = () => {
     axios
-        .get(`http://localhost:3001/api/admin/${userInfo.id}`, {
-          headers: {
-            Authorization:
-                "Bearer " +
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-          },
-        })
-        .then(({data}) => {
-          if (data.adminKey) {
-            setDoubleCheck(true)
-          } else {
-            setDoubleCheck(false)
-          }
-        });
+      .get(`http://localhost:3001/api/admin/${userInfo.id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
+      .then(({ data }) => {
+        if (data.adminKey) {
+          setDoubleCheck(true);
+        } else {
+          setDoubleCheck(false);
+        }
+      });
   };
 
   return (
@@ -182,7 +179,6 @@ const AddUserAccount = () => {
                 required
                 value={userInfo.pwd}
                 onChange={onChange}
-
               />
               {/* 비밀번호 생성 조합 알림문구 */}
               {pwdCheck && (
@@ -248,7 +244,6 @@ const AddUserAccount = () => {
                 required
                 value={userInfo.email}
                 onChange={onChange}
-
               />
             </td>
           </tr>
@@ -265,7 +260,6 @@ const AddUserAccount = () => {
                 required
                 value={userInfo.allow_remote_ip}
                 onChange={onChange}
-
               />
             </td>
           </tr>
@@ -299,7 +293,12 @@ const AddUserAccount = () => {
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
-        <input type="submit" value="저장" className={classes.saveBtn} onClick={handleSubmit} />
+        <input
+          type="submit"
+          value="저장"
+          className={classes.saveBtn}
+          onClick={handleSubmit}
+        />
       </div>
       {/* <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
         <main>저장했습니다.</main>

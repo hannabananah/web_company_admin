@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
@@ -17,21 +17,19 @@ const MyAccountContent = () => {
   };
   useEffect(() => {
     getAdmin();
-  },[]);
+  }, []);
   const getAdmin = () => {
     axios
-        .get(`http://localhost:3001/api/admin/${localStorage.getItem('id')}`, {
-          headers: {
-            Authorization:
-                "Bearer " +
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-          },
-        })
-        .then(({data}) => {
-          console.log(data);
-          setAdmin(data);
-        });
-  }
+      .get(`http://localhost:3001/api/admin/${localStorage.getItem("id")}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
+      .then(({ data }) => {
+        console.log(data);
+        setAdmin(data);
+      });
+  };
 
   const goBackState = () => {
     setEdit(false);
@@ -40,9 +38,9 @@ const MyAccountContent = () => {
   const onClickEdit = () => {
     // EditDetailAccount.js
     // navigate('/setting_admin/edit_detail_account', {state:})
-    navigate('/setting_admin/my_account/edit', {state:admin})
-  }
-  
+    navigate("/setting_admin/my_account/edit", { state: admin });
+  };
+
   return (
     <>
       {edit ? (
@@ -86,7 +84,9 @@ const MyAccountContent = () => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>접속허가 IP</label>
                 </th>
-                <td className={classes.contentStyle}>{admin.allow_remote_ip}</td>
+                <td className={classes.contentStyle}>
+                  {admin.allow_remote_ip}
+                </td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
@@ -98,7 +98,9 @@ const MyAccountContent = () => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>등록일</label>
                 </th>
-                <td className={classes.contentStyle}>{dateFormat(admin.createdAt)}</td>
+                <td className={classes.contentStyle}>
+                  {dateFormat(admin.createdAt)}
+                </td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
@@ -110,7 +112,9 @@ const MyAccountContent = () => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>수정일</label>
                 </th>
-                <td className={classes.contentStyle}>{dateFormat(admin.updatedAt)}</td>
+                <td className={classes.contentStyle}>
+                  {dateFormat(admin.updatedAt)}
+                </td>
               </tr>
             </tbody>
           </table>

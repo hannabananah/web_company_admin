@@ -40,43 +40,48 @@ const History = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [inputVal, setInputVal] = useState("");
 
-
   useEffect(() => {
-      changePage(1);
+    changePage(1);
     setEnd(start);
   }, [start]);
 
   const getTotalHistry = () => {
     axios
-        .get(`http://localhost:3001/api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format("YYYY-MM-DD")}&et=${end.format("YYYY-MM-DD")}`, {
+      .get(
+        `http://localhost:3001/api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format(
+          "YYYY-MM-DD"
+        )}&et=${end.format("YYYY-MM-DD")}`,
+        {
           headers: {
-            Authorization:
-                "Bearer " +
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
-        })
-        .then(({data}) => {
-          console.log(data);
-          setTotalUser(data.cnt);
-
-        });
-  }
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+        setTotalUser(data.cnt);
+      });
+  };
 
   const changePage = (page) => {
-    getTotalHistry()
+    getTotalHistry();
     axios
-        .get(`http://localhost:3001/api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format("YYYY-MM-DD")}&et=${end.format("YYYY-MM-DD")}`, {
+      .get(
+        `http://localhost:3001/api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
+          "YYYY-MM-DD"
+        )}&et=${end.format("YYYY-MM-DD")}`,
+        {
           headers: {
-            Authorization:
-                "Bearer " +
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
-        })
-        .then(({data}) => {
-          console.log(data);
-          setFetchData(data);
-        }).then(setIsLoaded(true));
-  }
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+        setFetchData(data);
+      })
+      .then(setIsLoaded(true));
+  };
 
   const handleNameChange = (e) => {
     setInputVal(e.target.value);
@@ -88,7 +93,7 @@ const History = () => {
   };
 
   useEffect(() => {
-   changePage(1);
+    changePage(1);
   }, []);
 
   // 필터
@@ -109,7 +114,7 @@ const History = () => {
               onChange={onChangeSelect}
               option={option}
             />
-            <input className={classes.input}  onChange={handleNameChange} />
+            <input className={classes.input} onChange={handleNameChange} />
           </>
         }
         right={
@@ -120,11 +125,14 @@ const History = () => {
               end={end}
               setEnd={setEnd}
             />
-            <button className={classes.searchBtn}
-                onClick={() => {
-                    changePage(1);
-                }}
-            >검색</button>
+            <button
+              className={classes.searchBtn}
+              onClick={() => {
+                changePage(1);
+              }}
+            >
+              검색
+            </button>
           </>
         }
       />

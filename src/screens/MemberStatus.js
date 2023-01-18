@@ -50,9 +50,7 @@ const MemberStatus = () => {
         `http://localhost:3001/api/user/totalUserCnt?s=${selectVal}&v=${inputVal}`,
         {
           headers: {
-            Authorization:
-              "Bearer " +
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
         }
       )
@@ -68,9 +66,7 @@ const MemberStatus = () => {
         `http://localhost:3001/api/user/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
         {
           headers: {
-            Authorization:
-              "Bearer " +
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
         }
       )

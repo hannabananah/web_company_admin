@@ -8,7 +8,7 @@ import { UptConfirmModal, SaveConfirmModal } from "~/components/Modal";
 const EditDetailAccount = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token");
   const user = useLocation().state;
   // console.log(user)
 
@@ -36,47 +36,39 @@ const EditDetailAccount = () => {
     const newInfo = {
       ...userInfo,
       // [name]: name == "use_yn" ? userInfo.use_yn : value, //e.target의 name과 value이다.
-      [name]: name == "use_yn" ? checked? "Y":"N" : value, //e.target의 name과 value이다.
-      
+      [name]: name == "use_yn" ? (checked ? "Y" : "N") : value, //e.target의 name과 value이다.
     };
-    console.log(newInfo)
+    console.log(newInfo);
     setUserInfo(newInfo);
   };
 
-  
   useEffect(() => {
     axios
-        .get(`http://localhost:3001/api/admin/${user.id}`, {
-          headers: {
-            Authorization:
-                "Bearer " +
-                token,
-                // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-          },
-        })
-        .then(({data}) => {
-          console.log('data----------------->',data)
-          // data.use_yn = data.use_yn == 'Y' ? true : false
-          setUserInfo(data);
-          
-
-        });
-  }, [])
-  console.log('userInfo------>',userInfo)
-  console.log(userInfo.use_yn)
+      .get(`http://localhost:3001/api/admin/${user.id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
+      .then(({ data }) => {
+        console.log("data----------------->", data);
+        // data.use_yn = data.use_yn == 'Y' ? true : false
+        setUserInfo(data);
+      });
+  }, []);
+  console.log("userInfo------>", userInfo);
+  console.log(userInfo.use_yn);
 
   // const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } = userInfo;
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // delete userInfo["password"];
-    setSaveConfirm(false)
+    setSaveConfirm(false);
 
     if (userInfo.pwd != "") {
       if (userInfo.pwd != userInfo.chkPwd) {
-        alert('비밀번호 확인을 해주세요.');
+        alert("비밀번호 확인을 해주세요.");
         return false;
       } else {
         const newInfo = {
@@ -85,32 +77,31 @@ const EditDetailAccount = () => {
         };
         setUserInfo(newInfo);
 
-        axios.post(
+        axios
+          .post(
             `http://localhost:3001/api/admin/update`,
             {
               ...userInfo,
             },
             {
               headers: {
-                Authorization:
-                  "Bearer " +
-                  token,
-                  // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
               },
             }
-          ).then(({ data }) => {
-          console.log(data);
-          openModal();
-          // window.location.reload();
-        });
+          )
+          .then(({ data }) => {
+            console.log(data);
+            openModal();
+            // window.location.reload();
+          });
       }
     }
 
     // delete userInfo['password'];
     // delete userInfo['chkPwd'];
   };
-  
-  console.log(userInfo)
+
+  console.log(userInfo);
 
   const onClickPrev = () => {
     // UserAccount.js
@@ -122,7 +113,7 @@ const EditDetailAccount = () => {
   };
   const closeModal = () => {
     setModalOpen(false);
-    navigate(-1)
+    navigate(-1);
   };
 
   return (
@@ -278,14 +269,19 @@ const EditDetailAccount = () => {
         /> */}
         <button
           type="submit"
-          onClick={()=>setSaveConfirm(true)}
+          onClick={() => setSaveConfirm(true)}
           className={classes.saveBtn}
         >
           저장
         </button>
       </div>
-      
-      <SaveConfirmModal open={saveConfirm} onClickCancel={()=>setSaveConfirm(false)} onClickConfirm={handleSubmit} header="저장">
+
+      <SaveConfirmModal
+        open={saveConfirm}
+        onClickCancel={() => setSaveConfirm(false)}
+        onClickConfirm={handleSubmit}
+        header="저장"
+      >
         <main>저장 하시겠습니까?</main>
       </SaveConfirmModal>
 

@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const EditDetailMyAccount = ({ goBackState, admin }) => {
   const classes = useStyles();
@@ -10,20 +10,18 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
 
   useEffect(() => {
     axios
-        .get(`http://localhost:3001/api/admin/${admin.id}`, {
-          headers: {
-            Authorization:
-                "Bearer " +
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-          },
-        })
-        .then(({data}) => {
-          data.use_yn = data.use_yn  === 'Y' ? true : false
-          // setUserData(data);
-          setUserInfo(data);
-          // console.log(userInfo.phone)
-        });
-  }, [])
+      .get(`http://localhost:3001/api/admin/${admin.id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
+      .then(({ data }) => {
+        data.use_yn = data.use_yn === "Y" ? true : false;
+        // setUserData(data);
+        setUserInfo(data);
+        // console.log(userInfo.phone)
+      });
+  }, []);
 
   const [userInfo, setUserInfo] = useState({});
 
@@ -39,41 +37,40 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    delete userInfo['password'];
+    delete userInfo["password"];
 
-    if (userInfo.pwd  != "") {
+    if (userInfo.pwd != "") {
       if (userInfo.pwd != userInfo.chkPwd) {
-        alert('비밀번호 확인을 해주세요.');
+        alert("비밀번호 확인을 해주세요.");
         return false;
       }
       const newInfo = {
         ...userInfo,
-        "password":  userInfo.pwd, //e.target의 name과 value이다.
+        password: userInfo.pwd, //e.target의 name과 value이다.
       };
       setUserInfo(newInfo);
     }
 
     // eslint-disable-next-line no-restricted-globals
     if (confirm("저장 하시겠습니까?")) {
-      axios.post(
-              `http://localhost:3001/api/admin/update`,
-              {
-                ...userInfo
-              },
-              {
-                headers: {
-                  Authorization:
-                      "Bearer " +
-                      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-                },
-              }
-          ).then(({data}) => {
-        console.log(data);
-        window.location.reload();
-      });
+      axios
+        .post(
+          `http://localhost:3001/api/admin/update`,
+          {
+            ...userInfo,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        )
+        .then(({ data }) => {
+          console.log(data);
+          window.location.reload();
+        });
     }
   };
-
 
   // 저장완료 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -100,9 +97,7 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>사용자 아이디</label>
             </th>
-            <td className={classes.fixedLayout}>
-              {userInfo.id}
-            </td>
+            <td className={classes.fixedLayout}>{userInfo.id}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
@@ -167,7 +162,6 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
                 onChange={onChange}
                 required
               />
-
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -216,7 +210,7 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
                   name="use_yn"
                   value={userInfo.use_yn}
                   onChange={onChange}
-                    // defaultChecked={userInfo.use_yn}
+                  // defaultChecked={userInfo.use_yn}
                   defaultChecked={true}
                   id="myAccount"
                 />
@@ -235,7 +229,12 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
         <button onClick={goBackState} className={classes.backBtn}>
           이전
         </button>
-        <input type="submit" value="저장" className={classes.saveBtn} onClick={handleSubmit} />
+        <input
+          type="submit"
+          value="저장"
+          className={classes.saveBtn}
+          onClick={handleSubmit}
+        />
       </div>
       {/* <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
         <main>저장했습니다.</main>

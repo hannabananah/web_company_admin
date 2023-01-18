@@ -8,8 +8,10 @@ const ReportTransError = () => {
   const navigate = useNavigate();
 
   return (
-    <div className={classes.root}>
-      <TableHeader title="번역 이상 신고" />
+    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+      <div className={classes.root}>
+        <TableHeader title="번역 이상 신고" />
+      </div>
     </div>
   );
 };

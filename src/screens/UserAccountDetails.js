@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import TableHeader from "~/components/TableHeader";
 import axios from "axios";
@@ -8,10 +8,9 @@ import { dateFormat } from "~/util/global";
 import { DeleteModal } from "~/components/Modal";
 // import EditDetailAccount from "~/components/EditDetailAccount";
 
-
 const UserAccountDetails = () => {
   const user = useLocation().state;
-  const token = localStorage.getItem("access_token")
+  const token = localStorage.getItem("access_token");
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -27,38 +26,34 @@ const UserAccountDetails = () => {
   };
   const onClickPrev = () => {
     // UserAccount.js
-    navigate(-1)
-  }
+    navigate(-1);
+  };
   const onClickEdit = () => {
     // UserAccountEdit.js
     // navigate('/setting_admin/user_account/edit', { state : user })
-    navigate('/setting_admin/user_account/edit', { state : userData })
-  }
+    navigate("/setting_admin/user_account/edit", { state: userData });
+  };
 
   useEffect(() => {
     axios
-        .get(`http://localhost:3001/api/admin/${user.id}`, {
-          headers: {
-            Authorization:
-                "Bearer " +
-                token,
-                // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-          },
-        })
-        .then(({data}) => {
-          // data.use_yn = data.use_yn ? true : false
-          setUserData(data);
-        });
-  }, [])
-
+      .get(`http://localhost:3001/api/admin/${user.id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
+      .then(({ data }) => {
+        // data.use_yn = data.use_yn ? true : false
+        setUserData(data);
+      });
+  }, []);
 
   return (
     // <div>
-    //   <TableHeader title="계정 상세" /> 
+    //   <TableHeader title="계정 상세" />
     //   <DetailAccount user={user} />
     // </div>
     <figure className={classes.userAccContainer}>
-      <TableHeader title="계정 상세" /> 
+      <TableHeader title="계정 상세" />
       <table className={classes.tableStyle}>
         <colgroup>
           <col />
@@ -106,7 +101,9 @@ const UserAccountDetails = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록일</label>
             </th>
-            <td className={classes.contentStyle}>{dateFormat(userData.createdAt)}</td>
+            <td className={classes.contentStyle}>
+              {dateFormat(userData.createdAt)}
+            </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
@@ -136,10 +133,15 @@ const UserAccountDetails = () => {
           삭제
         </button>
       </div>
-      <DeleteModal id={user.id} open={modalOpen} close={closeModal} header="계정 삭제">
+      <DeleteModal
+        id={user.id}
+        open={modalOpen}
+        close={closeModal}
+        header="계정 삭제"
+      >
         <main>해당 계정을 삭제하시겠습니까?</main>
       </DeleteModal>
     </figure>
-  )
-}
+  );
+};
 export default UserAccountDetails;

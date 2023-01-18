@@ -24,9 +24,7 @@ const AppDetail = () => {
     axios
       .get(`http://localhost:3001/api/version/${user.version_idx}`, {
         headers: {
-          Authorization:
-            "Bearer " +
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
       })
       .then(({ data }) => {

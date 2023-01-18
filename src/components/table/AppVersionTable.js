@@ -68,13 +68,11 @@ const AppVersionTable = (props) => {
                       id="appTable"
                       onClick={openModal}
                       className={
-                        i.status !== "N" ? i.update_type === "choice" ?  classes.uptActiveBlue : classes.uptActiveRed :classes.uptInactive                       
-
-                        // i.status == "N"
-                        //   ? classes.uptInactive
-                        //   : i.update_type === "choice"
-                        //   ? classes.uptActiveBlue
-                        //   : classes.uptActiveRed
+                        i.status == "N"
+                          ? classes.uptInactive
+                          : i.update_type === "choice"
+                          ? classes.uptActiveBlue
+                          : classes.uptActiveRed
                       }
                     >
                       Update
