@@ -8,6 +8,7 @@ import { UptConfirmModal, SaveConfirmModal } from "~/components/Modal";
 const EditDetailAccount = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const token = localStorage.getItem("access_token")
   const user = useLocation().state;
   // console.log(user)
 
@@ -49,7 +50,8 @@ const EditDetailAccount = () => {
           headers: {
             Authorization:
                 "Bearer " +
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+                token,
+                // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
           },
         })
         .then(({data}) => {
@@ -68,6 +70,7 @@ const EditDetailAccount = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     // delete userInfo["password"];
     setSaveConfirm(false)
 
@@ -91,7 +94,8 @@ const EditDetailAccount = () => {
               headers: {
                 Authorization:
                   "Bearer " +
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+                  token,
+                  // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
               },
             }
           ).then(({ data }) => {
@@ -115,10 +119,10 @@ const EditDetailAccount = () => {
 
   const openModal = () => {
     setModalOpen(true);
-    navigate(-1)
   };
   const closeModal = () => {
     setModalOpen(false);
+    navigate(-1)
   };
 
   return (

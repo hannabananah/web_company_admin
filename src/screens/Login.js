@@ -25,6 +25,7 @@ const Login = () => {
         if (result.data) {
           localStorage.setItem("id", result.data.id);
           localStorage.setItem("adminKey", result.data.adminKey);
+          localStorage.setItem("access_token", result.data.access_token);
           navigate("/dashboard");
         }
       })
@@ -56,7 +57,7 @@ const Login = () => {
                   />
                   <input
                     type="text"
-                    // value={id}
+                    value={id}
                     onChange={onChangeId}
                     autoComplete="false"
                     placeholder="관리자 아이디"
@@ -74,7 +75,7 @@ const Login = () => {
                   />
                   <input
                     type="password"
-                    // value={password}
+                    value={password}
                     onChange={onChangePw}
                     autoComplete="false"
                     placeholder="비밀번호"
