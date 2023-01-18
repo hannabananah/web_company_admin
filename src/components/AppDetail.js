@@ -44,7 +44,9 @@ const AppDetail = ({ user, backState }) => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>최신 APP 버전</label>
                 </th>
-                <td className={classes.contentStyle}>{user.late_app_version}</td>
+                <td className={classes.contentStyle}>
+                  {user.late_app_version}
+                </td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
