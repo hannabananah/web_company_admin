@@ -64,7 +64,7 @@ const AppVersionTable = (props) => {
                   <td className={classes.td}>{i.update_type}</td>
                   {/* 업데이트 */}
                   <td className={classes.td}>
-                    <span onClick={openModal} className={classes.uptActiveRed}>
+                    <span onClick={openModal} className={classes.uptInactive}>
                       Update
                     </span>
                   </td>
