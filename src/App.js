@@ -16,6 +16,7 @@ import useStyles from "~/styles/App";
 import UserAccount from "~/screens/UserAccount";
 import UserAccountDetails from "~/screens/UserAccountDetails";
 import MyAccount from "~/screens/MyAccount";
+import EditMyAccount from "~/screens/EditMyAccount";
 import DetailAccount from "~/components/DetailAccount";
 import EditDetailAccount from "~/components/EditDetailAccount";
 import History from "~/screens/History";
@@ -54,9 +55,7 @@ function App() {
                 element={<UserAccount />}
               />
               <Route
-                path="/setting_admin/user_account/details"
-                element={<UserAccountDetails />}
-              />
+                path="/setting_admin/user_account/details" element={<UserAccountDetails />}/>
               <Route
                 path="/setting_admin/user_account/edit"
                 element={<UserAccountEdit />}
@@ -67,14 +66,10 @@ function App() {
               />
 
               <Route path="/setting_admin/my_account" element={<MyAccount />} />
-              <Route
-                path="/setting_admin/detail_account"
-                element={<DetailAccount />}
-              />
-              <Route
-                path="/setting_admin/edit_detail_account"
-                element={<EditDetailAccount />}
-              />
+              <Route path="/setting_admin/my_account/edit" element={<EditMyAccount />} />
+
+              <Route path="/setting_admin/detail_account" element={<DetailAccount />} />
+              <Route path="/setting_admin/edit_detail_account" element={<EditDetailAccount />} />
               <Route path="/setting_admin/history" element={<History />} />
               {/* <Route path="/member" element={<Member />} /> */}
               <Route path="/member/member_status" element={<MemberStatus />} />

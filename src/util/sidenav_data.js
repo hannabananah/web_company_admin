@@ -27,6 +27,12 @@ export const sidenav_data = [
       {
         title: "내 계정 관리",
         path: "/setting_admin/my_account",
+        subMenu: [
+          {
+            title: "수정",
+            path: "/setting_admin/my_account/edit"
+          },
+        ]
       },
       {
         title: "관리 이력",
