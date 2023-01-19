@@ -96,7 +96,7 @@ const AppDetail = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록자</label>
             </th>
-            <td className={classes.contentStyle}>{fetchData.upt_id}</td>
+            <td className={classes.contentStyle}>{fetchData.reg_id}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
