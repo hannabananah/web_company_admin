@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     gap: "15px",
     justifyContent: "flex-end",
-    paddingBottom: "20px",
+    paddingBottom: "16px",
   },
   user: {
     fontWeight: "bold",
