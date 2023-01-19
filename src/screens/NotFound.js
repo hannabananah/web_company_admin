@@ -14,7 +14,7 @@ const NotFound = () => {
         <div className={classes.text}>
           <h2>Oops..</h2>
           <p>We can't find that page</p>
-          <button className={classes.goBackBtn} onClick={()=>{navigate('/')}}>Go back</button>
+          <button className={classes.goBackBtn} onClick={()=>{navigate(-1)}}>Go back</button>
         </div>
       </div>
     </div>
