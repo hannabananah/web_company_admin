@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import TableHeader from "~/components/TableHeader";
 import axios from "axios";
 import useStyles from "~/styles/Add";
@@ -9,10 +9,16 @@ import { DeleteModal } from "~/components/Modal";
 // import EditDetailAccount from "~/components/EditDetailAccount";
 
 const UserAccountDetails = () => {
-  const user = useLocation().state;
-  const token = localStorage.getItem("access_token");
   const classes = useStyles();
   const navigate = useNavigate();
+  const token = localStorage.getItem("access_token");
+  // const user = useLocation().state;
+  // const params = useParams(); 
+  // const id = user.id ? user.id : params.id
+  const user = useParams(); 
+  const location = useLocation();
+
+  console.log(location)
 
   const [userData, setUserData] = useState({});
   // 계정삭제 모달
@@ -35,8 +41,10 @@ const UserAccountDetails = () => {
   };
 
   useEffect(() => {
+    
     axios
       .get(`http://localhost:3001/api/admin/${user.id}`, {
+      // .get(`http://localhost:3001/api/admin/${params.id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -110,6 +118,7 @@ const UserAccountDetails = () => {
               <label className={classes.leftText}>등록자</label>
             </th>
             <td className={classes.contentStyle}>{user.id}</td>
+            {/* <td className={classes.contentStyle}>{params.id}</td> */}
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
@@ -134,7 +143,6 @@ const UserAccountDetails = () => {
         </button>
       </div>
       <DeleteModal
-        id={user.id}
         open={modalOpen}
         close={closeModal}
         header="계정 삭제"

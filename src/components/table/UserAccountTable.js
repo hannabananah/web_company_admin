@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, createSearchParams } from "react-router-dom";
 import useStyles from "~/styles/Table";
 import { dateFormat } from "~/util/global";
 
@@ -15,7 +15,7 @@ const UserAccountTable = (props) => {
 
   const onClickTarget = (i) => {
     // UserAccountDetails.js
-    navigate('/setting_admin/user_account/details/', { state: i })
+    navigate(`/setting_admin/user_account/details/${i.id}`, { state: { state: i , urlParam: i.id} })
   }
 
   return (

@@ -12,7 +12,7 @@ export const sidenav_data = [
         subMenu: [
           {
             title: "계정 상세",
-            path: "/setting_admin/user_account/details",
+            path: "/setting_admin/user_account/details/:id",
           },
           {
             title: "계정 정보 수정",
