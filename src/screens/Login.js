@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useStyles from "~/styles/Login";
-import images from "~/assets/js/Images";
 import axios from "axios";
+
+import images from "~/assets/js/Images";
+import useStyles from "~/styles/Login";
 
 const Login = () => {
   const classes = useStyles();
@@ -29,10 +30,10 @@ const Login = () => {
           localStorage.setItem("access_token", result.data.access_token);
           navigate("/dashboard");
         } else {
-          setInvalid(true)
+          setInvalid(true);
         }
       })
-      .catch((err) =>  console.log(err));
+      .catch((err) => console.log(err));
   };
 
   return (

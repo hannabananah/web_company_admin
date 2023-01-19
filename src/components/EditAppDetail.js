@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useStyles from "~/styles/Add";
-import "~/styles/Toggle.css";
-import { UptConfirmModal } from "~/components/Modal";
 import axios from "axios";
+
+import "~/styles/Toggle.css";
+import useStyles from "~/styles/Add";
+import { UptConfirmModal } from "~/components/Modal";
 
 const EditDetailAccount = ({ gobackstate, user }) => {
   const classes = useStyles();

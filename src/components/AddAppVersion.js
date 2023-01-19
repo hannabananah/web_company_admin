@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import useStyles from "~/styles/Add";
 import { UptConfirmModal } from "~/components/Modal";
-import axios from "axios";
 
 const storeList = ["Google Play", "App Store", "Microsoft", "Mac"];
 const osList = ["Android", "iOS", "Windows", "Mac"];

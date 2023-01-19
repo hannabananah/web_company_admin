@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 // import Cookies from "js-cookie";
+
 import useStyles from "~/styles/AuthLayout";
 
 const path = [
@@ -21,7 +22,7 @@ const path = [
   "/notice",
   "/notice/",
   "/system_settings",
-  "/system_settings/"
+  "/system_settings/",
 ];
 
 const AuthLayout = () => {
@@ -34,10 +35,10 @@ const AuthLayout = () => {
     // if (!Cookies.get("id")) {
     // if ( !localStorage.getItem("token") && path.includes(pathname) ) { // 토큰 없으면
     //   navigate("/", { state: pathname });
-    // } 
+    // }
 
-    if ( pathname == "/index.html" || pathname == "/index.html/" ) {
-      navigate("/")
+    if (pathname == "/index.html" || pathname == "/index.html/") {
+      navigate("/");
     }
   }, []);
 
@@ -46,5 +47,5 @@ const AuthLayout = () => {
       <Outlet />
     </div>
   );
-}
+};
 export default AuthLayout;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 import Pagination from "react-js-pagination";
 
@@ -6,7 +7,6 @@ import useStyles from "~/styles/Add";
 import MemberTable from "~/components/table/MemberTable";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
-import axios from "axios";
 
 // filter select option
 const option = [

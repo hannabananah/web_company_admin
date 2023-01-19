@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Pagination from "react-js-pagination";
-import useStyles from "~/styles/Add";
+
 import "~/styles/Toggle.css";
+import useStyles from "~/styles/Add";
 import UserAccountTable from "~/components/table/UserAccountTable";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import TableHeader from "~/components/TableHeader";
 import ColumnHeaderTable from "~/components/table/ColumnHeaderTable";
-import axios from "axios";
 
 // filter select option
 const option = [

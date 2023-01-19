@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import images from "~/assets/js/Images";
 import "~/styles/Modal.css";
 import useStyles from "~/styles/Add";
-import images from "~/assets/js/Images";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export const DeleteModal = (props) => {
   const classes = useStyles();
