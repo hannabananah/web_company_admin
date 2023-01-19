@@ -83,6 +83,29 @@ const History = () => {
       .then(setIsLoaded(true));
   };
 
+    const downloadExcel = () => {
+        axios
+            .get(`http://localhost:3001/api/access/excel?s=${selectVal}&v=${inputVal}&st=${start.format("YYYY-MM-DD")}&et=${end.format("YYYY-MM-DD")}`, {
+                responseType: 'blob',
+                headers: {
+                    Authorization:
+                        "Bearer " +
+                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+                },
+            })
+            .then((res) => {
+                const url = URL.createObjectURL(new Blob([res.data]))
+                const link = document.createElement('a')
+                link.href = url
+                link.setAttribute('download', `access-${start.format("YYYY-MM-DD")}-${end.format("YYYY-MM-DD")}.xlsx`)
+                document.body.appendChild(link)
+                link.click()
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
   const handleNameChange = (e) => {
     setInputVal(e.target.value);
   };
@@ -125,14 +148,19 @@ const History = () => {
               end={end}
               setEnd={setEnd}
             />
-            <button
-              className={classes.searchBtn}
-              onClick={() => {
-                changePage(1);
-              }}
-            >
-              검색
-            </button>
+
+
+            <button className={classes.searchBtn}
+                onClick={() => {
+                    changePage(1);
+                }}
+            >검색</button>
+
+          <button className={classes.searchBtn}
+                  onClick={() => {
+                      downloadExcel();
+                  }}
+          >엑셀다운로드</button>
           </>
         }
       />
