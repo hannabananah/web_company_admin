@@ -3,10 +3,7 @@ import useStyles from "~/styles/Table";
 import { dateFormat } from "~/util/global";
 
 const UserAccountTable = (props) => {
-  const {
-    fetchData,
-    isLoaded,
-  } = props;
+  const { fetchData, isLoaded } = props;
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -57,10 +54,13 @@ const UserAccountTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   <td className={classes.td}>{i.adminKey}</td>
-                  <td onClick={() => onClickTarget(i)}
-                    className={`${classes.td} + ${classes.idLink}`}
-                  >
-                    {i.id}
+                  <td className={classes.td}>
+                    <span
+                      onClick={() => onClickTarget(i)}
+                      className={classes.idLink}
+                    >
+                      {i.id}
+                    </span>
                   </td>
                   <td className={classes.td}>{i.grade}</td>
                   <td className={classes.td}>{i.phone}</td>

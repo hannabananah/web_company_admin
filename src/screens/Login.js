@@ -23,11 +23,13 @@ const Login = () => {
       .post(`http://localhost:3001/api/auth/login`, { id, password })
       .then((result) => {
         if (result.data) {
+          // console.log(result.data)
           localStorage.setItem("id", result.data.id);
           localStorage.setItem("adminKey", result.data.adminKey);
           localStorage.setItem("access_token", result.data.access_token);
           navigate("/dashboard");
-          console.log(result.data)
+        } else {
+          setInvalid(true)
         }
       })
       .catch((err) =>  console.log(err));
@@ -111,7 +113,7 @@ const Login = () => {
                 type="submit"
                 value="로그인"
                 className={classes.loginBtn}
-                onClick={setInvalid}
+                // onClick={setInvalid}
               />
             </form>
           </div>

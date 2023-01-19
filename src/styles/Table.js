@@ -33,6 +33,7 @@ const useStyles = makeStyles({
     cursor: "pointer",
     color: COLORS.COLOR.ANY_PURPLE,
     textDecoration: "underline",
+    padding: "16px",
   },
   uptActiveRed: {
     boxSizing: "border-box",

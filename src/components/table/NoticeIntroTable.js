@@ -88,7 +88,7 @@ const NoticeIntroTable = (props) => {
                       onClick={() =>
                         navigate("/notice/app_intro/details", { state: i })
                       }
-                      className={`${classes.td} + ${classes.idLink}`}
+                      className={classes.idLink}
                     >
                       {i.noti_title}
                     </span>

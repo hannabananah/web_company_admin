@@ -28,8 +28,9 @@ const option = [
 const AppVersion = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const [add, setAdd] = useState(false);
-  const [user, setUser] = useState([]);
+  const [fetchData, setFetchData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   // 페이지네이션
   const [totalUser, setTotalUser] = useState(0); //임시
   const [totalPage, setTotalPage] = useState(5); //임시
@@ -74,36 +75,13 @@ const AppVersion = () => {
     console.log("page  -------------------->", page);
   };
 
-  const backState = () => {
-    setAdd(false); //등록 화면 -> 디폴트 페이지
-  };
-
-  const changeState = () => {
-    setAdd(true); // 디폴트 페이지 -> 등록 화면
-  };
-
   const onClickAddVer = () => {
     // AddAppVer.js
     navigate("/service/app_version/add");
   };
 
-  //타인 계정 상세보기
-  const [editAcc, setEditAcc] = useState(false);
-
-  const [fetchData, setFetchData] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    changePage(1);
-  }, []);
-
   const onClickTarget = (user) => {
-    // setEditAcc(true);
-    // setUser(user);
     navigate("/service/app_version/details", { state: user });
-  };
-  const goBackTable = () => {
-    setEditAcc(false);
   };
 
   console.log(fetchData);
@@ -112,6 +90,7 @@ const AppVersion = () => {
   // 필터
   const [selectVal, setSelectVal] = useState("OS");
   const [inputVal, setInputVal] = useState("");
+  const [targetIdx, setTargetIdx] = useState();
 
   const handleNameChange = (e) => {
     setInputVal(e.target.value);
@@ -123,19 +102,29 @@ const AppVersion = () => {
 
   // 업데이트 알림 모달
   const [modalOpen, setModalOpen] = useState(false);
-  const openModal = () => {
+  const openModal = (index) => {
     setModalOpen(true);
+    setTargetIdx(index);
   };
   const closeModal = () => {
     setModalOpen(false);
   };
+  const [targetData, setTargetData] = useState([]);
+  // console.log('fetchData',fetchData)
 
   // 업데이트 버튼 활성화 시 버전 업데이트 실행
-  const updateAppVersion = () => {
+  const updateAppVersion = (e) => {
+    e.preventDefault();
+
+    // console.log("::::::::", fetchData[targetIdx]);
+    const newdata = JSON.parse(JSON.stringify(fetchData[targetIdx]));
+    newdata.status = "Y";
+    newdata.noticeKey=newdata.version_idx;
     axios
       .post(
         `http://localhost:3001/api/version/update`,
-        { status: "Y" },
+
+        { ...newdata },
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -143,81 +132,70 @@ const AppVersion = () => {
         }
       )
       .then(({ data }) => {
-        console.log(data);
-        // if (user.update_type === "choice") {
-        //   document.getElementById("appTable").className = "uptActiveBlue";
-        // } else {
-        //   document.getElementById("appTable").className = "uptActiveRed";
-        // }
-        if (user.update_type === "choice") {
-          document.getElementById("appTable").classList.remove("uptActiveBlue");
-          document.getElementById("appTable").classList.add("uptActiveRed");
-        } else {
-          document.getElementById("appTable").classList.remove("uptActiveRed");
-          document.getElementById("appTable").classList.add("uptActiveBlue");
-        }
+        console.log("+-+-+-+-+-", data);
+//  console.log("::::::::: newdata", newdata);
+        const new_data = JSON.parse(JSON.stringify(fetchData));
+        new_data[targetIdx].status = "Y";
+        setFetchData(new_data);
+
+        closeModal();
       });
-    closeModal();
   };
+
+  useEffect(() => {
+    changePage(1);
+  }, []);
+
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-      {add ? (
-        <AddAppVersion backState={backState} />
-      ) : editAcc ? (
-        <AppDetail backState={goBackTable} user={user} />
-      ) : (
-        <div className={classes.root}>
-          <TableHeader title="App 버전 관리" />
+      <div className={classes.root}>
+        <TableHeader title="App 버전 관리" />
+        <FilterSection
+          left={
+            <>
+              <SelectBox
+                value={selectVal}
+                onChange={onChangeSelect}
+                option={option}
+              />
+              <input
+                className={classes.filterInput}
+                onChange={handleNameChange}
+              />
+              <button className={classes.searchBtn}>검색</button>
+            </>
+          }
+          right={
+            <button onClick={onClickAddVer} className={classes.saveBtn}>
+              등록
+            </button>
+          }
+        />
 
-          <FilterSection
-            left={
-              <>
-                <SelectBox
-                  value={selectVal}
-                  onChange={onChangeSelect}
-                  option={option}
-                />
-                <input
-                  className={classes.filterInput}
-                  onChange={handleNameChange}
-                />
-                <button className={classes.searchBtn}>검색</button>
-              </>
-            }
-            right={
-              <button onClick={onClickAddVer} className={classes.saveBtn}>
-                등록
-              </button>
-            }
-          />
-
-          <AppVersionTable
-            fetchData={fetchData}
-            isLoaded={isLoaded}
-            user={user}
-            setUser={setUser}
-            onClickTarget={onClickTarget}
-            openModal={openModal}
-          />
-          <Pagination
-            activePage={currentPage}
-            totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
-            itemsCountPerPage={postsPerPage} // 페이지당 보여줄 포스트 갯수
-            pageRangeDisplayed={10} // 페이저 갯수
-            prevPageText={"‹"}
-            nextPageText={"›"}
-            onChange={handlePageChange}
-          />
-          <UpdateAlertModal
-            open={modalOpen}
-            close={closeModal}
-            header="업데이트"
-            updateAppVersion={updateAppVersion}
-          >
-            <main>APP 업데이트를 시작합니다.</main>
-          </UpdateAlertModal>
-        </div>
-      )}
+        <AppVersionTable
+          fetchData={fetchData}
+          isLoaded={isLoaded}
+          onClickTarget={onClickTarget}
+          openModal={openModal}
+        />
+        <Pagination
+          activePage={currentPage}
+          totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
+          itemsCountPerPage={postsPerPage} // 페이지당 보여줄 포스트 갯수
+          pageRangeDisplayed={10} // 페이저 갯수
+          prevPageText={"‹"}
+          nextPageText={"›"}
+          onChange={handlePageChange}
+        />
+        <UpdateAlertModal
+          open={modalOpen}
+          close={closeModal}
+          header="업데이트"
+          updateAppVersion={updateAppVersion}
+        >
+          <main>APP 업데이트를 시작합니다.</main>
+        </UpdateAlertModal>
+      </div>
     </div>
   );
 };

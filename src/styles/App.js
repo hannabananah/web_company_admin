@@ -14,7 +14,8 @@ const useStyles = makeStyles({
     flex: 1, 
     display: 'flex',
     // justifyContent: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    overflow:'auto'
   }
 });
 export default useStyles;
