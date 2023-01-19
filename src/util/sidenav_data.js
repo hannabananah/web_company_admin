@@ -19,6 +19,7 @@ export const sidenav_data = [
           {
             title: "계정 정보 수정",
             path: "/setting_admin/user_account/edit",
+            linkTo: false,
           },
           {
             title: "사용자 추가",

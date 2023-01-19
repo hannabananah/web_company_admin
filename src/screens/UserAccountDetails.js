@@ -6,19 +6,15 @@ import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
 import { dateFormat } from "~/util/global";
 import { DeleteModal } from "~/components/Modal";
-// import EditDetailAccount from "~/components/EditDetailAccount";
 
 const UserAccountDetails = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
-  // const user = useLocation().state;
-  // const params = useParams(); 
-  // const id = user.id ? user.id : params.id
-  const user = useParams(); 
+  const user = useLocation().state.state;
   const location = useLocation();
-
-  console.log(location)
+  // console.log(location)
+  // console.log(user)
 
   const [userData, setUserData] = useState({});
   // 계정삭제 모달
@@ -36,15 +32,34 @@ const UserAccountDetails = () => {
   };
   const onClickEdit = () => {
     // UserAccountEdit.js
-    // navigate('/setting_admin/user_account/edit', { state : user })
-    navigate("/setting_admin/user_account/edit", { state: userData });
+    navigate(`/setting_admin/user_account/edit/${userData.id}`, { state: { state: userData , urlParam: userData.id} });
   };
 
+  const onClickConfirm = () => {
+    axios
+      .post(
+        `http://localhost:3001/api/admin/delete`,
+        { id: user.id },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+        setModalOpen(false)
+        // UserAccount.js
+        navigate("/setting_admin/user_account");
+      });
+  }
+  const onClickCancel = () => {
+    setModalOpen(false)
+  }
+
   useEffect(() => {
-    
     axios
       .get(`http://localhost:3001/api/admin/${user.id}`, {
-      // .get(`http://localhost:3001/api/admin/${params.id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -55,11 +70,9 @@ const UserAccountDetails = () => {
       });
   }, []);
 
+  // console.log('userData.id________',userData.id)
+
   return (
-    // <div>
-    //   <TableHeader title="계정 상세" />
-    //   <DetailAccount user={user} />
-    // </div>
     <figure className={classes.userAccContainer}>
       <TableHeader title="계정 상세" />
       <table className={classes.tableStyle}>
@@ -145,6 +158,8 @@ const UserAccountDetails = () => {
       <DeleteModal
         open={modalOpen}
         close={closeModal}
+        onClickConfirm={onClickConfirm}
+        onClickCancel={onClickCancel}
         header="계정 삭제"
       >
         <main>해당 계정을 삭제하시겠습니까?</main>

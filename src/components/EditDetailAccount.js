@@ -9,8 +9,8 @@ const EditDetailAccount = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
-  const user = useLocation().state;
-  // console.log(user)
+  const user = useLocation().state.state
+
 
   // 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -42,21 +42,20 @@ const EditDetailAccount = () => {
     setUserInfo(newInfo);
   };
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/admin/${user.id}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then(({ data }) => {
-        console.log("data----------------->", data);
-        // data.use_yn = data.use_yn == 'Y' ? true : false
-        setUserInfo(data);
-      });
-  }, []);
-  console.log("userInfo------>", userInfo);
-  console.log(userInfo.use_yn);
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:3001/api/admin/${user.id}`, {
+  //       headers: {
+  //         Authorization: "Bearer " + localStorage.getItem("access_token"),
+  //       },
+  //     })
+  //     .then(({ data }) => {
+  //       console.log("data----------------->", data);
+  //       // data.use_yn = data.use_yn == 'Y' ? true : false
+  //       setUserInfo(data);
+  //     });
+  // }, []);
+
 
   // const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } = userInfo;
 
@@ -118,7 +117,7 @@ const EditDetailAccount = () => {
 
   return (
     <figure className={classes.userAccContainer}>
-      <table className={classes.tableStyle}>
+      {/* <table className={classes.tableStyle}>
         <colgroup>
           <col />
           <col />
@@ -255,7 +254,7 @@ const EditDetailAccount = () => {
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> */}
       <div className={classes.submitBtns}>
         {/* <button onClick={gobackstate} className={classes.backBtn}> */}
         <button onClick={onClickPrev} className={classes.backBtn}>

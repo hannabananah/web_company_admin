@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export const DeleteModal = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { open, close, header, id } = props;
+  const { open, close, header, id , onClickCancel, onClickConfirm } = props;
 
   const deleteAdminID = () => {
     axios
@@ -24,7 +24,6 @@ export const DeleteModal = (props) => {
       .then(({ data }) => {
         console.log(data);
         close();
-        navigate("/setting_admin/user_account");
       });
   };
 
@@ -42,11 +41,12 @@ export const DeleteModal = (props) => {
           </header>
           <main>{props.children}</main>
           <footer className="modalBtns">
-            <button className={classes.backBtn} onClick={close}>
+            <button className={classes.backBtn} onClick={onClickCancel}>
               취소
             </button>
             {/* onClick 바꿔야함 */}
-            <button className={classes.deleteBtn} onClick={deleteAdminID}>
+            {/* <button className={classes.deleteBtn} onClick={deleteAdminID}> */}
+            <button className={classes.deleteBtn} onClick={onClickConfirm}>
               확인
             </button>
           </footer>

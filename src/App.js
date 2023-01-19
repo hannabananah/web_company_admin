@@ -59,7 +59,7 @@ function App() {
               <Route path="/setting_admin/my_account" element={<MyAccount />} />
               <Route path="/setting_admin/my_account/edit" element={<EditMyAccount />} />
 
-              <Route path="/setting_admin/edit_detail_account" element={<EditDetailAccount />} />
+              {/* <Route path="/setting_admin/edit_detail_account" element={<EditDetailAccount />} /> */}
               <Route path="/setting_admin/history" element={<History />} />
               {/* <Route path="/member" element={<Member />} /> */}
               <Route path="/member/member_status" element={<MemberStatus />} />
