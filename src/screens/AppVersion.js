@@ -119,7 +119,7 @@ const AppVersion = () => {
     // console.log("::::::::", fetchData[targetIdx]);
     const newdata = JSON.parse(JSON.stringify(fetchData[targetIdx]));
     newdata.status = "Y";
-    newdata.noticeKey=newdata.version_idx;
+    newdata.noticeKey = newdata.version_idx;
     axios
       .post(
         `http://localhost:3001/api/version/update`,
@@ -133,7 +133,7 @@ const AppVersion = () => {
       )
       .then(({ data }) => {
         console.log("+-+-+-+-+-", data);
-//  console.log("::::::::: newdata", newdata);
+        //  console.log("::::::::: newdata", newdata);
         const new_data = JSON.parse(JSON.stringify(fetchData));
         new_data[targetIdx].status = "Y";
         setFetchData(new_data);
