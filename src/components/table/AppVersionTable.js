@@ -38,7 +38,7 @@ const AppVersionTable = (props) => {
             </td>
           </tr>
         </thead>
-        <tbody id="appTable">
+        <tbody>
           {isLoaded &&
             fetchData?.map((i, index) => {
               return (
