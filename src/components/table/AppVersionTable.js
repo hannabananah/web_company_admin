@@ -38,7 +38,7 @@ const AppVersionTable = (props) => {
             </td>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="appTable">
           {isLoaded &&
             fetchData?.map((i, index) => {
               return (
@@ -67,7 +67,6 @@ const AppVersionTable = (props) => {
                   {/* 업데이트 */}
                   <td className={classes.td}>
                     <span
-                      id="appTable"
                       onClick={openModal}
                       className={
                         i.status == "N"
