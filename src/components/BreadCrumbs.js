@@ -17,7 +17,7 @@ const BreadCrumbs = () => {
   const targetObj = sidenav_data.filter((i)=>{
     return location.pathname.includes(i.path)
   })
-  console.log('targetObj --------> ', targetObj)
+  // console.log('targetObj --------> ', targetObj)
 
   targetObj.map((item)=>{
     const pathArr = []
@@ -157,7 +157,7 @@ const BreadCrumbs = () => {
     // )
   })
 
-  console.log('pathMap ------------>>>> ', pathMap)
+  // console.log('pathMap ------------>>>> ', pathMap)
 
   return (
     <div className={classes.root}>
