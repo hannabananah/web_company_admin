@@ -1,13 +1,9 @@
 import useStyles from "~/styles/Table";
+import { dateFormat, renderBirth } from "~/util/global";
 
 const MemberTable = (props) => {
   const { fetchData, isLoaded } = props;
   const classes = useStyles();
-
-  // 생년월일 하이픈 적용
-  const renderBirth = (birth) => {
-    return birth?.replace(/^(\d{4})(\d{2})(\d{2})$/, `$1-$2-$3`);
-  };
 
   return (
     <div>
@@ -57,11 +53,13 @@ const MemberTable = (props) => {
                     {/* 생일 */}
                     <td className={classes.td}>{renderBirth(i.birthday)}</td>
                     {/* 가입일 */}
-                    <td className={classes.td}>{i.reg_dttm}</td>
+                    <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
                     {/*/!* 탈퇴일 *!/*/}
                     {/*<td className={classes.td}>{i.last_login_dttm}</td>*/}
                     {/* 최근 접속일 */}
-                    <td className={classes.td}>{i.last_login_dttm}</td>
+                    <td className={classes.td}>
+                      {dateFormat(i.last_login_dttm)}
+                    </td>
                   </tr>
                 );
               })}
