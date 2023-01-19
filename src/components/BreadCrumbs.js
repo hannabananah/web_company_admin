@@ -76,93 +76,92 @@ const BreadCrumbs = () => {
     }
   })
  
+  const newPathObj = []
+  targetObj.map((item)=>{
 
-  // const removeParmas = () => {
+    newPathObj.push(
+      {
+        path: item.path,
+        title: item.title,
+        linkTo: item.linkTo 
+      }
+    )
 
-    // key 가져올 때 1
-    // for (let key in pathMap) {
-    //   console.log('key ----- >', pathMap[key])
-    // }
-    // key 가져올 때 2
-    // for (let key of Object.keys(pathMap)) {
-    //   console.log('key ----- >', key)
-    // }
-    // value 가져올 때
-    // for (let value of Object.values(pathMap)) {
-    //   console.log('value ----- >', value)
-    // }
+    if (item.subMenu) {    
+      let itemsMenu
+      itemsMenu = item.subMenu
 
-    // key value 다 가져올 때
-    // for (let [key, value] of Object.entries(pathMap)) {
-    //   console.log('key value ----- >', key + ':' + value)
-    // }
+      // 서브메뉴가 있으면 일단 path를 다 넣어야 함.    
+      for (let i=0; i< itemsMenu.length; i++) {
+        newPathObj.push(
+          {
+            path: itemsMenu[i].path,
+            title: item.subMenu[i].title,
+            linkTo: item.subMenu[i].linkTo
+          }
+        )
+      }
 
+      const currPath = location.pathname.split('/')
+        .filter((item)=>{return item !=''})
+
+      for (let i=0; i<currPath.length-1; i++){
+        itemsMenu.filter((item,index)=>{
+          if (item.subMenu) {
+            itemsMenu = item.subMenu;
     
-  // }
+            for (let i=0; i<itemsMenu.length; i++) {
+              newPathObj.push(
+                {
+                  path: itemsMenu[i].path,
+                  title: item.subMenu[i].title,
+                  linkTo: item.subMenu[i].linkTo
+                }
+              )
+            }
+          }
+        })
+        // console.log(`itemsMenu ${i}번째 출력 array ${itemsMenu.length}개 나와야함 --- >> `, itemsMenu)
+      }
+    } // if subMenu
+    
+  })
+  // console.log('newPathObj__________________',newPathObj)
 
-  
   const crumbs = location.pathname.split('/')
   .filter(crumb => crumb !== '')
   .map(crumb => {
     currentLink.push(`/${crumb}`)
 
-    console.log('currentLink,,,,,,,,,,,,,',currentLink) // ['/setting_admin', '/user_account', '/details', '/cosmos']
-
-    // console.log('findIndex,,,,,,,,,,,,,',currentLink.findIndex((item,index)=> item === (`/${params}`))) 
-
-
-    // const renderLinks = (param) => {
-    //   let link;
-    //   let LinkTo;
-    //   let findIndex;
-
-    //   if (currentLink.includes(`/${params}`)) {
-    //     findIndex = currentLink.findIndex((item,index)=> item === (`/${params}`)) 
-
-    //     currentLink[findIndex-1]
-    //     currentLink[findIndex]
-
-    //     LinkTo = 
-    //   } else {
-    //     LinkTo = currentLink.join('')
-    //   }
-
-
-    //   return LinkTo
-    // }
-
-
-
-
-    // console.log('useLocation().state.urlParam---------------- >>>> ',`/${params}`)
-    // console.log("currentLink.join('')________________:::",currentLink.join(''))
-    // console.log('pathMap ----------- >>>>>>>', pathMap)
-
-
-    const removeParam = (param) => {
-      let pathKo;
-      if (currentLink.join('').includes(`/${param}`)) {
-        pathKo = pathMap[currentLink.join('').split(`/${param}`)[0]] 
-        // console.log(currentLink.join('').split(`/${param}`)[0])
-      } else {
-        pathKo = pathMap[currentLink.join('')]
-      }
-      return pathKo;
-    }
+    const obj = newPathObj.filter((item)=>{
+      return item.path == currentLink.join('')
+    })
+    // console.log('currentLink_______________________',currentLink)
     
     return (
-      <React.Fragment key={crumb} >
+      <React.Fragment key={crumb}>
         <img src={images.icons.ARROWRIGHT} alt="arrow right" />
-        <Link to={currentLink.join('')} className={classes.breadCrumbsLink}>{crumb}</Link>
-        {/* <Link to={currentLink.join('')} className={classes.breadCrumbsLink}>{pathMap[currentLink.join('')]}</Link> */}
-        {/* <Link to={currentLink.join('')} className={classes.breadCrumbsLink}>{removeParam(params)}</Link> */}
+        <Link to={obj[0]?.linkTo == false ? false : currentLink.join('')} 
+          className={classes.breadCrumbsLink}>
+            {obj[0]?.title ? obj[0]?.title : crumb}
+        </Link>
       </React.Fragment>
     )
+
+    // return (
+    //   <React.Fragment key={crumb}>
+    //     <img src={images.icons.ARROWRIGHT} alt="arrow right" />
+    //     {/* <Link to={currentLink.join('')} className={classes.breadCrumbsLink}>{crumb}</Link> */}
+    //     <Link to={currentLink.join('')} className={classes.breadCrumbsLink}>{pathMap[currentLink.join('')] ? pathMap[currentLink.join('')]:crumb}</Link>
+    //   </React.Fragment>
+    // )
   })
+
+  console.log('pathMap ------------>>>> ', pathMap)
 
   return (
     <div className={classes.root}>
-      <Link to={'/'} className={classes.breadCrumbsLink}>홈</Link>
+      <Link to={'/dashboard'} className={classes.breadCrumbsLink}>홈</Link>
       {crumbs}
     </div>
   )
@@ -187,3 +186,4 @@ const useStyles = makeStyles({
     textDecoration:'none'
   }
 });
+

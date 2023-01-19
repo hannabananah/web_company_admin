@@ -5,6 +5,7 @@ export const sidenav_data = [
     id: 0,
     title: "관리자 설정",
     path: "/setting_admin",
+    linkTo: false,
     subMenu: [
       {
         title: "계정 관리",
@@ -12,7 +13,8 @@ export const sidenav_data = [
         subMenu: [
           {
             title: "계정 상세",
-            path: "/setting_admin/user_account/details/:id",
+            path: "/setting_admin/user_account/details",
+            linkTo: false,
           },
           {
             title: "계정 정보 수정",
@@ -44,6 +46,7 @@ export const sidenav_data = [
     id: 1,
     title: "회원 관리",
     path: "/member",
+    linkTo: false,
     subMenu: [
       {
         title: "회원 현황",
@@ -55,6 +58,7 @@ export const sidenav_data = [
     id: 2,
     title: "서비스 관리",
     path: "/service",
+    linkTo: false,
     subMenu: [
       {
         title: "App 버전 관리",
@@ -91,6 +95,7 @@ export const sidenav_data = [
     id: 4,
     title: "공지 관리",
     path: "/notice",
+    linkTo: false,
     subMenu: [
       {
         title: "App Intro 공지",
@@ -126,6 +131,7 @@ export const sidenav_data = [
     id: 5,
     title: "시스템 설정",
     path: "/system_settings",
+    linkTo: false,
   },
   {
     id: 6,
