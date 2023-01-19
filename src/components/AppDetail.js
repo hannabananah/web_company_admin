@@ -4,6 +4,7 @@ import axios from "axios";
 
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
+import { dateFormat } from "~/util/global";
 
 const AppDetail = () => {
   const classes = useStyles();
@@ -90,7 +91,9 @@ const AppDetail = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록일</label>
             </th>
-            <td className={classes.contentStyle}>{fetchData.createdAt}</td>
+            <td className={classes.contentStyle}>
+              {dateFormat(fetchData.createdAt)}
+            </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
@@ -102,7 +105,9 @@ const AppDetail = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>수정일</label>
             </th>
-            <td className={classes.contentStyle}>{fetchData.updatedAt}</td>
+            <td className={classes.contentStyle}>
+              {dateFormat(fetchData.updatedAt)}
+            </td>
           </tr>
         </tbody>
       </table>

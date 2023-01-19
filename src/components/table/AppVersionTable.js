@@ -1,4 +1,5 @@
 import useStyles from "~/styles/Table";
+import { dateFormat } from "~/util/global";
 
 const AppVersionTable = (props) => {
   const { openModal, fetchData, isLoaded, onClickTarget } = props;
@@ -46,7 +47,7 @@ const AppVersionTable = (props) => {
                   {/* 번호 */}
                   <td className={classes.td}>{i.version_idx}</td>
                   {/* 등록일 */}
-                  <td className={classes.td}>{i.reg_dttm}</td>
+                  <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
                   {/* 스토어 */}
                   <td className={classes.td}>{i.store}</td>
                   {/* OS */}
