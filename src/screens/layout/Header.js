@@ -9,6 +9,9 @@ const Header = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
+  // const params = useLocation()?.state;
+  // const params = useLocation()?.state?.urlParam;
+  // console.log('______params______',params)
 
   let isEmpty = false;
 
