@@ -52,11 +52,13 @@ const AppVersionTable = (props) => {
                   {/* OS */}
                   <td className={classes.td}>{i.os}</td>
                   {/* 최신 APP 버전 */}
-                  <td
-                    className={`${classes.td} + ${classes.idLink}`}
-                    onClick={() => onClickTarget(i)}
-                  >
-                    {i.late_app_version}
+                  <td className={classes.td}>
+                    <span
+                      onClick={() => onClickTarget(i)}
+                      className={classes.idLink}
+                    >
+                      {i.late_app_version}
+                    </span>
                   </td>
                   {/* 최소 APP 버전 */}
                   <td className={classes.td}>{i.min_app_version}</td>
@@ -65,8 +67,7 @@ const AppVersionTable = (props) => {
                   {/* 업데이트 */}
                   <td className={classes.td}>
                     <span
-                      id="appTable"
-                      onClick={openModal}
+                      onClick={() => openModal(index)}
                       className={
                         i.status == "N"
                           ? classes.uptInactive
