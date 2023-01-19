@@ -164,7 +164,14 @@ const AppVersion = () => {
                 className={classes.filterInput}
                 onChange={handleNameChange}
               />
-              <button className={classes.searchBtn}>검색</button>
+              <button
+                className={classes.searchBtn}
+                onClick={() => {
+                  changePage(1);
+                }}
+              >
+                검색
+              </button>
             </>
           }
           right={

@@ -4,6 +4,7 @@ import axios from "axios";
 
 import useStyles from "~/styles/Add";
 import { UptConfirmModal } from "~/components/Modal";
+import TableHeader from "~/components/TableHeader";
 
 const storeList = ["Google Play", "App Store", "Microsoft", "Mac"];
 const osList = ["Android", "iOS", "Windows", "Mac"];
@@ -91,9 +92,7 @@ const AddAppVersion = ({ backState }) => {
 
   return (
     <figure className={classes.userAccContainer}>
-      <section className={classes.titleSection}>
-        <h2 className={classes.mainTitle}>App 버전 등록</h2>
-      </section>
+      <TableHeader title="App 버전 등록" />
       <table className={classes.tableStyle}>
         <colgroup>
           <col />

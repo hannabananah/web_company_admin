@@ -8,9 +8,8 @@ const DashBoard = () => {
     <div>
       <section>
         <h2 className={classes.displayNone}>가입 및 탈퇴 현황</h2>
-        <TableHeader title="가입 및 탈퇴 현황"/>
+        <TableHeader title="가입 및 탈퇴 현황" />
       </section>
-
       <section>
         <h2 className={classes.displayNone}>그래프</h2>
       </section>
@@ -18,13 +17,13 @@ const DashBoard = () => {
       <section>
         <h2 className={classes.displayNone}>데이터</h2>
         <div>
-          <TableHeader title="데이터"/>
+          <TableHeader title="데이터" />
         </div>
         <div>
-          <TableHeader title="데이터"/>
+          <TableHeader title="데이터" />
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 export default DashBoard;

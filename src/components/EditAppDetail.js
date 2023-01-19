@@ -5,6 +5,7 @@ import axios from "axios";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import { UptConfirmModal } from "~/components/Modal";
+import TableHeader from "~/components/TableHeader";
 
 const EditDetailAccount = ({ gobackstate, user }) => {
   const classes = useStyles();
@@ -96,9 +97,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
 
   return (
     <figure className={classes.userAccContainer}>
-      <section className={classes.titleSection}>
-        <h2 className={classes.mainTitle}>App 버전 수정</h2>
-      </section>
+      <TableHeader title="App 버전 수정" />
       <table className={classes.tableStyle}>
         <colgroup>
           <col />

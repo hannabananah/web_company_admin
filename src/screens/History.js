@@ -35,7 +35,7 @@ const History = () => {
   let now = dayjs().format("YYYY-MM-DD");
   const [start, setStart] = useState(dayjs(now));
   const [end, setEnd] = useState(start);
-  //더미데이터
+  
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [inputVal, setInputVal] = useState("");
