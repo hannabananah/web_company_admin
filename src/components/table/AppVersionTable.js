@@ -67,7 +67,7 @@ const AppVersionTable = (props) => {
                   {/* 업데이트 */}
                   <td className={classes.td}>
                     <span
-                      onClick={openModal}
+                      onClick={() => openModal(index)}
                       className={
                         i.status == "N"
                           ? classes.uptInactive

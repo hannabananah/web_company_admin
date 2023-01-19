@@ -94,6 +94,7 @@ const AppVersion = () => {
   // 필터
   const [selectVal, setSelectVal] = useState("OS");
   const [inputVal, setInputVal] = useState("");
+  const [targetIdx, setTargetIdx] = useState();
 
   const handleNameChange = (e) => {
     setInputVal(e.target.value);
@@ -105,8 +106,9 @@ const AppVersion = () => {
 
   // 업데이트 알림 모달
   const [modalOpen, setModalOpen] = useState(false);
-  const openModal = () => {
+  const openModal = (index) => {
     setModalOpen(true);
+    setTargetIdx(index);
   };
   const closeModal = () => {
     setModalOpen(false);
@@ -114,16 +116,14 @@ const AppVersion = () => {
 
   // 업데이트 버튼 활성화 시 버전 업데이트 실행
   const updateAppVersion = () => {
-    const new_data = {
-      ...fetchData,
-      fetch,
-    };
-    setFetchData();
+    const new_data = JSON.parse(JSON.stringify(fetchData));
+    new_data[targetIdx].status = "Y";
+    setFetchData(new_data);
 
     axios
       .post(
         `http://localhost:3001/api/version/update`,
-        { status: "Y" },
+        { ...fetchData },
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -132,18 +132,6 @@ const AppVersion = () => {
       )
       .then(({ data }) => {
         console.log("+-+-+-+-+-", data);
-        // if (user.update_type === "choice") {
-        //   document.getElementById("appTable").className = "uptActiveBlue";
-        // } else {
-        //   document.getElementById("appTable").className = "uptActiveRed";
-        // }
-        if (fetchData.update_type === "choice") {
-          document.getElementById("appTable").classList.remove("uptActiveBlue");
-          document.getElementById("appTable").classList.add("uptActiveRed");
-        } else {
-          document.getElementById("appTable").classList.remove("uptActiveRed");
-          document.getElementById("appTable").classList.add("uptActiveBlue");
-        }
       });
     closeModal();
   };
@@ -151,7 +139,6 @@ const AppVersion = () => {
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       <div className={classes.root}>
         <TableHeader title="App 버전 관리" />
-
         <FilterSection
           left={
             <>
