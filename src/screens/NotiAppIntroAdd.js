@@ -137,7 +137,6 @@ const NotiAppIntroAdd = () => {
   return (
     <figure className={classes.userAccContainer}>
       <TableHeader title="App Intro 공지 등록" />
-
       <table className={classes.tableStyle}>
         <colgroup>
           <col />

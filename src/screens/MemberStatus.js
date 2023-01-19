@@ -7,6 +7,7 @@ import useStyles from "~/styles/Add";
 import MemberTable from "~/components/table/MemberTable";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
+import TableHeader from "~/components/TableHeader";
 
 // filter select option
 const option = [
@@ -76,7 +77,6 @@ const MemberStatus = () => {
       })
       .then(setIsLoaded(true));
   };
-  //더미데이터
   useEffect(() => {
     getTotalUserCnt();
     changePage(1);
@@ -99,10 +99,7 @@ const MemberStatus = () => {
 
   return (
     <div className={classes.root}>
-      <section className={classes.titleSection}>
-        <h2 className={classes.mainTitle}>회원현황</h2>
-      </section>
-
+      <TableHeader title="회원현황" />
       <FilterSection
         left={
           <>
