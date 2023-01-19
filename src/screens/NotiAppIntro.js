@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Pagination from "react-js-pagination";
+
+import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
+import NoticeIntroTable from "~/components/table/NoticeIntroTable";
 import FilterSection from "~/components/FilterSection";
 import SelectBox from "~/components/SelectBox";
 import SearchInput from "~/components/SearchInput";
 import { SearchBtn, SaveBtn } from "~/components/button/Buttons";
-import "~/styles/Toggle.css";
-import NoticeIntroTable from "~/components/table/NoticeIntroTable";
-import { useNavigate } from "react-router-dom";
 
 // filter select option
 const option = [

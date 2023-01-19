@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useStyles from "~/styles/Add";
-import "~/styles/Toggle.css";
-import EditDetailMyAccount from "~/components/EditDetailMyAccount";
 import axios from "axios";
+
 import { dateFormat } from "~/util/global";
+import "~/styles/Toggle.css";
+import useStyles from "~/styles/Add";
+import EditDetailMyAccount from "~/components/EditDetailMyAccount";
 
 const MyAccountContent = () => {
   const classes = useStyles();

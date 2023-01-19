@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
+import useStyles from "~/styles/Add";
 import { dateFormat } from "~/util/global";
 
 const AppDetail = () => {

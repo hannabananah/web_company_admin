@@ -1,8 +1,11 @@
-import useStyles from "~/styles/Header";
-import { useLocation, useNavigate, Link } from "react-router-dom";
-import { allPaths, breadcrumbNameMap, breadCrumbsObj } from "../../util/sidenav_data";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  allPaths,
+  breadcrumbNameMap,
+  breadCrumbsObj,
+} from "../../util/sidenav_data";
 import images from "~/assets/js/Images";
-import React from "react";
+import useStyles from "~/styles/Header";
 import BreadCrumbs from "~/components/BreadCrumbs";
 
 const Header = () => {
@@ -12,7 +15,7 @@ const Header = () => {
 
   let isEmpty = false;
 
-  const emptyList = ["/","/index.html"];
+  const emptyList = ["/", "/index.html"];
   emptyList.map((url) => {
     if (url == location.pathname) isEmpty = true;
   });
@@ -20,21 +23,20 @@ const Header = () => {
   return (
     <>
       {/* {allPaths.includes(window.location.pathname) &&  */}
-      {isEmpty ? null : 
-      <header className={classes.root}>
+      {isEmpty ? null : (
+        <header className={classes.root}>
+          <div className={classes.userInfoSection}>
+            <figure className={classes.figure}>
+              <img src={images.icons.ANYCHAT_CI_HEADER} alt="anychat logo" />
+            </figure>
+            <span className={classes.user}>{localStorage.getItem("id")}님</span>
+            안녕하세요!
+          </div>
 
-        <div className={classes.userInfoSection}>
-          <figure className={classes.figure}>
-            <img src={images.icons.ANYCHAT_CI_HEADER} alt="anychat logo"/>
-          </figure>
-          <span className={classes.user}>{localStorage.getItem("id")}님</span>안녕하세요!
-        </div>
-
-        <BreadCrumbs />
-      </header>
-      }
+          <BreadCrumbs />
+        </header>
+      )}
     </>
-    
-  )
-}
+  );
+};
 export default Header;

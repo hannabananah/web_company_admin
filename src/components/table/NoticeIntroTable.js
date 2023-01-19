@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import useStyles from "~/styles/Table";
 import { NoticeAlertModal } from "~/components/Modal";
-import { useNavigate } from "react-router-dom";
 
 const NoticeIntroTable = (props) => {
   const {

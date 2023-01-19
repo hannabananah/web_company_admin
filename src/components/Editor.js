@@ -1,10 +1,7 @@
-import { useState } from "react";
-import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "~/styles/Editor.css";
 import useStyles from "~/styles/Editor";
-import axios from 'axios';
 
 export const EditorTool = (props) => {
   const classes = useStyles();
