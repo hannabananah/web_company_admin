@@ -80,10 +80,6 @@ const AppVersion = () => {
     navigate("/service/app_version/add");
   };
 
-  useEffect(() => {
-    changePage(1);
-  }, []);
-
   const onClickTarget = (user) => {
     navigate("/service/app_version/details", { state: user });
   };
@@ -113,17 +109,22 @@ const AppVersion = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const [targetData, setTargetData] = useState([]);
+  // console.log('fetchData',fetchData)
 
   // 업데이트 버튼 활성화 시 버전 업데이트 실행
-  const updateAppVersion = () => {
-    const new_data = JSON.parse(JSON.stringify(fetchData));
-    new_data[targetIdx].status = "Y";
-    setFetchData(new_data);
+  const updateAppVersion = (e) => {
+    e.preventDefault();
 
+    // console.log("::::::::", fetchData[targetIdx]);
+    const newdata = JSON.parse(JSON.stringify(fetchData[targetIdx]));
+    newdata.status = "Y";
+    newdata.noticeKey=newdata.version_idx;
     axios
       .post(
         `http://localhost:3001/api/version/update`,
-        { ...fetchData },
+
+        { ...newdata },
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -132,9 +133,19 @@ const AppVersion = () => {
       )
       .then(({ data }) => {
         console.log("+-+-+-+-+-", data);
+//  console.log("::::::::: newdata", newdata);
+        const new_data = JSON.parse(JSON.stringify(fetchData));
+        new_data[targetIdx].status = "Y";
+        setFetchData(new_data);
+
+        closeModal();
       });
-    closeModal();
   };
+
+  useEffect(() => {
+    changePage(1);
+  }, []);
+
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       <div className={classes.root}>
