@@ -115,7 +115,7 @@ const NotiAppIntro = () => {
     // console.log("::::::::", fetchData[targetIdx]);
     const newdata = JSON.parse(JSON.stringify(fetchData[targetIdx]));
     newdata.status = "Y";
-    newdata.noti_idx = newdata.noti_idx;
+    newdata.noticeKey = newdata.noti_idx;
     axios
       .post(
         `http://localhost:3001/api/notice/update`,
