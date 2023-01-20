@@ -77,10 +77,6 @@ export const UpdateAlertModal = (props) => {
             <button className={classes.backBtn} onClick={close}>
               취소
             </button>
-            {/* onClick 바꿔야함 */}
-            {/* <button className={classes.deleteBtn} onClick={close}>
-              확인
-            </button> */}
             <button className={classes.deleteBtn} onClick={updateAppVersion}>
               확인
             </button>
@@ -93,7 +89,7 @@ export const UpdateAlertModal = (props) => {
 
 export const NoticeAlertModal = (props) => {
   const classes = useStyles();
-  const { open, close, header } = props;
+  const { open, close, header, activeNotice } = props;
 
   return (
     <div className={open ? "openModal modal" : "modal"}>
@@ -112,8 +108,7 @@ export const NoticeAlertModal = (props) => {
             <button className={classes.backBtn} onClick={close}>
               취소
             </button>
-            {/* onClick 바꿔야함 */}
-            <button className={classes.deleteBtn} onClick={close}>
+            <button className={classes.deleteBtn} onClick={activeNotice}>
               확인
             </button>
           </footer>

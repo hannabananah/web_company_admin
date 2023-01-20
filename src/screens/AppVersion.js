@@ -74,6 +74,7 @@ const AppVersion = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    changePage(page);
     console.log("page  -------------------->", page);
   };
 
@@ -92,7 +93,6 @@ const AppVersion = () => {
   // 필터
   const [selectVal, setSelectVal] = useState("OS");
   const [inputVal, setInputVal] = useState("");
-  const [targetIdx, setTargetIdx] = useState();
 
   const handleNameChange = (e) => {
     setInputVal(e.target.value);
@@ -111,7 +111,7 @@ const AppVersion = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
-  const [targetData, setTargetData] = useState([]);
+  const [targetIdx, setTargetIdx] = useState();
   // console.log('fetchData',fetchData)
 
   // 업데이트 버튼 활성화 시 버전 업데이트 실행
@@ -145,66 +145,65 @@ const AppVersion = () => {
   };
 
   useEffect(() => {
+    getTotalUserCnt();
     changePage(1);
   }, []);
 
   return (
-    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-      <div className={classes.root}>
-        <TableHeader title="App 버전 관리" />
-        <FilterSection
-          left={
-            <>
-              <SelectBox
-                value={selectVal}
-                onChange={onChangeSelect}
-                option={option}
-              />
-              <input
-                className={classes.filterInput}
-                onChange={handleNameChange}
-              />
-              <button
-                className={classes.searchBtn}
-                onClick={() => {
-                  changePage(1);
-                }}
-              >
-                검색
-              </button>
-            </>
-          }
-          right={
-            <button onClick={onClickAddVer} className={classes.saveBtn}>
-              등록
+    <div className={classes.root}>
+      <TableHeader title="App 버전 관리" />
+      <FilterSection
+        left={
+          <>
+            <SelectBox
+              value={selectVal}
+              onChange={onChangeSelect}
+              option={option}
+            />
+            <input
+              className={classes.filterInput}
+              onChange={handleNameChange}
+            />
+            <button
+              className={classes.searchBtn}
+              onClick={() => {
+                changePage(1);
+              }}
+            >
+              검색
             </button>
-          }
-        />
+          </>
+        }
+        right={
+          <button onClick={onClickAddVer} className={classes.saveBtn}>
+            등록
+          </button>
+        }
+      />
 
-        <AppVersionTable
-          fetchData={fetchData}
-          isLoaded={isLoaded}
-          onClickTarget={onClickTarget}
-          openModal={openModal}
-        />
-        <Pagination
-          activePage={currentPage}
-          totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
-          itemsCountPerPage={postsPerPage} // 페이지당 보여줄 포스트 갯수
-          pageRangeDisplayed={10} // 페이저 갯수
-          prevPageText={"‹"}
-          nextPageText={"›"}
-          onChange={handlePageChange}
-        />
-        <UpdateAlertModal
-          open={modalOpen}
-          close={closeModal}
-          header="업데이트"
-          updateAppVersion={updateAppVersion}
-        >
-          <main>APP 업데이트를 시작합니다.</main>
-        </UpdateAlertModal>
-      </div>
+      <AppVersionTable
+        fetchData={fetchData}
+        isLoaded={isLoaded}
+        onClickTarget={onClickTarget}
+        openModal={openModal}
+      />
+      <Pagination
+        activePage={currentPage}
+        totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
+        itemsCountPerPage={postsPerPage} // 페이지당 보여줄 포스트 갯수
+        pageRangeDisplayed={10} // 페이저 갯수
+        prevPageText={"‹"}
+        nextPageText={"›"}
+        onChange={handlePageChange}
+      />
+      <UpdateAlertModal
+        open={modalOpen}
+        close={closeModal}
+        header="업데이트"
+        updateAppVersion={updateAppVersion}
+      >
+        <main>APP 업데이트를 시작합니다.</main>
+      </UpdateAlertModal>
     </div>
   );
 };
