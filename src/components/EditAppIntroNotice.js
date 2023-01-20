@@ -11,10 +11,10 @@ import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
 import DateWithTimePicker from "~/components/DateTimePicker";
-import { UptConfirmModal } from "~/components/Modal";
 import { EditorTool } from "~/components/Editor";
+import { UptConfirmModal } from "~/components/Modal";
 
-const EditAppIntroNotice = ({ gobackstate, user }) => {
+const EditAppIntroNotice = ({ user }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [value, setValue] = useState(dayjs(new Date()));
@@ -35,7 +35,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
   });
 
   const onChange = (e) => {
-    const { name, value, checked } = e.target;
+    const { name, value } = e.target;
 
     const newInfo = {
       ...userInfo,
@@ -43,22 +43,6 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
     };
     setUserInfo(newInfo);
   };
-
-  useEffect(() => {
-    // automatedMessage is the html string I am fetching from my server
-    console.log(user);
-    console.log(userInfo.noti_content);
-    setEditorState(
-      EditorState.createWithContent(
-        ContentState.createFromBlockArray(
-          convertFromHTML(userInfo.noti_content)
-        )
-      )
-    );
-
-    setStart(userInfo.noti_start_dttm);
-    setEnd(userInfo.noti_start_dttm);
-  }, [userInfo]);
 
   // 수정완료 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -68,9 +52,10 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
   };
   const closeModal = () => {
     setModalOpen(false);
+    navigate(-1);
   };
   const onClickPrev = () => {
-    navigate("/notice/app_intro/details/", { state: user });
+    navigate(-1, { state: userInfo });
   };
 
   const handleSubmit = (e) => {
@@ -102,11 +87,9 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
   };
-  // 임시
-  const htmlToEditor = `<strong>ㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇ</strong>`;
 
   useEffect(() => {
-    const blocksFromHtml = htmlToDraft(htmlToEditor);
+    const blocksFromHtml = htmlToDraft(userInfo.noti_content);
     if (blocksFromHtml) {
       const { contentBlocks, entityMap } = blocksFromHtml;
       // https://draftjs.org/docs/api-reference-content-state/#createfromblockarray
@@ -120,6 +103,21 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
       setEditorState(editorState);
     }
   }, []);
+
+  // useEffect(() => {
+  //   console.log(user);
+  //   console.log(userInfo.noti_content);
+  //   setEditorState(
+  //     EditorState.createWithContent(
+  //       ContentState.createFromBlockArray(
+  //         convertFromHTML(userInfo.noti_content)
+  //       )
+  //     )
+  //   );
+
+  //   setStart(userInfo.noti_start_dttm);
+  //   setEnd(userInfo.noti_start_dttm);
+  // }, [userInfo]);
 
   return (
     <figure className={classes.userAccContainer}>
@@ -197,7 +195,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.noti_title}
+                defaultValue={userInfo.noti_title}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
@@ -224,7 +222,7 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.remark}
+                defaultValue={userInfo.remark}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
@@ -246,9 +244,9 @@ const EditAppIntroNotice = ({ gobackstate, user }) => {
           className={classes.saveBtn}
         />
       </div>
-      {/* <UptConfirmModal open={modalOpen} close={closeModal} header="수정 완료">
+      <UptConfirmModal open={modalOpen} close={closeModal} header="수정 완료">
         <main>App Intro 공지를 수정했습니다.</main>
-      </UptConfirmModal> */}
+      </UptConfirmModal>
     </figure>
   );
 };
