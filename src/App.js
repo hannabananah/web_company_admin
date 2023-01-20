@@ -51,7 +51,7 @@ function App() {
             <Route element={<AuthLayout />}>
               {/* <Route path="/setting_admin" element={<SettingAdmin />} /> */}
               <Route path="/setting_admin/user_account" element={<UserAccount />} />
-              <Route path="/setting_admin/user_account/details/:id" element={<UserAccountDetails />}/>
+              <Route path="/setting_admin/user_account/details/:id" element={<UserAccountDetails />} handle={{}}/>
 
               <Route path="/setting_admin/user_account/edit/:id" element={<UserAccountEdit />} />
               <Route path="/setting_admin/user_account/add" element={<AddUserAccount />} />
