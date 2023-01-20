@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { dateFormat } from "~/util/global";
 import useStyles from "~/styles/Table";
 import { NoticeAlertModal } from "~/components/Modal";
 
@@ -70,7 +71,7 @@ const NoticeIntroTable = (props) => {
                   {/* 번호 */}
                   <td className={classes.td}>{i.noticeKey}</td>
                   {/* 공지 등록일 */}
-                  <td className={classes.td}>{i.createdAt}</td>
+                  <td className={classes.td}>{dateFormat(i.createdAt)}</td>
                   {/* APP Intro 공지 노출 기간 */}
                   <td className={classes.td}>
                     {i.noti_start_dttm}~{i.noti_end_dttm}
