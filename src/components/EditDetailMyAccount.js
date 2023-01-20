@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import useStyles from "~/styles/Add";
-import "~/styles/Toggle.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import "~/styles/Toggle.css";
+import useStyles from "~/styles/Add";
+import TableHeader from "~/components/TableHeader";
 
 const EditDetailMyAccount = ({ goBackState, admin }) => {
   const classes = useStyles();
@@ -84,9 +86,7 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
 
   return (
     <figure className={classes.userAccContainer}>
-      <section className={classes.titleSection}>
-        <h2 className={classes.mainTitle}>내 계정 정보 수정</h2>
-      </section>
+      <TableHeader title="내 계정 정보 수정" />
       <table className={classes.tableStyle}>
         <colgroup>
           <col />

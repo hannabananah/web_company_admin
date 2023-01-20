@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Pagination from "react-js-pagination";
-import useStyles from "~/styles/Add";
+
 import "~/styles/Toggle.css";
+import useStyles from "~/styles/Add";
 import UserAccountTable from "~/components/table/UserAccountTable";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import TableHeader from "~/components/TableHeader";
 import ColumnHeaderTable from "~/components/table/ColumnHeaderTable";
-import axios from "axios";
 
 // filter select option
 const option = [
@@ -33,16 +34,10 @@ const UserAccount = () => {
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  //더미데이터
-  useEffect(() => {
-    changePage(1);
-  }, []);
-  // console.log(fetchData);
-  // console.log(isLoaded);
-
   // 페이지네이션
   const [totalUser, setTotalUser] = useState(0); //임시
   const [currentPage, setCurrentPage] = useState(1);
+  // 필터
   const [selectVal, setSelectVal] = useState("ID");
   const [inputVal, setInputVal] = useState("");
 
@@ -50,6 +45,7 @@ const UserAccount = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    changePage(page);
     // console.log("page  -------------------->", page);
   };
 
@@ -60,7 +56,9 @@ const UserAccount = () => {
     // AddUserAccount.js
     navigate("/setting_admin/user_account/add");
   };
-
+  const handleNameChange = (e) => {
+    setInputVal(e.target.value);
+  };
   const getTotalUserCnt = () => {
     axios
       .get(
@@ -95,14 +93,14 @@ const UserAccount = () => {
       .then(setIsLoaded(true));
   };
 
-  const onClickSearch = () => {
-    changePage(currentPage);
-  };
+  useEffect(() => {
+    getTotalUserCnt();
+    changePage(1);
+  }, []);
 
   return (
     <div className={classes.root}>
       <TableHeader title="계정관리" />
-
       <FilterSection
         left={
           <>
@@ -111,8 +109,16 @@ const UserAccount = () => {
               onChange={onChangeSelect}
               option={option}
             />
-            <input className={classes.filterInput} />
-            <button className={classes.searchBtn} onClick={onClickSearch}>
+            <input
+              className={classes.filterInput}
+              onChange={handleNameChange}
+            />
+            <button
+              className={classes.searchBtn}
+              onClick={() => {
+                changePage(1);
+              }}
+            >
               검색
             </button>
           </>
