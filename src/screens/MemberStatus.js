@@ -57,7 +57,7 @@ const MemberStatus = () => {
         }
       )
       .then(({ data }) => {
-        console.log(data);
+        console.log('getTotalUserCnt________',data.userCount);
         setTotalUser(data.userCount);
       });
   };
@@ -133,7 +133,7 @@ const MemberStatus = () => {
       <MemberTable fetchData={fetchData} isLoaded={isLoaded} />
       <Pagination
         activePage={currentPage}
-        totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
+        totalItemsCount={totalUser} // 총 포스트 갯수
         itemsCountPerPage={postsPerPage} // 페이지당 보여줄 포스트 갯수
         pageRangeDisplayed={10} // 페이저 갯수
         prevPageText={"‹"}
