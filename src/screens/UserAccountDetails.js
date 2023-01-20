@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import TableHeader from "~/components/TableHeader";
 import axios from "axios";
 import useStyles from "~/styles/Add";
@@ -11,10 +11,20 @@ const UserAccountDetails = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
-  const user = useLocation().state.state;
   const location = useLocation();
-  // console.log(location)
-  // console.log(user)
+  const user = useLocation()?.state?.state
+  console.log(location)
+  console.log(user)
+
+  const params = useParams();
+  console.log("params :", params )
+  const { id } = useParams();
+  // console.log("id :", id )
+  
+  const [searchParams, setSearchParams] = useState();
+  // const id = searchParams.get('id');
+
+
 
   const [userData, setUserData] = useState({});
   // 계정삭제 모달
@@ -36,22 +46,22 @@ const UserAccountDetails = () => {
   };
 
   const onClickConfirm = () => {
-    axios
-      .post(
-        `http://localhost:3001/api/admin/delete`,
-        { id: user.id },
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        }
-      )
-      .then(({ data }) => {
-        console.log(data);
-        setModalOpen(false)
-        // UserAccount.js
-        navigate("/setting_admin/user_account");
-      });
+    // axios
+    //   .post(
+    //     `http://localhost:3001/api/admin/delete`,
+    //     { id: user.id },
+    //     {
+    //       headers: {
+    //         Authorization: "Bearer " + localStorage.getItem("access_token"),
+    //       },
+    //     }
+    //   )
+    //   .then(({ data }) => {
+    //     console.log(data);
+    //     setModalOpen(false)
+    //     // UserAccount.js
+    //     navigate("/setting_admin/user_account");
+    //   });
   }
   const onClickCancel = () => {
     setModalOpen(false)
@@ -59,7 +69,8 @@ const UserAccountDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/admin/${user.id}`, {
+      // .get(`http://localhost:3001/api/admin/${user.id}`, {
+      .get(`http://localhost:3001/api/admin/${id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -130,7 +141,7 @@ const UserAccountDetails = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록자</label>
             </th>
-            <td className={classes.contentStyle}>{user.id}</td>
+            <td className={classes.contentStyle}>{userData.reg_id}</td>
             {/* <td className={classes.contentStyle}>{params.id}</td> */}
           </tr>
           <tr className={classes.contentInput}>

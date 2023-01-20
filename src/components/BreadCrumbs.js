@@ -6,9 +6,13 @@ import images from "~/assets/js/Images";
 
 const BreadCrumbs = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const location = useLocation();
   // const params = useParams();
   const params = useLocation()?.state?.urlParam;
+
+
+
 
   const pathMap = {};
   let currentLink = []
@@ -137,17 +141,33 @@ const BreadCrumbs = () => {
       return item.path == currentLink.join('')
     })
     // console.log('currentLink_______________________',currentLink)
+    console.log('newPathObj_______________________',newPathObj)
+    // console.log('obj_______________________',obj)
     
+
+    // obj[0]?.linkTo == false ? false
     return (
       <React.Fragment key={crumb}>
         <img src={images.icons.ARROWRIGHT} alt="arrow right" />
-        <Link to={obj[0]?.linkTo == false ? false : currentLink.join('')} 
-          className={classes.breadCrumbsLink}>
-            {obj[0]?.title ? obj[0]?.title : crumb}
-        </Link>
+
+        <sapn onClick={()=>{navigate(false)}} 
+          className={classes.breadCrumbsLink}>{obj[0]?.title ? obj[0]?.title : crumb}</sapn>
+
       </React.Fragment>
     )
 
+    /////-------------- 2 번째 ( 404는 해결 했는데 crumb링크 클릭시 useLocation 의 state값이 초기화돼서 오류 ) --------------/////
+    // return (
+    //   <React.Fragment key={crumb}>
+    //     <img src={images.icons.ARROWRIGHT} alt="arrow right" />
+    //     <Link to={obj[0]?.linkTo == false ? false : currentLink.join('')} 
+    //       className={classes.breadCrumbsLink}>
+    //         {obj[0]?.title ? obj[0]?.title : crumb}
+    //     </Link>
+    //   </React.Fragment>
+    // )
+
+    /////-------------- 1 번째 ( 연결된 컴포넌트 없을경우 404 ) --------------/////
     // return (
     //   <React.Fragment key={crumb}>
     //     <img src={images.icons.ARROWRIGHT} alt="arrow right" />
