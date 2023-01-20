@@ -9,7 +9,7 @@ import TableHeader from "~/components/TableHeader";
 const storeList = ["Google Play", "App Store", "Microsoft", "Mac"];
 const osList = ["Android", "iOS", "Windows", "Mac"];
 
-const AddAppVersion = ({ backState }) => {
+const AddAppVersion = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [radioValue, setRadioValue] = useState("Google Play");

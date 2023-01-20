@@ -1,34 +1,14 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { dateFormat } from "~/util/global";
 import useStyles from "~/styles/Table";
-import { NoticeAlertModal } from "~/components/Modal";
 
 const NoticeIntroTable = (props) => {
-  const {
-    changeState,
-    fetchData,
-    isLoaded,
-    backState,
-    user,
-    setUser,
-    onClickTarget,
-  } = props;
+  const { fetchData, isLoaded, openModal } = props;
   const classes = useStyles();
   const navigate = useNavigate();
   console.log(fetchData);
   console.log(isLoaded);
-
-  // 공지활성화 알림 모달
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-  };
 
   return (
     <figure className={classes.root}>
@@ -69,12 +49,13 @@ const NoticeIntroTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
-                  <td className={classes.td}>{i.noticeKey}</td>
+                  <td className={classes.td}>{i.noti_idx}</td>
                   {/* 공지 등록일 */}
-                  <td className={classes.td}>{dateFormat(i.createdAt)}</td>
+                  <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
                   {/* APP Intro 공지 노출 기간 */}
                   <td className={classes.td}>
-                    {i.noti_start_dttm}~{i.noti_end_dttm}
+                    {dateFormat(i.noti_start_dttm)}~
+                    {dateFormat(i.noti_end_dttm)}
                   </td>
                   {/* 공지 유형 */}
                   <td className={classes.td}>
@@ -99,7 +80,10 @@ const NoticeIntroTable = (props) => {
                   <td className={classes.td}>{i.os}</td>
                   {/* 공지 활성 */}
                   <td className={classes.td}>
-                    <span onClick={openModal} className={classes.activeLive}>
+                    <span
+                      onClick={() => openModal(index)}
+                      className={classes.activeLive}
+                    >
                       Live
                     </span>
                   </td>
@@ -114,14 +98,6 @@ const NoticeIntroTable = (props) => {
           </tr> */}
         </tbody>
       </table>
-      <NoticeAlertModal
-        N
-        open={modalOpen}
-        close={closeModal}
-        header="공지 활성화"
-      >
-        <main>App Intro 공지를 노출합니다.</main>
-      </NoticeAlertModal>
     </figure>
   );
 };
