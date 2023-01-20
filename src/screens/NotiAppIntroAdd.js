@@ -60,7 +60,7 @@ const NotiAppIntroAdd = () => {
   });
 
   const onChange = (e) => {
-    const { name, value, checked } = e.target;
+    const { name, value } = e.target;
 
     const newInfo = {
       ...notiInfo,

@@ -6,6 +6,7 @@ import { EditorState, convertToRaw, ContentState } from "draft-js";
 import htmlToDraft from "html-to-draftjs";
 import { convertFromHTML } from "draft-convert";
 import Modifier from "draft-js/lib/DraftModifier";
+import draftToHtml from "draftjs-to-html";
 
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
@@ -68,9 +69,12 @@ const EditAppIntroNotice = () => {
 
     // userInfo["noticeKey"] = userInfo.noti_idx;
     console.log(userInfo);
+    console.log(convertToRaw(editorState.getCurrentContent()));
 
+    const editorToHtml = draftToHtml(
+      convertToRaw(editorState.getCurrentContent())
+    );
 
-    // return false;
     // eslint-disable-next-line no-restricted-globals
     if (confirm("저장 하시겠습니까?")) {
       axios
@@ -82,10 +86,10 @@ const EditAppIntroNotice = () => {
             noti_start_dttm: userInfo.noti_start_dttm,
             noti_end_dttm: userInfo.noti_end_dttm,
             noti_title: userInfo.noti_title,
-            noti_content: userInfo.noti_content,
             remark: userInfo.remark,
             noticeKey: userInfo.noticeKey,
             status: userInfo.status,
+            noti_content: editorToHtml,
           },
           {
             headers: {
