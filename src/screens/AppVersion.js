@@ -79,7 +79,6 @@ const AppVersion = () => {
   };
 
   const onClickAddVer = () => {
-    // AddAppVer.js
     navigate("/service/app_version/add");
   };
 
@@ -93,7 +92,6 @@ const AppVersion = () => {
   // 필터
   const [selectVal, setSelectVal] = useState("OS");
   const [inputVal, setInputVal] = useState("");
-  const [targetIdx, setTargetIdx] = useState();
 
   const handleNameChange = (e) => {
     setInputVal(e.target.value);
@@ -112,7 +110,7 @@ const AppVersion = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
-  const [targetData, setTargetData] = useState([]);
+  const [targetIdx, setTargetIdx] = useState();
   // console.log('fetchData',fetchData)
 
   // 업데이트 버튼 활성화 시 버전 업데이트 실행
@@ -183,7 +181,7 @@ const AppVersion = () => {
               등록
             </button>
           }
-        />
+      />
 
         <AppVersionTable
           fetchData={fetchData}

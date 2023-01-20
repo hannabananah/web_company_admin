@@ -1,9 +1,18 @@
 import { makeStyles } from "@mui/styles";
 import { COLORS } from "~/assets/colors/colors";
 
-export const SearchBtn = () => {
+export const SearchBtn = ({ changePage }) => {
   const classes = useStyles();
-  return <button className={classes.searchBtn}>검색</button>;
+  return (
+    <button
+      className={classes.searchBtn}
+      onClick={() => {
+        changePage(1);
+      }}
+    >
+      검색
+    </button>
+  );
 };
 export const SaveBtn = ({ onClick }) => {
   const classes = useStyles();

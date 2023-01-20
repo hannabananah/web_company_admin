@@ -7,7 +7,7 @@ import useStyles from "~/styles/Add";
 import { UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 
-const EditDetailAccount = ({ gobackstate, user }) => {
+const EditDetailAccount = ({ user }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -71,7 +71,7 @@ const EditDetailAccount = ({ gobackstate, user }) => {
   }, []);
 
   const onChange = (e) => {
-    const { name, value, checked } = e.target;
+    const { name, value } = e.target;
 
     const newInfo = {
       ...userInfo,
