@@ -70,7 +70,7 @@ const UserAccountDetails = () => {
   useEffect(() => {
     axios
       // .get(`http://localhost:3001/api/admin/${user.id}`, {
-      .get(`http://localhost:3001/api/admin/${id}`, {
+      .get(`http://localhost:3001/api/admin/${params.id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
