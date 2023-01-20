@@ -18,10 +18,6 @@ const option = [
     name: "아이디",
   },
   {
-    value: "name",
-    name: "사용자명",
-  },
-  {
     value: "phone",
     name: "전화번호",
   },
@@ -44,9 +40,10 @@ const UserAccount = () => {
   const postsPerPage = 10;
 
   const handlePageChange = (page) => {
+    console.log("page  -------------------->", page);
     setCurrentPage(page);
+    getTotalUserCnt();
     changePage(page);
-    // console.log("page  -------------------->", page);
   };
 
   const onChangeSelect = (event) => {
@@ -59,6 +56,7 @@ const UserAccount = () => {
   const handleNameChange = (e) => {
     setInputVal(e.target.value);
   };
+
   const getTotalUserCnt = () => {
     axios
       .get(
@@ -70,9 +68,8 @@ const UserAccount = () => {
         }
       )
       .then(({ data }) => {
-        console.log(data);
-        setTotalUser(data.userCount);
-        // console.log('totalUser :::::::::::::::', data.userCount)
+        console.log('totalUser :::::::::::::::', data)
+        setTotalUser(data);
       });
   };
 
@@ -98,6 +95,11 @@ const UserAccount = () => {
     changePage(1);
   }, []);
 
+  const onClickSearch = () => {
+    getTotalUserCnt();
+    changePage(1);
+  }
+
   return (
     <div className={classes.root}>
       <TableHeader title="계정관리" />
@@ -115,10 +117,7 @@ const UserAccount = () => {
             />
             <button
               className={classes.searchBtn}
-              onClick={() => {
-                changePage(1);
-              }}
-            >
+              onClick={onClickSearch}>
               검색
             </button>
           </>
