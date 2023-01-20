@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import AppNotiAdd from "~/components/AddAppNotification";
 import useStyles from "~/styles/Add";
@@ -25,13 +25,21 @@ const NotiAppIntroAdd = () => {
   const [ampm, setAmpm] = useState(false);
   const [osRadioValue, setOsRadioValue] = useState("Android");
   const onChangeRadio1 = (e) => {
-    notiInfo.os = e.target.value;
     setOsRadioValue(e.target.value);
+    setNotiInfo({
+      ...notiInfo,
+      [e.target.name]: e.target.value,
+    });
   };
+  // console.log('osRadioValue-------------------',osRadioValue);
+
   const [typeRadioValue, setTypeRadioValue] = useState("urgent");
   const onChangeRadio2 = (e) => {
-    notiInfo.update_type = e.target.value;
     setTypeRadioValue(e.target.value);
+    setNotiInfo({
+      ...notiInfo,
+      [e.target.name]: e.target.value,
+    });
   };
   // console.log('오전인지 오후인지 보여줄지 말지 ----> ', ampm)
   console.log("start 시작 날짜 -----> ", start);
@@ -40,7 +48,7 @@ const NotiAppIntroAdd = () => {
   const [notiInfo, setNotiInfo] = useState({
     noti_idx: "",
     os: "",
-    noti_type: "urgent",
+    noti_type: "",
     noti_start_dttm: "",
     noti_end_dttm: "",
     noti_title: "",
@@ -68,7 +76,7 @@ const NotiAppIntroAdd = () => {
     notiInfo["noti_end_dttm"] = end;
 
     notiInfo["os"] = osRadioValue;
-    notiInfo["update_type"] = typeRadioValue;
+    notiInfo["noti_type"] = typeRadioValue;
 
     const editorToHtml = draftToHtml(
       convertToRaw(editorState.getCurrentContent())
@@ -92,6 +100,7 @@ const NotiAppIntroAdd = () => {
         .then(({ data }) => {
           console.log(data);
           openModal();
+          console.log(notiInfo);
         });
     }
   };
@@ -127,11 +136,12 @@ const NotiAppIntroAdd = () => {
 
   const closeModal = () => {
     setModalOpen(false);
+    navigate(-1);
   };
 
   const onClickPrev = () => {
-    // NoticeAppIntro.js
-    navigate("/notice/app_intro");
+    // navigate("/notice/app_intro");
+    navigate(-1);
   };
 
   return (
@@ -155,7 +165,7 @@ const NotiAppIntroAdd = () => {
                       type="radio"
                       id={item}
                       name="os"
-                      value={notiInfo.os}
+                      value={item}
                       onChange={onChangeRadio1}
                       className={classes.radioBtn}
                       defaultChecked={item == osRadioValue}
@@ -178,7 +188,7 @@ const NotiAppIntroAdd = () => {
                       type="radio"
                       id={item}
                       name="noti_type"
-                      value={notiInfo.noti_type}
+                      value={item}
                       onChange={onChangeRadio2}
                       className={classes.radioBtn}
                       defaultChecked={item == typeRadioValue}
