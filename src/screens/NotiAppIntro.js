@@ -54,6 +54,7 @@ const NotiAppIntro = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    getTotalUserCnt();
     changePage(page);
     // console.log("page  -------------------->", page);
   };
@@ -87,10 +88,11 @@ const NotiAppIntro = () => {
       )
       .then(({ data }) => {
         console.log(data);
-        setTotalUser(data.userCount);
-        // console.log('totalUser :::::::::::::::', data.userCount)
+        setTotalUser(data);
+        console.log('totalUser :::::::::::::::', data)
       });
   };
+
   const changePage = (page) => {
     axios
       .get(
@@ -168,7 +170,7 @@ const NotiAppIntro = () => {
       />
       <Pagination
         activePage={currentPage}
-        totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
+        totalItemsCount={totalUser} // 총 포스트 갯수
         itemsCountPerPage={postsPerPage} // 페이지당 보여줄 포스트 갯수
         pageRangeDisplayed={10} // 페이저 갯수
         prevPageText={"‹"}
