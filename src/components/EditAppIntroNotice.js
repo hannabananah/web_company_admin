@@ -14,7 +14,8 @@ import DateWithTimePicker from "~/components/DateTimePicker";
 import { EditorTool } from "~/components/Editor";
 import { UptConfirmModal } from "~/components/Modal";
 
-const EditAppIntroNotice = ({ user }) => {
+const EditAppIntroNotice = () => {
+  const user = useLocation().state;
   const classes = useStyles();
   const navigate = useNavigate();
   const [value, setValue] = useState(dayjs(new Date()));
@@ -32,6 +33,7 @@ const EditAppIntroNotice = ({ user }) => {
     noti_title: user.noti_title,
     noti_content: user.noti_content,
     remark: user.remark,
+    status: user.status,
   });
 
   const onChange = (e) => {
@@ -60,15 +62,30 @@ const EditAppIntroNotice = ({ user }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(userInfo);
     userInfo["noti_start_dttm"] = start;
     userInfo["noti_end_dttm"] = end;
+
+    // userInfo["noticeKey"] = userInfo.noti_idx;
+    console.log(userInfo);
+
+
+    // return false;
     // eslint-disable-next-line no-restricted-globals
     if (confirm("저장 하시겠습니까?")) {
       axios
         .post(
           `http://localhost:3001/api/notice/update`,
           {
-            ...userInfo,
+            os: userInfo.os,
+            noti_type: userInfo.noti_type,
+            noti_start_dttm: userInfo.noti_start_dttm,
+            noti_end_dttm: userInfo.noti_end_dttm,
+            noti_title: userInfo.noti_title,
+            noti_content: userInfo.noti_content,
+            remark: userInfo.remark,
+            noticeKey: userInfo.noticeKey,
+            status: userInfo.status,
           },
           {
             headers: {
@@ -199,7 +216,7 @@ const EditAppIntroNotice = ({ user }) => {
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="title"
+                name="noti_title"
                 id="introNoti"
                 required
               />
