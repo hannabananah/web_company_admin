@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Pagination from "react-js-pagination";
 
 import "~/styles/Toggle.css";
@@ -34,27 +35,71 @@ const NotiAppIntro = () => {
 
   const onClickAddNoti = () => {
     // NotiAppIntroAdd.js
-    navigate('/notice/app_intro/add')
-  }
+    navigate("/notice/app_intro/add");
+  };
 
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // 페이지네이션
+  const [totalUser, setTotalUser] = useState(0); //임시
   const [totalPage, setTotalPage] = useState(5); //임시
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-    // console.log("page  -------------------->", page);
-  };
   // 필터
   const [selectVal, setSelectVal] = useState("os");
+  const [inputVal, setInputVal] = useState("");
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    changePage(page);
+    // console.log("page  -------------------->", page);
+  };
   const onChangeSelect = (event) => {
     setSelectVal(event.target.value);
   };
+  const handleNameChange = (e) => {
+    setInputVal(e.target.value);
+  };
+
+  const getTotalUserCnt = () => {
+    axios
+      .get(
+        `http://localhost:3001/api/admin/total?s=${selectVal}&v=${inputVal}`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+        setTotalUser(data.userCount);
+        // console.log('totalUser :::::::::::::::', data.userCount)
+      });
+  };
+  const changePage = (page) => {
+    axios
+      .get(
+        `http://localhost:3001/api/admin?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
+        console.log("changePage data::::::::::::", data);
+        setFetchData(data);
+      })
+      .then(setIsLoaded(true));
+  };
+
+  useEffect(() => {
+    getTotalUserCnt();
+    changePage(1);
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -67,17 +112,14 @@ const NotiAppIntro = () => {
               onChange={onChangeSelect}
               option={option}
             />
-            <SearchInput />
+            <SearchInput handleNameChange={handleNameChange} />
             <SearchBtn />
           </>
         }
         right={<SaveBtn onClick={onClickAddNoti} />}
       />
-      
-      <NoticeIntroTable
-        fetchData={fetchData}
-        isLoaded={isLoaded}
-      />
+
+      <NoticeIntroTable fetchData={fetchData} isLoaded={isLoaded} />
       <Pagination
         activePage={currentPage}
         totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
