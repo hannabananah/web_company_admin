@@ -50,8 +50,8 @@ const AppVersion = () => {
         }
       )
       .then(({ data }) => {
-        console.log(data);
-        setTotalUser(data.userCount);
+        console.log('getTotalUserCnt:::::',data);
+        setTotalUser(data);
       });
   };
 
@@ -66,7 +66,7 @@ const AppVersion = () => {
         }
       )
       .then(({ data }) => {
-        console.log(data);
+        console.log('changePage::::::::',data);
         setFetchData(data);
       })
       .then(setIsLoaded(true));
@@ -74,7 +74,8 @@ const AppVersion = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    console.log("page  -------------------->", page);
+    changePage(page);
+    // console.log("page  -------------------->", page);
   };
 
   const onClickAddVer = () => {
@@ -87,7 +88,7 @@ const AppVersion = () => {
   };
 
   console.log(fetchData);
-  console.log(isLoaded);
+  // console.log(isLoaded);
 
   // 필터
   const [selectVal, setSelectVal] = useState("OS");
@@ -145,8 +146,14 @@ const AppVersion = () => {
   };
 
   useEffect(() => {
+    getTotalUserCnt()
     changePage(1);
   }, []);
+
+  const onClickSearch = () => {
+    getTotalUserCnt()
+    handlePageChange(1)
+  }
 
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
@@ -166,10 +173,7 @@ const AppVersion = () => {
               />
               <button
                 className={classes.searchBtn}
-                onClick={() => {
-                  changePage(1);
-                }}
-              >
+                onClick={onClickSearch}>
                 검색
               </button>
             </>
@@ -189,7 +193,7 @@ const AppVersion = () => {
         />
         <Pagination
           activePage={currentPage}
-          totalItemsCount={postsPerPage * totalPage} // 총 포스트 갯수
+          totalItemsCount={totalUser} // 총 포스트 갯수
           itemsCountPerPage={postsPerPage} // 페이지당 보여줄 포스트 갯수
           pageRangeDisplayed={10} // 페이저 갯수
           prevPageText={"‹"}

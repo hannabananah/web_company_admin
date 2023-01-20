@@ -72,9 +72,7 @@ const History = () => {
     getTotalHistry();
     axios
       .get(
-        `http://localhost:3001/api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
-          "YYYY-MM-DD"
-        )}&et=${end.format("YYYY-MM-DD")}`,
+        `http://localhost:3001/api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format("YYYY-MM-DD")}&et=${end.format("YYYY-MM-DD")}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
