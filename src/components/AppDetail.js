@@ -14,7 +14,6 @@ const AppDetail = () => {
   const [fetchData, setFetchData] = useState([]);
 
   const onClickPrev = () => {
-    //
     navigate(-1);
   };
   const onClickEdit = () => {
@@ -111,11 +110,9 @@ const AppDetail = () => {
         </tbody>
       </table>
       <div className={classes.submitBtns}>
-        {/* <button onClick={backState} className={classes.backBtn}> */}
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
-        {/* <button onClick={() => onEdit(true)} className={classes.editBtn}> */}
         <button onClick={onClickEdit} className={classes.editBtn}>
           수정
         </button>

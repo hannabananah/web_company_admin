@@ -79,7 +79,6 @@ const AppVersion = () => {
   };
 
   const onClickAddVer = () => {
-    // AddAppVer.js
     navigate("/service/app_version/add");
   };
 
