@@ -15,7 +15,8 @@ const DatePicker = (props) => {
         className={classes.root}
         // label="start"
         value={start}
-        minDate={dayjs(new Date())}
+        // minDate={dayjs(new Date())}
+        minDate={new Date("2020-01-01")}
         // disableMaskedInput={false}
         onChange={(newValue) => {
           // console.log(newValue)

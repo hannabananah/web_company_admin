@@ -74,7 +74,6 @@ const UserAccountTable = (props) => {
                     </span>
                   </td>
                   <td className={classes.td}>{i.remote_ip}</td>
-                  {/* <td className={classes.td}>{dateFormat(i.updatedAt)}</td> */}
                   <td className={classes.td}>{dateFormat(i.updatedAt)}</td>
                 </tr>
               );

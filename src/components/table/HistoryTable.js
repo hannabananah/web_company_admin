@@ -1,4 +1,5 @@
 import useStyles from "~/styles/Table";
+import { dateFormat } from "~/util/global";
 
 const HistoryTable = (props) => {
   const { changeState, fetchData, isLoaded, onClickTarget } = props;
@@ -51,7 +52,7 @@ const HistoryTable = (props) => {
                   {/* 번호 */}
                   <td className={classes.td}>{i.accessKey}</td>
                   {/* 작업 날짜 */}
-                  <td className={classes.td}>{i.createdAt}</td>
+                  <td className={classes.td}>{dateFormat(i.createdAt)}</td>
                   {/* 관리자 ID */}
                   <td className={classes.td}>{i.user_id}</td>
                   {/*/!* 로그인 완료 시간 *!/*/}

@@ -27,7 +27,7 @@ const History = () => {
   const classes = useStyles();
   // 페이지네이션
   const [totalUser, setTotalUser] = useState(0); //임시
-  const [totalPage, setTotalPage] = useState(5); //임시
+  // const [totalPage, setTotalPage] = useState(); //임시
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
 
@@ -40,17 +40,22 @@ const History = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [inputVal, setInputVal] = useState("");
 
+  // 필터
+  const [selectVal, setSelectVal] = useState("id");
+
+  const onChangeSelect = (event) => {
+    setSelectVal(event.target.value);
+  };
+
   useEffect(() => {
     changePage(1);
     setEnd(start);
   }, [start]);
-
+  
   const getTotalHistry = () => {
     axios
       .get(
-        `http://localhost:3001/api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format(
-          "YYYY-MM-DD"
-        )}&et=${end.format("YYYY-MM-DD")}`,
+        `http://localhost:3001/api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format("YYYY-MM-DD")}&et=${end.format("YYYY-MM-DD")}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -58,8 +63,8 @@ const History = () => {
         }
       )
       .then(({ data }) => {
-        console.log(data);
-        setTotalUser(data.cnt);
+        console.log('getTotalHistry data::::::',data);
+        setTotalUser(data);
       });
   };
 
@@ -77,7 +82,7 @@ const History = () => {
         }
       )
       .then(({ data }) => {
-        console.log(data);
+        console.log('changePage data::::',data);
         setFetchData(data);
       })
       .then(setIsLoaded(true));
@@ -111,20 +116,20 @@ const History = () => {
   };
 
   const handlePageChange = (page) => {
-    setCurrentPage(page);
     console.log("page  -------------------->", page);
+    setCurrentPage(page);
+    changePage(page);
+
   };
 
   useEffect(() => {
     changePage(1);
   }, []);
 
-  // 필터
-  const [selectVal, setSelectVal] = useState("id");
-
-  const onChangeSelect = (event) => {
-    setSelectVal(event.target.value);
-  };
+  const onClickSearch = () => {
+    setCurrentPage(1)
+    changePage(1)
+  }
 
   return (
     <div className={classes.root}>
@@ -150,11 +155,8 @@ const History = () => {
             />
 
 
-            <button className={classes.searchBtn}
-                onClick={() => {
-                    changePage(1);
-                }}
-            >검색</button>
+          <button className={classes.searchBtn}
+            onClick={onClickSearch}>검색</button>
 
           <button className={classes.searchBtn}
                   onClick={() => {
