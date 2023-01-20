@@ -3,8 +3,6 @@ import EditAppDetail from "~/components/EditAppDetail";
 
 const EditAppVer = () => {
   const user = useLocation().state;
-  return (
-    <EditAppDetail user={user} />
-  )
-}
+  return <EditAppDetail user={user} />;
+};
 export default EditAppVer;
