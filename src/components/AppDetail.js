@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-import useStyles from "~/styles/Add";
+import { dateFormat } from "~/util/global";
 import "~/styles/Toggle.css";
+import useStyles from "~/styles/Add";
+import TableHeader from "~/components/TableHeader";
 
 const AppDetail = () => {
   const classes = useStyles();
@@ -37,9 +39,7 @@ const AppDetail = () => {
 
   return (
     <figure className={classes.userAccContainer}>
-      <section className={classes.titleSection}>
-        <h2 className={classes.mainTitle}>App 버전 상세</h2>
-      </section>
+      <TableHeader title="App 버전 상세" />
       <table className={classes.tableStyle}>
         <colgroup>
           <col />
@@ -90,19 +90,23 @@ const AppDetail = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록일</label>
             </th>
-            <td className={classes.contentStyle}>{fetchData.createdAt}</td>
+            <td className={classes.contentStyle}>
+              {dateFormat(fetchData.createdAt)}
+            </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록자</label>
             </th>
-            <td className={classes.contentStyle}>{fetchData.upt_id}</td>
+            <td className={classes.contentStyle}>{fetchData.reg_id}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>수정일</label>
             </th>
-            <td className={classes.contentStyle}>{fetchData.updatedAt}</td>
+            <td className={classes.contentStyle}>
+              {dateFormat(fetchData.updatedAt)}
+            </td>
           </tr>
         </tbody>
       </table>

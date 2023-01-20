@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import useStyles from "~/styles/Add";
-import "~/styles/Toggle.css";
 import axios from "axios";
+
+import "~/styles/Toggle.css";
+import useStyles from "~/styles/Add";
 import { UptConfirmModal, SaveConfirmModal } from "~/components/Modal";
 
 const EditDetailAccount = () => {

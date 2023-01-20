@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Pagination from "react-js-pagination";
-import useStyles from "~/styles/Add";
+import axios from "axios";
+
 import "~/styles/Toggle.css";
+import useStyles from "~/styles/Add";
+
 import DetailsAppVer from "~/screens/DetailsAppVer";
 import AddAppVersion from "~/components/AddAppVersion";
 import AppVersionTable from "~/components/table/AppVersionTable";
@@ -10,7 +13,6 @@ import AppDetail from "~/components/AppDetail";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import { UpdateAlertModal } from "~/components/Modal";
-import axios from "axios";
 import TableHeader from "~/components/TableHeader";
 
 // filter select option
@@ -119,7 +121,7 @@ const AppVersion = () => {
     // console.log("::::::::", fetchData[targetIdx]);
     const newdata = JSON.parse(JSON.stringify(fetchData[targetIdx]));
     newdata.status = "Y";
-    newdata.noticeKey=newdata.version_idx;
+    newdata.noticeKey = newdata.version_idx;
     axios
       .post(
         `http://localhost:3001/api/version/update`,
@@ -133,7 +135,7 @@ const AppVersion = () => {
       )
       .then(({ data }) => {
         console.log("+-+-+-+-+-", data);
-//  console.log("::::::::: newdata", newdata);
+        //  console.log("::::::::: newdata", newdata);
         const new_data = JSON.parse(JSON.stringify(fetchData));
         new_data[targetIdx].status = "Y";
         setFetchData(new_data);
@@ -162,7 +164,14 @@ const AppVersion = () => {
                 className={classes.filterInput}
                 onChange={handleNameChange}
               />
-              <button className={classes.searchBtn}>검색</button>
+              <button
+                className={classes.searchBtn}
+                onClick={() => {
+                  changePage(1);
+                }}
+              >
+                검색
+              </button>
             </>
           }
           right={

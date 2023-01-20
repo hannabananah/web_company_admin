@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useStyles from "~/styles/Add";
-import TableHeader from "~/components/TableHeader";
+import axios from "axios";
+
 import images from "~/assets/js/Images";
 import "~/styles/Toggle.css";
-import axios from "axios";
+import useStyles from "~/styles/Add";
+import TableHeader from "~/components/TableHeader";
 
 const AddUserAccount = () => {
   const classes = useStyles();

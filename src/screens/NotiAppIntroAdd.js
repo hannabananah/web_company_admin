@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import TableHeader from "~/components/TableHeader";
 // import AppNotiAdd from "~/components/AddAppNotification";
 import useStyles from "~/styles/Add";
 import "~/styles/Toggle.css";
-import DateWithTimePicker from "~/components/DateTimePicker";
-import { UptConfirmModal } from "~/components/Modal";
-import { EditorTool } from "~/components/Editor";
 import draftToHtml from "draftjs-to-html";
 import { EditorState, convertToRaw } from "draft-js";
 import axios from "axios";
 import dayjs, { Dayjs } from "dayjs";
+
+import DateWithTimePicker from "~/components/DateTimePicker";
+import { UptConfirmModal } from "~/components/Modal";
+import TableHeader from "~/components/TableHeader";
+import { EditorTool } from "~/components/Editor";
 
 const osList = ["Android", "iOS", "Windows", "Mac"];
 const typeList = ["urgent", "normal"];
@@ -136,7 +137,6 @@ const NotiAppIntroAdd = () => {
   return (
     <figure className={classes.userAccContainer}>
       <TableHeader title="App Intro 공지 등록" />
-
       <table className={classes.tableStyle}>
         <colgroup>
           <col />
