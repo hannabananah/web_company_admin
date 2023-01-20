@@ -79,7 +79,7 @@ const NotiAppIntro = () => {
   const getTotalUserCnt = () => {
     axios
       .get(
-        `http://localhost:3001/api/admin/total?s=${selectVal}&v=${inputVal}`,
+        `http://localhost:3001/api/notice/total?s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
