@@ -147,27 +147,16 @@ const BreadCrumbs = () => {
     // console.log('obj_______________________',obj)
     
 
-    // obj[0]?.linkTo == false ? false
+    /////-------------- 2 번째 ( 404는 해결 했는데 crumb링크 클릭시 useLocation 의 state값이 초기화돼서 오류 ) --------------/////
     return (
       <React.Fragment key={crumb}>
         <img src={images.icons.ARROWRIGHT} alt="arrow right" />
-
-        <sapn onClick={()=>{navigate(false)}} 
-          className={classes.breadCrumbsLink}>{obj[0]?.title ? obj[0]?.title : crumb}</sapn>
-
+        <Link to={obj[0]?.linkTo == false ? false : currentLink.join('')} 
+          className={classes.breadCrumbsLink}>
+            {obj[0]?.title ? obj[0]?.title : crumb}
+        </Link>
       </React.Fragment>
     )
-
-    /////-------------- 2 번째 ( 404는 해결 했는데 crumb링크 클릭시 useLocation 의 state값이 초기화돼서 오류 ) --------------/////
-    // return (
-    //   <React.Fragment key={crumb}>
-    //     <img src={images.icons.ARROWRIGHT} alt="arrow right" />
-    //     <Link to={obj[0]?.linkTo == false ? false : currentLink.join('')} 
-    //       className={classes.breadCrumbsLink}>
-    //         {obj[0]?.title ? obj[0]?.title : crumb}
-    //     </Link>
-    //   </React.Fragment>
-    // )
 
     /////-------------- 1 번째 ( 연결된 컴포넌트 없을경우 404 ) --------------/////
     // return (
