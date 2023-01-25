@@ -20,6 +20,8 @@ import EditMyAccount from "~/screens/EditMyAccount";
 import EditDetailAccount from "~/components/EditDetailAccount";
 import History from "~/screens/History";
 import MemberStatus from "~/screens/MemberStatus";
+import SubjectToReport from "~/screens/SubjectToReport";
+import BlackList from "~/screens/BlackList";
 import AppVersion from "~/screens/AppVersion";
 import DetailsAppVer from "~/screens/DetailsAppVer";
 import AddAppVer from "~/screens/AddAppVer";
@@ -57,35 +59,25 @@ function App() {
               <Route path="/setting_admin/user_account/add" element={<AddUserAccount />} />
 
               <Route path="/setting_admin/my_account" element={<MyAccount />} />
-              <Route
-                path="/setting_admin/my_account/edit"
-                element={<EditMyAccount />}
-              />
+              <Route path="/setting_admin/my_account/edit" element={<EditMyAccount />} />
 
               {/* <Route path="/setting_admin/edit_detail_account" element={<EditDetailAccount />} /> */}
               <Route path="/setting_admin/history" element={<History />} />
               {/* <Route path="/member" element={<Member />} /> */}
               <Route path="/member/member_status" element={<MemberStatus />} />
+              <Route path="/member/subject_report" element={<SubjectToReport />} />
+              <Route path="/member/black_list" element={<BlackList />} />
               {/* <Route path="/service" element={<Service />} /> */}
               {/* 서비스 관리 > App 버전 관리 */}
               <Route path="/service/app_version" element={<AppVersion />} />
               {/* 서비스 관리 > App 버전 관리 > 상세 */}
-              <Route
-                path="/service/app_version/details"
-                element={<DetailsAppVer />}
-              />
+              <Route path="/service/app_version/details" element={<DetailsAppVer />} />
               {/* 서비스 관리 > App 버전 관리 > 상세 > 수정 */}
-              <Route
-                path="/service/app_version/details/edit"
-                element={<EditAppVer />}
-              />
+              <Route path="/service/app_version/details/edit" element={<EditAppVer />} />
               {/* 서비스 관리 > App 버전 관리 > 등록 */}
               <Route path="/service/app_version/add" element={<AddAppVer />} />
               {/* 서비스 관리 > 번역 이상 신고 */}
-              <Route
-                path="/service/report_translation_error"
-                element={<ReportTransError />}
-              />
+              <Route path="/service/report_translation_error" element={<ReportTransError />} />
 
               <Route path="/statistics" element={<Statistics />} />
               {/* <Route path="/notice" element={<Notice />} /> */}
@@ -93,25 +85,13 @@ function App() {
               {/* 공지 */}
               <Route path="/notice/app_intro" element={<NotiAppIntro />} />
               {/* 공지 > 상세 */}
-              <Route
-                path="/notice/app_intro/details"
-                element={<DetailIntroNoti />}
-              />
+              <Route path="/notice/app_intro/details" element={<DetailIntroNoti />} />
               {/* 공지 > 상세 > 수정 */}
-              <Route
-                path="/notice/app_intro/details/edit"
-                element={<EditAppNoti />}
-              />
+              <Route path="/notice/app_intro/details/edit" element={<EditAppNoti />} />
               {/* 공지 > 등록 */}
-              <Route
-                path="/notice/app_intro/add"
-                element={<NotiAppIntroAdd />}
-              />
+              <Route path="/notice/app_intro/add" element={<NotiAppIntroAdd />} />
 
-              <Route
-                path="/notice/app_viewmore"
-                element={<NotiAppViewMore />}
-              />
+              <Route path="/notice/app_viewmore" element={<NotiAppViewMore />} />
               <Route path="/notice/user_email" element={<NotiUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />
               <Route path="/hannah_test" element={<EditorTool />} />
