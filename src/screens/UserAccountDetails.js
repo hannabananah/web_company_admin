@@ -13,18 +13,12 @@ const UserAccountDetails = () => {
   const token = localStorage.getItem("access_token");
   const location = useLocation();
   const user = useLocation()?.state?.state
-  console.log(location)
-  console.log(user)
-
+  // console.log(location)
+  // console.log(user)
   const params = useParams();
-  console.log("params :", params )
+  // console.log("params :", params )
   const { id } = useParams();
   // console.log("id :", id )
-  
-  const [searchParams, setSearchParams] = useState();
-  // const id = searchParams.get('id');
-
-
 
   const [userData, setUserData] = useState({});
   // 계정삭제 모달
