@@ -55,5 +55,11 @@ const useStyles = makeStyles({
     textDecoration: "none",
     wordBreak: "keep-all",
   },
+  logoutBtn: {
+    color: "#999",
+    background: "transparent",
+    border: "none",
+    padding:'none'
+  },
 });
 export default useStyles;
