@@ -121,12 +121,10 @@ const MemberStatus = () => {
             >
               검색
             </button>
-          </>
-        }
-        right={
-          <p className={classes.memberNum}>
+            <p className={classes.memberNum}>
             총 회원 수 :<span> {totalUser.toLocaleString()}명</span>
-          </p>
+            </p>
+          </>
         }
       />
 
