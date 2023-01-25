@@ -92,7 +92,7 @@ const MyAccountContent = () => {
                 <th className={classes.leftLayout}>
                   <label className={classes.leftText}>사용여부</label>
                 </th>
-                <td className={classes.contentStyle}>{admin.use_yn}</td>
+                <td className={classes.contentStyle}>{admin.use_yn == "N" ?  "미사용" : "사용"}</td>
               </tr>
               <tr className={classes.contentInput}>
                 <th className={classes.leftLayout}>
