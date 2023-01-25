@@ -61,11 +61,11 @@ const UserAccountTable = (props) => {
                   <td className={classes.td}>{i.phone}</td>
                   <td className={classes.td}>
                     <span
-                      className={
-                        i.use_yn == "N" ? classes.unuseBtn : classes.useBtn
-                      }
+                      // className={
+                      //   i.use_yn == "N" ? classes.unuseBtn : classes.useBtn
+                      // }
                     >
-                      {i.use_yn}
+                      { i.use_yn == "N" ?  "미사용" : "사용" }
                     </span>
                   </td>
                   <td className={classes.td}>{i.remote_ip}</td>
