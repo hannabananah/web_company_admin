@@ -3,7 +3,7 @@ import TableHeader from "~/components/TableHeader";
 const NotiAppViewMore = () => {
   return (
     <div>
-      <TableHeader title="App 더보기 공지" /> 
+      <TableHeader title="App 설정 공지" /> 
     </div>
   )
 }
