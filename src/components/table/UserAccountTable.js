@@ -23,27 +23,22 @@ const UserAccountTable = (props) => {
             <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>
-            <td
-              className={classes.th_td}
-              style={{
-                width: "140px",
-              }}
-            >
+            <td className={classes.th_td} style={{  width: "100px",  }}>
               아이디
             </td>
-            <td className={classes.th_td} style={{ width: "100px" }}>
+            <td className={classes.th_td} style={{ width: "80px" }}>
               관리자 권한
             </td>
-            <td className={classes.th_td} style={{ width: "120px" }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               전화번호
             </td>
-            <td className={classes.th_td} style={{ width: "60px" }}>
+            <td className={classes.th_td} style={{ width: "80px" }}>
               사용여부
             </td>
-            <td className={classes.th_td} style={{ width: "150px" }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               최근 접속
             </td>
-            <td className={classes.th_td} style={{ width: "150px" }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               수정일
             </td>
           </tr>

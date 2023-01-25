@@ -13,7 +13,7 @@ const AppVersionTable = (props) => {
       <table className={classes.tableStyle}>
         <thead className={classes.theadStyle}>
           <tr style={{ borderBottom: "1px solid rgba(188, 191, 204, 0.2)" }}>
-            <td className={classes.th_td} style={{ width: "30px" }}>
+            <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>
             <td className={classes.th_td} style={{ width: "100px" }}>
@@ -28,13 +28,13 @@ const AppVersionTable = (props) => {
             <td className={classes.th_td} style={{ width: "80px" }}>
               최신 APP 버전
             </td>
-            <td className={classes.th_td} style={{ width: "100px" }}>
+            <td className={classes.th_td} style={{ width: "80px" }}>
               최소 앱 버전
             </td>
-            <td className={classes.th_td} style={{ width: "150px" }}>
+            <td className={classes.th_td} style={{ width: "80px" }}>
               업데이트 유형
             </td>
-            <td className={classes.th_td} style={{ width: "140px" }}>
+            <td className={classes.th_td} style={{ width: "80px" }}>
               업데이트
             </td>
           </tr>
