@@ -142,8 +142,8 @@ const UserAccountDetails = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>수정일</label>
             </th>
-            {/* <td className={classes.contentStyle}>{dateFormat(userData.updatedAt)}</td> */}
-            <td className={classes.contentStyle}>{userData.updatedAt}</td>
+            <td className={classes.contentStyle}>{dateFormat(userData.updatedAt)}</td>
+            {/* <td className={classes.contentStyle}>{userData.updatedAt}</td> */}
           </tr>
         </tbody>
       </table>
