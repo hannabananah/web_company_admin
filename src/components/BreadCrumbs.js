@@ -8,11 +8,8 @@ const BreadCrumbs = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
-  // const params = useParams();
-  const params = useLocation()?.state?.urlParam;
-
-
-
+  const params = useLocation();
+  // const params = useLocation()?.state?.urlParam;
 
   const pathMap = {};
   let currentLink = [];
@@ -143,17 +140,18 @@ const BreadCrumbs = () => {
       return item.path == currentLink.join('')
     })
     // console.log('currentLink_______________________',currentLink)
-    console.log('newPathObj_______________________',newPathObj)
+    // console.log('newPathObj_______________________',newPathObj)
     // console.log('obj_______________________',obj)
     
-
     /////-------------- 2 번째 ( 404는 해결 했는데 crumb링크 클릭시 useLocation 의 state값이 초기화돼서 오류 ) --------------/////
     return (
       <React.Fragment key={crumb}>
-        <img src={images.icons.ARROWRIGHT} alt="arrow right" />
+        {currentLink.join('').includes("/setting_admin/user_account/details/")
+          ? null 
+          : <img src={images.icons.ARROWRIGHT} alt="arrow right" /> }
         <Link to={obj[0]?.linkTo == false ? false : currentLink.join('')} 
           className={classes.breadCrumbsLink}>
-            {obj[0]?.title ? obj[0]?.title : crumb}
+            {obj[0]?.title ? obj[0]?.title : null}
         </Link>
       </React.Fragment>
     )
