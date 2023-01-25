@@ -1,6 +1,6 @@
 import { useStyles } from "~/styles/DashBoard";
 import TableHeader from "~/components/TableHeader";
-import LineChart from "~/components/chart/LinkChart";
+import LineChart from "~/components/chart/LineChart";
 
 const DashBoard = () => {
   const classes = useStyles();
