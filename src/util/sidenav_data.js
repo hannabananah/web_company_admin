@@ -53,6 +53,14 @@ export const sidenav_data = [
         title: "회원 현황",
         path: "/member/member_status",
       },
+      {
+        title: "신고 대상 회원",
+        path: "/member/subject_report",
+      },
+      {
+        title: "블랙리스트",
+        path: "/member/black_list",
+      },
     ],
   },
   {
