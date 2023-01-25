@@ -11,7 +11,7 @@ export const useStyles = makeStyles({
     alignItems:'center',
     height:'40px',
     justifyContent:'space-between',
-    padding:"40px 0 20px"
+    padding:"0 0 20px"
   },
   filterUnit: {
     height:'100%',
