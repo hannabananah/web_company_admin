@@ -317,7 +317,7 @@ const useStyles = makeStyles({
     width: "24px",
     height: "auto",
     "&:checked": {
-      accentColor: "#359f47",
+      accentColor: "#333",
     },
   },
   urgentText: {
