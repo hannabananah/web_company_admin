@@ -18,12 +18,7 @@ const NoticeIntroTable = (props) => {
             <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>
-            <td
-              className={classes.th_td}
-              style={{
-                width: "100px",
-              }}
-            >
+            <td className={classes.th_td} style={{  width: "100px", }}>
               공지 등록일
             </td>
             <td className={classes.th_td} style={{ width: "150px" }}>
