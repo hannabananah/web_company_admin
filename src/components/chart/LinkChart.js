@@ -2,40 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Line, Pie, Bar } from "react-chartjs-2";
-// import { CSVLink, CSVDownload } from "react-csv";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  ArcElement,
-  LinearScale,
-  PointElement,
-  BarElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
 import Chart from 'react-apexcharts'
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  ArcElement,
-  PointElement,
-  BarElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-);
 
 const LineChart = () => {
   // const classes = useStyles();
   const lineChartRef = useRef();
   const location = useLocation();
-  // const token = useSelector((state) => state.accessToken.accessToken);
   const [dashboardData, setDashboardData] = useState([]);
   const [lineChartData, setLineChartData] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -174,8 +146,7 @@ const LineChart = () => {
   //   }, 100);
   // };
 
-  const day = new Date()
-  console.log(day)
+  const toDay = new Date().toLocaleDateString().slice(0,11)
 
   const opt = {
     options: {
@@ -187,13 +158,13 @@ const LineChart = () => {
         toolbar: {
           export: {
             csv: {
-              filename:'chart_'
+              filename:`chart_${toDay}`
             },
             svg: {
-              filename:'chart_'
+              filename:`chart_${toDay}`
             },
             png: {
-              filename:`chart_`
+              filename:`chart_${toDay}`
             }
           }
         },
