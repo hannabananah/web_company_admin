@@ -27,7 +27,7 @@ const HistoryTable = (props) => {
               작업 날짜
             </td>
 
-            <td className={classes.th_td} style={{ width: "80px" }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               관리자 ID
             </td>
 

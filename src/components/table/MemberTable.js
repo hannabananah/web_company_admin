@@ -11,7 +11,7 @@ const MemberTable = (props) => {
         <table className={classes.tableStyle}>
           <thead className={classes.theadStyle}>
             <tr>
-              <td className={classes.th_td} style={{ width: "30px" }}>
+              <td className={classes.th_td} style={{ width: "40px" }}>
                 전화번호
               </td>
               <td
@@ -22,7 +22,7 @@ const MemberTable = (props) => {
               >
                 계정
               </td>
-              <td className={classes.th_td} style={{ width: "50px" }}>
+              <td className={classes.th_td} style={{ width: "80px" }}>
                 OS
               </td>
               <td className={classes.th_td} style={{ width: "100px" }}>
@@ -34,7 +34,7 @@ const MemberTable = (props) => {
               {/*<td className={classes.th_td} style={{ width: "100px" }}>*/}
               {/*  탈퇴일*/}
               {/*</td>*/}
-              <td className={classes.th_td} style={{ width: "180px" }}>
+              <td className={classes.th_td} style={{ width: "100px" }}>
                 최근 접속일
               </td>
             </tr>
