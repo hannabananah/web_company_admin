@@ -4,6 +4,7 @@ import { COLORS } from "~/assets/colors/colors";
 export const useStyles = makeStyles({
   root: {
     position:'relative',
+    cursor:'default',
     // margin:'30px 0 70px',
     "&:before": {
       content:`''`,
@@ -13,7 +14,7 @@ export const useStyles = makeStyles({
       bottom:'0',
       background:'#7C4DFF',
       width:'5px',
-      borderRadius:'15px'
+      borderRadius:'15px',
     }
   },
   mainTitle: {
