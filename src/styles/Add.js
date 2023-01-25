@@ -299,6 +299,7 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.BLACK,
     fontSize: "14px",
     lineHeight: "150%",
+    margin:'auto 0 0 20px',
   },
   radioBtnLayout1: {
     display: "flex",
