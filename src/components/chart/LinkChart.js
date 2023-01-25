@@ -174,6 +174,8 @@ const LineChart = () => {
   //   }, 100);
   // };
 
+  const day = new Date()
+  console.log(day)
 
   const opt = {
     options: {
@@ -181,6 +183,19 @@ const LineChart = () => {
         id: 'apexchart',
         zoom: {
           enabled: false
+        },
+        toolbar: {
+          export: {
+            csv: {
+              filename:'chart_'
+            },
+            svg: {
+              filename:'chart_'
+            },
+            png: {
+              filename:`chart_`
+            }
+          }
         },
       },
       dataLabels: {
@@ -194,15 +209,16 @@ const LineChart = () => {
         categories: ['01/23 월', '01/24 화', '01/25 수', '01/26 목', '01/27 금', '01/28 토', '01/29 일', '01/30 월'],
         labels: {
           style: {
-            colors: '#8e8da4',
+            colors: '#A2A3A5',
           },
         }
       },
       yaxis: {
         labels: {
           style: {
-            colors: '#8e8da4',
+            colors: '#A2A3A5',
           },
+
         }
       },
       fill: {
