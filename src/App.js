@@ -49,8 +49,8 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<DashBoard />} />
             <Route element={<AuthLayout />}>
+              <Route path="/dashboard" element={<DashBoard />} />
               {/* <Route path="/setting_admin" element={<SettingAdmin />} /> */}
               <Route path="/setting_admin/user_account" element={<UserAccount />} />
               <Route path="/setting_admin/user_account/details/:id" element={<UserAccountDetails />} handle={{}}/>

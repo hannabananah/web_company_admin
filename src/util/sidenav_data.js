@@ -367,21 +367,7 @@ sidenav_data.map((item) => {
   //   console.log('item dose not have sub menu -----> ',item)
   // }
 });
-// ================================================================================
-// const aa = {}
-// aa['a'] = 'a'
-// aa['b'] = 'b'
-// console.log(aa)
-// ================================================================================
 
-// const target = { a: 1, b: 2}
-// const source = { c: 3, d: 4}
-
-// const returnedTarget = Object.assign(target, source);
-
-// console.log(target)
-// console.log(source)
-// console.log(returnedTarget)
 // ================================================================================
 sidenav_data.map((i) => {
   // console.log('Object.keys(i)', Object.keys(i))
