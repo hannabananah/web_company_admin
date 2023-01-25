@@ -32,8 +32,11 @@ const useStyles = makeStyles({
   idLink: {
     cursor: "pointer",
     color: COLORS.COLOR.ANY_PURPLE,
-    textDecoration: "underline",
+    
     padding: "16px",
+    "&:hover": {
+      textDecoration: "underline",
+    }
   },
   uptActiveRed: {
     boxSizing: "border-box",
