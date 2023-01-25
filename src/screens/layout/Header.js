@@ -23,19 +23,23 @@ const Header = () => {
     if (url == location.pathname) isEmpty = true;
   });
 
+  const logOut = () => {
+    navigate("/");
+  };
+
   return (
     <>
       {/* {allPaths.includes(window.location.pathname) &&  */}
       {isEmpty ? null : (
         <header className={classes.root}>
           <div className={classes.userInfoSection}>
-            <figure className={classes.figure}>
-              <img src={images.icons.ANYCHAT_CI_HEADER} alt="anychat logo" />
-            </figure>
+
             <span className={classes.user}>{localStorage.getItem("id")}님</span>
             안녕하세요!
+            <button className={classes.logoutBtn} onClick={logOut}>
+              로그아웃
+            </button>
           </div>
-
           <BreadCrumbs />
         </header>
       )}

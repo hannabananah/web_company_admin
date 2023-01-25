@@ -159,9 +159,6 @@ const SideBar = () => {
       openedDetails[i].removeAttribute("open");
     }
   };
-  const logOut = () => {
-    navigate("/");
-  };
 
   return (
     <>
@@ -233,10 +230,6 @@ const SideBar = () => {
                 })}
               </div>
 
-              <button className={classes.logoutBtn} onClick={logOut}>
-                로그아웃
-                <img src={images.icons.LOGOUT} alt="logout" />
-              </button>
             </div>
           </div>
         </Resizable>

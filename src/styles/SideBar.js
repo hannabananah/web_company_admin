@@ -130,21 +130,6 @@ const useStyles = makeStyles({
     width:'20px', 
     verticalAlign:'top'
   },
-  logoutBtn: {
-    color: "#FF314A",
-    margin: "auto 0 40px",
-    background: "transparent",
-    border: "none",
-    lineHeight: "28px",
-    padding: "18px 40px",
-    background: "#FCFCFF",
-    boxShadow: "0px 15px 18px rgba(0, 0, 0, 0.05), 0px -14px 15px #FFFFFF",
-    borderRadius: "10px",
-    alignSelf:'center',
-    display:'flex',
-    alignItems:'center',
-    gap:'15px'
-  },
 });
 
 export default useStyles;
