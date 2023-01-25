@@ -21,24 +21,24 @@ const NoticeIntroTable = (props) => {
             <td
               className={classes.th_td}
               style={{
-                width: "140px",
+                width: "100px",
               }}
             >
               공지 등록일
             </td>
-            <td className={classes.th_td} style={{ width: "100px" }}>
+            <td className={classes.th_td} style={{ width: "150px" }}>
               App Intro 공지 노출 기간
             </td>
-            <td className={classes.th_td} style={{ width: "120px" }}>
+            <td className={classes.th_td} style={{ width: "80px" }}>
               공지 유형
             </td>
-            <td className={classes.th_td} style={{ width: "60px" }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               공지 제목
             </td>
-            <td className={classes.th_td} style={{ width: "150px" }}>
+            <td className={classes.th_td} style={{ width: "80px" }}>
               OS
             </td>
-            <td className={classes.th_td} style={{ width: "150px" }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               공지 활성
             </td>
           </tr>
