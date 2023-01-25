@@ -1,5 +1,6 @@
 import { useStyles } from "~/styles/DashBoard";
 import TableHeader from "~/components/TableHeader";
+import LineChart from "~/components/chart/LinkChart";
 
 const DashBoard = () => {
   const classes = useStyles();
@@ -14,7 +15,7 @@ const DashBoard = () => {
             <figcaption className={classes.statusLabel}>당일 기준</figcaption>
             <div>
               <h3>총 회원 수</h3>
-              <span></span>
+              <span>1,000,000</span>
             </div>
           </figure>
 
@@ -22,7 +23,7 @@ const DashBoard = () => {
             <figcaption className={classes.statusLabel}>전일 기준</figcaption>
             <div>
               <h3>신규 가입자 수</h3>
-              <span></span>
+              <span>10,000</span>
             </div>
           </figure>
 
@@ -30,7 +31,7 @@ const DashBoard = () => {
             <figcaption className={classes.statusLabel}>전일 기준</figcaption>
             <div>
               <h3>신규 탈퇴자 수</h3>
-              <span></span>
+              <span>0</span>
             </div>
           </figure>
 
@@ -38,7 +39,7 @@ const DashBoard = () => {
             <figcaption className={classes.statusLabel} style={{textIndent:'-9999em'}}>전일 기준</figcaption>
             <div>
               <h3>휴면 회원 수</h3>
-              <span></span>
+              <span>100</span>
             </div>
           </figure>
         </div>
@@ -46,6 +47,7 @@ const DashBoard = () => {
 
       <section>
         <h2 className={classes.displayNone}>그래프</h2>
+        <LineChart />
       </section>
 
       {/* <section>
