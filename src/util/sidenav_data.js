@@ -127,7 +127,7 @@ export const sidenav_data = [
         ],
       },
       {
-        title: "App 더보기 공지",
+        title: "App 설정 공지",
         path: "/notice/app_viewmore",
       },
       {
