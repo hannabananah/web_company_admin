@@ -178,3 +178,37 @@ export const SaveConfirmModal = (props) => {
     </div>
   );
 };
+
+export const DormantAccConfirmModal = (props) => {
+  const classes = useStyles();
+  const { open, close, header, onClickCancel, onClickConfirm } = props;
+
+  return (
+    <div className={open ? "openModal modal" : "modal"}>
+      {open ? (
+        <section>
+          <h3 style={{display:'none'}}>{header}</h3>
+          <header>
+            <img
+              src={images.icons.BELL_IC_P}
+              alt="등록완료 알림 아이콘"
+              className="modalIcon"
+            />
+            {header}
+          </header>
+          <main>{props.children}</main>
+          <footer className="modalBtns">
+            {/* onClick 바꿔야함 */}
+            <button className={classes.backBtn} onClick={onClickCancel}>
+              취소
+            </button>
+            <button className={classes.backBtn} onClick={onClickConfirm}>
+              확인
+            </button>
+          </footer>
+        </section>
+      ) : null}
+      
+    </div>
+  );
+};
