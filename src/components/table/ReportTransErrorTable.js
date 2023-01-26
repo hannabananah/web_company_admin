@@ -67,11 +67,25 @@ const ReportTransErrorTable = (props) => {
                     </span>
                   </td>
                   {/* 1차 영문 번역 텍스트 */}
-                  <td className={classes.td}>{i.en_msg}</td>
+                  <td className={classes.td}>
+                    <span
+                      onClick={() => onClickTarget(i)}
+                      className={classes.idLink}
+                    >
+                      {i.en_msg}
+                    </span>
+                  </td>
                   {/* 번역 언어 코드 */}
                   <td className={classes.td}>{i.sender_lang_cd}</td>
                   {/* 번역 텍스트 */}
-                  <td className={classes.td}>{i.send_msg}</td>
+                  <td className={classes.td}>
+                    <span
+                      onClick={() => onClickTarget(i)}
+                      className={classes.idLink}
+                    >
+                      {i.send_msg}
+                    </span>
+                  </td>
                 </tr>
               );
             })}
