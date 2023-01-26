@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import { UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
+import { g } from "~/util/global"
 
 const EditDetailAccount = ({ user }) => {
   const classes = useStyles();
@@ -39,7 +39,7 @@ const EditDetailAccount = ({ user }) => {
     if (confirm("저장 하시겠습니까?")) {
       axios
         .post(
-          `http://localhost:3001/api/version/update`,
+          `${g.base_url}api/version/update`,
           {
             ...userInfo,
           },
@@ -58,7 +58,7 @@ const EditDetailAccount = ({ user }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/version/${user.version_idx}`, {
+      .get(`${g.base_url}api/version/${user.version_idx}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },

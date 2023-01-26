@@ -7,13 +7,13 @@ import htmlToDraft from "html-to-draftjs";
 import { convertFromHTML } from "draft-convert";
 import Modifier from "draft-js/lib/DraftModifier";
 import draftToHtml from "draftjs-to-html";
-
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
 import DateWithTimePicker from "~/components/DateTimePicker";
 import { EditorTool } from "~/components/Editor";
 import { UptConfirmModal } from "~/components/Modal";
+import { g } from "~/util/global"
 
 const EditAppIntroNotice = () => {
   const user = useLocation().state;
@@ -79,7 +79,7 @@ const EditAppIntroNotice = () => {
     if (confirm("저장 하시겠습니까?")) {
       axios
         .post(
-          `http://localhost:3001/api/notice/update`,
+          `${g.base_url}api/notice/update`,
           {
             os: userInfo.os,
             noti_type: userInfo.noti_type,

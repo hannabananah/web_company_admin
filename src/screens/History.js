@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import Pagination from "react-js-pagination";
-
 import "~/styles/pagination.css";
 import { useStyles } from "~/styles/History";
 import HistoryTable from "~/components/table/HistoryTable";
@@ -10,6 +9,7 @@ import DatePicker from "~/components/DatePicker";
 import FilterSection from "~/components/FilterSection";
 import TableHeader from "~/components/TableHeader";
 import axios from "axios";
+import { g } from "~/util/global"
 
 // filter select option
 const option = [
@@ -55,7 +55,7 @@ const History = () => {
   const getTotalHistory = () => {
     axios
       .get(
-        `http://localhost:3001/api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format(
+        `${g.base_url}api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {
@@ -74,7 +74,7 @@ const History = () => {
     getTotalHistory();
     axios
       .get(
-        `http://localhost:3001/api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
+        `${g.base_url}api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {
@@ -93,7 +93,7 @@ const History = () => {
   const downloadExcel = () => {
     axios
       .get(
-        `http://localhost:3001/api/access/excel?s=${selectVal}&v=${inputVal}&st=${start.format(
+        `${g.base_url}api/access/excel?s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {
