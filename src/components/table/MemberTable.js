@@ -9,7 +9,7 @@ const MemberTable = (props) => {
     <div>
       <figure className={classes.root}>
         <table className={classes.tableStyle}>
-          <thead className={classes.theadStyle}>
+          <thead>
             <tr>
               <td className={classes.th_td} style={{ width: "40px" }}>
                 전화번호

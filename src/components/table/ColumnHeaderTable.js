@@ -10,7 +10,7 @@ const ColumnHeaderTable = (props) => {
   return (
     <figure className={classes.root}>
       <table className={classes.tableStyle}>
-        <thead className={classes.theadStyle}>
+        <thead>
           {table_header}
           
         </thead>
