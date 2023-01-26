@@ -160,6 +160,27 @@ const SideBar = () => {
     }
   };
 
+  const details = document.querySelectorAll('details');
+  // console.log(details)
+
+  details.forEach((i)=>{
+
+    i.addEventListener("toggle", (event) => {
+
+      if (i.open) {
+        /* the element was toggled open */
+        i.classList.add('open___')
+
+      } else {
+        /* the element was toggled closed */
+        i.classList.remove('open___')
+
+      }
+    });
+
+  })
+
+
   return (
     <>
       {/* {allPaths.includes(window.location.pathname) &&  */}
@@ -188,16 +209,13 @@ const SideBar = () => {
                       return (
                         <details
                           key={index}
+                          // onClick={(e)=>{console.log(e.target)}}
                           className={`${classes.details} details`}
                         >
                           <summary
-                            // className={
-                            //   window.location.pathname.includes(item.path)
-                            //     ? classes.activeMenu
-                            //     : classes.menu
-                            // }
                             className={
                               window.location.pathname === item.path
+                              // window.location.pathname.includes(item.path)
                                 ? classes.activeMenu
                                 : classes.menu
                             }
