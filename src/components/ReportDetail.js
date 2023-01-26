@@ -3,52 +3,34 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/report";
 import TableHeader from "~/components/TableHeader";
 
 export const OriginDetail = () => {
   const classes = useStyles();
-  const user = useLocation().state;
+  const user = useLocation().state.state;
   const navigate = useNavigate();
-  const [fetchData, setFetchData] = useState([]);
 
   const onClickPrev = () => {
     navigate(-1);
   };
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/error/${user.version_idx}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then(({ data }) => {
-        // data.use_yn = data.use_yn  === 'Y' ? true : false
-        setFetchData(data);
-        // console.log(userInfo.phone)
-        console.log("+++++++++++", data);
-      });
-  }, []);
-
   return (
-    <figure className={classes.userAccContainer}>
+    <figure className={classes.reportDetailContainer}>
       <TableHeader title="번역 이상 신고" />
-      <table className={classes.tableStyle}>
+      <table className={classes.detailTable}>
         <colgroup>
           <col />
           <col />
         </colgroup>
         <tbody>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
-              <label className={classes.leftText}>스토어</label>
-            </th>
-            <td className={classes.contentStyle}>{fetchData.receive_msg}</td>
+          <tr className={classes.detailContentStyle}>
+            <th className={classes.titleLayout}>원문 텍스트 상세 내용</th>
+            <td className={classes.detailContent}>{user.receive_msg}</td>
           </tr>
         </tbody>
       </table>
-      <div className={classes.submitBtns}>
+      <div className={classes.submitBtn}>
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
@@ -58,47 +40,31 @@ export const OriginDetail = () => {
 };
 export const EnDetail = () => {
   const classes = useStyles();
-  const user = useLocation().state;
+  const user = useLocation().state.state;
   const navigate = useNavigate();
-  const [fetchData, setFetchData] = useState([]);
 
   const onClickPrev = () => {
     navigate(-1);
   };
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/error/${user.version_idx}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then(({ data }) => {
-        // data.use_yn = data.use_yn  === 'Y' ? true : false
-        setFetchData(data);
-        // console.log(userInfo.phone)
-        console.log("+++++++++++", data);
-      });
-  }, []);
-
   return (
-    <figure className={classes.userAccContainer}>
+    <figure className={classes.reportDetailContainer}>
       <TableHeader title="번역 이상 신고" />
-      <table className={classes.tableStyle}>
+      <table className={classes.detailTable}>
         <colgroup>
           <col />
           <col />
         </colgroup>
         <tbody>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
-              <label className={classes.leftText}>스토어</label>
+          <tr className={classes.detailContentStyle}>
+            <th className={classes.titleLayout}>
+              1차 번역 영어 텍스트 상세 내용
             </th>
-            <td className={classes.contentStyle}>{fetchData.en_msg}</td>
+            <td className={classes.detailContent}>{user.en_msg}</td>
           </tr>
         </tbody>
       </table>
-      <div className={classes.submitBtns}>
+      <div className={classes.submitBtn}>
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
@@ -108,47 +74,31 @@ export const EnDetail = () => {
 };
 export const TransDetail = () => {
   const classes = useStyles();
-  const user = useLocation().state;
+  const user = useLocation().state.state;
   const navigate = useNavigate();
-  const [fetchData, setFetchData] = useState([]);
 
   const onClickPrev = () => {
     navigate(-1);
   };
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/error/${user.version_idx}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then(({ data }) => {
-        // data.use_yn = data.use_yn  === 'Y' ? true : false
-        setFetchData(data);
-        // console.log(userInfo.phone)
-        console.log("+++++++++++", data);
-      });
-  }, []);
-
   return (
-    <figure className={classes.userAccContainer}>
+    <figure className={classes.reportDetailContainer}>
       <TableHeader title="번역 이상 신고" />
-      <table className={classes.tableStyle}>
+      <table className={classes.detailTable}>
         <colgroup>
           <col />
           <col />
         </colgroup>
         <tbody>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
-              <label className={classes.leftText}>스토어</label>
-            </th>
-            <td className={classes.contentStyle}>{fetchData.send_msg}</td>
+          <tr className={classes.detailContentStyle}>
+            <th className={classes.titleLayout}>번역 텍스트 상세 내용</th>
+            <td className={classes.detailContent}>
+              <div>{user.send_msg}</div>
+            </td>
           </tr>
         </tbody>
       </table>
-      <div className={classes.submitBtns}>
+      <div className={classes.submitBtn}>
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>

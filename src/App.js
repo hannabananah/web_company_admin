@@ -113,17 +113,17 @@ function App() {
               />
               {/* 서비스 관리 > 번역 이상 신고 > 원문 텍스트 상세 내용 */}
               <Route
-                path="/service/report_translation_error/details"
+                path="/service/report_translation_error/orgin_contents_details"
                 element={<DetailOriginText />}
               />
               {/* 서비스 관리 > 번역 이상 신고 > 1차 번역 영어 텍스트 상세 내용 */}
               <Route
-                path="/service/report_translation_error/details"
+                path="/service/report_translation_error/english_contents_details"
                 element={<DetailEnText />}
               />
               {/* 서비스 관리 > 번역 이상 신고 > 번역 텍스트 상세 내용 */}
               <Route
-                path="/service/report_translation_error/details"
+                path="/service/report_translation_error/translation_contents_details"
                 element={<DetailTransText />}
               />
 
