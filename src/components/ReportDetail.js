@@ -16,23 +16,21 @@ export const OriginDetail = () => {
   };
 
   return (
-    <figure className={classes.userAccContainer}>
+    <figure className={classes.reportDetailContainer}>
       <TableHeader title="번역 이상 신고" />
-      <table className={classes.tableStyle}>
+      <table className={classes.detailTable}>
         <colgroup>
           <col />
           <col />
         </colgroup>
         <tbody>
-          <tr className={classes.detaileContent}>
-            <th className={classes.leftLayout}>
-              <label className={classes.leftText}>원문 텍스트 상세 내용</label>
-            </th>
-            <td className={classes.contentStyle}>{user.receive_msg}</td>
+          <tr className={classes.detailContentStyle}>
+            <th className={classes.titleLayout}>원문 텍스트 상세 내용</th>
+            <td className={classes.detailContent}>{user.receive_msg}</td>
           </tr>
         </tbody>
       </table>
-      <div className={classes.submitBtns}>
+      <div className={classes.submitBtn}>
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
@@ -50,25 +48,23 @@ export const EnDetail = () => {
   };
 
   return (
-    <figure className={classes.userAccContainer}>
+    <figure className={classes.reportDetailContainer}>
       <TableHeader title="번역 이상 신고" />
-      <table className={classes.tableStyle}>
+      <table className={classes.detailTable}>
         <colgroup>
           <col />
           <col />
         </colgroup>
         <tbody>
-          <tr className={classes.detaileContent}>
-            <th className={classes.leftLayout}>
-              <label className={classes.leftText}>
-                1차 번역 영어 텍스트 상세 내용
-              </label>
+          <tr className={classes.detailContentStyle}>
+            <th className={classes.titleLayout}>
+              1차 번역 영어 텍스트 상세 내용
             </th>
-            <td className={classes.contentStyle}>{user.en_msg}</td>
+            <td className={classes.detailContent}>{user.en_msg}</td>
           </tr>
         </tbody>
       </table>
-      <div className={classes.submitBtns}>
+      <div className={classes.submitBtn}>
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
@@ -86,26 +82,23 @@ export const TransDetail = () => {
   };
 
   return (
-    <figure className={classes.userAccContainer}>
+    <figure className={classes.reportDetailContainer}>
       <TableHeader title="번역 이상 신고" />
-      <table className={classes.tableStyle}>
+      <table className={classes.detailTable}>
         <colgroup>
           <col />
           <col />
         </colgroup>
         <tbody>
-          <tr className={classes.detaileContent}>
-            <th className={classes.leftLayout}>
-              <label className={classes.leftText}>번역 텍스트 상세 내용</label>
-            </th>
-            <td className={classes.contentStyle}>
-              {user.send_msg}
-              ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+          <tr className={classes.detailContentStyle}>
+            <th className={classes.titleLayout}>번역 텍스트 상세 내용</th>
+            <td className={classes.detailContent}>
+              <div>{user.send_msg}</div>
             </td>
           </tr>
         </tbody>
       </table>
-      <div className={classes.submitBtns}>
+      <div className={classes.submitBtn}>
         <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
