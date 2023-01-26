@@ -5,7 +5,7 @@ export const useStyles = makeStyles({
   root: {
     position:'relative',
     cursor:'default',
-    marginBottom:'50px',
+    marginBottom:'30px',
     // margin:'30px 0 70px',
     "&:before": {
       content:`''`,
