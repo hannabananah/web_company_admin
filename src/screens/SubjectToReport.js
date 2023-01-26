@@ -6,6 +6,7 @@ import FilterSection from "~/components/FilterSection";
 import SelectBox from "~/components/SelectBox";
 import ReportTable from "~/components/table/ReportTable";
 import Pagination from "react-js-pagination";
+import { g } from "~/util/global"
 
 // filter select option
 const option = [
@@ -50,7 +51,7 @@ const SubjectToReport = () => {
   const getTotalUserCnt = () => {
     // axios
     //   .get(
-    //     `http://localhost:3001/api/warning/total?s=${selectVal}&v=${inputVal}&st=${''}&et=${''}`,
+    //     `${g.base_url}api/warning/total?s=${selectVal}&v=${inputVal}&st=${''}&et=${''}`,
     //     {
     //       headers: {
     //         Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -66,7 +67,7 @@ const SubjectToReport = () => {
   const changePage = (page) => {
     axios
       .get(
-        `http://localhost:3001/api/warning/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
+        `${g.base_url}api/warning/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),

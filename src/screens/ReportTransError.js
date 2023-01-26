@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import Pagination from "react-js-pagination";
-
 import "~/styles/pagination.css";
 import useStyles from "~/styles/Add";
 import ReportTransErrorTable from "~/components/table/ReportTransErrorTable";
@@ -10,6 +9,7 @@ import DatePicker from "~/components/DatePicker";
 import FilterSection from "~/components/FilterSection";
 import TableHeader from "~/components/TableHeader";
 import axios from "axios";
+import { g } from "~/util/global"
 
 // filter select option
 const option = [
@@ -59,7 +59,7 @@ const ReportTransError = () => {
   const getTotalTransError = () => {
     axios
       .get(
-        `http://localhost:3001/api/error/total?s=${selectVal}&v=${inputVal}&st=${start.format(
+        `${g.base_url}api/error/total?s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {
@@ -78,7 +78,7 @@ const ReportTransError = () => {
     getTotalTransError();
     axios
       .get(
-        `http://localhost:3001/api/error/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
+        `${g.base_url}api/error/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {

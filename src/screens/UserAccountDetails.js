@@ -6,6 +6,7 @@ import { dateFormat } from "~/util/global";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import { DeleteModal } from "~/components/Modal";
+import { g } from "~/util/global"
 
 const UserAccountDetails = () => {
   const classes = useStyles();
@@ -42,7 +43,7 @@ const UserAccountDetails = () => {
   const onClickConfirm = () => {
     // axios
     //   .post(
-    //     `http://localhost:3001/api/admin/delete`,
+    //     `${g.base_url}api/admin/delete`,
     //     { id: user.id },
     //     {
     //       headers: {
@@ -63,8 +64,8 @@ const UserAccountDetails = () => {
 
   useEffect(() => {
     axios
-      // .get(`http://localhost:3001/api/admin/${user.id}`, {
-      .get(`http://localhost:3001/api/admin/${params.id}`, {
+      // .get(`${g.base_url}api/admin/${user.id}`, {
+      .get(`${g.base_url}api/admin/${params.id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },

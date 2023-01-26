@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import images from "~/assets/js/Images";
 import useStyles from "~/styles/Login";
+import { g } from "~/util/global"
 
 const Login = () => {
   const classes = useStyles();
@@ -21,7 +21,7 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:3001/api/auth/login`, { id, password })
+      .post(`${g.base_url}api/auth/login`, { id, password })
       .then((result) => {
         if (result.data) {
           // console.log(result.data)
