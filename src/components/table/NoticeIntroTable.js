@@ -74,15 +74,18 @@ const NoticeIntroTable = (props) => {
                   {/* OS */}
                   <td className={classes.td}>{i.os}</td>
                   {/* 공지 활성 */}
-                  <td className={classes.td}>
-                    {dateFormat(i.upt_dttm)}
-                    {/* <span
-                      onClick={() => openModal(index)}
-                      className={classes.activeLive}
-                    >
-                      Live
-                    </span> */}
-                  </td>
+                  {i.status === "Y" ? (
+                    <td className={classes.td}>{dateFormat(i.upt_dttm)}</td>
+                  ) : (
+                    <td className={classes.td}>
+                      <span
+                        onClick={() => openModal(index)}
+                        className={classes.activeLive}
+                      >
+                        Live
+                      </span>
+                    </td>
+                  )}
                 </tr>
               );
             })}
