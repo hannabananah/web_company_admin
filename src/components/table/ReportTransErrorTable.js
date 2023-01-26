@@ -2,7 +2,7 @@ import useStyles from "~/styles/Table";
 import { dateFormat } from "~/util/global";
 
 const ReportTransErrorTable = (props) => {
-  const { openModal, fetchData, isLoaded, onClickTarget } = props;
+  const { fetchData, isLoaded, onClickTarget } = props;
   const classes = useStyles();
 
   console.log(fetchData);
@@ -16,26 +16,26 @@ const ReportTransErrorTable = (props) => {
             <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>
+            <td className={classes.th_td} style={{ width: "80px" }}>
+              신고 날짜
+            </td>
             <td className={classes.th_td} style={{ width: "100px" }}>
-              등록일
+              신고 계정
             </td>
             <td className={classes.th_td} style={{ width: "80px" }}>
-              스토어
+              원문 언어 코드
             </td>
             <td className={classes.th_td} style={{ width: "80px" }}>
-              OS
+              원문 텍스트
             </td>
             <td className={classes.th_td} style={{ width: "80px" }}>
-              최신 APP 버전
+              1차 영문 번역 텍스트
             </td>
             <td className={classes.th_td} style={{ width: "80px" }}>
-              최소 앱 버전
+              번역 언어 코드
             </td>
             <td className={classes.th_td} style={{ width: "80px" }}>
-              업데이트 유형
-            </td>
-            <td className={classes.th_td} style={{ width: "80px" }}>
-              업데이트
+              번역 텍스트
             </td>
           </tr>
         </thead>
@@ -46,13 +46,13 @@ const ReportTransErrorTable = (props) => {
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
                   <td className={classes.td}>{i.version_idx}</td>
-                  {/* 등록일 */}
+                  {/* 신고 날짜 */}
                   <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
-                  {/* 스토어 */}
+                  {/* 신고 계정 */}
                   <td className={classes.td}>{i.store}</td>
-                  {/* OS */}
+                  {/* 원문 언어 코드 */}
                   <td className={classes.td}>{i.os}</td>
-                  {/* 최신 APP 버전 */}
+                  {/* 원문 텍스트 */}
                   <td className={classes.td}>
                     <span
                       onClick={() => onClickTarget(i)}
@@ -61,29 +61,12 @@ const ReportTransErrorTable = (props) => {
                       {i.late_app_version}
                     </span>
                   </td>
-                  {/* 최소 APP 버전 */}
+                  {/* 1차 영문 번역 텍스트 */}
                   <td className={classes.td}>{i.min_app_version}</td>
-                  {/* 업데이트 유형 */}
+                  {/* 번역 언어 코드 */}
                   <td className={classes.td}>{i.update_type}</td>
-                  {/* 업데이트 */}
-                  {i.status === "Y" ? (
-                    <td className={classes.td}>{dateFormat(i.upt_dttm)}</td>
-                  ) : (
-                    <td className={classes.td}>
-                      <span
-                        onClick={() => openModal(index)}
-                        className={
-                          i.status == "N"
-                            ? classes.uptInactive
-                            : i.update_type === "choice"
-                            ? classes.uptActiveBlue
-                            : classes.uptActiveRed
-                        }
-                      >
-                        Update
-                      </span>
-                    </td>
-                  )}
+                  {/* 번역 텍스트 */}
+                  <td className={classes.td}>{dateFormat(i.upt_dttm)}</td>
                 </tr>
               );
             })}
