@@ -66,20 +66,24 @@ const AppVersionTable = (props) => {
                   {/* 업데이트 유형 */}
                   <td className={classes.td}>{i.update_type}</td>
                   {/* 업데이트 */}
-                  <td className={classes.td}>
-                    <span
-                      onClick={() => openModal(index)}
-                      className={
-                        i.status == "N"
-                          ? classes.uptInactive
-                          : i.update_type === "choice"
-                          ? classes.uptActiveBlue
-                          : classes.uptActiveRed
-                      }
-                    >
-                      Update
-                    </span>
-                  </td>
+                  {i.status === "Y" ? (
+                    <td className={classes.td}>{dateFormat(i.upt_dttm)}</td>
+                  ) : (
+                    <td className={classes.td}>
+                      <span
+                        onClick={() => openModal(index)}
+                        className={
+                          i.status == "N"
+                            ? classes.uptInactive
+                            : i.update_type === "choice"
+                            ? classes.uptActiveBlue
+                            : classes.uptActiveRed
+                        }
+                      >
+                        Update
+                      </span>
+                    </td>
+                  )}
                 </tr>
               );
             })}
