@@ -59,7 +59,7 @@ const ReportTransError = () => {
   const getTotalTransError = () => {
     axios
       .get(
-        `http://localhost:3001/api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format(
+        `http://localhost:3001/api/error/total?s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {
@@ -78,7 +78,7 @@ const ReportTransError = () => {
     getTotalTransError();
     axios
       .get(
-        `http://localhost:3001/api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
+        `http://localhost:3001/api/error/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {
