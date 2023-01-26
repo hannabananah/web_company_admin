@@ -28,15 +28,18 @@ const useStyles = makeStyles({
     padding: "21px 0",
     color: "#000",
     lineHeight: "150%",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+    wordBreak: "break-all",
   },
   idLink: {
     cursor: "pointer",
     color: COLORS.COLOR.ANY_PURPLE,
-    
-    padding: "16px",
+    width: "100%",
     "&:hover": {
       textDecoration: "underline",
-    }
+    },
   },
   uptActiveRed: {
     boxSizing: "border-box",

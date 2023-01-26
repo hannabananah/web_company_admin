@@ -18,7 +18,7 @@ const NoticeIntroTable = (props) => {
             <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>
-            <td className={classes.th_td} style={{  width: "100px", }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               공지 등록일
             </td>
             <td className={classes.th_td} style={{ width: "150px" }}>
@@ -74,14 +74,18 @@ const NoticeIntroTable = (props) => {
                   {/* OS */}
                   <td className={classes.td}>{i.os}</td>
                   {/* 공지 활성 */}
-                  <td className={classes.td}>
-                    <span
-                      onClick={() => openModal(index)}
-                      className={classes.activeLive}
-                    >
-                      Live
-                    </span>
-                  </td>
+                  {i.status === "Y" ? (
+                    <td className={classes.td}>{dateFormat(i.upt_dttm)}</td>
+                  ) : (
+                    <td className={classes.td}>
+                      <span
+                        onClick={() => openModal(index)}
+                        className={classes.activeLive}
+                      >
+                        Live
+                      </span>
+                    </td>
+                  )}
                 </tr>
               );
             })}

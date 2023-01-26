@@ -137,6 +137,7 @@ const NotiAppIntro = () => {
         setFetchData(new_data);
 
         closeModal();
+        
       });
   };
 
