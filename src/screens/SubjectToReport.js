@@ -10,11 +10,11 @@ import Pagination from "react-js-pagination";
 // filter select option
 const option = [
   {
-    value: "Phone",
+    value: "phone",
     name: "전화번호",
   },
   {
-    value: "Email",
+    value: "email",
     name: "이메일",
   },
 ];
@@ -24,7 +24,7 @@ const SubjectToReport = () => {
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   // 필터
-  const [selectVal, setSelectVal] = useState("Phone");
+  const [selectVal, setSelectVal] = useState("phone");
   const [inputVal, setInputVal] = useState("");
   // 페이지네이션
   const [totalUser, setTotalUser] = useState(0); //임시
@@ -48,25 +48,9 @@ const SubjectToReport = () => {
   };
 
   const getTotalUserCnt = () => {
-    axios
-      .get(
-        `http://localhost:3001/api/user/totalUserCnt?s=${selectVal}&v=${inputVal}`,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        }
-      )
-      .then(({ data }) => {
-        console.log('getTotalUserCnt________',data.userCount);
-        setTotalUser(data.userCount);
-      });
-  };
-
-  const changePage = (page) => {
     // axios
     //   .get(
-    //     `http://localhost:3001/api/user/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
+    //     `http://localhost:3001/api/warning/total?s=${selectVal}&v=${inputVal}&st=${''}&et=${''}`,
     //     {
     //       headers: {
     //         Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -74,10 +58,26 @@ const SubjectToReport = () => {
     //     }
     //   )
     //   .then(({ data }) => {
-    //     console.log(data);
-    //     setFetchData(data);
-    //   })
-    //   .then(setIsLoaded(true));
+    //     console.log('getTotalUserCnt________',data.userCount);
+    //     setTotalUser(data.userCount);
+    //   });
+  };
+
+  const changePage = (page) => {
+    axios
+      .get(
+        `http://localhost:3001/api/warning/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${'2023-01-26'}&et=${'2023-01-26'}`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+        setFetchData(data);
+      })
+      .then(setIsLoaded(true));
   };
 
   useEffect(() => {
