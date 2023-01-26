@@ -75,7 +75,9 @@ const UserAccountDetails = () => {
       });
   }, []);
 
-  // console.log('userData.id________',userData.id)
+  const onClickMailTo = (mail) => {
+    return window.location.href = `mailto:${mail}` 
+  }
 
   return (
     <figure className={classes.userAccContainer}>
@@ -108,7 +110,7 @@ const UserAccountDetails = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>이메일</label>
             </th>
-            <td className={classes.contentStyle}>{userData.email}</td>
+            <td className={classes.linkStyle} onClick={()=> onClickMailTo(userData.email)}>{userData.email}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
