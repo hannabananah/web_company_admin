@@ -11,11 +11,14 @@ const ColumnHeaderTable = (props) => {
     <figure className={classes.root}>
       <table className={classes.tableStyle}>
         <thead className={classes.theadStyle}>
-          {table_header}
-          
+          <tr className={classes.tHeadtrStyle}>
+            {table_header}
+          </tr>
         </thead>
+
         <tbody>
           {table_data}
+
           {/* 검색결과가 없습니다. */}
           {/* <tr>
             <td colSpan="8" className={classes.noDataText}>
