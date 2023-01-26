@@ -33,7 +33,7 @@ const ReportTable = ({fetchData, isLoaded}) => {
         {/* 신고 내용 */}
         <td className={classes.td}>{}</td>
         {/* 신고일 */}
-        <td className={classes.td}>{}</td>
+        <td className={classes.td}>{i.warning_dt}</td>
         {/* 처리 */}
         <td className={classes.td}>{}</td>
       </tr>

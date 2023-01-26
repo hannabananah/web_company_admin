@@ -92,6 +92,14 @@ const SideBar = () => {
     if (url == location.pathname) isEmpty = true;
   });
 
+  const onClickMenu = (path) => {
+    navigate(path)
+    const details = document.querySelectorAll('details')
+    for(let i=0; i<details.length; i++) {
+      details[i].classList.remove('opened')
+    }
+  }
+
   const renderMenuItems = (subMenu) => {
     return subMenu.map((item, index) => {
       return (
@@ -103,7 +111,8 @@ const SideBar = () => {
               ? classes.activesubMenuList
               : classes.subMenuList
           }
-          onClick={() => navigate(item.path)}
+          // onClick={() => navigate(item.path)}
+          onClick={onClickMenu(item.path)}
         >
           {item.title}
         </li>
@@ -114,18 +123,20 @@ const SideBar = () => {
   // console.log(pathsArr(4))
 
   // details 눌렀을 때
-  // document.querySelectorAll('details').forEach(function(item){
-  //     item.addEventListener("toggle", event => {
-  //     let toggled = event.target;
-  //     if (toggled.attributes.open) {/* 열었으면 */
-  //       /* 나머지 다른 열린 아이템을 닫음 */
-  //       document.querySelectorAll('details[open]').forEach(function(opened){
-  //         if(toggled != opened) /* 현재 열려있는 요소가 아니면 */
-  //           opened.removeAttribute('open'); /* 열림 속성 삭제 */
-  //       });
-  //     }
-  //   })
-  // });
+  document.querySelectorAll('details').forEach(function(item){
+      item.addEventListener("toggle", event => {
+      let toggled = event.target;
+      if (toggled.attributes.open) {/* 열었으면 */
+        item.classList.add('opened')
+        /* 나머지 다른 열린 아이템을 닫음 */
+        document.querySelectorAll('details[open]').forEach(function(opened){
+          if(toggled != opened) /* 현재 열려있는 요소가 아니면 */
+            opened.removeAttribute('open'); /* 열림 속성 삭제 */
+            // opened.classList.remove('opened')
+        });
+      }
+    })
+  });
 
   // 뒤로 가기
   useEffect(() => {
@@ -161,25 +172,17 @@ const SideBar = () => {
   };
 
   const details = document.querySelectorAll('details');
-  // console.log(details)
-
   details.forEach((i)=>{
-
-    i.addEventListener("toggle", (event) => {
-
-      if (i.open) {
-        /* the element was toggled open */
-        i.classList.add('open___')
-
-      } else {
-        /* the element was toggled closed */
-        i.classList.remove('open___')
-
-      }
+    // i.addEventListener("toggle", (event) => {
+    i.addEventListener("click", (event) => {
+      i.classList.toggle('opened')
+      // if (i.open) {
+      //   i.classList.add('opened')
+      // } else {
+      //   i.classList.remove('opened')
+      // }
     });
-
   })
-
 
   return (
     <>
@@ -209,7 +212,6 @@ const SideBar = () => {
                       return (
                         <details
                           key={index}
-                          // onClick={(e)=>{console.log(e.target)}}
                           className={`${classes.details} details`}
                         >
                           <summary
