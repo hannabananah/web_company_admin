@@ -95,6 +95,18 @@ const useStyles = makeStyles({
     color: "#7C4DFF",
     cursor: "pointer",
     fontSize: "13px",
+    position: "relative",
+    background: "#EFEFFE",
+    "&:after": {
+      content: `""`,
+      width: "6px",
+      height: "100%",
+      background: "#7C4DFF",
+      position: "absolute",
+      right: "0",
+      top: "0",
+      bottom: "0",
+    },
   },
 
   details: {
