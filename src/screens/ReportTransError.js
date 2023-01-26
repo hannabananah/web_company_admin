@@ -4,6 +4,7 @@ import Pagination from "react-js-pagination";
 
 import "~/styles/pagination.css";
 import useStyles from "~/styles/Add";
+import ReportTransErrorTable from "~/components/table/ReportTransErrorTable";
 import SelectBox from "~/components/SelectBox";
 import DatePicker from "~/components/DatePicker";
 import FilterSection from "~/components/FilterSection";
@@ -144,6 +145,7 @@ const ReportTransError = () => {
           </>
         }
       />
+      <ReportTransErrorTable fetchData={fetchData} isLoaded={isLoaded} />
       <Pagination
         activePage={currentPage}
         totalItemsCount={totalUser} // 총 포스트 갯수

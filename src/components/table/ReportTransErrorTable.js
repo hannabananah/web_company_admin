@@ -1,7 +1,7 @@
 import useStyles from "~/styles/Table";
 import { dateFormat } from "~/util/global";
 
-const AppVersionTable = (props) => {
+const ReportTransErrorTable = (props) => {
   const { openModal, fetchData, isLoaded, onClickTarget } = props;
   const classes = useStyles();
 
@@ -64,9 +64,7 @@ const AppVersionTable = (props) => {
                   {/* 최소 APP 버전 */}
                   <td className={classes.td}>{i.min_app_version}</td>
                   {/* 업데이트 유형 */}
-                  <td className={classes.td}>
-                    {i.update_type === "compulsion" ? "강제" : "선택"}
-                  </td>
+                  <td className={classes.td}>{i.update_type}</td>
                   {/* 업데이트 */}
                   {i.status === "Y" ? (
                     <td className={classes.td}>{dateFormat(i.upt_dttm)}</td>
@@ -101,4 +99,4 @@ const AppVersionTable = (props) => {
   );
 };
 
-export default AppVersionTable;
+export default ReportTransErrorTable;
