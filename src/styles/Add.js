@@ -129,6 +129,22 @@ const useStyles = makeStyles({
     paddingLeft: "30px",
     width: "100%",
     color: "#272833 ",
+    cursor:'default',
+  },
+  linkStyle: {
+    boxSizing: "border-box",
+    display: "flex",
+    alignContent: "center",
+    fontSize: "14px",
+    lineHeight: "150%",
+    paddingLeft: "30px",
+    width: "100%",
+    color:'#7C4DFF',
+    cursor:'default',
+    "&:hover": {
+      textDecoration:'underline',
+      cursor:'pointer'
+    }
   },
   checkBtnStyle: {
     boxSizing: "border-box",
