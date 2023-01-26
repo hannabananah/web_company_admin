@@ -26,7 +26,7 @@ import AppVersion from "~/screens/AppVersion";
 import DetailsAppVer from "~/screens/DetailsAppVer";
 import AddAppVer from "~/screens/AddAppVer";
 import EditAppVer from "~/screens/EditAppVer";
-import EditAppNoti from "~/screens/EditAppNoti";
+import EditAppIntroNoti from "~/screens/EditAppIntroNoti";
 import NotFound from "~/screens/NotFound";
 import EditorTool from "~/components/Editor";
 import UserAccountEdit from "~/screens/UserAccountEdit";
@@ -41,6 +41,7 @@ import {
   DetailTransText,
 } from "~/screens/DetailReportText";
 import DetailSettingNoti from "~/screens/DetailSettingNoti";
+import EditAppSettingNoti from "~/screens/EditAppSettingNoti";
 import "~/App.css";
 
 function App() {
@@ -141,7 +142,7 @@ function App() {
               {/* intro 공지 > 상세 > 수정 */}
               <Route
                 path="/notice/app_intro/details/edit"
-                element={<EditAppNoti />}
+                element={<EditAppIntroNoti />}
               />
               {/* intro 공지 > 등록 */}
               <Route
@@ -154,6 +155,11 @@ function App() {
               <Route
                 path="/notice/app_setting/details"
                 element={<DetailSettingNoti />}
+              />
+              {/* 설정 공지 > 상세 > 수정 */}
+              <Route
+                path="/notice/app_setting/details/edit"
+                element={<EditAppSettingNoti />}
               />
               <Route path="/notice/user_email" element={<NotiUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />
