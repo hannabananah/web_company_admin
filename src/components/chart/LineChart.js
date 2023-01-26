@@ -55,6 +55,14 @@ const LineChart = () => {
           },
         },
       },
+      title: {
+        text: '가입자 수',
+        align: 'left'
+      },
+      subtitle: {
+        // text: 'Price Movements',
+        // align: 'left'
+      },
       dataLabels: {
         // enabled: false,
         // style: {
