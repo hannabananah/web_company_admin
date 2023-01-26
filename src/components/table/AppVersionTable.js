@@ -11,8 +11,13 @@ const AppVersionTable = (props) => {
   return (
     <figure className={classes.root}>
       <table className={classes.tableStyle}>
-        <thead className={classes.theadStyle}>
-          <tr style={{ borderBottom: "1px solid rgba(188, 191, 204, 0.2)" }}>
+        <thead>
+          <tr
+            style={{
+              borderBottom: "1px solid rgba(188, 191, 204, 0.2)",
+              backgroundColor: "#EFEFFE",
+            }}
+          >
             <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>
@@ -64,22 +69,28 @@ const AppVersionTable = (props) => {
                   {/* 최소 APP 버전 */}
                   <td className={classes.td}>{i.min_app_version}</td>
                   {/* 업데이트 유형 */}
-                  <td className={classes.td}>{i.update_type}</td>
-                  {/* 업데이트 */}
                   <td className={classes.td}>
-                    <span
-                      onClick={() => openModal(index)}
-                      className={
-                        i.status == "N"
-                          ? classes.uptInactive
-                          : i.update_type === "choice"
-                          ? classes.uptActiveBlue
-                          : classes.uptActiveRed
-                      }
-                    >
-                      Update
-                    </span>
+                    {i.update_type === "compulsion" ? "강제" : "선택"}
                   </td>
+                  {/* 업데이트 */}
+                  {i.status === "Y" ? (
+                    <td className={classes.td}>{dateFormat(i.upt_dttm)}</td>
+                  ) : (
+                    <td className={classes.td}>
+                      <span
+                        onClick={() => openModal(index)}
+                        className={
+                          i.status == "N"
+                            ? classes.uptInactive
+                            : i.update_type === "choice"
+                            ? classes.uptActiveBlue
+                            : classes.uptActiveRed
+                        }
+                      >
+                        Update
+                      </span>
+                    </td>
+                  )}
                 </tr>
               );
             })}

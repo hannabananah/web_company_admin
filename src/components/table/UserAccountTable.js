@@ -1,4 +1,4 @@
-import { useNavigate, createSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useStyles from "~/styles/Table";
 import { dateFormat } from "~/util/global";
 
@@ -12,18 +12,25 @@ const UserAccountTable = (props) => {
 
   const onClickTarget = (i) => {
     // UserAccountDetails.js
-    navigate(`/setting_admin/user_account/details/${i.id}`, { state: { state: i , urlParam: i.id} })
-  }
+    navigate(`/setting_admin/user_account/details/${i.id}`, {
+      state: { state: i, urlParam: i.id },
+    });
+  };
 
   return (
     <figure className={classes.root}>
       <table className={classes.tableStyle}>
-        <thead className={classes.theadStyle}>
-          <tr style={{ borderBottom: "1px solid rgba(188, 191, 204, 0.2)" }}>
+        <thead>
+          <tr
+            style={{
+              borderBottom: "1px solid rgba(188, 191, 204, 0.2)",
+              backgroundColor: "#EFEFFE",
+            }}
+          >
             <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>
-            <td className={classes.th_td} style={{  width: "100px",  }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               아이디
             </td>
             <td className={classes.th_td} style={{ width: "80px" }}>

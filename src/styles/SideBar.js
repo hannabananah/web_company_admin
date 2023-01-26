@@ -4,7 +4,7 @@ import images from "~/assets/js/Images";
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    height:'100%',
+    height: "100%",
     position: "sticky",
     bottom: 0,
     top: 0,
@@ -34,19 +34,18 @@ const useStyles = makeStyles({
     },
   },
   menuContainer: {
-    overflowY:"auto",
-    '&::-webkit-scrollbar': {
-      width:'12px',
+    overflowY: "auto",
+    "&::-webkit-scrollbar": {
+      width: "12px",
     },
-    '&::-webkit-scrollbar-thumb': {
-      background: 'rgba(0,0,0,.15)',
-      borderRadius: '10px',
-      backgroundClip: 'padding-box',
-      border: '3px solid transparent',
+    "&::-webkit-scrollbar-thumb": {
+      background: "rgba(0,0,0,.15)",
+      borderRadius: "10px",
+      backgroundClip: "padding-box",
+      border: "3px solid transparent",
     },
-    '&::-webkit-scrollbar-track': {
-      background: 'transparent',
-
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
     },
   },
   // ol
@@ -57,22 +56,22 @@ const useStyles = makeStyles({
   },
 
   menu: {
-    position:'relative',
+    position: "relative",
     padding: "15px",
     cursor: "pointer",
     color: "#A0A1BF",
-    display:'flex', 
-    alignItems:'center'
+    display: "flex",
+    alignItems: "center",
   },
   activeMenu: {
-    position:'relative',
+    position: "relative",
     padding: "15px",
     background: "#EFEFFE",
     cursor: "pointer",
     color: "#7C4DFF",
     fontWeight: "bold",
-    display:'flex', 
-    alignItems:'center',
+    display: "flex",
+    alignItems: "center",
     "&:after": {
       content: `""`,
       width: "6px",
@@ -107,11 +106,11 @@ const useStyles = makeStyles({
       content: `""`,
     },
     "& summary .expandMore": {
-      margin:'0 30px 0 auto',
+      margin: "0 30px 0 auto",
     },
     "&[open] summary .expandMore": {
-      transform:'rotate(180deg)',
-      margin:'0 30px 0 auto',
+      transform: "rotate(180deg)",
+      margin: "0 30px 0 auto",
     },
 
     // "& summary:after" : {
@@ -119,16 +118,16 @@ const useStyles = makeStyles({
     // },
   },
   iconsWrap: {
-    width:'30px', 
-    height:'30px',
-    display:'flex', 
-    justifyContent:'center', 
-    alignItems:'center',
-    marginRight:'14px',
+    width: "30px",
+    height: "30px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: "14px",
   },
   iconImg: {
-    width:'20px', 
-    verticalAlign:'top'
+    width: "20px",
+    verticalAlign: "top",
   },
 });
 

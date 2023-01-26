@@ -1,10 +1,10 @@
-import HistoryTable from "~/components/table/HistoryTable";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import Pagination from "react-js-pagination";
+
 import "~/styles/pagination.css";
 import { useStyles } from "~/styles/History";
-import images from "~/assets/js/Images";
+import HistoryTable from "~/components/table/HistoryTable";
 import SelectBox from "~/components/SelectBox";
 import DatePicker from "~/components/DatePicker";
 import FilterSection from "~/components/FilterSection";
@@ -35,7 +35,7 @@ const History = () => {
   let now = dayjs().format("YYYY-MM-DD");
   const [start, setStart] = useState(dayjs(now));
   const [end, setEnd] = useState(start);
-  
+
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [inputVal, setInputVal] = useState("");
@@ -51,11 +51,13 @@ const History = () => {
     changePage(1);
     setEnd(start);
   }, [start]);
-  
-  const getTotalHistry = () => {
+
+  const getTotalHistory = () => {
     axios
       .get(
-        `http://localhost:3001/api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format("YYYY-MM-DD")}&et=${end.format("YYYY-MM-DD")}`,
+        `http://localhost:3001/api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format(
+          "YYYY-MM-DD"
+        )}&et=${end.format("YYYY-MM-DD")}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -63,16 +65,18 @@ const History = () => {
         }
       )
       .then(({ data }) => {
-        console.log('getTotalHistry data::::::',data);
+        console.log("getTotalHistory data::::::", data);
         setTotalUser(data);
       });
   };
 
   const changePage = (page) => {
-    getTotalHistry();
+    getTotalHistory();
     axios
       .get(
-        `http://localhost:3001/api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format("YYYY-MM-DD")}&et=${end.format("YYYY-MM-DD")}`,
+        `http://localhost:3001/api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
+          "YYYY-MM-DD"
+        )}&et=${end.format("YYYY-MM-DD")}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -80,34 +84,44 @@ const History = () => {
         }
       )
       .then(({ data }) => {
-        console.log('changePage data::::',data);
+        console.log("changePage data::::", data);
         setFetchData(data);
       })
       .then(setIsLoaded(true));
   };
 
-    const downloadExcel = () => {
-        axios
-            .get(`http://localhost:3001/api/access/excel?s=${selectVal}&v=${inputVal}&st=${start.format("YYYY-MM-DD")}&et=${end.format("YYYY-MM-DD")}`, {
-                responseType: 'blob',
-                headers: {
-                    Authorization:
-                        "Bearer " +
-                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
-                },
-            })
-            .then((res) => {
-                const url = URL.createObjectURL(new Blob([res.data]))
-                const link = document.createElement('a')
-                link.href = url
-                link.setAttribute('download', `access-${start.format("YYYY-MM-DD")}-${end.format("YYYY-MM-DD")}.xlsx`)
-                document.body.appendChild(link)
-                link.click()
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
+  const downloadExcel = () => {
+    axios
+      .get(
+        `http://localhost:3001/api/access/excel?s=${selectVal}&v=${inputVal}&st=${start.format(
+          "YYYY-MM-DD"
+        )}&et=${end.format("YYYY-MM-DD")}`,
+        {
+          responseType: "blob",
+          headers: {
+            Authorization:
+              "Bearer " +
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1MTE5NjM1OSwiZXhwIjoxNjgyNzMyMzU5fQ.5ZxqvUdLOS8zrbCZuDqZqv4Zjox1POUrZ0Ah0u9LEbs",
+          },
+        }
+      )
+      .then((res) => {
+        const url = URL.createObjectURL(new Blob([res.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute(
+          "download",
+          `access-${start.format("YYYY-MM-DD")}-${end.format(
+            "YYYY-MM-DD"
+          )}.xlsx`
+        );
+        document.body.appendChild(link);
+        link.click();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleNameChange = (e) => {
     setInputVal(e.target.value);
@@ -117,7 +131,6 @@ const History = () => {
     console.log("page  -------------------->", page);
     setCurrentPage(page);
     changePage(page);
-
   };
 
   useEffect(() => {
@@ -125,9 +138,9 @@ const History = () => {
   }, []);
 
   const onClickSearch = () => {
-    setCurrentPage(1)
-    changePage(1)
-  }
+    setCurrentPage(1);
+    changePage(1);
+  };
 
   return (
     <div className={classes.root}>
@@ -152,15 +165,18 @@ const History = () => {
               setEnd={setEnd}
             />
 
+            <button className={classes.searchBtn} onClick={onClickSearch}>
+              검색
+            </button>
 
-          <button className={classes.searchBtn}
-            onClick={onClickSearch}>검색</button>
-
-          <button className={classes.searchBtn}
-                  onClick={() => {
-                      downloadExcel();
-                  }}
-          >엑셀다운로드</button>
+            <button
+              className={classes.searchBtn}
+              onClick={() => {
+                downloadExcel();
+              }}
+            >
+              엑셀다운로드
+            </button>
           </>
         }
       />
