@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import axios from "axios";
+import { g } from "~/util/global";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import DetailsAppVer from "~/screens/DetailsAppVer";
 import AddAppVersion from "~/components/AddAppVersion";
 import AppVersionTable from "~/components/table/AppVersionTable";
 import AppDetail from "~/components/AppDetail";
+import TableHeader from "~/components/TableHeader";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import { UpdateAlertModal } from "~/components/Modal";
-import TableHeader from "~/components/TableHeader";
-import { g } from "~/util/global"
 
 // filter select option
 const option = [
@@ -40,14 +40,11 @@ const AppVersion = () => {
 
   const getTotalUserCnt = () => {
     axios
-      .get(
-        `${g.base_url}api/version/total?s=${selectVal}&v=${inputVal}`,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        }
-      )
+      .get(`${g.base_url}api/version/total?s=${selectVal}&v=${inputVal}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
       .then(({ data }) => {
         console.log("getTotalUserCnt:::::", data);
         setTotalUser(data);
