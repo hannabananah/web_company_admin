@@ -25,6 +25,9 @@ const Header = () => {
 
   const logOut = () => {
     navigate("/");
+    // localStorage.removeItem("id");
+    // localStorage.removeItem("adminKey");
+    // localStorage.removeItem("access_token");
   };
 
   return (
