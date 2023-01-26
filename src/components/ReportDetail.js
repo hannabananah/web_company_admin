@@ -3,33 +3,17 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/report";
 import TableHeader from "~/components/TableHeader";
 
 export const OriginDetail = () => {
   const classes = useStyles();
-  const user = useLocation().state;
+  const user = useLocation().state.state;
   const navigate = useNavigate();
-  const [fetchData, setFetchData] = useState([]);
 
   const onClickPrev = () => {
     navigate(-1);
   };
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/error/${user.version_idx}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then(({ data }) => {
-        // data.use_yn = data.use_yn  === 'Y' ? true : false
-        setFetchData(data);
-        // console.log(userInfo.phone)
-        console.log("+++++++++++", data);
-      });
-  }, []);
 
   return (
     <figure className={classes.userAccContainer}>
@@ -40,11 +24,11 @@ export const OriginDetail = () => {
           <col />
         </colgroup>
         <tbody>
-          <tr className={classes.contentInput}>
+          <tr className={classes.detaileContent}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftText}>스토어</label>
+              <label className={classes.leftText}>원문 텍스트 상세 내용</label>
             </th>
-            <td className={classes.contentStyle}>{fetchData.receive_msg}</td>
+            <td className={classes.contentStyle}>{user.receive_msg}</td>
           </tr>
         </tbody>
       </table>
@@ -58,28 +42,12 @@ export const OriginDetail = () => {
 };
 export const EnDetail = () => {
   const classes = useStyles();
-  const user = useLocation().state;
+  const user = useLocation().state.state;
   const navigate = useNavigate();
-  const [fetchData, setFetchData] = useState([]);
 
   const onClickPrev = () => {
     navigate(-1);
   };
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/error/${user.version_idx}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then(({ data }) => {
-        // data.use_yn = data.use_yn  === 'Y' ? true : false
-        setFetchData(data);
-        // console.log(userInfo.phone)
-        console.log("+++++++++++", data);
-      });
-  }, []);
 
   return (
     <figure className={classes.userAccContainer}>
@@ -90,11 +58,13 @@ export const EnDetail = () => {
           <col />
         </colgroup>
         <tbody>
-          <tr className={classes.contentInput}>
+          <tr className={classes.detaileContent}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftText}>스토어</label>
+              <label className={classes.leftText}>
+                1차 번역 영어 텍스트 상세 내용
+              </label>
             </th>
-            <td className={classes.contentStyle}>{fetchData.en_msg}</td>
+            <td className={classes.contentStyle}>{user.en_msg}</td>
           </tr>
         </tbody>
       </table>
@@ -108,28 +78,12 @@ export const EnDetail = () => {
 };
 export const TransDetail = () => {
   const classes = useStyles();
-  const user = useLocation().state;
+  const user = useLocation().state.state;
   const navigate = useNavigate();
-  const [fetchData, setFetchData] = useState([]);
 
   const onClickPrev = () => {
     navigate(-1);
   };
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/error/${user.version_idx}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then(({ data }) => {
-        // data.use_yn = data.use_yn  === 'Y' ? true : false
-        setFetchData(data);
-        // console.log(userInfo.phone)
-        console.log("+++++++++++", data);
-      });
-  }, []);
 
   return (
     <figure className={classes.userAccContainer}>
@@ -140,11 +94,14 @@ export const TransDetail = () => {
           <col />
         </colgroup>
         <tbody>
-          <tr className={classes.contentInput}>
+          <tr className={classes.detaileContent}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftText}>스토어</label>
+              <label className={classes.leftText}>번역 텍스트 상세 내용</label>
             </th>
-            <td className={classes.contentStyle}>{fetchData.send_msg}</td>
+            <td className={classes.contentStyle}>
+              {user.send_msg}
+              ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+            </td>
           </tr>
         </tbody>
       </table>
