@@ -11,6 +11,9 @@ const useStyles = makeStyles({
   tableStyle: {
     width: "100%",
   },
+  tHeadtrStyle: {
+    borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`
+  },
   th_td: {
     textAlign: "center",
     cursor: "default",
