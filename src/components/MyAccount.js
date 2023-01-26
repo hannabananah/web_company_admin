@@ -37,6 +37,10 @@ const MyAccountContent = () => {
     // EditDetailAccount.js
     navigate(`/setting_admin/my_account/edit`, { state: admin });
   };
+  
+  const onClickMailTo = (mail) => {
+    return window.location.href = `mailto:${mail}` 
+  }
 
   return (
     <figure className={classes.userAccContainer}>
@@ -69,7 +73,7 @@ const MyAccountContent = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>이메일</label>
             </th>
-            <td className={classes.contentStyle}>{admin.email}</td>
+            <td className={classes.linkStyle} onClick={()=> onClickMailTo(admin.email)}>{admin.email}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>

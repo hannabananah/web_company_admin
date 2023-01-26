@@ -4,7 +4,7 @@ const useStyles = makeStyles({
   outletRoot: {
     display:'flex',
     justifyContent:'center',
-    paddingTop:'40px',
+    paddingTop:'50px',
     "& > div" :{
       width: '100%',
       maxWidth: '1320px',

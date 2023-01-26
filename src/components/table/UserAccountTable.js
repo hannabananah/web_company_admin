@@ -67,13 +67,7 @@ const UserAccountTable = (props) => {
                   <td className={classes.td}>{i.grade}</td>
                   <td className={classes.td}>{i.phone}</td>
                   <td className={classes.td}>
-                    <span
-                    // className={
-                    //   i.use_yn == "N" ? classes.unuseBtn : classes.useBtn
-                    // }
-                    >
-                      {i.use_yn == "N" ? "미사용" : "사용"}
-                    </span>
+                    { i.use_yn == "N" ?  "미사용" : "사용" }
                   </td>
                   <td className={classes.td}>{i.remote_ip}</td>
                   <td className={classes.td}>{dateFormat(i.updatedAt)}</td>
