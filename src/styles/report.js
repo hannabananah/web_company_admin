@@ -2,60 +2,54 @@ import { makeStyles } from "@mui/styles";
 import { COLORS } from "~/assets/colors/colors";
 
 const useStyles = makeStyles({
-  userAccContainer: {
+  reportDetailContainer: {
     maxWidth: "1320px",
     width: "100%",
     display: "flex",
     flexDirection: "column",
   },
-  tableStyle: {
+  detailTable: {
     width: "100%",
-    // marginTop: "70px",
     borderCollapse: "separate",
     borderSpacing: "0px",
     backgroundColor: COLORS.COLOR.WHITE,
-    // overflow: "hidden",
     border: `1px solid ${COLORS.STORKE.CONTENTS2}`,
     borderRadius: "8px",
     boxShadow: "0 4px 22px 0 rgba(0, 0, 0, 0.05)",
   },
-  leftLayout: {
+  detailContentStyle: {
+    boxSizing: "border-box",
+    width: "100%",
+    minHeight: "64px",
+    display: "flex",
+    alignItems: "center",
+  },
+  titleLayout: {
     boxSizing: "border-box",
     width: "100%",
     maxWidth: "250px",
     height: "100%",
-    minHeight: "64px",
     display: "flex",
     alignItems: "center",
     paddingLeft: "30px",
-    borderRight: `1px solid ${COLORS.STORKE.CONTENTS2}`,
-  },
-  leftText: {
     wordBreak: "keep-all",
     fontSize: "14px",
     lineHeight: "150%",
     color: "#272833",
   },
-  detaileContent: {
-    boxSizing: "border-box",
-    width: "100%",
-    minHeight: "64px",
-    display: "flex",
-    alignItems: "center",
-    borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
-  },
-  contentStyle: {
+  detailContent: {
     boxSizing: "border-box",
     display: "flex",
     alignContent: "center",
     fontSize: "14px",
     lineHeight: "150%",
-    paddingLeft: "30px",
+    padding: "20px 30px",
     width: "100%",
     color: "#272833 ",
-    cursor: "default",
+    wordBreak: "break-all",
+    borderLeft: `1px solid ${COLORS.STORKE.CONTENTS2}`,
   },
-  submitBtns: {
+  submitBtn: {
     width: "100%",
     display: "flex",
     justifyContent: "center",
