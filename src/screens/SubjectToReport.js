@@ -66,7 +66,7 @@ const SubjectToReport = () => {
   const changePage = (page) => {
     axios
       .get(
-        `http://localhost:3001/api/warning/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${'2023-01-26'}&et=${'2023-01-26'}`,
+        `http://localhost:3001/api/warning/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
