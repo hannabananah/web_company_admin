@@ -13,12 +13,17 @@ const NoticeIntroTable = (props) => {
   return (
     <figure className={classes.root}>
       <table className={classes.tableStyle}>
-        <thead className={classes.theadStyle}>
-          <tr style={{ borderBottom: "1px solid rgba(188, 191, 204, 0.2)" }}>
+        <thead>
+          <tr
+            style={{
+              borderBottom: "1px solid rgba(188, 191, 204, 0.2)",
+              backgroundColor: "#EFEFFE",
+            }}
+          >
             <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>
-            <td className={classes.th_td} style={{  width: "100px", }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               공지 등록일
             </td>
             <td className={classes.th_td} style={{ width: "150px" }}>
@@ -74,14 +79,18 @@ const NoticeIntroTable = (props) => {
                   {/* OS */}
                   <td className={classes.td}>{i.os}</td>
                   {/* 공지 활성 */}
-                  <td className={classes.td}>
-                    <span
-                      onClick={() => openModal(index)}
-                      className={classes.activeLive}
-                    >
-                      Live
-                    </span>
-                  </td>
+                  {i.status === "Y" ? (
+                    <td className={classes.td}>{dateFormat(i.upt_dttm)}</td>
+                  ) : (
+                    <td className={classes.td}>
+                      <span
+                        onClick={() => openModal(index)}
+                        className={classes.activeLive}
+                      >
+                        Live
+                      </span>
+                    </td>
+                  )}
                 </tr>
               );
             })}
