@@ -40,6 +40,7 @@ import {
   DetailEnText,
   DetailTransText,
 } from "~/screens/DetailReportText";
+import DetailSettingNoti from "~/screens/DetailSettingNoti";
 import "~/App.css";
 
 function App() {
@@ -130,25 +131,30 @@ function App() {
               <Route path="/statistics" element={<Statistics />} />
               {/* <Route path="/notice" element={<Notice />} /> */}
 
-              {/* 공지 */}
+              {/* intro 공지 */}
               <Route path="/notice/app_intro" element={<NotiAppIntro />} />
-              {/* 공지 > 상세 */}
+              {/* intro 공지 > 상세 */}
               <Route
                 path="/notice/app_intro/details"
                 element={<DetailIntroNoti />}
               />
-              {/* 공지 > 상세 > 수정 */}
+              {/* intro 공지 > 상세 > 수정 */}
               <Route
                 path="/notice/app_intro/details/edit"
                 element={<EditAppNoti />}
               />
-              {/* 공지 > 등록 */}
+              {/* intro 공지 > 등록 */}
               <Route
                 path="/notice/app_intro/add"
                 element={<NotiAppIntroAdd />}
               />
-
+              {/* 설정 공지 */}
               <Route path="/notice/app_setting" element={<NotiAppSetting />} />
+              {/* 설정 공지 > 상세 */}
+              <Route
+                path="/notice/app_setting/details"
+                element={<DetailSettingNoti />}
+              />
               <Route path="/notice/user_email" element={<NotiUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />
               <Route path="/hannah_test" element={<EditorTool />} />
