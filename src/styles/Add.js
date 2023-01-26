@@ -128,7 +128,7 @@ const useStyles = makeStyles({
     paddingLeft: "30px",
     width: "100%",
     color: "#272833 ",
-    cursor:'default',
+    cursor: "default",
   },
   linkStyle: {
     boxSizing: "border-box",
@@ -138,12 +138,12 @@ const useStyles = makeStyles({
     lineHeight: "150%",
     paddingLeft: "30px",
     width: "100%",
-    color:'#7C4DFF',
-    cursor:'default',
+    color: "#7C4DFF",
+    cursor: "default",
     "&:hover": {
-      textDecoration:'underline',
-      cursor:'pointer'
-    }
+      textDecoration: "underline",
+      cursor: "pointer",
+    },
   },
   checkBtnStyle: {
     boxSizing: "border-box",
@@ -305,7 +305,6 @@ const useStyles = makeStyles({
     border: "none",
     backgroundColor: COLORS.COLOR.MIDDLE_PURPLE,
     fontSize: "14px",
-    lineHeight: "150%",
     cursor: "pointer",
     color: COLORS.COLOR.BLACK,
     borderRadius: "8px",
