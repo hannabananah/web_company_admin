@@ -2,7 +2,13 @@ import useStyles from "~/styles/Table";
 import { dateFormatNoTime } from "~/util/global";
 
 const ReportTransErrorTable = (props) => {
-  const { fetchData, isLoaded, onClickTarget } = props;
+  const {
+    fetchData,
+    isLoaded,
+    onClickReceiveMsg,
+    onClickEnMsg,
+    onClickSendMsg,
+  } = props;
   const classes = useStyles();
 
   console.log(fetchData);
@@ -60,7 +66,7 @@ const ReportTransErrorTable = (props) => {
                   {/* 원문 텍스트 */}
                   <td className={classes.td}>
                     <span
-                      onClick={() => onClickTarget(i)}
+                      onClick={() => onClickReceiveMsg(i)}
                       className={classes.idLink}
                     >
                       {i.receive_msg}
@@ -69,7 +75,7 @@ const ReportTransErrorTable = (props) => {
                   {/* 1차 영문 번역 텍스트 */}
                   <td className={classes.td}>
                     <span
-                      onClick={() => onClickTarget(i)}
+                      onClick={() => onClickEnMsg(i)}
                       className={classes.idLink}
                     >
                       {i.en_msg}
@@ -80,7 +86,7 @@ const ReportTransErrorTable = (props) => {
                   {/* 번역 텍스트 */}
                   <td className={classes.td}>
                     <span
-                      onClick={() => onClickTarget(i)}
+                      onClick={() => onClickSendMsg(i)}
                       className={classes.idLink}
                     >
                       {i.send_msg}
