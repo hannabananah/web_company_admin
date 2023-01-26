@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import { UptConfirmModal, SaveConfirmModal } from "~/components/Modal";
+import { g } from "~/util/global"
 
 const EditDetailAccount = () => {
   const classes = useStyles();
@@ -44,7 +44,7 @@ const EditDetailAccount = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/admin/${user.id}`, {
+      .get(`${g.base_url}api/admin/${user.id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -77,7 +77,7 @@ const EditDetailAccount = () => {
 
         axios
           .post(
-            `http://localhost:3001/api/admin/update`,
+            `${g.base_url}api/admin/update`,
             {
               ...userInfo,
             },

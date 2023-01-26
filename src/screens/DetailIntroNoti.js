@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-
 import { dateFormat } from "~/util/global";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
+import { g } from "~/util/global"
 
 const DetailIntroNoti = () => {
   const classes = useStyles();
@@ -23,7 +23,7 @@ const DetailIntroNoti = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/notice/${user.noti_idx}`, {
+      .get(`${g.base_url}api/notice/${user.noti_idx}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },

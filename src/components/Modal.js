@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import images from "~/assets/js/Images";
 import "~/styles/Modal.css";
 import useStyles from "~/styles/Add";
+import { g } from "~/util/global"
 
 export const DeleteModal = (props) => {
   const classes = useStyles();
@@ -13,7 +13,7 @@ export const DeleteModal = (props) => {
   const deleteAdminID = () => {
     axios
       .post(
-        `http://localhost:3001/api/admin/delete`,
+        `${g.base_url}api/admin/delete`,
         { id: id },
         {
           headers: {

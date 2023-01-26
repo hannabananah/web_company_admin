@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 import Pagination from "react-js-pagination";
-
 import useStyles from "~/styles/Add";
 import MemberTable from "~/components/table/MemberTable";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import TableHeader from "~/components/TableHeader";
+import { g } from "~/util/global"
 
 // filter select option
 const option = [
@@ -49,7 +48,7 @@ const MemberStatus = () => {
   const getTotalUserCnt = () => {
     axios
       .get(
-        `http://localhost:3001/api/user/totalUserCnt?s=${selectVal}&v=${inputVal}`,
+        `${g.base_url}api/user/totalUserCnt?s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -65,7 +64,7 @@ const MemberStatus = () => {
   const changePage = (page) => {
     axios
       .get(
-        `http://localhost:3001/api/user/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
+        `${g.base_url}api/user/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),

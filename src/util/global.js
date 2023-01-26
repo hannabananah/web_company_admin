@@ -1,4 +1,7 @@
-const g = {};
+export const g = {};
+
+g.base_url = 'http://localhost:3001/';
+// g.base_url = 'https://admin-api.anychat.com/';
 
 export const dateFormat = (utc) => {
   return utc?.replace(/T/, " ").replace(/\..+/, "").substr(0, 16);

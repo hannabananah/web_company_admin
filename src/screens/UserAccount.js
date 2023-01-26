@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Pagination from "react-js-pagination";
-
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import UserAccountTable from "~/components/table/UserAccountTable";
@@ -10,6 +9,7 @@ import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import TableHeader from "~/components/TableHeader";
 import ColumnHeaderTable from "~/components/table/ColumnHeaderTable";
+import { g } from "~/util/global"
 
 // filter select option
 const option = [
@@ -61,7 +61,7 @@ const UserAccount = () => {
   const getTotalUserCnt = () => {
     axios
       .get(
-        `http://localhost:3001/api/admin/total?s=${selectVal}&v=${inputVal}`,
+        `${g.base_url}api/admin/total?s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -77,7 +77,7 @@ const UserAccount = () => {
   const changePage = (page) => {
     axios
       .get(
-        `http://localhost:3001/api/admin?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
+        `${g.base_url}api/admin?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
