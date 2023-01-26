@@ -128,6 +128,23 @@ const useStyles = makeStyles({
     // "& summary:after" : {
     //   content: `" +"`,
     // },
+    // "&[open] summary": {
+    "&.opened summary": {
+      transition:'0.2s',
+      position: "relative",
+      "&:after": {
+        content: `""`,
+        width: "6px",
+        height: "100%",
+        background: "#7C4DFF",
+        position: "absolute",
+        right: "0",
+        top: "0",
+        bottom: "0",
+      }
+    },
+
+
   },
   iconsWrap: {
     width: "30px",

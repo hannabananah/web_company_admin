@@ -44,24 +44,24 @@ const SubjectToReport = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    // changePage(page);
+    changePage(page);
     // console.log("page  -------------------->", page);
   };
 
   const getTotalUserCnt = () => {
-    // axios
-    //   .get(
-    //     `${g.base_url}api/warning/total?s=${selectVal}&v=${inputVal}&st=${''}&et=${''}`,
-    //     {
-    //       headers: {
-    //         Authorization: "Bearer " + localStorage.getItem("access_token"),
-    //       },
-    //     }
-    //   )
-    //   .then(({ data }) => {
-    //     console.log('getTotalUserCnt________',data.userCount);
-    //     setTotalUser(data.userCount);
-    //   });
+    axios
+      .get(
+        `${g.base_url}api/warning/total?s=${selectVal}&v=${inputVal}`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
+        // console.log('getTotalUserCnt________',data);
+        setTotalUser(data);
+      });
   };
 
   const changePage = (page) => {
