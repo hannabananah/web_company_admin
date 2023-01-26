@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import images from "~/assets/js/Images";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
+import { g } from "~/util/global"
 
 const AddUserAccount = () => {
   const classes = useStyles();
@@ -72,7 +72,7 @@ const AddUserAccount = () => {
     if (confirm("저장 하시겠습니까?")) {
       axios
         .post(
-          `http://localhost:3001/api/admin/create`,
+          `${g.base_url}api/admin/create`,
           {
             ...userInfo,
           },
@@ -91,7 +91,7 @@ const AddUserAccount = () => {
 
   const duplicationCheck = () => {
     axios
-      .get(`http://localhost:3001/api/admin/${userInfo.id}`, {
+      .get(`${g.base_url}api/admin/${userInfo.id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },

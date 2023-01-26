@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import axios from "axios";
-
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
-
 import DetailsAppVer from "~/screens/DetailsAppVer";
 import AddAppVersion from "~/components/AddAppVersion";
 import AppVersionTable from "~/components/table/AppVersionTable";
@@ -14,6 +12,7 @@ import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import { UpdateAlertModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
+import { g } from "~/util/global"
 
 // filter select option
 const option = [
@@ -42,7 +41,7 @@ const AppVersion = () => {
   const getTotalUserCnt = () => {
     axios
       .get(
-        `http://localhost:3001/api/version/total?s=${selectVal}&v=${inputVal}`,
+        `${g.base_url}api/version/total?s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -58,7 +57,7 @@ const AppVersion = () => {
   const changePage = (page) => {
     axios
       .get(
-        `http://localhost:3001/api/version/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
+        `${g.base_url}api/version/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -123,7 +122,7 @@ const AppVersion = () => {
     newdata.noticeKey = newdata.version_idx;
     axios
       .post(
-        `http://localhost:3001/api/version/update`,
+        `${g.base_url}api/version/update`,
 
         { ...newdata },
         {

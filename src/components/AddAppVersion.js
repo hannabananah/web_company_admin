@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import useStyles from "~/styles/Add";
 import { UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
+import { g } from "~/util/global"
 
 const storeList = ["Google Play", "App Store", "Microsoft", "Mac"];
 const osList = ["Android", "iOS", "Windows", "Mac"];
@@ -63,7 +63,7 @@ const AddAppVersion = () => {
       // notiInfo["store"] = c
       axios
         .post(
-          `http://localhost:3001/api/version/create`,
+          `${g.base_url}api/version/create`,
           {
             ...notiInfo,
           },

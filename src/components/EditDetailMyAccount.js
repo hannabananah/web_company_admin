@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
+import { g } from "~/util/global"
 
 const EditDetailMyAccount = ({ goBackState, admin }) => {
   const classes = useStyles();
@@ -12,7 +12,7 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/admin/${admin.id}`, {
+      .get(`${g.base_url}api/admin/${admin.id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -57,7 +57,7 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
     if (confirm("저장 하시겠습니까?")) {
       axios
         .post(
-          `http://localhost:3001/api/admin/update`,
+          `${g.base_url}api/admin/update`,
           {
             ...userInfo,
           },
