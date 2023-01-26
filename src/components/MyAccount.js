@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import { dateFormat } from "~/util/global";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import EditDetailMyAccount from "~/components/EditDetailMyAccount";
 import TableHeader from "~/components/TableHeader";
+import { g } from "~/util/global"
 
 const MyAccountContent = () => {
   const classes = useStyles();
@@ -22,7 +22,7 @@ const MyAccountContent = () => {
   }, []);
   const getAdmin = () => {
     axios
-      .get(`http://localhost:3001/api/admin/${localStorage.getItem("id")}`, {
+      .get(`${g.base_url}api/admin/${localStorage.getItem("id")}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
