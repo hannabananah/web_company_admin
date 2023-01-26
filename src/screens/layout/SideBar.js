@@ -191,8 +191,13 @@ const SideBar = () => {
                           className={`${classes.details} details`}
                         >
                           <summary
+                            // className={
+                            //   window.location.pathname.includes(item.path)
+                            //     ? classes.activeMenu
+                            //     : classes.menu
+                            // }
                             className={
-                              window.location.pathname.includes(item.path)
+                              window.location.pathname === item.path
                                 ? classes.activeMenu
                                 : classes.menu
                             }
