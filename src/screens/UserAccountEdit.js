@@ -6,6 +6,7 @@ import TableHeader from "~/components/TableHeader";
 import "~/styles/Toggle.css";
 import axios from "axios";
 import { UptConfirmModal, SaveConfirmModal } from "~/components/Modal";
+import { g } from "~/util/global"
 
 const UserAccountEdit = () => {
   const classes = useStyles();
@@ -49,7 +50,7 @@ const UserAccountEdit = () => {
   // 유저 정보 불러오기
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/admin/${user.id}`, {
+      .get(`${g.base_url}api/admin/${user.id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -82,7 +83,7 @@ const UserAccountEdit = () => {
 
         axios
           .post(
-            `http://localhost:3001/api/admin/update`,
+            `${g.base_url}api/admin/update`,
             {
               ...userInfo,
             },

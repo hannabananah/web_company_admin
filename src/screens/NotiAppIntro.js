@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Pagination from "react-js-pagination";
-
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
@@ -12,6 +11,7 @@ import SelectBox from "~/components/SelectBox";
 import SearchInput from "~/components/SearchInput";
 import { NoticeAlertModal } from "~/components/Modal";
 import { SearchBtn, SaveBtn } from "~/components/button/Buttons";
+import { g } from "~/util/global"
 
 // filter select option
 const option = [
@@ -79,7 +79,7 @@ const NotiAppIntro = () => {
   const getTotalUserCnt = () => {
     axios
       .get(
-        `http://localhost:3001/api/notice/total?s=${selectVal}&v=${inputVal}`,
+        `${g.base_url}api/notice/total?s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -96,7 +96,7 @@ const NotiAppIntro = () => {
   const changePage = (page) => {
     axios
       .get(
-        `http://localhost:3001/api/notice/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
+        `${g.base_url}api/notice/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -120,7 +120,7 @@ const NotiAppIntro = () => {
     newdata.noticeKey = newdata.noti_idx;
     axios
       .post(
-        `http://localhost:3001/api/notice/update`,
+        `${g.base_url}api/notice/update`,
 
         { ...newdata },
         {

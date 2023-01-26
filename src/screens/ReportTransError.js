@@ -4,6 +4,7 @@ import dayjs, { Dayjs } from "dayjs";
 import Pagination from "react-js-pagination";
 import axios from "axios";
 
+import { g } from "~/util/global";
 import "~/styles/pagination.css";
 import useStyles from "~/styles/Add";
 
@@ -63,7 +64,9 @@ const ReportTransError = () => {
   const getTotalTransError = () => {
     axios
       .get(
-        `http://localhost:3001/api/error/total?s=${selectVal}&v=${inputVal}&st=${start.format(
+        `${
+          g.base_url
+        }api/error/total?s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {
@@ -82,7 +85,9 @@ const ReportTransError = () => {
     getTotalTransError();
     axios
       .get(
-        `http://localhost:3001/api/error/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
+        `${
+          g.base_url
+        }api/error/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {
