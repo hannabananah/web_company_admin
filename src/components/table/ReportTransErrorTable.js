@@ -1,5 +1,5 @@
 import useStyles from "~/styles/Table";
-import { dateFormat } from "~/util/global";
+import { dateFormatNoTime } from "~/util/global";
 
 const ReportTransErrorTable = (props) => {
   const { fetchData, isLoaded, onClickTarget } = props;
@@ -45,28 +45,28 @@ const ReportTransErrorTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
-                  <td className={classes.td}>{i.version_idx}</td>
+                  <td className={classes.td}>{i.report_idx}</td>
                   {/* 신고 날짜 */}
-                  <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
+                  <td className={classes.td}>{dateFormatNoTime(i.reg_dttm)}</td>
                   {/* 신고 계정 */}
-                  <td className={classes.td}>{i.store}</td>
+                  <td className={classes.td}>{i.reg_id}</td>
                   {/* 원문 언어 코드 */}
-                  <td className={classes.td}>{i.os}</td>
+                  <td className={classes.td}>{i.receive_lang_cd}</td>
                   {/* 원문 텍스트 */}
                   <td className={classes.td}>
                     <span
                       onClick={() => onClickTarget(i)}
                       className={classes.idLink}
                     >
-                      {i.late_app_version}
+                      {i.receive_msg}
                     </span>
                   </td>
                   {/* 1차 영문 번역 텍스트 */}
-                  <td className={classes.td}>{i.min_app_version}</td>
+                  <td className={classes.td}>{i.en_msg}</td>
                   {/* 번역 언어 코드 */}
-                  <td className={classes.td}>{i.update_type}</td>
+                  <td className={classes.td}>{i.sender_lang_cd}</td>
                   {/* 번역 텍스트 */}
-                  <td className={classes.td}>{dateFormat(i.upt_dttm)}</td>
+                  <td className={classes.td}>{i.send_msg}</td>
                 </tr>
               );
             })}
