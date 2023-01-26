@@ -92,6 +92,20 @@ export const sidenav_data = [
       {
         title: "번역 이상 신고",
         path: "/service/report_translation_error",
+        subMenu: [
+          {
+            title: "원문 텍스트 상세",
+            path: "/service/report_translation_error/orgin_contents_details",
+          },
+          {
+            title: "1차 번역 영어 텍스트 상세",
+            path: "/service/report_translation_error/english_contents_details",
+          },
+          {
+            title: "번역 텍스트 상세",
+            path: "/service/report_translation_error/translation_contents_details",
+          },
+        ],
       },
     ],
   },
