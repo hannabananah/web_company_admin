@@ -23,21 +23,19 @@ const ReportTable = ({fetchData, isLoaded}) => {
     return (
       <tr key={index} className={classes.tableTr}>
         {/* 번호 */}
-        <td className={classes.td}>{i.phone_no}</td>
+        <td className={classes.td}>{}</td>
         {/* 계정 */}
         <td className={classes.td}>{i.user_id}</td>
         {/* OS */}
         <td className={classes.td}>{i.device_type}</td>
-        {/* 생일 */}
-        <td className={classes.td}>{renderBirth(i.birthday)}</td>
-        {/* 가입일 */}
-        <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
-        {/*/!* 탈퇴일 *!/*/}
-        {/*<td className={classes.td}>{i.last_login_dttm}</td>*/}
-        {/* 최근 접속일 */}
-        <td className={classes.td}>
-          {dateFormat(i.last_login_dttm)}
-        </td>
+        {/* 신고 유형 */}
+        <td className={classes.td}>{}</td>
+        {/* 신고 내용 */}
+        <td className={classes.td}>{}</td>
+        {/* 신고일 */}
+        <td className={classes.td}>{}</td>
+        {/* 처리 */}
+        <td className={classes.td}>{}</td>
       </tr>
     );
   })
