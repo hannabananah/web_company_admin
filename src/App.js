@@ -9,7 +9,7 @@ import Service from "~/screens/Service";
 import Statistics from "~/screens/Statistics";
 import Notice from "~/screens/Notice";
 import NotiAppIntro from "~/screens/NotiAppIntro";
-import NotiAppViewMore from "~/screens/NotiAppViewMore";
+import NotiAppSetting from "~/screens/NotiAppSetting";
 import NotiUserEmail from "~/screens/NotiUserEmail";
 import SystemSettings from "~/screens/SystemSettings";
 import useStyles from "~/styles/App";
@@ -148,10 +148,7 @@ function App() {
                 element={<NotiAppIntroAdd />}
               />
 
-              <Route
-                path="/notice/app_viewmore"
-                element={<NotiAppViewMore />}
-              />
+              <Route path="/notice/app_setting" element={<NotiAppSetting />} />
               <Route path="/notice/user_email" element={<NotiUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />
               <Route path="/hannah_test" element={<EditorTool />} />
