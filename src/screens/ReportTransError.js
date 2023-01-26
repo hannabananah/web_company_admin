@@ -56,7 +56,7 @@ const ReportTransError = () => {
     setEnd(start);
   }, [start]);
 
-  const getTotalTransErrorPage = () => {
+  const getTotalTransError = () => {
     axios
       .get(
         `http://localhost:3001/api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format(
@@ -69,13 +69,13 @@ const ReportTransError = () => {
         }
       )
       .then(({ data }) => {
-        console.log("getTotalTransErrorPage data::::::", data);
+        console.log("getTotalTransError data::::::", data);
         setTotalUser(data);
       });
   };
 
   const changePage = (page) => {
-    getTotalTransErrorPage();
+    getTotalTransError();
     axios
       .get(
         `http://localhost:3001/api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
