@@ -1,10 +1,10 @@
-import HistoryTable from "~/components/table/HistoryTable";
 import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import Pagination from "react-js-pagination";
 
 import "~/styles/pagination.css";
 import { useStyles } from "~/styles/History";
+import HistoryTable from "~/components/table/HistoryTable";
 import SelectBox from "~/components/SelectBox";
 import DatePicker from "~/components/DatePicker";
 import FilterSection from "~/components/FilterSection";
