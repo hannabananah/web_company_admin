@@ -295,7 +295,7 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: "120px",
+    width: "78px",
     borderRadius: "8px",
     height: "40px",
     wordBreak: "keep-all",
