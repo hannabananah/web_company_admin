@@ -124,19 +124,19 @@ const ReportTransError = () => {
 
   //원문 텍스트
   const onClickReceiveMsg = (i) => {
-    navigate(`/service/report_translation_error/details/${i.receive_msg}`, {
+    navigate(`/service/report_translation_error/orgin_contents_details`, {
       state: { state: i, urlParam: i.id },
     });
   };
   //1차 영문 번역 텍스트
   const onClickEnMsg = (i) => {
-    navigate(`/service/report_translation_error/details/${i.en_msg}`, {
+    navigate(`/service/report_translation_error/english_contents_details`, {
       state: { state: i, urlParam: i.id },
     });
   };
   //번역 텍스트
   const onClickSendMsg = (i) => {
-    navigate(`/service/report_translation_error/details/${i.send_msg}`, {
+    navigate(`/service/report_translation_error/translation_contents_details`, {
       state: { state: i, urlParam: i.id },
     });
   };
