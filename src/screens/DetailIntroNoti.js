@@ -5,7 +5,7 @@ import { dateFormat } from "~/util/global";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 const DetailIntroNoti = () => {
   const classes = useStyles();
@@ -14,11 +14,10 @@ const DetailIntroNoti = () => {
   const [fetchData, setFetchData] = useState([]);
 
   const onClickPrev = () => {
-    navigate(-1); // navigate('/notice/app_intro')
+    navigate(-1);
   };
   const onClickEdit = () => {
-    // EditAppIntroNotice.js
-    navigate("/notice/app_intro/details/edit", { state: fetchData });
+    navigate("/notice/app_setting/details/edit", { state: fetchData });
   };
 
   useEffect(() => {
