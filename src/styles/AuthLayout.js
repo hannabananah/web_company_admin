@@ -5,7 +5,7 @@ const useStyles = makeStyles({
     display:'flex',
     // justifyContent:'center',
     paddingTop:'50px',
-    marginLeft:'100px',
+    marginLeft:'80px',
     // padding:'0 100px',
     "& > div" :{
       width: '100%',
