@@ -265,6 +265,9 @@ const useStyles = makeStyles({
     borderRadius: "8px",
     height: "36px",
     wordBreak: "keep-all",
+    // border: `1px solid ${COLORS.COLOR.MIDDLE_PURPLE}`,
+    // backgroundColor: "#FCFCFF",
+    // // color: COLORS.COLOR.ANY_PURPLE,
   },
   deleteBtn: {
     boxSizing: "border-box",
@@ -309,10 +312,7 @@ const useStyles = makeStyles({
   },
   addBtn: {
     boxSizing: "border-box",
-    border: "none",
-    backgroundColor: COLORS.COLOR.MIDDLE_PURPLE,
     fontSize: "14px",
-    cursor: "pointer",
     color: COLORS.COLOR.BLACK,
     borderRadius: "8px",
     display: "flex",
@@ -321,7 +321,6 @@ const useStyles = makeStyles({
     width: "120px",
     height: "40px",
     wordBreak: "keep-all",
-
     border: `1px solid ${COLORS.COLOR.ANY_PURPLE}`,
     backgroundColor: "#FCFCFF",
     color: COLORS.COLOR.ANY_PURPLE,

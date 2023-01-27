@@ -60,7 +60,7 @@ const DetailIntroNoti = () => {
                   fetchData.noti_type == "urgent" ? classes.urgentText : null
                 }
               >
-                {fetchData.noti_type}
+                {fetchData.noti_type === "urgent" ? "긴급" : "일반"}
               </span>
             </td>
           </tr>
@@ -83,15 +83,21 @@ const DetailIntroNoti = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>공지 내용</label>
             </th>
-            <td
-              className={classes.contentStyle}
-            ><div dangerouslySetInnerHTML={{ __html: fetchData.noti_content }} /></td>
-          </tr>
+            <td className={classes.contentStyle}>
+              <div
+                dangerouslySetInnerHTML={{ __html: fetchData.noti_content }}
+              />
+            </td>
+          </tr>{" "}
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>설명</label>
             </th>
-            <td className={classes.contentStyle}>{fetchData.remark}</td>
+            {fetchData.remark == "" ? (
+              <td className={classes.contentStyle}>-</td>
+            ) : (
+              <td className={classes.contentStyle}>{fetchData.remark}</td>
+            )}
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>

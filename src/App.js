@@ -34,7 +34,7 @@ import AddUserAccount from "~/screens/AddUserAccount";
 import ReportTransError from "~/screens/ReportTransError";
 import DashBoard from "~/screens/DashBoard";
 import NotiAppIntroAdd from "~/screens/NotiAppIntroAdd";
-// import NotiAppSettingAdd from "~/screens/NotiAppSettingAdd";
+import NotiAppSettingAdd from "~/screens/NotiAppSettingAdd";
 import DetailIntroNoti from "~/screens/DetailIntroNoti";
 import {
   DetailOriginText,
@@ -161,6 +161,11 @@ function App() {
               <Route
                 path="/notice/app_setting/details/edit"
                 element={<EditAppSettingNoti />}
+              />
+              {/* 설정 공지 > 상세 > 수정 */}
+              <Route
+                path="/notice/app_setting/add"
+                element={<NotiAppSettingAdd />}
               />
               <Route path="/notice/user_email" element={<NotiUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />
