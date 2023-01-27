@@ -125,20 +125,20 @@ const SideBar = () => {
   };
 
   // details 눌렀을 때
-  document.querySelectorAll('details').forEach(function(item){
-      item.addEventListener("toggle", event => {
-      let toggled = event.target;
-      if (toggled.attributes.open) {/* 열었으면 */
-        item.classList.add('opened')
-        /* 나머지 다른 열린 아이템을 닫음 */
-        document.querySelectorAll('details[open]').forEach(function(opened){
-          if(toggled != opened) /* 현재 열려있는 요소가 아니면 */
-            opened.removeAttribute('open'); /* 열림 속성 삭제 */
-            // opened.classList.remove('opened')
-        });
-      }
-    })
-  });
+  // document.querySelectorAll('details').forEach(function(item){
+  //     item.addEventListener("toggle", event => {
+  //     let toggled = event.target;
+  //     if (toggled.attributes.open) {/* 열었으면 */
+  //       item.classList.add('opened')
+  //       /* 나머지 다른 열린 아이템을 닫음 */
+  //       document.querySelectorAll('details[open]').forEach(function(opened){
+  //         if(toggled != opened) /* 현재 열려있는 요소가 아니면 */
+  //           opened.removeAttribute('open'); /* 열림 속성 삭제 */
+  //           // opened.classList.remove('opened')
+  //       });
+  //     }
+  //   })
+  // });
 
   // 뒤로 가기
   useEffect(() => {
@@ -202,6 +202,7 @@ const SideBar = () => {
                         <details
                           key={index}
                           className={`${classes.details} details`}
+                          onClick={()=>navigate(item.subMenu[0].path)}
                         >
                           <summary
                             className={
