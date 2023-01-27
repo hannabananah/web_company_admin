@@ -33,7 +33,7 @@ const ReportTransErrorTable = (props) => {
             <td className={classes.th_td} style={{ width: "100px" }}>
               신고 계정
             </td>
-            <td className={classes.th_td} style={{ width: "80px" }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               원문 언어 코드
             </td>
             <td className={classes.th_td} style={{ width: "80px" }}>
@@ -42,7 +42,7 @@ const ReportTransErrorTable = (props) => {
             <td className={classes.th_td} style={{ width: "80px" }}>
               1차 영문 번역 텍스트
             </td>
-            <td className={classes.th_td} style={{ width: "80px" }}>
+            <td className={classes.th_td} style={{ width: "100px" }}>
               번역 언어 코드
             </td>
             <td className={classes.th_td} style={{ width: "80px" }}>
