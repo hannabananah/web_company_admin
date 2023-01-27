@@ -1,8 +1,9 @@
 import Preparations from "~/components/Preparations"
+import DashBoard from "~/screens/DashBoard";
 
 const Statistics = () => {
   return (
-    <Preparations />
+    <DashBoard />
   )
 }
 export default Statistics;
