@@ -85,12 +85,13 @@ const SubjectToReport = () => {
 
   // 계정 휴면
   const onClickDormancy = (targetUser) => {
+    // console.log(targetUser)
     axios
       .post(
         `${g.base_url}api/warning/update`, 
         {
           warning_his_seq : targetUser.warning_his_seq,
-          status: 1
+          state: 1
         },
         {
           headers: {
