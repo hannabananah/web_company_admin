@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     wordBreak: "keep-all",
     boxSizing: "border-box",
     width: "100%",
-    height: "33px",
+    height: "40px",
     verticalAlign: "middle",
     borderRight: `1px solid ${COLORS.COLOR.WHITE}`,
     "&:last-child": {
@@ -42,7 +42,7 @@ const useStyles = makeStyles({
     textOverflow: "ellipsis",
     wordBreak: "break-all",
     boxSizing: "border-box",
-    height: "30px",
+    height: "38px",
     verticalAlign: "middle",
     borderTop: `1px solid ${COLORS.BORDER.TITLE}`,
     borderRight: `1px solid ${COLORS.BORDER.TITLE}`,
