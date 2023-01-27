@@ -58,9 +58,7 @@ const HistoryTable = (props) => {
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
                   <td className={classes.td}>
-                    {/* { (currentPage == 1 ? index+1 : index) + (currentPage == 1 ? null : currentPage*10) } */}
-                    { ( index) + (currentPage == 1 ? null : currentPage == 2 ? 10 : currentPage*10) }
-                    {/* { currentPage == 2 && (index+1) + 10  } */}
+                    { ( index+1 ) + ((currentPage-1)*10) }
                   </td>
                   {/* 작업 날짜 */}
                   <td className={classes.td}>{dateFormat(i.createdAt)}</td>
