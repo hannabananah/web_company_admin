@@ -2,7 +2,7 @@ import useStyles from "~/styles/Table";
 import { dateFormat } from "~/util/global";
 
 const HistoryTable = (props) => {
-  const { changeState, fetchData, isLoaded, onClickTarget, totalUser, currentPage } = props;
+  const { changeState, fetchData, isLoaded, onClickTarget, totalUser, currentPage, postsPerPage } = props;
 
   const classes = useStyles();
 
@@ -53,12 +53,15 @@ const HistoryTable = (props) => {
         </thead>
         <tbody>
           {isLoaded &&
+            // fetchData?.map((i, index) => {
             [...fetchData]?.reverse().map((i, index) => {
+            // fetchData?.slice(0).reverse().map((i, index) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
                   <td className={classes.td}>
-                    { ( index+1 ) + ((currentPage-1)*10) }
+                    {/* { ( index+1 ) + ((currentPage-1)*postsPerPage) } */}
+                    {/* { ((totalUser/postsPerPage)-1)*index } */}
                   </td>
                   {/* 작업 날짜 */}
                   <td className={classes.td}>{dateFormat(i.createdAt)}</td>

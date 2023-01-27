@@ -20,20 +20,22 @@ const Login = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post(`${g.base_url}api/auth/login`, { id, password })
-      .then((result) => {
-        if (result.data) {
-          // console.log(result.data)
-          localStorage.setItem("id", result.data.id);
-          localStorage.setItem("adminKey", result.data.adminKey);
-          localStorage.setItem("access_token", result.data.access_token);
-          navigate("/dashboard");
-        } else {
-          setInvalid(true);
-        }
-      })
-      .catch((err) => console.log(err));
+    navigate("/dashboard");
+
+    // axios
+    //   .post(`${g.base_url}api/auth/login`, { id, password })
+    //   .then((result) => {
+    //     if (result.data) {
+    //       // console.log(result.data)
+    //       localStorage.setItem("id", result.data.id);
+    //       localStorage.setItem("adminKey", result.data.adminKey);
+    //       localStorage.setItem("access_token", result.data.access_token);
+    //       navigate("/dashboard");
+    //     } else {
+    //       setInvalid(true);
+    //     }
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   return (

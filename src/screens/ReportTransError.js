@@ -41,9 +41,10 @@ const ReportTransError = () => {
   const postsPerPage = 10;
 
   // 데이트픽커
+  let newYear = "2023-01-01";
   let now = dayjs().format("YYYY-MM-DD");
-  const [start, setStart] = useState(dayjs(now));
-  const [end, setEnd] = useState(start);
+  const [start, setStart] = useState(dayjs(newYear));
+  const [end, setEnd] = useState(dayjs(now));
 
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -55,11 +56,6 @@ const ReportTransError = () => {
   const onChangeSelect = (event) => {
     setSelectVal(event.target.value);
   };
-
-  useEffect(() => {
-    changePage(1);
-    setEnd(start);
-  }, [start]);
 
   const getTotalTransError = () => {
     axios
