@@ -62,14 +62,14 @@ const ReportTransErrorTable = (props) => {
                   {/* 신고 계정 */}
                   <td className={classes.td}>{i.reg_id}</td>
                   {/* 원문 언어 코드 */}
-                  <td className={classes.td}>{i.receive_lang_cd}</td>
+                  <td className={classes.td}>{i.sender_lang_cd}</td>
                   {/* 원문 텍스트 */}
                   <td className={classes.td}>
                     <span
                       onClick={() => onClickReceiveMsg(i)}
                       className={classes.idLink}
                     >
-                      {i.receive_msg}
+                      {i.send_msg}
                     </span>
                   </td>
                   {/* 1차 영문 번역 텍스트 */}
@@ -82,14 +82,14 @@ const ReportTransErrorTable = (props) => {
                     </span>
                   </td>
                   {/* 번역 언어 코드 */}
-                  <td className={classes.td}>{i.sender_lang_cd}</td>
+                  <td className={classes.td}>{i.receive_lang_cd}</td>
                   {/* 번역 텍스트 */}
                   <td className={classes.td}>
                     <span
                       onClick={() => onClickSendMsg(i)}
                       className={classes.idLink}
                     >
-                      {i.send_msg}
+                      {i.receive_msg}
                     </span>
                   </td>
                 </tr>
