@@ -11,7 +11,7 @@ const AddUserAccount = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [inactive, setInactive] = useState(false);
-  const [doubleCheck, setDoubleCheck] = useState(false);
+  const [doubleCheck, setDoubleCheck] = useState();
   const [pwdCheck, setPwdCheck] = useState(false);
 
   const [userInfo, setUserInfo] = useState({
@@ -98,9 +98,9 @@ const AddUserAccount = () => {
       })
       .then(({ data }) => {
         if (data.adminKey) {
-          setDoubleCheck(true);
+          setDoubleCheck("duplicate");
         } else {
-          setDoubleCheck(false);
+          setDoubleCheck("unduplicate");
         }
       });
   };
@@ -137,7 +137,7 @@ const AddUserAccount = () => {
                 className={classes.checkBtnStyle}
               />
               {/* 로그인 중복체크 문구*/}
-              {doubleCheck && (
+              {doubleCheck == "duplicate" ? (
                 <div className={classes.checkIconStyle}>
                   <img
                     src={images.icons.LOGIN_INFO}
@@ -146,6 +146,12 @@ const AddUserAccount = () => {
                   />
                   <span className={classes.checkErrorText}>
                     동일한 아이디가 존재합니다.
+                  </span>
+                </div>
+              ) : (
+                <div className={classes.checkIconStyle}>
+                  <span className={classes.checkErrorText}>
+                    사용가능한 아이디입니다.
                   </span>
                 </div>
               )}
