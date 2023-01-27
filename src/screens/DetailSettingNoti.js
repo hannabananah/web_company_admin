@@ -58,10 +58,11 @@ const DetailSettingNoti = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>공지 내용</label>
             </th>
-            <td
-              className={classes.contentStyle}
-              dangerouslySetInnerHTML={{ __html: fetchData.noti_content }}
-            />
+            <td className={classes.contentStyle}>
+              <div
+                dangerouslySetInnerHTML={{ __html: fetchData.noti_content }}
+              />
+            </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
