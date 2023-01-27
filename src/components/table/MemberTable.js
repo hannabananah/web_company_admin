@@ -49,9 +49,11 @@ const MemberTable = (props) => {
                   {/* 계정 */}
                   <td className={classes.td}>{i.user_id}</td>
                   {/* OS */}
-                  <td className={classes.td}>{i.device_type}</td>
+                  {/* <td className={classes.td}>{i.device_type}</td> */}
+                  <td className={classes.td}>Android</td>
                   {/* 생일 */}
-                  <td className={classes.td}>{renderBirth(i.birthday)}</td>
+                  {/* <td className={classes.td}>{renderBirth(i.birthday)}</td> */}
+                  <td className={classes.td}>1999-03-01</td>
                   {/* 가입일 */}
                   <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
                   {/*/!* 탈퇴일 *!/*/}
