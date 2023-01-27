@@ -3,7 +3,7 @@ import { COLORS } from "~/assets/colors/colors";
 
 const useStyles = makeStyles({
   root: {
-    border: `1px solid ${COLORS.STORKE.CONTENTS2}`,
+    border: "1px solid rgba(188,191,204,0.4)",
     borderRadius: "8px",
     boxShadow: "0px 4px 22px rgba(0, 0, 0, 0.05)",
     overflow: "hidden",
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     wordBreak: "keep-all",
     boxSizing: "border-box",
     width: "100%",
-    height: "45px",
+    height: "33px",
     verticalAlign: "middle",
     borderRight: `1px solid ${COLORS.COLOR.WHITE}`,
     "&:last-child": {
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   td: {
     textAlign: "center",
     cursor: "default",
-    fontSize: "12px",
+    fontSize: "13px",
     color: "#000",
     lineHeight: "150%",
     overflow: "hidden",
@@ -42,7 +42,7 @@ const useStyles = makeStyles({
     textOverflow: "ellipsis",
     wordBreak: "break-all",
     boxSizing: "border-box",
-    height: "50px",
+    height: "30px",
     verticalAlign: "middle",
     borderTop: `1px solid ${COLORS.BORDER.TITLE}`,
     borderRight: `1px solid ${COLORS.BORDER.TITLE}`,
