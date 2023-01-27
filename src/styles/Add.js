@@ -163,6 +163,13 @@ const useStyles = makeStyles({
     display: "flex",
     alignContent: "center",
   },
+  checkNormalText: {
+    color: COLORS.COLOR.BLACK,
+    fontSize: "14px",
+    lineHeight: "200%",
+    textAlign: "center",
+    marginLeft: "6px",
+  },
   checkErrorText: {
     color: COLORS.COLOR.WRANING,
     fontSize: "14px",
