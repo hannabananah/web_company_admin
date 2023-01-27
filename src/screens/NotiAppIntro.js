@@ -34,7 +34,6 @@ const NotiAppIntro = () => {
   const navigate = useNavigate();
 
   const onClickAddNoti = () => {
-    // NotiAppIntroAdd.js
     navigate("/notice/app_intro/add");
   };
 
