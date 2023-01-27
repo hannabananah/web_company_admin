@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     width: "100%",
   },
   tHeadtrStyle: {
-    borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`
+    borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
   },
   th_td: {
     textAlign: "center",
@@ -126,6 +126,7 @@ const useStyles = makeStyles({
     lineHeight: "100%",
     borderRadius: "8px",
     cursor: "pointer",
+    border: "none",
   },
   inactiveLive: {
     padding: "8px 20px",
@@ -136,6 +137,7 @@ const useStyles = makeStyles({
     lineHeight: "100%",
     borderRadius: "8px",
     cursor: "pointer",
+    border: "none",
   },
   urgentText: {
     textAlign: "center",
