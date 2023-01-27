@@ -60,9 +60,11 @@ const NoticeIntroTable = (props) => {
                   {/* 공지 유형 */}
                   <td className={classes.td}>
                     <span
-                      className={i.gender == "male" ? classes.urgentText : null}
+                      className={
+                        i.noti_type == "urgent" ? classes.urgentText : null
+                      }
                     >
-                      {i.noti_type}
+                      {i.noti_type === "urgent" ? "긴급" : "일반"}
                     </span>
                   </td>
                   {/* 공지 제목 */}
