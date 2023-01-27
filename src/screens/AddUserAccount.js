@@ -90,19 +90,23 @@ const AddUserAccount = () => {
   };
 
   const duplicationCheck = () => {
-    axios
-      .get(`${g.base_url}api/admin/${userInfo.id}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then(({ data }) => {
-        if (data.adminKey) {
-          setDoubleCheck("duplicate");
-        } else {
-          setDoubleCheck("unduplicate");
-        }
-      });
+    if (userInfo.id == "") {
+      setDoubleCheck("empty");
+    } else {
+      axios
+        .get(`${g.base_url}api/admin/${userInfo.id}`, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        })
+        .then(({ data }) => {
+          if (data.adminKey) {
+            setDoubleCheck("duplicate");
+          } else {
+            setDoubleCheck("unduplicate");
+          }
+        });
+    }
   };
 
   return (
@@ -137,7 +141,7 @@ const AddUserAccount = () => {
                 className={classes.checkBtnStyle}
               />
               {/* 로그인 중복체크 문구*/}
-              {doubleCheck == "duplicate" ? (
+              {doubleCheck == "duplicate" && (
                 <div className={classes.checkIconStyle}>
                   <img
                     src={images.icons.LOGIN_INFO}
@@ -148,10 +152,23 @@ const AddUserAccount = () => {
                     동일한 아이디가 존재합니다.
                   </span>
                 </div>
-              ) : (
+              )}
+              {doubleCheck == "unduplicate" && (
                 <div className={classes.checkIconStyle}>
-                  <span className={classes.checkErrorText}>
+                  <span className={classes.checkNormalText}>
                     사용가능한 아이디입니다.
+                  </span>
+                </div>
+              )}
+              {doubleCheck == "empty" && (
+                <div className={classes.checkIconStyle}>
+                  <img
+                    src={images.icons.LOGIN_INFO}
+                    alt="중복체크 에러 아이콘"
+                    className={classes.checkErrorIcon}
+                  />
+                  <span className={classes.checkErrorText}>
+                    아이디를 입력하세요.
                   </span>
                 </div>
               )}
