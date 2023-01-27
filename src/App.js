@@ -9,7 +9,7 @@ import Service from "~/screens/Service";
 import Statistics from "~/screens/Statistics";
 import Notice from "~/screens/Notice";
 import NotiAppIntro from "~/screens/NotiAppIntro";
-import NotiAppViewMore from "~/screens/NotiAppViewMore";
+import NotiAppSetting from "~/screens/NotiAppSetting";
 import NotiUserEmail from "~/screens/NotiUserEmail";
 import SystemSettings from "~/screens/SystemSettings";
 import useStyles from "~/styles/App";
@@ -26,7 +26,7 @@ import AppVersion from "~/screens/AppVersion";
 import DetailsAppVer from "~/screens/DetailsAppVer";
 import AddAppVer from "~/screens/AddAppVer";
 import EditAppVer from "~/screens/EditAppVer";
-import EditAppNoti from "~/screens/EditAppNoti";
+import EditAppIntroNoti from "~/screens/EditAppIntroNoti";
 import NotFound from "~/screens/NotFound";
 import EditorTool from "~/components/Editor";
 import UserAccountEdit from "~/screens/UserAccountEdit";
@@ -40,6 +40,8 @@ import {
   DetailEnText,
   DetailTransText,
 } from "~/screens/DetailReportText";
+import DetailSettingNoti from "~/screens/DetailSettingNoti";
+import EditAppSettingNoti from "~/screens/EditAppSettingNoti";
 import "~/App.css";
 
 function App() {
@@ -130,27 +132,34 @@ function App() {
               <Route path="/statistics" element={<Statistics />} />
               {/* <Route path="/notice" element={<Notice />} /> */}
 
-              {/* 공지 */}
+              {/* intro 공지 */}
               <Route path="/notice/app_intro" element={<NotiAppIntro />} />
-              {/* 공지 > 상세 */}
+              {/* intro 공지 > 상세 */}
               <Route
                 path="/notice/app_intro/details"
                 element={<DetailIntroNoti />}
               />
-              {/* 공지 > 상세 > 수정 */}
+              {/* intro 공지 > 상세 > 수정 */}
               <Route
                 path="/notice/app_intro/details/edit"
-                element={<EditAppNoti />}
+                element={<EditAppIntroNoti />}
               />
-              {/* 공지 > 등록 */}
+              {/* intro 공지 > 등록 */}
               <Route
                 path="/notice/app_intro/add"
                 element={<NotiAppIntroAdd />}
               />
-
+              {/* 설정 공지 */}
+              <Route path="/notice/app_setting" element={<NotiAppSetting />} />
+              {/* 설정 공지 > 상세 */}
               <Route
-                path="/notice/app_viewmore"
-                element={<NotiAppViewMore />}
+                path="/notice/app_setting/details"
+                element={<DetailSettingNoti />}
+              />
+              {/* 설정 공지 > 상세 > 수정 */}
+              <Route
+                path="/notice/app_setting/details/edit"
+                element={<EditAppSettingNoti />}
               />
               <Route path="/notice/user_email" element={<NotiUserEmail />} />
               <Route path="/system_settings" element={<SystemSettings />} />

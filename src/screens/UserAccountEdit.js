@@ -6,16 +6,15 @@ import TableHeader from "~/components/TableHeader";
 import "~/styles/Toggle.css";
 import axios from "axios";
 import { UptConfirmModal, SaveConfirmModal } from "~/components/Modal";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 const UserAccountEdit = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
-  const user = useLocation().state.state
+  const user = useLocation().state.state;
 
-  console.log('user _________',user)
-
+  console.log("user _________", user);
 
   // 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -140,12 +139,12 @@ const UserAccountEdit = () => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.grade || ""}
+                defaultValue={userInfo.grade}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="auth"
-                id="auth"
+                name="grade"
+                id="grade"
                 required
               />
             </td>
@@ -293,6 +292,6 @@ const UserAccountEdit = () => {
         <main>저장했습니다.</main>
       </UptConfirmModal>
     </figure>
-  )
-}
+  );
+};
 export default UserAccountEdit;
