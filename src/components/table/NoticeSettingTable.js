@@ -2,7 +2,7 @@ import useStyles from "~/styles/Table";
 import { dateFormat } from "~/util/global";
 
 const NoticeSettingTable = (props) => {
-  const { fetchData, isLoaded, onClickTarget } = props;
+  const { fetchData, isLoaded, onClickTarget, totalUser, currentPage,  postsPerPage } = props;
 
   const classes = useStyles();
 
@@ -46,7 +46,7 @@ const NoticeSettingTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
-                  <td className={classes.td}>{i.noti_idx}</td>
+                  <td className={classes.td}>{ ((totalUser - index) - ((currentPage - 1) * postsPerPage)) }</td>
                   {/* 공지 등록일 */}
                   <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
                   {/* OS */}

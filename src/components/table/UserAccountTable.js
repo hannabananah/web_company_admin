@@ -56,11 +56,10 @@ const UserAccountTable = (props) => {
         <tbody>
           {isLoaded &&
             fetchData?.map((i, index) => {
-            // [...fetchData]?.reverse().map((i, index) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   <td className={classes.td}>
-                    { ( index+1 ) + ((currentPage-1)*postsPerPage) }
+                    { ((totalUser - index) - ((currentPage - 1) * postsPerPage)) }
                     </td>
                   <td className={classes.td}>
                     <span

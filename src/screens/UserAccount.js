@@ -130,7 +130,13 @@ const UserAccount = () => {
         }
       />
 
-      <UserAccountTable fetchData={fetchData} isLoaded={isLoaded} totalUser={totalUser} currentPage={currentPage} postsPerPage={postsPerPage}/>
+      <UserAccountTable 
+        fetchData={fetchData} 
+        isLoaded={isLoaded} 
+        totalUser={totalUser} 
+        currentPage={currentPage} 
+        postsPerPage={postsPerPage}
+      />
 
       <Pagination
         activePage={currentPage}
