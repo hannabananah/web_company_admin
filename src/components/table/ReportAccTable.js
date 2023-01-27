@@ -3,7 +3,8 @@ import useStyles from "~/styles/Table";
 import ColumnHeaderTable from "~/components/table/ColumnHeaderTable";
 import { dateFormat, renderBirth } from "~/util/global";
 
-const ReportAccTable = ({ fetchData, isLoaded }) => {
+const ReportTable = (props) => {
+  const {fetchData, isLoaded, totalUser, currentPage, postsPerPage } = props;
   const classes = useStyles();
   console.log("fetchData------>", fetchData);
 
@@ -31,7 +32,7 @@ const ReportAccTable = ({ fetchData, isLoaded }) => {
     return (
       <tr key={index} className={classes.tableTr}>
         {/* 번호 */}
-        <td className={classes.td}>{}</td>
+        <td className={classes.td}>{ ((totalUser - index) - ((currentPage - 1) * postsPerPage)) }</td>
         {/* 계정 */}
         <td className={classes.td}>{i.user_id}</td>
         {/* OS */}

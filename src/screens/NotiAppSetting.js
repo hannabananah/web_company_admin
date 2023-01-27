@@ -131,6 +131,9 @@ const NotiAppSetting = () => {
         fetchData={fetchData}
         isLoaded={isLoaded}
         onClickTarget={onClickTarget}
+        totalUser={totalUser} 
+        currentPage={currentPage} 
+        postsPerPage={postsPerPage}
       />
       <Pagination
         activePage={currentPage}

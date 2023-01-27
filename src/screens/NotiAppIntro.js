@@ -180,6 +180,9 @@ const NotiAppIntro = () => {
         fetchData={fetchData}
         isLoaded={isLoaded}
         openModal={openModal}
+        totalUser={totalUser} 
+        currentPage={currentPage} 
+        postsPerPage={postsPerPage}
       />
       <Pagination
         activePage={currentPage}
