@@ -48,22 +48,22 @@ const UserAccountDetails = () => {
   };
 
   const onClickConfirm = () => {
-    // axios
-    //   .post(
-    //     `${g.base_url}api/admin/delete`,
-    //     { id: user.id },
-    //     {
-    //       headers: {
-    //         Authorization: "Bearer " + localStorage.getItem("access_token"),
-    //       },
-    //     }
-    //   )
-    //   .then(({ data }) => {
-    //     console.log(data);
-    //     setModalOpen(false)
-    //     // UserAccount.js
-    //     navigate("/setting_admin/user_account");
-    //   });
+    axios
+      .post(
+        `${g.base_url}api/admin/delete`,
+        { id: user.id },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+        setModalOpen(false);
+        // UserAccount.js
+        navigate("/setting_admin/user_account");
+      });
   };
   const onClickCancel = () => {
     setModalOpen(false);
