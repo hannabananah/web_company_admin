@@ -11,7 +11,7 @@ import SelectBox from "~/components/SelectBox";
 import SearchInput from "~/components/SearchInput";
 import { NoticeAlertModal } from "~/components/Modal";
 import { SearchBtn, SaveBtn } from "~/components/button/Buttons";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 // filter select option
 const option = [
@@ -32,7 +32,6 @@ const option = [
 const NotiAppIntro = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const [user, setUser] = useState([]);
 
   const onClickAddNoti = () => {
     // NotiAppIntroAdd.js
@@ -78,18 +77,15 @@ const NotiAppIntro = () => {
 
   const getTotalUserCnt = () => {
     axios
-      .get(
-        `${g.base_url}api/notice/total?s=${selectVal}&v=${inputVal}`,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        }
-      )
+      .get(`${g.base_url}api/notice/total?s=${selectVal}&v=${inputVal}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
       .then(({ data }) => {
         console.log(data);
         setTotalUser(data);
-        console.log('totalUser :::::::::::::::', data)
+        console.log("totalUser :::::::::::::::", data);
       });
   };
 
@@ -137,7 +133,6 @@ const NotiAppIntro = () => {
         setFetchData(new_data);
 
         closeModal();
-        
       });
   };
 

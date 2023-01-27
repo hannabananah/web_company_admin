@@ -15,22 +15,15 @@ import { EditorTool } from "~/components/Editor";
 import { UptConfirmModal } from "~/components/Modal";
 import { g } from "~/util/global";
 
-const EditAppIntroNotice = () => {
+const EditAppSettingNotice = () => {
   const user = useLocation().state;
   const classes = useStyles();
   const navigate = useNavigate();
-  const [value, setValue] = useState(dayjs(new Date()));
-  const [start, setStart] = useState(dayjs(new Date()));
-  const [end, setEnd] = useState(start);
-  const [ampm, setAmpm] = useState(false);
 
   //user info state
   const [userInfo, setUserInfo] = useState({
     noticeKey: user.noticeKey,
     os: user.os,
-    noti_type: user.noti_type,
-    noti_start_dttm: user.noti_start_dttm,
-    noti_end_dttm: user.noti_end_dttm,
     noti_title: user.noti_title,
     noti_content: user.noti_content,
     remark: user.remark,
@@ -64,8 +57,6 @@ const EditAppIntroNotice = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userInfo);
-    userInfo["noti_start_dttm"] = start;
-    userInfo["noti_end_dttm"] = end;
 
     // userInfo["noticeKey"] = userInfo.noti_idx;
     console.log(userInfo);
@@ -79,17 +70,14 @@ const EditAppIntroNotice = () => {
     if (confirm("저장 하시겠습니까?")) {
       axios
         .post(
-          `${g.base_url}api/notice/update`,
+          `${g.base_url}api/sysnotice/update`,
           {
-            os: userInfo.os,
-            noti_type: userInfo.noti_type,
-            noti_start_dttm: userInfo.noti_start_dttm,
-            noti_end_dttm: userInfo.noti_end_dttm,
-            noti_title: userInfo.noti_title,
-            remark: userInfo.remark,
             noticeKey: userInfo.noticeKey,
+            os: userInfo.os,
             status: userInfo.status,
+            noti_title: userInfo.noti_title,
             noti_content: editorToHtml,
+            remark: userInfo.remark,
           },
           {
             headers: {
@@ -125,24 +113,9 @@ const EditAppIntroNotice = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   console.log(user);
-  //   console.log(userInfo.noti_content);
-  //   setEditorState(
-  //     EditorState.createWithContent(
-  //       ContentState.createFromBlockArray(
-  //         convertFromHTML(userInfo.noti_content)
-  //       )
-  //     )
-  //   );
-
-  //   setStart(userInfo.noti_start_dttm);
-  //   setEnd(userInfo.noti_start_dttm);
-  // }, [userInfo]);
-
   return (
     <figure className={classes.userAccContainer}>
-      <TableHeader title="App Intro 공지 수정" />
+      <TableHeader title="App 설정 공지 수정" />
       <table className={classes.tableStyle}>
         <colgroup>
           <col />
@@ -157,61 +130,6 @@ const EditAppIntroNotice = () => {
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
-              <label className={classes.leftText}>공지 유형</label>
-            </th>
-            <td className={classes.inputLayout}>
-              <div className={classes.radioBtnLayout2}>
-                <input
-                  type="radio"
-                  id="urgent"
-                  onChange={onChange}
-                  name="type"
-                  value="urgent"
-                  className={classes.radioBtn}
-                  defaultChecked={userInfo.noti_type == "urgent"}
-                />
-                <label htmlFor="urgent">긴급</label>
-              </div>
-              <div className={classes.radioBtnLayout2}>
-                <input
-                  type="radio"
-                  id="normal"
-                  onChange={onChange}
-                  name="type"
-                  value="normal"
-                  className={classes.radioBtn}
-                  defaultChecked={userInfo.noti_type == "normal"}
-                />
-                <label htmlFor="normal">일반</label>
-              </div>
-            </td>
-          </tr>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
-              <label className={classes.leftText}>공지 노출 기간</label>
-            </th>
-            <td className={classes.pickerLayout}>
-              {/* <input
-                value={userInfo.period}
-                onChange={onChange}
-                type="text"
-                className={classes.inputStyle}
-                name="period"
-                id="introNoti"
-                required
-              /> */}
-              <DateWithTimePicker
-                value={value}
-                setStart={setStart}
-                setEnd={setEnd}
-                ampm={ampm}
-                start={start}
-                end={end}
-              />
-            </td>
-          </tr>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
               <label className={classes.leftText}>공지 제목</label>
             </th>
             <td className={classes.inputLayout}>
@@ -221,7 +139,7 @@ const EditAppIntroNotice = () => {
                 type="text"
                 className={classes.inputStyle}
                 name="noti_title"
-                id="introNoti"
+                id="settingNoti"
                 required
               />
             </td>
@@ -248,7 +166,7 @@ const EditAppIntroNotice = () => {
                 type="text"
                 className={classes.inputStyle}
                 name="remark"
-                id="introNoti"
+                id="settingNoti"
               />
             </td>
           </tr>
@@ -266,9 +184,9 @@ const EditAppIntroNotice = () => {
         />
       </div>
       <UptConfirmModal open={modalOpen} close={closeModal} header="수정 완료">
-        <main>App Intro 공지를 수정했습니다.</main>
+        <main>App 설정 공지를 수정했습니다.</main>
       </UptConfirmModal>
     </figure>
   );
 };
-export default EditAppIntroNotice;
+export default EditAppSettingNotice;

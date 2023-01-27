@@ -60,12 +60,4 @@ export const useStyles = makeStyles({
     maxWidth: "170px",
     boxSizing: "border-box",
   },
-  searchBtn: {
-    border: "none",
-    background: "#E3E3E6",
-    borderRadius: "8px",
-    fontSize: "14px",
-    padding: "10px 25px",
-    height: "100%",
-  },
 });
