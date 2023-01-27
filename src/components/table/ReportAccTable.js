@@ -48,8 +48,7 @@ const ReportAccTable = (props) => {
         <td className={classes.td}>{i.warning_dt}</td>
         {/* 처리 */}
         <td className={classes.td}>
-          {/* <button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button> */}
-          {i.state == 0 ? '해제' : <button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button>}
+          {i.state == 0 ? '해제' : i.state == 1 ? '계정 휴면' : <button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button>}
         </td>
       </tr>
     );

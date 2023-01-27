@@ -43,7 +43,7 @@ const Login = () => {
       <div className={classes.loginContentStyle}>
         <img
           className={classes.loginLogo}
-          src={images.icons.ANYCHAT_LOGO}
+          src={images.icons.ANYCHAT_LOGO_LOGIN}
           alt="애니챗 로고"
           width="70%"
         />

@@ -2,6 +2,7 @@ import SVG_NAV_ICON_1ST from "../images/icon_navi_1.svg";
 import SVG_PREPARATIONS from "../images/preparations.svg";
 import SVG_NOTOUND from "../images/not_found.svg";
 import ANYCHAT_LOGO from "../images/anychat_logo.svg";
+import ANYCHAT_LOGO_LOGIN from "../images/anychat_logo_login.svg";
 import ANYCHAT_CI_HEADER from "../images/anychat_ci_header.svg";
 import SETTINGS_ADMIN from "../images/settings_admin.svg";
 import MANAGEMANT_MEMBER from "../images/person.svg";
@@ -23,6 +24,7 @@ const images = {
   icons: {
     SVG_NAV_ICON_1ST: SVG_NAV_ICON_1ST,
     ANYCHAT_LOGO: ANYCHAT_LOGO,
+    ANYCHAT_LOGO_LOGIN:ANYCHAT_LOGO_LOGIN,
     ANYCHAT_CI_HEADER: ANYCHAT_CI_HEADER,
     SETTINGS_ADMIN: SETTINGS_ADMIN,
     MANAGEMANT_MEMBER: MANAGEMANT_MEMBER,
