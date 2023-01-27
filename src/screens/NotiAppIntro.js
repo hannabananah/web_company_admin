@@ -59,6 +59,16 @@ const NotiAppIntro = () => {
   const onChangeSelect = (event) => {
     setSelectVal(event.target.value);
   };
+
+  const onClickSearch = () => {
+    getTotalUserCnt();
+    handlePageChange(1);
+  };
+
+  const onClickAddVer = () => {
+    navigate("/notice/app_intro/add");
+  };
+
   const handleNameChange = (e) => {
     setInputVal(e.target.value);
   };
@@ -151,13 +161,21 @@ const NotiAppIntro = () => {
               onChange={onChangeSelect}
               option={option}
             />
-            <SearchInput handleNameChange={handleNameChange} />
-            <SearchBtn changePage={changePage} />
+            <input
+              className={classes.filterInput}
+              onChange={handleNameChange}
+            />
+            <button className={classes.searchBtn} onClick={onClickSearch}>
+              검색
+            </button>
           </>
         }
-        right={<SaveBtn onClick={onClickAddNoti} />}
+        right={
+          <button onClick={onClickAddVer} className={classes.addBtn}>
+            등록
+          </button>
+        }
       />
-
       <NoticeIntroTable
         fetchData={fetchData}
         isLoaded={isLoaded}
