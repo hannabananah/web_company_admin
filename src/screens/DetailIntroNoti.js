@@ -60,7 +60,7 @@ const DetailIntroNoti = () => {
                   fetchData.noti_type == "urgent" ? classes.urgentText : null
                 }
               >
-                {fetchData.noti_type}
+                {fetchData.noti_type === "urgent" ? "긴급" : "일반"}
               </span>
             </td>
           </tr>
