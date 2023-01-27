@@ -81,8 +81,6 @@ const SideBar = () => {
     bottomLeft: false,
     topLeft: false,
   };
-  const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } =
-    useProSidebar();
 
   let isEmpty = false;
 
@@ -92,12 +90,18 @@ const SideBar = () => {
     if (url == location.pathname) isEmpty = true;
   });
 
+  // document.querySelectorAll('summary').forEach((i)=>{
+  //   i.addEventListener("click", (event) => {
+  //     i.classList.add('opened')
+  //   });
+  // })
+
   const onClickMenu = (path) => {
     navigate(path)
-    const details = document.querySelectorAll('details')
-    for(let i=0; i<details.length; i++) {
-      details[i].classList.remove('opened')
-    }
+
+    // document.querySelectorAll('summary').forEach((item)=>{
+    //   item.classList.remove('opened')
+    // })
   }
 
   const renderMenuItems = (subMenu) => {
@@ -112,15 +116,13 @@ const SideBar = () => {
               : classes.subMenuList
           }
           // onClick={() => navigate(item.path)}
-          onClick={onClickMenu(item.path)}
+          onClick={()=>onClickMenu(item.path)}
         >
           {item.title}
         </li>
       );
     });
   };
-
-  // console.log(pathsArr(4))
 
   // details 눌렀을 때
   document.querySelectorAll('details').forEach(function(item){
@@ -170,19 +172,6 @@ const SideBar = () => {
       openedDetails[i].removeAttribute("open");
     }
   };
-
-  const details = document.querySelectorAll('details');
-  details.forEach((i)=>{
-    // i.addEventListener("toggle", (event) => {
-    i.addEventListener("click", (event) => {
-      i.classList.toggle('opened')
-      // if (i.open) {
-      //   i.classList.add('opened')
-      // } else {
-      //   i.classList.remove('opened')
-      // }
-    });
-  })
 
   return (
     <>

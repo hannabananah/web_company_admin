@@ -52,7 +52,7 @@ const useStyles = makeStyles({
   subMenuWrap: {
     display: "flex",
     flexDirection: "column",
-    paddingBottom: "20px",
+    // paddingBottom: "20px",
   },
 
   menu: {
@@ -62,6 +62,7 @@ const useStyles = makeStyles({
     color: "#A0A1BF",
     display: "flex",
     alignItems: "center",
+    fontWeight:'bold'
   },
   activeMenu: {
     position: "relative",
@@ -85,16 +86,17 @@ const useStyles = makeStyles({
   },
 
   subMenuList: {
-    padding: "15px 10px 15px 60px",
-    color: "#A0A1BF",
+    padding: "18px 10px 18px 60px",
+    color: "#47485B",
     cursor: "pointer",
     fontSize: "13px",
   },
   activesubMenuList: {
-    padding: "15px 10px 15px 60px",
+    padding: "18px 10px 18px 60px",
     color: "#7C4DFF",
     cursor: "pointer",
     fontSize: "13px",
+    fontWeight:'bold',
     position: "relative",
     background: "#EFEFFE",
     "&:after": {
@@ -124,27 +126,34 @@ const useStyles = makeStyles({
       transform: "rotate(180deg)",
       margin: "0 30px 0 auto",
     },
-
     // "& summary:after" : {
     //   content: `" +"`,
     // },
-    // "&[open] summary": {
-    "&.opened summary": {
-      transition:'0.2s',
-      position: "relative",
-      "&:after": {
-        content: `""`,
-        width: "6px",
-        height: "100%",
-        background: "#7C4DFF",
-        position: "absolute",
-        right: "0",
-        top: "0",
-        bottom: "0",
+    "&[open]": {
+      background:'#F8F8FF',
+      borderBottom:'1px solid #EFEFFE'
+    },
+    "&[open] summary": {
+      background:'#EFEFFE',
+      color: "#7C4DFF",
+      "& img": {
+        filter: 'invert(49%) sepia(74%) saturate(7493%) hue-rotate(245deg) brightness(105%) contrast(101%)',
       }
     },
 
-
+    // "& summary.opened": {
+    //   transition:'0.2s',
+    //   "&:after": {
+    //     content: `""`,
+    //     width: "6px",
+    //     height: "100%",
+    //     background: "#7C4DFF",
+    //     position: "absolute",
+    //     right: "0",
+    //     top: "0",
+    //     bottom: "0",
+    //   }
+    // },
   },
   iconsWrap: {
     width: "30px",
