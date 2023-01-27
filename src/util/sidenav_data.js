@@ -143,6 +143,22 @@ export const sidenav_data = [
       {
         title: "App 설정 공지",
         path: "/notice/app_setting",
+        subMenu: [
+          {
+            title: "상세",
+            path: "/notice/app_setting/details",
+            subMenu: [
+              {
+                title: "수정",
+                path: "/notice/app_setting/details/edit",
+              },
+            ],
+          },
+          {
+            title: "등록",
+            path: "/notice/app_setting/add",
+          },
+        ],
       },
       {
         title: "사용자 이메일 공지",
