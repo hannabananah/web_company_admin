@@ -3,8 +3,8 @@ import useStyles from "~/styles/Table";
 import ColumnHeaderTable from "~/components/table/ColumnHeaderTable";
 import { dateFormat, renderBirth } from "~/util/global";
 
-const ReportTable = (props) => {
-  const {fetchData, isLoaded, totalUser, currentPage, postsPerPage } = props;
+const ReportAccTable = (props) => {
+  const {fetchData, isLoaded, totalUser, currentPage, postsPerPage, onClickDormancy } = props;
   const classes = useStyles();
   console.log("fetchData------>", fetchData);
 
@@ -48,7 +48,8 @@ const ReportTable = (props) => {
         <td className={classes.td}>{i.warning_dt}</td>
         {/* 처리 */}
         <td className={classes.td}>
-          {i.state == 0 ? '해제' : <button className={classes.activeLive}>계정 휴면</button>}
+          {/* <button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button> */}
+          {i.state == 0 ? '해제' : <button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button>}
         </td>
       </tr>
     );
