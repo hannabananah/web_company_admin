@@ -83,6 +83,26 @@ const SubjectToReport = () => {
     changePage(1);
   }, []);
 
+  // 계정 휴면
+  const onClickDormancy = (targetUser) => {
+    axios
+      .post(
+        `${g.base_url}api/warning/update`, 
+        {
+          warning_his_seq : targetUser.warning_his_seq,
+          status: 1
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+      })
+  }
+
   return (
     <div>
       <TableHeader title="신고 대상 회원" />
@@ -113,12 +133,13 @@ const SubjectToReport = () => {
         }
       />
 
-      <ReportTable 
+      <ReportAccTable 
         fetchData={fetchData} 
         isLoaded={isLoaded} 
         totalUser={totalUser} 
         currentPage={currentPage} 
         postsPerPage={postsPerPage} 
+        onClickDormancy={onClickDormancy}
       />
 
       <Pagination
