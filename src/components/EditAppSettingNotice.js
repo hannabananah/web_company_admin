@@ -27,6 +27,7 @@ const EditAppSettingNotice = () => {
     noti_title: user.noti_title,
     noti_content: user.noti_content,
     remark: user.remark,
+    status: user.status,
   });
 
   const onChange = (e) => {
@@ -71,11 +72,12 @@ const EditAppSettingNotice = () => {
         .post(
           `${g.base_url}api/sysnotice/update`,
           {
-            os: userInfo.os,
-            noti_title: userInfo.noti_title,
-            remark: userInfo.remark,
             noticeKey: userInfo.noticeKey,
+            os: userInfo.os,
+            status: userInfo.status,
+            noti_title: userInfo.noti_title,
             noti_content: editorToHtml,
+            remark: userInfo.remark,
           },
           {
             headers: {
@@ -163,7 +165,7 @@ const EditAppSettingNotice = () => {
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="desc"
+                name="remark"
                 id="settingNoti"
               />
             </td>
