@@ -59,8 +59,8 @@ const UserAccountTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   <td className={classes.td}>
-                    { ((totalUser - index) - ((currentPage - 1) * postsPerPage)) }
-                    </td>
+                    {totalUser - index - (currentPage - 1) * postsPerPage}
+                  </td>
                   <td className={classes.td}>
                     <span
                       onClick={() => onClickTarget(i)}
@@ -72,9 +72,9 @@ const UserAccountTable = (props) => {
                   <td className={classes.td}>{i.grade}</td>
                   <td className={classes.td}>{i.phone}</td>
                   <td className={classes.td}>
-                    { i.use_yn == "N" ?  "미사용" : "사용" }
+                    {i.use_yn == "N" ? "미사용" : "사용"}
                   </td>
-                  <td className={classes.td}>{i.remote_ip}</td>
+                  <td className={classes.td}>{dateFormat(i.login_date)}</td>
                   <td className={classes.td}>{dateFormat(i.updatedAt)}</td>
                 </tr>
               );
