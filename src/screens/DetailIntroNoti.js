@@ -17,7 +17,7 @@ const DetailIntroNoti = () => {
     navigate(-1);
   };
   const onClickEdit = () => {
-    navigate("/notice/app_setting/details/edit", { state: fetchData });
+    navigate("/notice/app_intro/details/edit", { state: fetchData });
   };
 
   useEffect(() => {
