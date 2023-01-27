@@ -4,7 +4,7 @@ import axios from "axios";
 import TableHeader from "~/components/TableHeader";
 import FilterSection from "~/components/FilterSection";
 import SelectBox from "~/components/SelectBox";
-import ReportTable from "~/components/table/ReportTable";
+import ReportAccTable from "~/components/table/ReportAccTable";
 import Pagination from "react-js-pagination";
 import { g } from "~/util/global";
 

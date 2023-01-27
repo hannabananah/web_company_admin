@@ -45,10 +45,13 @@ const useStyles = makeStyles({
   contentInput: {
     boxSizing: "border-box",
     width: "100%",
-    minHeight: "64px",
+    minHeight: "38px",
     display: "flex",
     alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
+    "&:last-child": {
+      borderBottom: "none",
+    },
   },
   editorInput: {
     boxSizing: "border-box",
@@ -106,7 +109,7 @@ const useStyles = makeStyles({
   inputStyle: {
     boxSizing: "border-box",
     width: "400px",
-    height: "41px",
+    height: "30px",
     display: "flex",
     alignContent: "center",
     border: `1px solid ${COLORS.STORKE.CONTENTS2}`,
@@ -150,13 +153,13 @@ const useStyles = makeStyles({
     fontSize: "14px",
     lineHeight: "150%",
     textAlign: "center",
-    backgroundColor: COLORS.COLOR.MIDDLE_PURPLE,
+    backgroundColor: COLORS.COLOR.BACKGROUND_GRAY,
     border: "none",
     borderRadius: "8px",
     color: COLORS.COLOR.BLACK,
     cursor: "pointer",
     marginLeft: "30px",
-    padding: "9.5px 54px",
+    padding: "4.5px 54px",
   },
   checkIconStyle: {
     marginLeft: "30px",
@@ -290,6 +293,7 @@ const useStyles = makeStyles({
     width: "100%",
     maxWidth: "170px",
     boxSizing: "border-box",
+    height: "35px",
     "&:focus": {
       outline: "none",
     },
@@ -307,7 +311,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     width: "78px",
     borderRadius: "8px",
-    height: "40px",
+    height: "35px",
     wordBreak: "keep-all",
   },
   addBtn: {
@@ -319,7 +323,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
     width: "120px",
-    height: "40px",
+    height: "35px",
     wordBreak: "keep-all",
     border: `1px solid ${COLORS.COLOR.ANY_PURPLE}`,
     backgroundColor: "#FCFCFF",

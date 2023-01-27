@@ -26,7 +26,7 @@ export const OriginDetail = () => {
         <tbody>
           <tr className={classes.detailContentStyle}>
             <th className={classes.titleLayout}>원문 텍스트 상세 내용</th>
-            <td className={classes.detailContent}>{user.receive_msg}</td>
+            <td className={classes.detailContent}>{user.send_msg}</td>
           </tr>
         </tbody>
       </table>
@@ -93,7 +93,7 @@ export const TransDetail = () => {
           <tr className={classes.detailContentStyle}>
             <th className={classes.titleLayout}>번역 텍스트 상세 내용</th>
             <td className={classes.detailContent}>
-              <div>{user.send_msg}</div>
+              <div>{user.receive_msg}</div>
             </td>
           </tr>
         </tbody>

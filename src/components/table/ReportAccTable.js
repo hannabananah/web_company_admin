@@ -58,4 +58,4 @@ const ReportTable = (props) => {
     <ColumnHeaderTable table_header={table_header} table_data={table_data} />
   );
 };
-export default ReportTable;
+export default ReportAccTable;
