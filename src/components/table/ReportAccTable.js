@@ -3,7 +3,7 @@ import useStyles from "~/styles/Table";
 import ColumnHeaderTable from "~/components/table/ColumnHeaderTable";
 import { dateFormat, renderBirth } from "~/util/global";
 
-const ReportTable = ({ fetchData, isLoaded }) => {
+const ReportAccTable = ({ fetchData, isLoaded }) => {
   const classes = useStyles();
   console.log("fetchData------>", fetchData);
 
@@ -57,4 +57,4 @@ const ReportTable = ({ fetchData, isLoaded }) => {
     <ColumnHeaderTable table_header={table_header} table_data={table_data} />
   );
 };
-export default ReportTable;
+export default ReportAccTable;
