@@ -13,7 +13,7 @@ import TableHeader from "~/components/TableHeader";
 import DateWithTimePicker from "~/components/DateTimePicker";
 import { EditorTool } from "~/components/Editor";
 import { UptConfirmModal } from "~/components/Modal";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 const EditAppIntroNotice = () => {
   const user = useLocation().state;
@@ -247,7 +247,7 @@ const EditAppIntroNotice = () => {
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
-                name="desc"
+                name="remark"
                 id="introNoti"
               />
             </td>
