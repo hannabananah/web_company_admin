@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     margin: "0 auto",
     cursor: "pointer",
     // padding: "50px 0",
-    padding: "88.5px 0",
+    padding: "40px 0",
     "& img": {
       width: "100%",
     },
