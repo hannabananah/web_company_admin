@@ -23,6 +23,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
   },
   loginLogo: {
+    width:'300px',
     margin: "0 auto",
     marginBottom: "30px",
   },
@@ -130,10 +131,8 @@ const useStyles = makeStyles({
   },
   loginTextStyle: {
     textAlign: "center",
-  },
-  loginText: {
+    lineHeight:'18px',
     fontSize: "12px",
-    lineHeight: "106%",
     color: COLORS.COLOR.INFORMATION_GRAY,
   },
   notiTextStyle: {
@@ -141,17 +140,9 @@ const useStyles = makeStyles({
     flexDirection: "column",
     textAlign: "center",
     margin: "20px 0",
-  },
-  notiText1: {
+    fontSize: "12px",
     fontWeight: "500",
-    fontSize: "14px",
-    lineHeight: "120%",
-    color: COLORS.COLOR.DARK_GRAY,
-  },
-  notiText2: {
-    fontWeight: "400",
-    fontSize: "14px",
-    lineHeight: "120%",
+    lineHeight:'17.5px',
     color: COLORS.COLOR.DARK_GRAY,
   },
 });
