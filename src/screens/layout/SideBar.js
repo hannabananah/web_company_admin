@@ -67,7 +67,7 @@ const SideBar = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   // side bar width
-  const [width, setWidth] = useState(300);
+  // const [width, setWidth] = useState(300);
   const style = {
     borderRight: "1px solid rgba(188, 191, 204,0.8)",
   };
@@ -177,16 +177,16 @@ const SideBar = () => {
     <>
       {/* {allPaths.includes(window.location.pathname) &&  */}
       {isEmpty ? null : (
-        <Resizable
-          style={style}
-          size={{ width }}
-          minWidth={200}
-          maxWidth={500}
-          enable={enable_option}
-          onResizeStop={(e, direction, ref, d) => {
-            setWidth(width + d.width);
-          }}
-        >
+        // <Resizable
+        //   style={style}
+        //   size={{ width }}
+        //   minWidth={200}
+        //   maxWidth={500}
+        //   enable={enable_option}
+        //   onResizeStop={(e, direction, ref, d) => {
+        //     setWidth(width + d.width);
+        //   }}
+        // >
           <div className={classes.root}>
             <div className={classes.container}>
               <h1 className={classes.h1} onClick={onClickLogo}>
@@ -246,7 +246,7 @@ const SideBar = () => {
 
             </div>
           </div>
-        </Resizable>
+        // </Resizable>
       )}
 
       {/* {isEmpty ? null : 
