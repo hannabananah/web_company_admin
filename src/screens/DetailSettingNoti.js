@@ -7,37 +7,35 @@ import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
 import { g } from "~/util/global";
 
-const DetailIntroNoti = () => {
+const DetailSettingNoti = () => {
   const classes = useStyles();
   const user = useLocation().state;
   const navigate = useNavigate();
   const [fetchData, setFetchData] = useState([]);
 
   const onClickPrev = () => {
-    navigate(-1);
+    navigate(-1); // navigate('/notice/app_intro')
   };
   const onClickEdit = () => {
-    navigate("/notice/app_intro/details/edit", { state: fetchData });
+    navigate("/notice/app_setting/details/edit", { state: fetchData });
   };
 
   useEffect(() => {
     axios
-      .get(`${g.base_url}api/notice/${user.noti_idx}`, {
+      .get(`${g.base_url}api/sysnotice/${user.noti_idx}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
       })
       .then(({ data }) => {
-        // data.use_yn = data.use_yn  === 'Y' ? true : false
         setFetchData(data);
-        // console.log(userInfo.phone)
         console.log("+++++++++++", data);
       });
   }, []);
 
   return (
     <figure className={classes.userAccContainer}>
-      <TableHeader title="App Intro 공지 상세" />
+      <TableHeader title="App 설정 공지 상세" />
       <table className={classes.tableStyle}>
         <colgroup>
           <col />
@@ -49,29 +47,6 @@ const DetailIntroNoti = () => {
               <label className={classes.leftText}>OS</label>
             </th>
             <td className={classes.contentStyle}>{fetchData.os}</td>
-          </tr>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
-              <label className={classes.leftText}>공지 유형</label>
-            </th>
-            <td className={classes.contentStyle}>
-              <span
-                className={
-                  fetchData.noti_type == "urgent" ? classes.urgentText : null
-                }
-              >
-                {fetchData.noti_type}
-              </span>
-            </td>
-          </tr>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
-              <label className={classes.leftText}>공지 노출 기간</label>
-            </th>
-            <td className={classes.contentStyle}>
-              {dateFormat(fetchData.noti_start_dttm)}~
-              {dateFormat(fetchData.noti_end_dttm)}
-            </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
@@ -129,4 +104,4 @@ const DetailIntroNoti = () => {
     </figure>
   );
 };
-export default DetailIntroNoti;
+export default DetailSettingNoti;

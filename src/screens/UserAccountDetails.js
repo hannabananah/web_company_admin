@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import TableHeader from "~/components/TableHeader";
 import axios from "axios";
 import { dateFormat } from "~/util/global";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import { DeleteModal } from "~/components/Modal";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 const UserAccountDetails = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
   const location = useLocation();
-  const user = useLocation()?.state?.state
+  const user = useLocation()?.state?.state;
   // console.log(location)
   // console.log(user)
   const params = useParams();
@@ -37,7 +42,9 @@ const UserAccountDetails = () => {
   };
   const onClickEdit = () => {
     // UserAccountEdit.js
-    navigate(`/setting_admin/user_account/edit/${userData.id}`, { state: { state: userData , urlParam: userData.id} });
+    navigate(`/setting_admin/user_account/edit/${userData.id}`, {
+      state: { state: userData, urlParam: userData.id },
+    });
   };
 
   const onClickConfirm = () => {
@@ -57,10 +64,10 @@ const UserAccountDetails = () => {
     //     // UserAccount.js
     //     navigate("/setting_admin/user_account");
     //   });
-  }
+  };
   const onClickCancel = () => {
-    setModalOpen(false)
-  }
+    setModalOpen(false);
+  };
 
   useEffect(() => {
     axios
@@ -77,8 +84,8 @@ const UserAccountDetails = () => {
   }, []);
 
   const onClickMailTo = (mail) => {
-    return window.location.href = `mailto:${mail}` 
-  }
+    return (window.location.href = `mailto:${mail}`);
+  };
 
   return (
     <figure className={classes.userAccContainer}>
@@ -111,7 +118,12 @@ const UserAccountDetails = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>이메일</label>
             </th>
-            <td className={classes.linkStyle} onClick={()=> onClickMailTo(userData.email)}>{userData.email}</td>
+            <td
+              className={classes.linkStyle}
+              onClick={() => onClickMailTo(userData.email)}
+            >
+              {userData.email}
+            </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
@@ -123,7 +135,9 @@ const UserAccountDetails = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>사용여부</label>
             </th>
-            <td className={classes.contentStyle}>{userData.use_yn == "N" ?  "미사용" : "사용"}</td>
+            <td className={classes.contentStyle}>
+              {userData.use_yn == "N" ? "미사용" : "사용"}
+            </td>
           </tr>
 
           <tr className={classes.contentInput}>
@@ -145,7 +159,9 @@ const UserAccountDetails = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>수정일</label>
             </th>
-            <td className={classes.contentStyle}>{dateFormat(userData.updatedAt)}</td>
+            <td className={classes.contentStyle}>
+              {dateFormat(userData.updatedAt)}
+            </td>
             {/* <td className={classes.contentStyle}>{userData.updatedAt}</td> */}
           </tr>
         </tbody>
