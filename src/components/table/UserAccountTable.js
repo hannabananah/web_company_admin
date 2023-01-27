@@ -46,7 +46,7 @@ const UserAccountTable = (props) => {
               사용여부
             </td>
             <td className={classes.th_td} style={{ width: "100px" }}>
-              최근 접속
+              최근 접속일
             </td>
             <td className={classes.th_td} style={{ width: "100px" }}>
               수정일
