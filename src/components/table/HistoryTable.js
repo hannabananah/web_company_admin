@@ -53,6 +53,7 @@ const HistoryTable = (props) => {
         </thead>
         <tbody>
           {isLoaded &&
+            // fetchData?.map((i, index) => {
             [...fetchData]?.reverse().map((i, index) => {
             // fetchData?.slice(0).reverse().map((i, index) => {
               return (

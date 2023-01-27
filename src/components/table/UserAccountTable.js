@@ -3,7 +3,7 @@ import useStyles from "~/styles/Table";
 import { dateFormat } from "~/util/global";
 
 const UserAccountTable = (props) => {
-  const { fetchData, isLoaded, totalUser } = props;
+  const { fetchData, isLoaded, totalUser, postsPerPage, currentPage } = props;
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -55,10 +55,13 @@ const UserAccountTable = (props) => {
         </thead>
         <tbody>
           {isLoaded &&
-            [...fetchData]?.reverse().map((i, index) => {
+            fetchData?.map((i, index) => {
+            // [...fetchData]?.reverse().map((i, index) => {
               return (
                 <tr key={index} className={classes.tableTr}>
-                  <td className={classes.td}>{index + 1}</td>
+                  <td className={classes.td}>
+                    { ( index+1 ) + ((currentPage-1)*postsPerPage) }
+                    </td>
                   <td className={classes.td}>
                     <span
                       onClick={() => onClickTarget(i)}
