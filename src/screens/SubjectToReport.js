@@ -113,7 +113,13 @@ const SubjectToReport = () => {
         }
       />
 
-      <ReportTable fetchData={fetchData} isLoaded={isLoaded} />
+      <ReportTable 
+        fetchData={fetchData} 
+        isLoaded={isLoaded} 
+        totalUser={totalUser} 
+        currentPage={currentPage} 
+        postsPerPage={postsPerPage} 
+      />
 
       <Pagination
         activePage={currentPage}

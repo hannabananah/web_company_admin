@@ -9,7 +9,6 @@ const HistoryTable = (props) => {
   // console.log(fetchData);
   // console.log(isLoaded);
 
-  console.log(currentPage * 10);
 
   return (
     <figure className={classes.root}>
@@ -53,15 +52,13 @@ const HistoryTable = (props) => {
         </thead>
         <tbody>
           {isLoaded &&
-            // fetchData?.map((i, index) => {
-            [...fetchData]?.reverse().map((i, index) => {
-            // fetchData?.slice(0).reverse().map((i, index) => {
+            fetchData?.map((i, index, arr) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
                   <td className={classes.td}>
                     {/* { ( index+1 ) + ((currentPage-1)*postsPerPage) } */}
-                    {/* { ((totalUser/postsPerPage)-1)*index } */}
+                    { ((totalUser - index) - ((currentPage - 1) * postsPerPage)) }
                   </td>
                   {/* 작업 날짜 */}
                   <td className={classes.td}>{dateFormat(i.createdAt)}</td>

@@ -4,7 +4,7 @@ import { dateFormat } from "~/util/global";
 import useStyles from "~/styles/Table";
 
 const NoticeIntroTable = (props) => {
-  const { fetchData, isLoaded, openModal } = props;
+  const { fetchData, isLoaded, openModal, totalUser, currentPage,  postsPerPage} = props;
   const classes = useStyles();
   const navigate = useNavigate();
   console.log(fetchData);
@@ -49,7 +49,7 @@ const NoticeIntroTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
-                  <td className={classes.td}>{i.noti_idx}</td>
+                  <td className={classes.td}>{ ((totalUser - index) - ((currentPage - 1) * postsPerPage)) }</td>
                   {/* 공지 등록일 */}
                   <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
                   {/* APP Intro 공지 노출 기간 */}

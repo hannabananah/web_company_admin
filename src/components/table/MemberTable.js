@@ -2,7 +2,7 @@ import useStyles from "~/styles/Table";
 import { dateFormat, renderBirth } from "~/util/global";
 
 const MemberTable = (props) => {
-  const { fetchData, isLoaded } = props;
+  const { fetchData, isLoaded, totalUser,currentPage,postsPerPage } = props;
   const classes = useStyles();
 
   return (
@@ -11,7 +11,7 @@ const MemberTable = (props) => {
         <thead className={classes.theadStyle}>
           <tr style={{ borderBottom: "1px solid rgba(188, 191, 204, 0.2)" }}>
             <td className={classes.th_td} style={{ width: "40px" }}>
-              전화번호
+              번호
             </td>
             <td
               className={classes.th_td}
@@ -45,7 +45,7 @@ const MemberTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
-                  <td className={classes.td}>{i.phone_no}</td>
+                  <td className={classes.td}>{ ((totalUser - index) - ((currentPage - 1) * postsPerPage)) }</td>
                   {/* 계정 */}
                   <td className={classes.td}>{i.user_id}</td>
                   {/* OS */}
