@@ -170,7 +170,7 @@ const AppVersion = () => {
           </>
         }
         right={
-          <button onClick={onClickAddVer} className={classes.saveBtn}>
+          <button onClick={onClickAddVer} className={classes.addBtn}>
             등록
           </button>
         }
