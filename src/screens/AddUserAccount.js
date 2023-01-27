@@ -5,7 +5,7 @@ import images from "~/assets/js/Images";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 const AddUserAccount = () => {
   const classes = useStyles();
@@ -16,7 +16,7 @@ const AddUserAccount = () => {
 
   const [userInfo, setUserInfo] = useState({
     id: "",
-    grade: 1,
+    grade: "",
     pwd: "",
     chkPwd: "",
     password: "",
@@ -159,8 +159,10 @@ const AddUserAccount = () => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="name"
-                id="name"
+                name="grade"
+                id="grade"
+                value={userInfo.grade}
+                onChange={onChange}
                 required
               />
             </td>

@@ -19,10 +19,6 @@ const EditAppSettingNotice = () => {
   const user = useLocation().state;
   const classes = useStyles();
   const navigate = useNavigate();
-  const [value, setValue] = useState(dayjs(new Date()));
-  const [start, setStart] = useState(dayjs(new Date()));
-  const [end, setEnd] = useState(start);
-  const [ampm, setAmpm] = useState(false);
 
   //user info state
   const [userInfo, setUserInfo] = useState({
@@ -31,7 +27,6 @@ const EditAppSettingNotice = () => {
     noti_title: user.noti_title,
     noti_content: user.noti_content,
     remark: user.remark,
-    status: user.status,
   });
 
   const onChange = (e) => {
@@ -61,8 +56,6 @@ const EditAppSettingNotice = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userInfo);
-    userInfo["noti_start_dttm"] = start;
-    userInfo["noti_end_dttm"] = end;
 
     // userInfo["noticeKey"] = userInfo.noti_idx;
     console.log(userInfo);
@@ -82,7 +75,6 @@ const EditAppSettingNotice = () => {
             noti_title: userInfo.noti_title,
             remark: userInfo.remark,
             noticeKey: userInfo.noticeKey,
-            status: userInfo.status,
             noti_content: editorToHtml,
           },
           {
@@ -119,21 +111,6 @@ const EditAppSettingNotice = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   console.log(user);
-  //   console.log(userInfo.noti_content);
-  //   setEditorState(
-  //     EditorState.createWithContent(
-  //       ContentState.createFromBlockArray(
-  //         convertFromHTML(userInfo.noti_content)
-  //       )
-  //     )
-  //   );
-
-  //   setStart(userInfo.noti_start_dttm);
-  //   setEnd(userInfo.noti_start_dttm);
-  // }, [userInfo]);
-
   return (
     <figure className={classes.userAccContainer}>
       <TableHeader title="App 설정 공지 수정" />
@@ -160,7 +137,7 @@ const EditAppSettingNotice = () => {
                 type="text"
                 className={classes.inputStyle}
                 name="noti_title"
-                id="introNoti"
+                id="settingNoti"
                 required
               />
             </td>
@@ -187,7 +164,7 @@ const EditAppSettingNotice = () => {
                 type="text"
                 className={classes.inputStyle}
                 name="desc"
-                id="introNoti"
+                id="settingNoti"
               />
             </td>
           </tr>
