@@ -3,12 +3,12 @@ import images from "~/assets/js/Images";
 
 const useStyles = makeStyles({
   root: {
-    width: "100%",
+    width: "270px",
     height: "100%",
     position: "sticky",
     bottom: 0,
     top: 0,
-    // borderRight: "1px solid rgba(188, 191, 204,0.8)",
+    borderRight: "1px solid rgba(188, 191, 204,0.8)",
   },
   container: {
     height: "100%",
@@ -18,17 +18,17 @@ const useStyles = makeStyles({
   h1: {
     color: "#553C99",
     fontWeight: "bold",
-    fontSize: "28px",
-    lineHeight: "28px",
+    fontSize: "21px",
+    lineHeight: "21px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    maxWidth: "250px",
-    minWidth: "200px",
+    width: "179px",
     margin: "0 auto",
     cursor: "pointer",
-    padding: "50px 0",
+    // padding: "50px 0",
+    padding: "88.5px 0",
     "& img": {
       width: "100%",
     },
@@ -98,7 +98,7 @@ const useStyles = makeStyles({
     fontSize: "13px",
     fontWeight:'bold',
     position: "relative",
-    // background: "#EFEFFE",
+    background: "#EFEFFE",
     "&:after": {
       content: `""`,
       width: "6px",
@@ -154,6 +154,7 @@ const useStyles = makeStyles({
     //     bottom: "0",
     //   }
     // },
+
   },
   iconsWrap: {
     width: "30px",
