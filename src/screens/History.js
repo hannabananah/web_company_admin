@@ -180,7 +180,7 @@ const History = () => {
           </>
         }
       />
-      <HistoryTable fetchData={fetchData} isLoaded={isLoaded} totalUser={totalUser} currentPage={currentPage} />
+      <HistoryTable fetchData={fetchData} isLoaded={isLoaded} totalUser={totalUser} currentPage={currentPage} postsPerPage={postsPerPage} />
       <Pagination
         activePage={currentPage}
         totalItemsCount={totalUser} // 총 포스트 갯수
