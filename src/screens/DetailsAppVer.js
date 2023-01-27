@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom";
-import AppDetail from "~/components/AppDetail";
+import AppDetailVer from "~/components/AppDetailVer";
 
 const DetailsAppVer = () => {
   const user = useLocation().state;
   return (
-    <AppDetail user={user} />
+    <AppDetailVer user={user} />
   )
 }
 export default DetailsAppVer;
