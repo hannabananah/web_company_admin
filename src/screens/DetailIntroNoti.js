@@ -88,7 +88,7 @@ const DetailIntroNoti = () => {
                 dangerouslySetInnerHTML={{ __html: fetchData.noti_content }}
               />
             </td>
-          </tr>
+          </tr>{" "}
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>설명</label>
