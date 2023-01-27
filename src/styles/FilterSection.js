@@ -7,7 +7,7 @@ export const useStyles = makeStyles({
     alignItems: "center",
     height: "40px",
     justifyContent: "space-between",
-    padding: "0 0 16px",
+    padding: "0 0 20px",
     "& button": {
       cursor: "pointer",
     },
