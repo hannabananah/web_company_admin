@@ -6,7 +6,7 @@ import FilterSection from "~/components/FilterSection";
 import SelectBox from "~/components/SelectBox";
 import ReportTable from "~/components/table/ReportTable";
 import Pagination from "react-js-pagination";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 // filter select option
 const option = [
@@ -50,14 +50,11 @@ const SubjectToReport = () => {
 
   const getTotalUserCnt = () => {
     axios
-      .get(
-        `${g.base_url}api/warning/total?s=${selectVal}&v=${inputVal}`,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        }
-      )
+      .get(`${g.base_url}api/warning/total?s=${selectVal}&v=${inputVal}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
       .then(({ data }) => {
         // console.log('getTotalUserCnt________',data);
         setTotalUser(data);
@@ -110,16 +107,13 @@ const SubjectToReport = () => {
               검색
             </button>
             <p className={classes.memberNum}>
-            {/* 총 회원 수 :<span> {totalUser.toLocaleString()}명</span> */}
+              신고 대상 회원 수 :<span> {totalUser.toLocaleString()}명</span>
             </p>
           </>
         }
       />
 
-      <ReportTable 
-        fetchData={fetchData} 
-        isLoaded={isLoaded}
-      />
+      <ReportTable fetchData={fetchData} isLoaded={isLoaded} />
 
       <Pagination
         activePage={currentPage}
@@ -131,6 +125,6 @@ const SubjectToReport = () => {
         onChange={handlePageChange}
       />
     </div>
-  )
-}
+  );
+};
 export default SubjectToReport;
