@@ -1,4 +1,5 @@
 import { makeStyles } from "@mui/styles";
+import { COLORS } from "~/assets/colors/colors";
 
 const useStyles = makeStyles({
   root: {
@@ -56,10 +57,11 @@ const useStyles = makeStyles({
     wordBreak: "keep-all",
   },
   logoutBtn: {
-    color: "#999",
+    color: COLORS.COLOR.WRANING,
     background: "transparent",
     border: "none",
-    padding:'none'
+    padding: "none",
+    textDecoration: "underline",
   },
 });
 export default useStyles;
