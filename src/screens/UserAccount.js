@@ -130,12 +130,7 @@ const UserAccount = () => {
         }
       />
 
-      {/* <ColumnHeaderTable 
-        table_header={renderHeader}   
-        table_data={isLoaded && renderData}
-      /> */}
-
-      <UserAccountTable fetchData={fetchData} isLoaded={isLoaded} />
+      <UserAccountTable fetchData={fetchData} isLoaded={isLoaded} totalUser={totalUser} />
 
       <Pagination
         activePage={currentPage}
