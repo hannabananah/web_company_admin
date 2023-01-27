@@ -113,7 +113,7 @@ const SubjectToReport = () => {
         }
       />
 
-      <ReportTable 
+      <ReportAccTable 
         fetchData={fetchData} 
         isLoaded={isLoaded} 
         totalUser={totalUser} 
