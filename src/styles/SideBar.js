@@ -57,16 +57,16 @@ const useStyles = makeStyles({
 
   menu: {
     position: "relative",
-    padding: "15px",
+    padding: "15px 36px",
     cursor: "pointer",
     color: "#A0A1BF",
     display: "flex",
     alignItems: "center",
-    fontWeight:'bold'
+    fontWeight:'bold',
   },
   activeMenu: {
     position: "relative",
-    padding: "15px",
+    padding: "15px 36px",
     background: "#EFEFFE",
     cursor: "pointer",
     color: "#7C4DFF",
@@ -86,19 +86,18 @@ const useStyles = makeStyles({
   },
 
   subMenuList: {
-    padding: "18px 10px 18px 60px",
+    padding: "14px 0 14px 84px",
     color: "#47485B",
     cursor: "pointer",
     fontSize: "13px",
   },
   activesubMenuList: {
-    padding: "18px 10px 18px 60px",
+    padding: "14px 0 14px 84px",
     color: "#7C4DFF",
     cursor: "pointer",
     fontSize: "13px",
     fontWeight:'bold',
     position: "relative",
-    background: "#EFEFFE",
     "&:after": {
       content: `""`,
       width: "6px",
@@ -120,11 +119,11 @@ const useStyles = makeStyles({
       content: `""`,
     },
     "& summary .expandMore": {
-      margin: "0 30px 0 auto",
+      margin: "0 12px 0 auto",
     },
     "&[open] summary .expandMore": {
       transform: "rotate(180deg)",
-      margin: "0 30px 0 auto",
+      margin: "0 12px 0 auto",
     },
     // "& summary:after" : {
     //   content: `" +"`,
@@ -162,7 +161,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginRight: "14px",
+    marginRight: "8px",
   },
   iconImg: {
     width: "20px",
