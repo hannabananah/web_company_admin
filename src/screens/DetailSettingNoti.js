@@ -28,9 +28,7 @@ const DetailSettingNoti = () => {
         },
       })
       .then(({ data }) => {
-        // data.use_yn = data.use_yn  === 'Y' ? true : false
         setFetchData(data);
-        // console.log(userInfo.phone)
         console.log("+++++++++++", data);
       });
   }, []);
