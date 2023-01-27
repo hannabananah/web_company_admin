@@ -93,6 +93,11 @@ const AddUserAccount = () => {
     if (userInfo.id == "") {
       setDoubleCheck("empty");
     } else {
+
+      // if () {
+
+      // }
+
       axios
         .get(`${g.base_url}api/admin/${userInfo.id}`, {
           headers: {
@@ -161,6 +166,18 @@ const AddUserAccount = () => {
                 </div>
               )}
               {doubleCheck == "empty" && (
+                <div className={classes.checkIconStyle}>
+                  <img
+                    src={images.icons.LOGIN_INFO}
+                    alt="중복체크 에러 아이콘"
+                    className={classes.checkErrorIcon}
+                  />
+                  <span className={classes.checkErrorText}>
+                    아이디를 입력하세요.
+                  </span>
+                </div>
+              )}
+              {doubleCheck  && (
                 <div className={classes.checkIconStyle}>
                   <img
                     src={images.icons.LOGIN_INFO}

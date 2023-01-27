@@ -9,7 +9,7 @@ import DatePicker from "~/components/DatePicker";
 import FilterSection from "~/components/FilterSection";
 import TableHeader from "~/components/TableHeader";
 import axios from "axios";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 // filter select option
 const option = [
@@ -33,8 +33,9 @@ const History = () => {
 
   // 데이트픽커
   let now = dayjs().format("YYYY-MM-DD");
-  const [start, setStart] = useState(dayjs(now));
-  const [end, setEnd] = useState(start);
+  let newYear = "2023-01-01";
+  const [start, setStart] = useState(dayjs(newYear));
+  const [end, setEnd] = useState(dayjs(now));
 
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -47,15 +48,12 @@ const History = () => {
     setSelectVal(event.target.value);
   };
 
-  useEffect(() => {
-    changePage(1);
-    setEnd(start);
-  }, [start]);
-
   const getTotalHistory = () => {
     axios
       .get(
-        `${g.base_url}api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format(
+        `${
+          g.base_url
+        }api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {
@@ -74,7 +72,9 @@ const History = () => {
     getTotalHistory();
     axios
       .get(
-        `${g.base_url}api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
+        `${
+          g.base_url
+        }api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {
@@ -93,7 +93,9 @@ const History = () => {
   const downloadExcel = () => {
     axios
       .get(
-        `${g.base_url}api/access/excel?s=${selectVal}&v=${inputVal}&st=${start.format(
+        `${
+          g.base_url
+        }api/access/excel?s=${selectVal}&v=${inputVal}&st=${start.format(
           "YYYY-MM-DD"
         )}&et=${end.format("YYYY-MM-DD")}`,
         {
@@ -180,7 +182,13 @@ const History = () => {
           </>
         }
       />
-      <HistoryTable fetchData={fetchData} isLoaded={isLoaded} totalUser={totalUser} currentPage={currentPage} postsPerPage={postsPerPage} />
+      <HistoryTable
+        fetchData={fetchData}
+        isLoaded={isLoaded}
+        totalUser={totalUser}
+        currentPage={currentPage}
+        postsPerPage={postsPerPage}
+      />
       <Pagination
         activePage={currentPage}
         totalItemsCount={totalUser} // 총 포스트 갯수
