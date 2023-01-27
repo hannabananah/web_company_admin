@@ -98,7 +98,7 @@ const useStyles = makeStyles({
     fontSize: "13px",
     fontWeight:'bold',
     position: "relative",
-    background: "#EFEFFE",
+    // background: "#EFEFFE",
     "&:after": {
       content: `""`,
       width: "6px",

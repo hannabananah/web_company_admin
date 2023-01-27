@@ -45,7 +45,7 @@ const useStyles = makeStyles({
   contentInput: {
     boxSizing: "border-box",
     width: "100%",
-    minHeight: "60px",
+    minHeight: "64px",
     display: "flex",
     alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
@@ -216,7 +216,7 @@ const useStyles = makeStyles({
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    marginTop: "40px",
+    marginTop: "50px",
     flexDirection: "row",
     columnGap: "30px",
   },
