@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
-import EditAppIntroNotice from "~/components/EditAppIntroNotice";
+import EditAppSettingNotice from "~/components/EditAppSettingNotice";
 
 const EditAppSettingNoti = () => {
   const user = useLocation().state;
-  return <EditAppIntroNotice user={user} />;
+  return <EditAppSettingNotice user={user} />;
 };
 export default EditAppSettingNoti;
