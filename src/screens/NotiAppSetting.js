@@ -80,7 +80,7 @@ const NotiAppSetting = () => {
   };
 
   const onClickAddVer = () => {
-    navigate("/service/app_version/add");
+    navigate("/notice/app_setting/add");
   };
 
   const onChangeSelect = (event) => {
