@@ -7,7 +7,7 @@ import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
 import { g } from "~/util/global"
 
-const AppDetail = () => {
+const AppDetailVer = () => {
   const classes = useStyles();
   const user = useLocation().state;
   const navigate = useNavigate();
@@ -120,4 +120,4 @@ const AppDetail = () => {
     </figure>
   );
 };
-export default AppDetail;
+export default AppDetailVer;

@@ -8,7 +8,7 @@ import useStyles from "~/styles/Add";
 import DetailsAppVer from "~/screens/DetailsAppVer";
 import AddAppVersion from "~/components/AddAppVersion";
 import AppVersionTable from "~/components/table/AppVersionTable";
-import AppDetail from "~/components/AppDetail";
+import AppDetailVer from "~/components/AppDetailVer";
 import TableHeader from "~/components/TableHeader";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
