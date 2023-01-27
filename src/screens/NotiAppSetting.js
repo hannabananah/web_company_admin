@@ -5,14 +5,11 @@ import axios from "axios";
 import { g } from "~/util/global";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
-import DetailsAppVer from "~/screens/DetailsAppVer";
-import AddAppVersion from "~/components/AddAppVersion";
-import AppVersionTable from "~/components/table/AppVersionTable";
-import AppDetail from "~/components/AppDetail";
+
+import NoticeSettingTable from "~/components/table/NoticeSettingTable";
 import TableHeader from "~/components/TableHeader";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
-import { UpdateAlertModal } from "~/components/Modal";
 
 // filter select option
 const option = [
@@ -21,12 +18,12 @@ const option = [
     name: "OS",
   },
   {
-    value: "store",
-    name: "스토어",
+    value: "title",
+    name: "공지 제목",
   },
 ];
 
-const AppVersion = () => {
+const NotiAppSetting = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [fetchData, setFetchData] = useState([]);
@@ -38,15 +35,19 @@ const AppVersion = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
 
-  const getTotalUserCnt = () => {
+  // 필터
+  const [selectVal, setSelectVal] = useState("OS");
+  const [inputVal, setInputVal] = useState("");
+
+  const getAppSettingNotice = () => {
     axios
-      .get(`${g.base_url}api/version/total?s=${selectVal}&v=${inputVal}`, {
+      .get(`${g.base_url}api/sysnotice/total?s=${selectVal}&v=${inputVal}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
       })
       .then(({ data }) => {
-        console.log("getTotalUserCnt:::::", data);
+        console.log("getAppSettingNotice:::::", data);
         setTotalUser(data);
       });
   };
@@ -54,7 +55,7 @@ const AppVersion = () => {
   const changePage = (page) => {
     axios
       .get(
-        `${g.base_url}api/version/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
+        `${g.base_url}api/sysnotice/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -68,6 +69,10 @@ const AppVersion = () => {
       .then(setIsLoaded(true));
   };
 
+  const handleNameChange = (e) => {
+    setInputVal(e.target.value);
+  };
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
     changePage(page);
@@ -78,80 +83,27 @@ const AppVersion = () => {
     navigate("/service/app_version/add");
   };
 
-  const onClickTarget = (user) => {
-    navigate("/service/app_version/details", { state: user });
-  };
-
-  console.log(fetchData);
-  // console.log(isLoaded);
-
-  // 필터
-  const [selectVal, setSelectVal] = useState("OS");
-  const [inputVal, setInputVal] = useState("");
-
-  const handleNameChange = (e) => {
-    setInputVal(e.target.value);
-  };
-
   const onChangeSelect = (event) => {
     setSelectVal(event.target.value);
   };
 
-  // 업데이트 알림 모달
-  const [modalOpen, setModalOpen] = useState(false);
-  const openModal = (index) => {
-    setModalOpen(true);
-    setTargetIdx(index);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-  const [targetIdx, setTargetIdx] = useState();
-  // console.log('fetchData',fetchData)
-
-  // 업데이트 버튼 활성화 시 버전 업데이트 실행
-  const updateAppVersion = (e) => {
-    e.preventDefault();
-
-    // console.log("::::::::", fetchData[targetIdx]);
-    const newdata = JSON.parse(JSON.stringify(fetchData[targetIdx]));
-    newdata.status = "Y";
-    newdata.noticeKey = newdata.version_idx;
-    axios
-      .post(
-        `${g.base_url}api/version/update`,
-
-        { ...newdata },
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        }
-      )
-      .then(({ data }) => {
-        console.log("+-+-+-+-+-", data);
-        //  console.log("::::::::: newdata", newdata);
-        const new_data = JSON.parse(JSON.stringify(fetchData));
-        new_data[targetIdx].status = "Y";
-        setFetchData(new_data);
-
-        closeModal();
-      });
-  };
-
-  useEffect(() => {
-    getTotalUserCnt();
-    changePage(1);
-  }, []);
-
   const onClickSearch = () => {
-    getTotalUserCnt();
+    getAppSettingNotice();
     handlePageChange(1);
   };
 
+  const onClickTarget = (user) => {
+    navigate("/notice/app_setting/details", { state: user });
+  };
+
+  useEffect(() => {
+    getAppSettingNotice();
+    changePage(1);
+  }, []);
+
   return (
     <div className={classes.root}>
-      <TableHeader title="App 버전 관리" />
+      <TableHeader title="App 설정 공지" />
       <FilterSection
         left={
           <>
@@ -175,12 +127,10 @@ const AppVersion = () => {
           </button>
         }
       />
-
-      <AppVersionTable
+      <NoticeSettingTable
         fetchData={fetchData}
         isLoaded={isLoaded}
         onClickTarget={onClickTarget}
-        openModal={openModal}
       />
       <Pagination
         activePage={currentPage}
@@ -191,15 +141,7 @@ const AppVersion = () => {
         nextPageText={"›"}
         onChange={handlePageChange}
       />
-      <UpdateAlertModal
-        open={modalOpen}
-        close={closeModal}
-        header="업데이트"
-        updateAppVersion={updateAppVersion}
-      >
-        <main>APP 업데이트를 시작합니다.</main>
-      </UpdateAlertModal>
     </div>
   );
 };
-export default AppVersion;
+export default NotiAppSetting;
