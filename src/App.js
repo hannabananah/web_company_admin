@@ -34,6 +34,7 @@ import AddUserAccount from "~/screens/AddUserAccount";
 import ReportTransError from "~/screens/ReportTransError";
 import DashBoard from "~/screens/DashBoard";
 import NotiAppIntroAdd from "~/screens/NotiAppIntroAdd";
+// import NotiAppSettingAdd from "~/screens/NotiAppSettingAdd";
 import DetailIntroNoti from "~/screens/DetailIntroNoti";
 import {
   DetailOriginText,
