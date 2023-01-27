@@ -3,7 +3,7 @@ import useStyles from "~/styles/Table";
 import ColumnHeaderTable from "~/components/table/ColumnHeaderTable";
 import { dateFormat, renderBirth } from "~/util/global";
 
-const ReportTable = (props) => {
+const ReportAccTable = (props) => {
   const {fetchData, isLoaded, totalUser, currentPage, postsPerPage } = props;
   const classes = useStyles();
   console.log("fetchData------>", fetchData);
