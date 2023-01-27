@@ -127,7 +127,7 @@ const MemberStatus = () => {
         }
       />
 
-      <MemberTable fetchData={fetchData} isLoaded={isLoaded} />
+      <MemberTable fetchData={fetchData} isLoaded={isLoaded} currentPage={currentPage} postsPerPage={postsPerPage} totalUser={totalUser}/>
       <Pagination
         activePage={currentPage}
         totalItemsCount={totalUser} // 총 포스트 갯수
