@@ -4,13 +4,13 @@ import axios from "axios";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import { UptConfirmModal, SaveConfirmModal } from "~/components/Modal";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 const EditDetailAccount = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
-  const user = useLocation().state
+  const user = useLocation().state;
 
   // 모달
   const [modalOpen, setModalOpen] = useState(false);
@@ -132,7 +132,7 @@ const EditDetailAccount = () => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.grade || ""}
+                defaultValue={userInfo.grade || ""}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
