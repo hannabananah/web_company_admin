@@ -37,8 +37,9 @@ const ReportTable = ({fetchData, isLoaded}) => {
         <td className={classes.td}>{i.warning_dt}</td>
         {/* 처리 */}
         <td className={classes.td}>
-          <button>계정 휴면</button>
-          {/* {i.state == 0 ? '해제' : i.state == 1 ? <button>계정 휴면</button>:'계정 휴면'} */}
+          
+          {i.state == 0 ? '해제' : <button>계정 휴면</button>}
+          
         </td>
       </tr>
     );
