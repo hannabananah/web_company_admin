@@ -85,8 +85,7 @@ const DetailIntroNoti = () => {
             </th>
             <td
               className={classes.contentStyle}
-              dangerouslySetInnerHTML={{ __html: fetchData.noti_content }}
-            />
+            ><div dangerouslySetInnerHTML={{ __html: fetchData.noti_content }} /></td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>

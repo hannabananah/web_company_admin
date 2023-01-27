@@ -27,15 +27,16 @@ const ReportTable = ({fetchData, isLoaded}) => {
         {/* 계정 */}
         <td className={classes.td}>{i.user_id}</td>
         {/* OS */}
-        <td className={classes.td}>{i.device_type}</td>
+        {/* <td className={classes.td}>{i.device_type}</td> */}
+        <td className={classes.td}>Android</td>
         {/* 신고 유형 */}
-        <td className={classes.td}>{}</td>
+        <td className={classes.td}>{i.warning_gbn}</td>
         {/* 신고 내용 */}
-        <td className={classes.td}>{}</td>
+        <td className={classes.td}>-</td>
         {/* 신고일 */}
         <td className={classes.td}>{i.warning_dt}</td>
         {/* 처리 */}
-        <td className={classes.td}>{}</td>
+        <td className={classes.td}>{i.state == 0 ? '해제' : <button>계정 휴면</button>}</td>
       </tr>
     );
   })
