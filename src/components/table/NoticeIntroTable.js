@@ -54,15 +54,13 @@ const NoticeIntroTable = (props) => {
                   <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
                   {/* APP Intro 공지 노출 기간 */}
                   <td className={classes.td}>
-                    {dateFormat(i.noti_start_dttm)}~
-                    {dateFormat(i.noti_end_dttm)}
+                    {dateFormat(i.noti_start_dttm)} ~ {dateFormat(i.noti_end_dttm)}
                   </td>
                   {/* 공지 유형 */}
                   <td className={classes.td}>
-                    <span
-                      className={i.gender == "male" ? classes.urgentText : null}
-                    >
-                      {i.noti_type}
+                    <span>
+                      {i.noti_type == "normal" && '일반'}
+                      {i.noti_type == "urgent" && '긴급'}
                     </span>
                   </td>
                   {/* 공지 제목 */}
