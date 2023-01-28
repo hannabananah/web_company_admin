@@ -203,7 +203,6 @@ const SideBar = () => {
                         <details
                           key={index}
                           className={`${classes.details} details`}
-                          onClick={()=>navigate(item.subMenu[0].path)}
                         >
                           <summary
                             className={
@@ -212,6 +211,9 @@ const SideBar = () => {
                                 ? classes.activeMenu
                                 : classes.menu
                             }
+                            onClick={()=> {
+                              window.location.href = item.subMenu[0].path
+                            }}
                           >
                             <RenderIcons title={item.title} />
                             {item.title}
