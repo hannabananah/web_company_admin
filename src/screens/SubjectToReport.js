@@ -122,7 +122,8 @@ const SubjectToReport = () => {
             <button
               className={classes.searchBtn}
               onClick={() => {
-                // changePage(1);
+                getTotalUserCnt();
+                changePage(1);
               }}
             >
               검색

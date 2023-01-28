@@ -15,7 +15,7 @@ const ReportAccTable = (props) => {
     { name: "신고 유형", width: "100px" },
     { name: "신고 내용", width: "100px" },
     { name: "신고일", width: "100px" },
-    { name: "처리", width: "100px" },
+    { name: "계정 휴면", width: "100px" },
   ];
 
   const table_header = theadData.map((item, index) => {
@@ -48,8 +48,8 @@ const ReportAccTable = (props) => {
         <td className={classes.td}>{i.warning_dt}</td>
         {/* 처리 */}
         <td className={classes.td}>
-          <button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button>
-          {/* {i.state == 0 ? '해제' : i.state == 1 ? '계정 휴면' : <button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button>} */}
+          {/*<button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button>*/}
+           {i.state == 0 ? <button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>처리하기</button> : '휴면'}
         </td>
       </tr>
     );
