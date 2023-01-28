@@ -15,7 +15,7 @@ const DashBoard = () => {
             <figcaption className={classes.statusLabel}>당일 기준</figcaption>
             <div>
               <h3>총 회원 수</h3>
-              <span className={classes.memberCnt}>1,000,000</span>
+              <span className={classes.memberCnt}>1,523,231</span>
             </div>
           </figure>
 
@@ -23,7 +23,7 @@ const DashBoard = () => {
             <figcaption className={classes.statusLabel}>전일 기준</figcaption>
             <div>
               <h3>신규 가입자 수</h3>
-              <span className={classes.memberCnt}>10,000</span>
+              <span className={classes.memberCnt}>9,123</span>
             </div>
           </figure>
 
@@ -39,7 +39,7 @@ const DashBoard = () => {
             <figcaption className={classes.statusLabel} style={{textIndent:'-9999em'}}>전일 기준</figcaption>
             <div>
               <h3>휴면 회원 수</h3>
-              <span className={classes.memberCnt}>100</span>
+              <span className={classes.memberCnt}>9</span>
             </div>
           </figure>
         </div>

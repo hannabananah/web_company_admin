@@ -115,6 +115,7 @@ const MemberStatus = () => {
             <button
               className={classes.searchBtn}
               onClick={() => {
+                getTotalUserCnt();
                 changePage(1);
               }}
             >

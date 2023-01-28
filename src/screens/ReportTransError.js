@@ -17,15 +17,15 @@ import TableHeader from "~/components/TableHeader";
 // filter select option
 const option = [
   {
-    value: "account",
+    value: "reg_id",
     name: "신고 계정",
   },
   {
-    value: "origin_lang_code",
+    value: "sender_lang_cd",
     name: "원문 언어 코드",
   },
   {
-    value: "content",
+    value: "send_msg",
     name: "내용",
   },
 ];
@@ -51,7 +51,7 @@ const ReportTransError = () => {
   const [inputVal, setInputVal] = useState("");
 
   // 필터
-  const [selectVal, setSelectVal] = useState("account");
+  const [selectVal, setSelectVal] = useState("reg_id");
 
   const onChangeSelect = (event) => {
     setSelectVal(event.target.value);
