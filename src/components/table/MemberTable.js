@@ -9,7 +9,7 @@ const MemberTable = (props) => {
     <figure className={classes.root}>
       <table className={classes.tableStyle}>
         <thead className={classes.theadStyle}>
-          <tr style={{ borderBottom: "1px solid rgba(188, 191, 204, 0.2)" }}>
+          <tr style={{ borderBottom: "1px solid rgba(188, 191, 204, 0.2)", backgroundColor: "#EFEFFE", }}>
             <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>

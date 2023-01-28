@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     width: "100%",
   },
   tHeadtrStyle: {
-    borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
+    borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`, backgroundColor: "#EFEFFE",
   },
   th_td: {
     textAlign: "center",

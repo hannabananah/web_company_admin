@@ -13,7 +13,7 @@ const NoticeIntroTable = (props) => {
   return (
     <figure className={classes.root}>
       <table className={classes.tableStyle}>
-        <thead>
+        <thead className={classes.theadStyle}>
           <tr
             style={{
               borderBottom: "1px solid rgba(188, 191, 204, 0.2)",
@@ -60,10 +60,10 @@ const NoticeIntroTable = (props) => {
                   <td className={classes.td}>
                     <span
                       className={
-                        i.noti_type == "urgent" ? classes.urgentText : null
+                        i.noti_type == "EG" ? classes.urgentText : null
                       }
                     >
-                      {i.noti_type === "urgent" ? "긴급" : "일반"}
+                      {i.noti_type === "EG" ? "긴급" : "일반"}
                     </span>
                   </td>
                   {/* 공지 제목 */}
