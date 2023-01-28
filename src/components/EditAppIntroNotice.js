@@ -166,9 +166,9 @@ const EditAppIntroNotice = () => {
                   id="urgent"
                   onChange={onChange}
                   name="type"
-                  value="urgent"
+                  value="EG"
                   className={classes.radioBtn}
-                  defaultChecked={userInfo.noti_type == "urgent"}
+                  defaultChecked={userInfo.noti_type == "EG"}
                 />
                 <label htmlFor="urgent">긴급</label>
               </div>
@@ -178,9 +178,9 @@ const EditAppIntroNotice = () => {
                   id="normal"
                   onChange={onChange}
                   name="type"
-                  value="normal"
+                  value="NM"
                   className={classes.radioBtn}
-                  defaultChecked={userInfo.noti_type == "normal"}
+                  defaultChecked={userInfo.noti_type == "NM"}
                 />
                 <label htmlFor="normal">일반</label>
               </div>

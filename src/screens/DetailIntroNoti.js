@@ -57,10 +57,10 @@ const DetailIntroNoti = () => {
             <td className={classes.contentStyle}>
               <span
                 className={
-                  fetchData.noti_type == "urgent" ? classes.urgentText : null
+                  fetchData.noti_type == "EG" ? classes.urgentText : null
                 }
               >
-                {fetchData.noti_type === "urgent" ? "긴급" : "일반"}
+                {fetchData.noti_type === "EG" ? "긴급" : "일반"}
               </span>
             </td>
           </tr>
