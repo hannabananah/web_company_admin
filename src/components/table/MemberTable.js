@@ -13,6 +13,12 @@ const MemberTable = (props) => {
             <td className={classes.th_td} style={{ width: "40px" }}>
               번호
             </td>
+            <td className={classes.th_td} style={{ width: "80px" }}>
+              전화번호
+            </td>
+            <td className={classes.th_td} style={{ width: "40px" }}>
+              국가
+            </td>
             <td
               className={classes.th_td}
               style={{
@@ -46,6 +52,10 @@ const MemberTable = (props) => {
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
                   <td className={classes.td}>{ ((totalUser - index) - ((currentPage - 1) * postsPerPage)) }</td>
+                  {/* 전화번호 */}
+                  <td className={classes.td}>{i.phone_no}</td>
+                  {/* 국기 */}
+                  <td className={classes.td}>{i.locale_cd}</td>
                   {/* 계정 */}
                   <td className={classes.td}>{i.user_id}</td>
                   {/* OS */}
