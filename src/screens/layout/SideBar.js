@@ -97,8 +97,8 @@ const SideBar = () => {
   // })
 
   const onClickMenu = (path) => {
-    navigate(path)
-
+    // console.log(path);
+    window.location.href = path;
     // document.querySelectorAll('summary').forEach((item)=>{
     //   item.classList.remove('opened')
     // })
