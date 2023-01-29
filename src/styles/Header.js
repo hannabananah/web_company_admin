@@ -57,7 +57,8 @@ const useStyles = makeStyles({
     wordBreak: "keep-all",
   },
   logoutBtn: {
-    color: COLORS.COLOR.WRANING,
+    // color: COLORS.COLOR.WRANING,
+    color: '#909090',
     background: "transparent",
     border: "none",
     padding: "none",
