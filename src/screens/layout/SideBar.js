@@ -102,9 +102,9 @@ const SideBar = () => {
               : classes.subMenuList
           }
           // onClick={() => navigate(item.path)}
-          onClick={()=>onClickMenu(item.path)}
         >
-          {item.title}
+          {/* {item.title} */}
+          <Link to={item.path}>{item.title}</Link>
         </li>
       );
     });
@@ -112,7 +112,7 @@ const SideBar = () => {
 
   // details 눌렀을 때
   document.querySelectorAll('details').forEach(function(item){
-      item.addEventListener("toggle", event => {
+    item.addEventListener("toggle", event => {
       let toggled = event.target;
       if (toggled.attributes.open) {/* 열었으면 */
         item.classList.add('opened')
@@ -169,7 +169,7 @@ const SideBar = () => {
   const onClickMenu = (path) => {
     // console.log(path);
     // window.location.href = path;
-    navigate(path);
+    // navigate(path);
     // document.querySelectorAll('summary').forEach((item)=>{
     //   item.classList.remove('opened')
     // })

@@ -86,14 +86,20 @@ const useStyles = makeStyles({
   },
 
   subMenuList: {
-    padding: "14px 0 14px 84px",
-    color: "#47485B",
+    // padding: "14px 0 14px 84px",
+    // color: "#47485B",
     cursor: "pointer",
     fontSize: "13px",
+    "& a": {
+      display:'block',
+      textDecoration:'none',
+      color: "#47485B",
+      padding: "14px 0 14px 84px",
+    }
   },
   activesubMenuList: {
-    padding: "14px 0 14px 84px",
-    color: "#7C4DFF",
+    // padding: "14px 0 14px 84px",
+    // color: "#7C4DFF",
     cursor: "pointer",
     fontSize: "13px",
     fontWeight:'bold',
@@ -108,6 +114,12 @@ const useStyles = makeStyles({
       top: "0",
       bottom: "0",
     },
+    "& a": {
+      display:'block',
+      textDecoration:'none',
+      color: "#7C4DFF",
+      padding: "14px 0 14px 84px",
+    }
   },
 
   details: {
