@@ -237,13 +237,14 @@ const SideBar = () => {
                           key={index}
                           className={
                             item.path == window.location.pathname
-                              ? classes.activeMenu
-                              : classes.menu
+                              ? classes.activeMenuNoSub
+                              : classes.menuNoSub
                           }
-                          onClick={() => navigate(item.path)}
+                          // onClick={() => navigate(item.path)}
                         >
-                          <RenderIcons title={item.title} />
-                          {item.title}
+                          <Link to={item.path}>
+                            <RenderIcons title={item.title} />{item.title}
+                          </Link>
                         </div>
                       );
                     }
