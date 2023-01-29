@@ -90,21 +90,6 @@ const SideBar = () => {
     if (url == location.pathname) isEmpty = true;
   });
 
-  // document.querySelectorAll('summary').forEach((i)=>{
-  //   i.addEventListener("click", (event) => {
-  //     i.classList.add('opened')
-  //   });
-  // })
-
-  const onClickMenu = (path) => {
-    // console.log(path);
-    window.location.href = path;
-    // navigate(path);
-    // document.querySelectorAll('summary').forEach((item)=>{
-    //   item.classList.remove('opened')
-    // })
-  }
-
   const renderMenuItems = (subMenu) => {
     return subMenu.map((item, index) => {
       return (
@@ -126,45 +111,45 @@ const SideBar = () => {
   };
 
   // details 눌렀을 때
-  // document.querySelectorAll('details').forEach(function(item){
-  //     item.addEventListener("toggle", event => {
-  //     let toggled = event.target;
-  //     if (toggled.attributes.open) {/* 열었으면 */
-  //       item.classList.add('opened')
-  //       /* 나머지 다른 열린 아이템을 닫음 */
-  //       document.querySelectorAll('details[open]').forEach(function(opened){
-  //         if(toggled != opened) /* 현재 열려있는 요소가 아니면 */
-  //           opened.removeAttribute('open'); /* 열림 속성 삭제 */
-  //           // opened.classList.remove('opened')
-  //       });
-  //     }
-  //   })
-  // });
+  document.querySelectorAll('details').forEach(function(item){
+      item.addEventListener("toggle", event => {
+      let toggled = event.target;
+      if (toggled.attributes.open) {/* 열었으면 */
+        item.classList.add('opened')
+        /* 나머지 다른 열린 아이템을 닫음 */
+        document.querySelectorAll('details[open]').forEach(function(opened){
+          if(toggled != opened) /* 현재 열려있는 요소가 아니면 */
+            opened.removeAttribute('open'); /* 열림 속성 삭제 */
+            // opened.classList.remove('opened')
+        });
+      }
+    })
+  });
 
   // 뒤로 가기
-  useEffect(() => {
-    const details = document.querySelectorAll("details");
-    const collapseNavs = sidenav_data.filter((item) => {
-      return item["subMenu"];
-    });
+  // useEffect(() => {
+  //   const details = document.querySelectorAll("details");
+  //   const collapseNavs = sidenav_data.filter((item) => {
+  //     return item["subMenu"];
+  //   });
 
-    collapseNavs.map((item, index) => {
-      if (window.location.pathname != "/") {
-        if (window.location.pathname.includes(item.path)) {
-          details[index].setAttribute("open", true);
-        } else {
-          // details[index].removeAttribute('open');
-        }
-      }
-    });
-    // for(let i=0; i<details.length; i++) {
-    //   if ( pathsArr(i).includes(window.location.pathname) ) {
-    //     details[i].setAttribute('open',true);
-    //   } else {
-    //     details[i].removeAttribute('open');
-    //   }
-    // }
-  }, [window.location.pathname]);
+  //   collapseNavs.map((item, index) => {
+  //     if (window.location.pathname != "/") {
+  //       if (window.location.pathname.includes(item.path)) {
+  //         details[index].setAttribute("open", true);
+  //       } else {
+  //         // details[index].removeAttribute('open');
+  //       }
+  //     }
+  //   });
+  //   // for(let i=0; i<details.length; i++) {
+  //   //   if ( pathsArr(i).includes(window.location.pathname) ) {
+  //   //     details[i].setAttribute('open',true);
+  //   //   } else {
+  //   //     details[i].removeAttribute('open');
+  //   //   }
+  //   // }
+  // }, [window.location.pathname]);
 
   const onClickLogo = () => {
     navigate("/dashboard");
@@ -173,6 +158,22 @@ const SideBar = () => {
       openedDetails[i].removeAttribute("open");
     }
   };
+
+  // 메인 메뉴 클릭
+  const onToggle = (e, path) => {
+    if (e.target.attributes.open) {
+      navigate(path)
+    }
+  }
+  // 서브 메뉴 클릭
+  const onClickMenu = (path) => {
+    // console.log(path);
+    // window.location.href = path;
+    navigate(path);
+    // document.querySelectorAll('summary').forEach((item)=>{
+    //   item.classList.remove('opened')
+    // })
+  }
 
   return (
     <>
@@ -203,6 +204,8 @@ const SideBar = () => {
                         <details
                           key={index}
                           className={`${classes.details} details`}
+                          onToggle={(e)=>onToggle(e, item.subMenu[0].path)}
+                          open={window.location.pathname.includes(item.path)}
                         >
                           <summary
                             className={
@@ -211,9 +214,9 @@ const SideBar = () => {
                                 ? classes.activeMenu
                                 : classes.menu
                             }
-                            onClick={()=> {
-                              window.location.href = item.subMenu[0].path
-                            }}
+                            // onClick={()=> {
+                            //   window.location.href = item.subMenu[0].path
+                            // }}
                           >
                             <RenderIcons title={item.title} />
                             {item.title}
