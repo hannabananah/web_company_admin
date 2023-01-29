@@ -7,7 +7,7 @@ export const useStyles = makeStyles({
 
 export const formControlSX = {
   "&.MuiFormControl-root": {
-    height: "35px",
+    height: "100%",
     width: "170px",
     border: "1px solid #D1D1D1",
     borderRadius: "8px",
@@ -20,7 +20,7 @@ export const formControlSX = {
     border: "none",
   },
   "& .MuiSelect-select.MuiSelect-outlined": {
-    lineHeight: "35px",
+    lineHeight: "40px",
     padding: "0 40px 0 14px",
   },
 };
