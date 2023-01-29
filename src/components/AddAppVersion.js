@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useStyles from "~/styles/Add";
-import { UptConfirmModal } from "~/components/Modal";
+import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 import { g } from "~/util/global"
 
@@ -13,6 +13,7 @@ const AddAppVersion = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [radioValue, setRadioValue] = useState("Google Play");
+
   const onChangeRadio = (e) => {
     const { name, value, checked } = e.target;
 
@@ -31,8 +32,10 @@ const AddAppVersion = () => {
     setRadioValue(value);
     setNotiInfo(newInfo);
   };
+
   // 등록완료 모달
   const [modalOpen, setModalOpen] = useState(false);
+  const [saveConfirm, setSaveConfirm] = useState(false);
 
   const [notiInfo, setNotiInfo] = useState({
     store: "Google Play",
@@ -58,8 +61,10 @@ const AddAppVersion = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSaveConfirm(false);
+
     // eslint-disable-next-line no-restricted-globals
-    if (confirm("저장 하시겠습니까?")) {
+    // if (confirm("저장 하시겠습니까?")) {
       // notiInfo["store"] = c
       axios
         .post(
@@ -76,7 +81,7 @@ const AddAppVersion = () => {
         .then(({ data }) => {
           openModal();
         });
-    }
+    // }
   };
 
   const openModal = () => {
@@ -236,10 +241,21 @@ const AddAppVersion = () => {
         <input
           type="submit"
           value="등록 "
-          onClick={handleSubmit}
+          // onClick={handleSubmit}
+          onClick={() => setSaveConfirm(true)}
           className={classes.saveBtn}
         />
       </div>
+
+      <SaveConfirmModal
+        open={saveConfirm}
+        onClickCancel={() => setSaveConfirm(false)}
+        onClickConfirm={handleSubmit}
+        header="저장"
+      >
+        <main>저장 하시겠습니까?</main>
+      </SaveConfirmModal>
+      
       <UptConfirmModal open={modalOpen} close={closeModal} header="등록 완료">
         <main>업데이트 버전을 등록했습니다.</main>
       </UptConfirmModal>

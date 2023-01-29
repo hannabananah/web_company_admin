@@ -6,6 +6,7 @@ import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
 import { g } from "~/util/global";
+import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 
 const AddUserAccount = () => {
   const classes = useStyles();
@@ -41,10 +42,11 @@ const AddUserAccount = () => {
 
   const onClickPrev = () => {
     // UserAccount.js
-    navigate("/setting_admin/user_account");
+    navigate(-1);
   };
 
   // 저장완료 모달
+  const [saveConfirm, setSaveConfirm] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -52,41 +54,42 @@ const AddUserAccount = () => {
   };
   const closeModal = () => {
     setModalOpen(false);
+    navigate(-1);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    {
-      if (userInfo.pwd != userInfo.chkPwd) {
-        alert("비밀번호 확인을 해주세요.");
-        return false;
-      }
-      const newInfo = {
-        ...userInfo,
-        password: userInfo.pwd, //e.target의 name과 value이다.
-      };
-      setUserInfo(newInfo);
+    setSaveConfirm(false);
+    
+    if (userInfo.pwd != userInfo.chkPwd) {
+      alert("비밀번호 확인을 해주세요.");
+      return false;
     }
+    const newInfo = {
+      ...userInfo,
+      password: userInfo.pwd, //e.target의 name과 value이다.
+    };
+    setUserInfo(newInfo);
 
     // eslint-disable-next-line no-restricted-globals
-    if (confirm("저장 하시겠습니까?")) {
-      axios
-        .post(
-          `${g.base_url}api/admin/create`,
-          {
-            ...userInfo,
+    // if (confirm("저장 하시겠습니까?")) {
+    axios
+      .post(
+        `${g.base_url}api/admin/create`,
+        {
+          ...userInfo,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
-            },
-          }
-        )
-        .then(({ data }) => {
-          console.log(data);
-          navigate("/setting_admin/user_account");
-        });
-    }
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+        openModal();
+      });
+    // }
   };
 
   const duplicationCheck = () => {
@@ -327,12 +330,23 @@ const AddUserAccount = () => {
           type="submit"
           value="저장"
           className={classes.saveBtn}
-          onClick={handleSubmit}
+          // onClick={handleSubmit}
+          onClick={() => setSaveConfirm(true)}
         />
       </div>
-      {/* <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
+
+      <SaveConfirmModal
+        open={saveConfirm}
+        onClickCancel={() => setSaveConfirm(false)}
+        onClickConfirm={handleSubmit}
+        header="저장"
+      >
+        <main>저장 하시겠습니까?</main>
+      </SaveConfirmModal>
+
+      <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
         <main>저장했습니다.</main>
-      </UptConfirmModal> */}
+      </UptConfirmModal>
     </figure>
   );
 };

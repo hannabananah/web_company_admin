@@ -5,6 +5,7 @@ import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
 import { g } from "~/util/global"
+import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 
 const EditDetailMyAccount = ({ goBackState, admin }) => {
   const classes = useStyles();
@@ -39,6 +40,7 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSaveConfirm(false);
     delete userInfo["password"];
 
     if (userInfo.pwd != "") {
@@ -54,7 +56,7 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
     }
 
     // eslint-disable-next-line no-restricted-globals
-    if (confirm("저장 하시겠습니까?")) {
+    // if (confirm("저장 하시겠습니까?")) {
       axios
         .post(
           `${g.base_url}api/admin/update`,
@@ -69,19 +71,22 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
         )
         .then(({ data }) => {
           console.log(data);
-          window.location.reload();
+          openModal();
+          // window.location.reload();
         });
-    }
+    // }
   };
 
   // 저장완료 모달
   const [modalOpen, setModalOpen] = useState(false);
+  const [saveConfirm, setSaveConfirm] = useState(false);
 
   const openModal = () => {
     setModalOpen(true);
   };
   const closeModal = () => {
     setModalOpen(false);
+    navigate(-1);
   };
 
   return (
@@ -233,12 +238,23 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
           type="submit"
           value="저장"
           className={classes.saveBtn}
-          onClick={handleSubmit}
+          // onClick={handleSubmit}
+          onClick={() => setSaveConfirm(true)}
         />
       </div>
-      {/* <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
+
+      <SaveConfirmModal
+        open={saveConfirm}
+        onClickCancel={() => setSaveConfirm(false)}
+        onClickConfirm={handleSubmit}
+        header="저장"
+      >
+        <main>저장 하시겠습니까?</main>
+      </SaveConfirmModal>
+
+      <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
         <main>저장했습니다.</main>
-      </UptConfirmModal> */}
+      </UptConfirmModal>
     </figure>
   );
 };

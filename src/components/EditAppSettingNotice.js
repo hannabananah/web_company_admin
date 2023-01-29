@@ -12,7 +12,7 @@ import useStyles from "~/styles/Add";
 import TableHeader from "~/components/TableHeader";
 import DateWithTimePicker from "~/components/DateTimePicker";
 import { EditorTool } from "~/components/Editor";
-import { UptConfirmModal } from "~/components/Modal";
+import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import { g } from "~/util/global";
 
 const EditAppSettingNotice = () => {
@@ -41,6 +41,7 @@ const EditAppSettingNotice = () => {
   };
 
   // 수정완료 모달
+  const [saveConfirm, setSaveConfirm] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -56,6 +57,7 @@ const EditAppSettingNotice = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSaveConfirm(false);
     console.log(userInfo);
 
     // userInfo["noticeKey"] = userInfo.noti_idx;
@@ -67,7 +69,7 @@ const EditAppSettingNotice = () => {
     );
 
     // eslint-disable-next-line no-restricted-globals
-    if (confirm("저장 하시겠습니까?")) {
+    // if (confirm("저장 하시겠습니까?")) {
       axios
         .post(
           `${g.base_url}api/sysnotice/update`,
@@ -88,7 +90,7 @@ const EditAppSettingNotice = () => {
         .then(({ data }) => {
           openModal();
         });
-    }
+    // }
   };
 
   // editor state
@@ -179,10 +181,21 @@ const EditAppSettingNotice = () => {
         <input
           type="submit"
           value="저장"
-          onClick={handleSubmit}
+          // onClick={handleSubmit}
+          onClick={() => setSaveConfirm(true)}
           className={classes.saveBtn}
         />
       </div>
+
+      <SaveConfirmModal
+        open={saveConfirm}
+        onClickCancel={() => setSaveConfirm(false)}
+        onClickConfirm={handleSubmit}
+        header="저장"
+      >
+        <main>저장 하시겠습니까?</main>
+      </SaveConfirmModal>
+
       <UptConfirmModal open={modalOpen} close={closeModal} header="수정 완료">
         <main>App 설정 공지를 수정했습니다.</main>
       </UptConfirmModal>
