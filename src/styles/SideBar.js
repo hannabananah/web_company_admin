@@ -85,6 +85,46 @@ const useStyles = makeStyles({
     },
   },
 
+  menuNoSub: {
+    position: "relative",
+    cursor: "pointer",
+    fontWeight:'bold',
+    "& a": {
+      padding: "15px 36px",
+      color: "#A0A1BF",
+      display:'flex',
+      alignItems:'center',
+      textDecoration:'none'
+    }
+  },
+  activeMenuNoSub: {
+    position: "relative",
+    cursor: "pointer",
+    fontWeight:'bold',
+    background: "#EFEFFE",
+    "& a": {
+      padding: "15px 36px",
+      color: "#7C4DFF",
+      display:'flex',
+      alignItems:'center',
+      textDecoration:'none'
+    },
+    "&:after": {
+      content: `""`,
+      width: "6px",
+      height: "100%",
+      background: "#7C4DFF",
+      position: "absolute",
+      right: "0",
+      top: "0",
+      bottom: "0",
+    },
+    "& a img": {
+      filter: 'invert(49%) sepia(74%) saturate(7493%) hue-rotate(245deg) brightness(105%) contrast(101%)',
+    }
+  },
+
+
   subMenuList: {
     // padding: "14px 0 14px 84px",
     // color: "#47485B",
@@ -119,7 +159,7 @@ const useStyles = makeStyles({
       textDecoration:'none',
       color: "#7C4DFF",
       padding: "14px 0 14px 84px",
-    }
+    },
   },
 
   details: {
