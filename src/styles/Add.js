@@ -293,7 +293,7 @@ const useStyles = makeStyles({
     width: "100%",
     maxWidth: "170px",
     boxSizing: "border-box",
-    height: "35px",
+    height: "100%",
     "&:focus": {
       outline: "none",
     },
@@ -311,7 +311,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     width: "78px",
     borderRadius: "8px",
-    height: "35px",
+    height: "100%",
     wordBreak: "keep-all",
   },
   addBtn: {
@@ -323,7 +323,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
     width: "120px",
-    height: "35px",
+    height: "100%",
     wordBreak: "keep-all",
     border: `1px solid ${COLORS.COLOR.ANY_PURPLE}`,
     backgroundColor: "#FCFCFF",
