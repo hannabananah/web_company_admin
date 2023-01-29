@@ -34,8 +34,10 @@ const History = () => {
   // 데이트픽커
   let now = dayjs().format("YYYY-MM-DD");
   let newYear = "2023-01-01";
-  const [start, setStart] = useState(dayjs(newYear));
-  const [end, setEnd] = useState(dayjs(now));
+  // const [start, setStart] = useState(dayjs(newYear));
+  // const [end, setEnd] = useState(dayjs(now));
+  const [start, setStart] = useState(null);
+  const [end, setEnd] = useState(null);
 
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -49,45 +51,45 @@ const History = () => {
   };
 
   const getTotalHistory = () => {
-    axios
-      .get(
-        `${
-          g.base_url
-        }api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format(
-          "YYYY-MM-DD"
-        )}&et=${end.format("YYYY-MM-DD")}`,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        }
-      )
-      .then(({ data }) => {
-        console.log("getTotalHistory data::::::", data);
-        setTotalUser(data);
-      });
+    // axios
+    //   .get(
+    //     `${
+    //       g.base_url
+    //     }api/access/total?s=${selectVal}&v=${inputVal}&st=${start.format(
+    //       "YYYY-MM-DD"
+    //     )}&et=${end.format("YYYY-MM-DD")}`,
+    //     {
+    //       headers: {
+    //         Authorization: "Bearer " + localStorage.getItem("access_token"),
+    //       },
+    //     }
+    //   )
+    //   .then(({ data }) => {
+    //     console.log("getTotalHistory data::::::", data);
+    //     setTotalUser(data);
+    //   });
   };
 
   const changePage = (page) => {
-    getTotalHistory();
-    axios
-      .get(
-        `${
-          g.base_url
-        }api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
-          "YYYY-MM-DD"
-        )}&et=${end.format("YYYY-MM-DD")}`,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        }
-      )
-      .then(({ data }) => {
-        console.log("changePage data::::", data);
-        setFetchData(data);
-      })
-      .then(setIsLoaded(true));
+    // getTotalHistory();
+    // axios
+    //   .get(
+    //     `${
+    //       g.base_url
+    //     }api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
+    //       "YYYY-MM-DD"
+    //     )}&et=${end.format("YYYY-MM-DD")}`,
+    //     {
+    //       headers: {
+    //         Authorization: "Bearer " + localStorage.getItem("access_token"),
+    //       },
+    //     }
+    //   )
+    //   .then(({ data }) => {
+    //     console.log("changePage data::::", data);
+    //     setFetchData(data);
+    //   })
+    //   .then(setIsLoaded(true));
   };
 
   const downloadExcel = () => {
