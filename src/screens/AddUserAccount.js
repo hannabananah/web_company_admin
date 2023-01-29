@@ -31,11 +31,13 @@ const AddUserAccount = () => {
 
   const onChange = (e) => {
     const { name, value, checked } = e.target;
+    // console.log(name + " " + value);
+    console.log(checked);
 
-    console.log(name + " " + value);
     const newInfo = {
       ...userInfo,
-      [name]: name == "use_yn" ? !userInfo.use_yn : value, //e.target의 name과 value이다.
+      // [name]: name == "use_yn" ? !userInfo.use_yn : value, //e.target의 name과 value이다.
+      [name]: name == "use_yn" ? checked ? "Y":"N" : value, //e.target의 name과 value이다.
     };
     setUserInfo(newInfo);
   };
@@ -312,7 +314,8 @@ const AddUserAccount = () => {
                   onChange={onChange}
                   // onClick={() => setInactive(!inactive)}
                 />
-                {inactive ? (
+                {/* {inactive ? ( */}
+                {userInfo.use_yn == 'N' ? (
                   <span className={classes.toggleText2}>미사용</span>
                 ) : (
                   <span className={classes.toggleText1}>사용</span>
