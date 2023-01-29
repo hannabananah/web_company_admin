@@ -8,7 +8,7 @@ import { EditorState, convertToRaw } from "draft-js";
 import axios from "axios";
 import dayjs, { Dayjs } from "dayjs";
 import DateWithTimePicker from "~/components/DateTimePicker";
-import { UptConfirmModal } from "~/components/Modal";
+import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 import { EditorTool } from "~/components/Editor";
 import { g } from "~/util/global"
@@ -71,6 +71,7 @@ const NotiAppIntroAdd = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSaveConfirm(false);
 
     notiInfo["noti_start_dttm"] = start;
     notiInfo["noti_end_dttm"] = end;
@@ -83,7 +84,7 @@ const NotiAppIntroAdd = () => {
     );
 
     // eslint-disable-next-line no-restricted-globals
-    if (confirm("저장 하시겠습니까?")) {
+    // if (confirm("저장 하시겠습니까?")) {
       axios
         .post(
           `${g.base_url}api/notice/create`,
@@ -102,11 +103,12 @@ const NotiAppIntroAdd = () => {
           openModal();
           console.log(notiInfo);
         });
-    }
+    // }
   };
 
   // 등록완료 모달
   const [modalOpen, setModalOpen] = useState(false);
+  const [saveConfirm, setSaveConfirm] = useState(false);
 
   // editor state
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -268,10 +270,21 @@ const NotiAppIntroAdd = () => {
         <input
           type="submit"
           value="저장"
-          onClick={handleSubmit}
+          // onClick={handleSubmit}
+          onClick={() => setSaveConfirm(true)}
           className={classes.saveBtn}
         />
       </div>
+
+      <SaveConfirmModal
+        open={saveConfirm}
+        onClickCancel={() => setSaveConfirm(false)}
+        onClickConfirm={handleSubmit}
+        header="저장"
+      >
+        <main>저장 하시겠습니까?</main>
+      </SaveConfirmModal>
+
       <UptConfirmModal open={modalOpen} close={closeModal} header="등록 완료">
         <main>APP Intro 공지를 등록했습니다.</main>
       </UptConfirmModal>

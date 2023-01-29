@@ -17,8 +17,8 @@ const UserAccountEdit = () => {
   console.log("user _________", user);
 
   // 모달
-  const [modalOpen, setModalOpen] = useState(false);
   const [saveConfirm, setSaveConfirm] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const [userInfo, setUserInfo] = useState({});
   // const [userInfo, setUserInfo] = useState({
@@ -65,7 +65,6 @@ const UserAccountEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // delete userInfo["password"];
     setSaveConfirm(false);
 

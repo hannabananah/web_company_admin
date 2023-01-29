@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
-import { UptConfirmModal } from "~/components/Modal";
+import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 import { g } from "~/util/global"
 
@@ -34,9 +34,10 @@ const EditDetailAccount = ({ user }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSaveConfirm(false);
 
     // eslint-disable-next-line no-restricted-globals
-    if (confirm("저장 하시겠습니까?")) {
+    // if (confirm("저장 하시겠습니까?")) {
       axios
         .post(
           `${g.base_url}api/version/update`,
@@ -53,7 +54,7 @@ const EditDetailAccount = ({ user }) => {
           console.log(data);
           openModal();
         });
-    }
+    // }
   };
 
   useEffect(() => {
@@ -82,6 +83,7 @@ const EditDetailAccount = ({ user }) => {
 
   // 저장완료 모달
   const [modalOpen, setModalOpen] = useState(false);
+  const [saveConfirm, setSaveConfirm] = useState(false);
 
   const openModal = () => {
     setModalOpen(true);
@@ -210,10 +212,21 @@ const EditDetailAccount = ({ user }) => {
         <input
           type="submit"
           value="저장"
-          onClick={handleSubmit}
+          // onClick={handleSubmit}
+          onClick={() => setSaveConfirm(true)}
           className={classes.saveBtn}
         />
       </div>
+
+      <SaveConfirmModal
+        open={saveConfirm}
+        onClickCancel={() => setSaveConfirm(false)}
+        onClickConfirm={handleSubmit}
+        header="저장"
+      >
+        <main>저장 하시겠습니까?</main>
+      </SaveConfirmModal>
+
       <UptConfirmModal open={modalOpen} close={closeModal} header="저장 완료">
         <main>저장했습니다.</main>
       </UptConfirmModal>
