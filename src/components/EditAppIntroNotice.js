@@ -79,29 +79,29 @@ const EditAppIntroNotice = () => {
 
     // eslint-disable-next-line no-restricted-globals
     // if (confirm("저장 하시겠습니까?")) {
-      axios
-        .post(
-          `${g.base_url}api/notice/update`,
-          {
-            os: userInfo.os,
-            noti_type: userInfo.noti_type,
-            noti_start_dttm: userInfo.noti_start_dttm,
-            noti_end_dttm: userInfo.noti_end_dttm,
-            noti_title: userInfo.noti_title,
-            remark: userInfo.remark,
-            noticeKey: userInfo.noticeKey,
-            status: userInfo.status,
-            noti_content: editorToHtml,
+    axios
+      .post(
+        `${g.base_url}api/notice/update`,
+        {
+          os: userInfo.os,
+          noti_type: userInfo.noti_type,
+          noti_start_dttm: userInfo.noti_start_dttm,
+          noti_end_dttm: userInfo.noti_end_dttm,
+          noti_title: userInfo.noti_title,
+          remark: userInfo.remark,
+          noticeKey: userInfo.noticeKey,
+          status: userInfo.status,
+          noti_content: editorToHtml,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
-            },
-          }
-        )
-        .then(({ data }) => {
-          openModal();
-        });
+        }
+      )
+      .then(({ data }) => {
+        openModal();
+      });
     // }
   };
 
@@ -193,15 +193,6 @@ const EditAppIntroNotice = () => {
               <label className={classes.leftText}>공지 노출 기간</label>
             </th>
             <td className={classes.pickerLayout}>
-              {/* <input
-                value={userInfo.period}
-                onChange={onChange}
-                type="text"
-                className={classes.inputStyle}
-                name="period"
-                id="introNoti"
-                required
-              /> */}
               <DateWithTimePicker
                 value={value}
                 setStart={setStart}
