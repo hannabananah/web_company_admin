@@ -266,8 +266,7 @@ const useStyles = makeStyles({
   },
   editBtn: {
     boxSizing: "border-box",
-    backgroundColor: COLORS.COLOR.MIDDLE_PURPLE,
-    border: "none",
+    backgroundColor: "transparent",
     fontSize: "14px",
     lineHeight: "150%",
     cursor: "pointer",
@@ -276,9 +275,8 @@ const useStyles = makeStyles({
     borderRadius: "8px",
     height: "36px",
     wordBreak: "keep-all",
-    // border: `1px solid ${COLORS.COLOR.MIDDLE_PURPLE}`,
-    // backgroundColor: "#FCFCFF",
-    // // color: COLORS.COLOR.ANY_PURPLE,
+    border: `1px solid ${COLORS.COLOR.ANY_PURPLE}`,
+    color: COLORS.COLOR.ANY_PURPLE,
   },
   deleteBtn: {
     boxSizing: "border-box",
