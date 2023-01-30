@@ -4,7 +4,14 @@ import ColumnHeaderTable from "~/components/table/ColumnHeaderTable";
 import { dateFormat, renderBirth } from "~/util/global";
 
 const ReportAccTable = (props) => {
-  const {fetchData, isLoaded, totalUser, currentPage, postsPerPage, onClickDormancy } = props;
+  const {
+    fetchData,
+    isLoaded,
+    totalUser,
+    currentPage,
+    postsPerPage,
+    onClickDormancy,
+  } = props;
   const classes = useStyles();
   console.log("fetchData------>", fetchData);
 
@@ -32,7 +39,9 @@ const ReportAccTable = (props) => {
     return (
       <tr key={index} className={classes.tableTr}>
         {/* 번호 */}
-        <td className={classes.td}>{ ((totalUser - index) - ((currentPage - 1) * postsPerPage)) }</td>
+        <td className={classes.td}>
+          {totalUser - index - (currentPage - 1) * postsPerPage}
+        </td>
         {/* 계정 */}
         <td className={classes.td}>{i.user_id}</td>
         {/* OS */}
@@ -49,7 +58,16 @@ const ReportAccTable = (props) => {
         {/* 처리 */}
         <td className={classes.td}>
           {/*<button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button>*/}
-           {i.state == 0 ? <button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>처리하기</button> : '휴면'}
+          {i.state == 0 ? (
+            <button
+              className={classes.activeLive}
+              onClick={() => onClickDormancy(i)}
+            >
+              처리하기
+            </button>
+          ) : (
+            "해제"
+          )}
         </td>
       </tr>
     );
