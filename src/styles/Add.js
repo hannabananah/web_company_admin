@@ -45,7 +45,8 @@ const useStyles = makeStyles({
   contentInput: {
     boxSizing: "border-box",
     width: "100%",
-    minHeight: "38px",
+    minHeight: "64px",
+    height: "64px",
     display: "flex",
     alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
@@ -71,6 +72,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     paddingLeft: "30px",
     borderRight: `1px solid ${COLORS.STORKE.CONTENTS2}`,
+    backgroundColor: "#FFF8F1",
   },
   leftText: {
     wordBreak: "keep-all",
@@ -109,7 +111,7 @@ const useStyles = makeStyles({
   inputStyle: {
     boxSizing: "border-box",
     width: "400px",
-    height: "30px",
+    height: "41px",
     display: "flex",
     alignContent: "center",
     border: `1px solid ${COLORS.STORKE.CONTENTS2}`,
