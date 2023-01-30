@@ -4,7 +4,14 @@ import { dateFormat } from "~/util/global";
 import useStyles from "~/styles/Table";
 
 const NoticeIntroTable = (props) => {
-  const { fetchData, isLoaded, openModal, totalUser, currentPage,  postsPerPage} = props;
+  const {
+    fetchData,
+    isLoaded,
+    openModal,
+    totalUser,
+    currentPage,
+    postsPerPage,
+  } = props;
   const classes = useStyles();
   const navigate = useNavigate();
   console.log(fetchData);
@@ -49,12 +56,15 @@ const NoticeIntroTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
-                  <td className={classes.td}>{ ((totalUser - index) - ((currentPage - 1) * postsPerPage)) }</td>
+                  <td className={classes.td}>
+                    {totalUser - index - (currentPage - 1) * postsPerPage}
+                  </td>
                   {/* 공지 등록일 */}
                   <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
                   {/* APP Intro 공지 노출 기간 */}
                   <td className={classes.td}>
-                    {dateFormat(i.noti_start_dttm)} ~ {dateFormat(i.noti_end_dttm)}
+                    {dateFormat(i.noti_start_dttm)} ~{" "}
+                    {dateFormat(i.noti_end_dttm)}
                   </td>
                   {/* 공지 유형 */}
                   <td className={classes.td}>
@@ -84,12 +94,14 @@ const NoticeIntroTable = (props) => {
                     <td className={classes.td}>{dateFormat(i.upt_dttm)}</td>
                   ) : (
                     <td className={classes.td}>
-                      <span
-                        onClick={() => openModal(index)}
-                        className={classes.activeLive}
-                      >
-                        Live
-                      </span>
+                      <div className={classes.activeLive}>
+                        <span
+                          onClick={() => openModal(index)}
+                          className={classes.activeLiveText}
+                        >
+                          Live
+                        </span>
+                      </div>
                     </td>
                   )}
                 </tr>
