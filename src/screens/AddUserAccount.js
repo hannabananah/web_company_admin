@@ -14,6 +14,11 @@ const AddUserAccount = () => {
   const [inactive, setInactive] = useState(false);
   const [doubleCheck, setDoubleCheck] = useState();
   const [pwdCheck, setPwdCheck] = useState(false);
+  const [invalid, setInvalid] = useState({
+    state:false,
+    type:''
+  });
+  console.log(invalid)
 
   const [userInfo, setUserInfo] = useState({
     id: "",
@@ -63,10 +68,14 @@ const AddUserAccount = () => {
     e.preventDefault();
     setSaveConfirm(false);
     
-    if (userInfo.pwd != userInfo.chkPwd) {
-      alert("비밀번호 확인을 해주세요.");
-      return false;
-    }
+    // if (userInfo.pwd != userInfo.chkPwd) {
+    //   setPwdCheck(true)
+    //   // setInvalid((pre) => {
+    //   //   return { ...pre, [invalid.state]:true, [invalid.type]:'password' };
+    //   // });
+    //   // alert("비밀번호 확인을 해주세요.");
+    //   return false;
+    // }
     const newInfo = {
       ...userInfo,
       password: userInfo.pwd, //e.target의 name과 value이다.
@@ -94,6 +103,22 @@ const AddUserAccount = () => {
     // }
   };
 
+  const onConfirm = () => {
+
+    if (userInfo.pwd != userInfo.chkPwd) {
+      setPwdCheck(true)
+      // setInvalid((pre) => {
+      //   return { ...pre, [invalid.state]:true, [invalid.type]:'password' };
+      // });
+      // alert("비밀번호 확인을 해주세요.");
+      return false;
+    }
+    setSaveConfirm(true)
+  } 
+
+
+
+  // 아이디 중복체크
   const duplicationCheck = () => {
     if (userInfo.id == "") {
       setDoubleCheck("empty");
@@ -205,7 +230,7 @@ const AddUserAccount = () => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                type="text"
+                type="password"
                 className={classes.inputStyle}
                 name="pwd"
                 id="pwd"
@@ -216,6 +241,7 @@ const AddUserAccount = () => {
                 onChange={onChange}
               />
               {/* 비밀번호 생성 조합 알림문구 */}
+              {/* {invalid.state == true && invalid.type == 'password' && ( */}
               {pwdCheck && (
                 <div className={classes.checkIconStyle}>
                   <img
@@ -237,7 +263,7 @@ const AddUserAccount = () => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                type="text"
+                type="password"
                 className={classes.inputStyle}
                 name="chkPwd"
                 id="chkPwd"
@@ -334,7 +360,8 @@ const AddUserAccount = () => {
           value="저장"
           className={classes.saveBtn}
           // onClick={handleSubmit}
-          onClick={() => setSaveConfirm(true)}
+          // onClick={() => setSaveConfirm(true)}
+          onClick={onConfirm}
         />
       </div>
 
