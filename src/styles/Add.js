@@ -45,10 +45,9 @@ const useStyles = makeStyles({
   contentInput: {
     boxSizing: "border-box",
     width: "100%",
-    minHeight: "64px",
-    height: "64px",
+    // minHeight: "64px",
+    // height: "64px",
     display: "flex",
-    alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
     "&:last-child": {
       borderBottom: "none",
@@ -66,8 +65,7 @@ const useStyles = makeStyles({
     boxSizing: "border-box",
     width: "100%",
     maxWidth: "250px",
-    height: "100%",
-    // minHeight: "64px",
+    minHeight: "64px",
     display: "flex",
     alignItems: "center",
     paddingLeft: "30px",
@@ -127,7 +125,7 @@ const useStyles = makeStyles({
   contentStyle: {
     boxSizing: "border-box",
     display: "flex",
-    alignContent: "center",
+    alignItems:'center',
     fontSize: "14px",
     lineHeight: "150%",
     paddingLeft: "30px",
