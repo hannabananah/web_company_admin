@@ -59,16 +59,18 @@ const useStyles = makeStyles({
   },
   backBtn: {
     boxSizing: "border-box",
-    backgroundColor: COLORS.COLOR.BACKGROUND_GRAY,
-    border: "none",
+    backgroundColor: "transparent",
     fontSize: "14px",
-    lineHeight: "150%",
     cursor: "pointer",
     color: COLORS.COLOR.BLACK,
-    padding: "7.5px 47px",
     borderRadius: "8px",
+    width: "120px",
     height: "36px",
     wordBreak: "keep-all",
+    border: `1px solid ${COLORS.COLOR.BLACK}`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 export default useStyles;

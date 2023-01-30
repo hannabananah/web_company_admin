@@ -45,10 +45,9 @@ const useStyles = makeStyles({
   contentInput: {
     boxSizing: "border-box",
     width: "100%",
-    minHeight: "64px",
-    height: "64px",
+    // minHeight: "64px",
+    // height: "64px",
     display: "flex",
-    alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
     "&:last-child": {
       borderBottom: "none",
@@ -66,8 +65,7 @@ const useStyles = makeStyles({
     boxSizing: "border-box",
     width: "100%",
     maxWidth: "250px",
-    height: "100%",
-    // minHeight: "64px",
+    minHeight: "64px",
     display: "flex",
     alignItems: "center",
     paddingLeft: "30px",
@@ -127,7 +125,7 @@ const useStyles = makeStyles({
   contentStyle: {
     boxSizing: "border-box",
     display: "flex",
-    alignContent: "center",
+    alignItems:'center',
     fontSize: "14px",
     lineHeight: "150%",
     paddingLeft: "30px",
@@ -266,8 +264,7 @@ const useStyles = makeStyles({
   },
   editBtn: {
     boxSizing: "border-box",
-    backgroundColor: COLORS.COLOR.MIDDLE_PURPLE,
-    border: "none",
+    backgroundColor: "transparent",
     fontSize: "14px",
     lineHeight: "150%",
     cursor: "pointer",
@@ -276,9 +273,8 @@ const useStyles = makeStyles({
     borderRadius: "8px",
     height: "36px",
     wordBreak: "keep-all",
-    // border: `1px solid ${COLORS.COLOR.MIDDLE_PURPLE}`,
-    // backgroundColor: "#FCFCFF",
-    // // color: COLORS.COLOR.ANY_PURPLE,
+    border: `1px solid ${COLORS.COLOR.ANY_PURPLE}`,
+    color: COLORS.COLOR.ANY_PURPLE,
   },
   deleteBtn: {
     boxSizing: "border-box",
