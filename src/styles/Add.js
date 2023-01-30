@@ -140,6 +140,7 @@ const useStyles = makeStyles({
     fontSize: "14px",
     lineHeight: "150%",
     paddingLeft: "30px",
+    alignItems:'center',
     width: "100%",
     color: "#7C4DFF",
     cursor: "default",
