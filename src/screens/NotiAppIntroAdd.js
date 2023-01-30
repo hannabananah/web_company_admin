@@ -11,7 +11,7 @@ import DateWithTimePicker from "~/components/DateTimePicker";
 import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 import { EditorTool } from "~/components/Editor";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 const osList = ["Android", "iOS", "Windows", "Mac"];
 const typeList = ["urgent", "normal"];
@@ -85,24 +85,24 @@ const NotiAppIntroAdd = () => {
 
     // eslint-disable-next-line no-restricted-globals
     // if (confirm("저장 하시겠습니까?")) {
-      axios
-        .post(
-          `${g.base_url}api/notice/create`,
-          {
-            ...notiInfo,
-            noti_content: editorToHtml,
+    axios
+      .post(
+        `${g.base_url}api/notice/create`,
+        {
+          ...notiInfo,
+          noti_content: editorToHtml,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
-            },
-          }
-        )
-        .then(({ data }) => {
-          console.log(data);
-          openModal();
-          console.log(notiInfo);
-        });
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+        openModal();
+        console.log(notiInfo);
+      });
     // }
   };
 
@@ -235,7 +235,7 @@ const NotiAppIntroAdd = () => {
             </td>
           </tr>
           <tr className={classes.editorInput}>
-            <th className={classes.leftLayout}>
+            <th className={classes.leftContentLayout}>
               <label className={classes.leftText}>공지 내용</label>
             </th>
             <td className={classes.editorLayout}>
