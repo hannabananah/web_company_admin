@@ -60,7 +60,7 @@ const ReportAccTable = (props) => {
           {/*<button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button>*/}
           {i.state == 0 ? (
             <button
-              className={classes.activeLive}
+              className={classes.activeLiveBtn}
               onClick={() => onClickDormancy(i)}
             >
               처리하기
