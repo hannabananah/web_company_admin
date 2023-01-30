@@ -84,6 +84,17 @@ const useStyles = makeStyles({
     borderRight: `1px solid ${COLORS.STORKE.CONTENTS2}`,
     backgroundColor: "#FFF8F1",
   },
+  leftDetailContentLayout: {
+    boxSizing: "border-box",
+    width: "100%",
+    maxWidth: "250px",
+    minHeight: "200px",
+    display: "flex",
+    alignItems: "center",
+    paddingLeft: "30px",
+    borderRight: `1px solid ${COLORS.STORKE.CONTENTS2}`,
+    backgroundColor: "#FFF8F1",
+  },
   leftText: {
     wordBreak: "keep-all",
     fontSize: "14px",
