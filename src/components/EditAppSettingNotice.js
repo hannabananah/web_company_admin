@@ -147,7 +147,7 @@ const EditAppSettingNotice = () => {
             </td>
           </tr>
           <tr className={classes.editorInput}>
-            <th className={classes.leftLayout}>
+            <th className={classes.leftContentLayout}>
               <label className={classes.leftText}>공지 내용</label>
             </th>
             <td className={classes.editorLayout}>
