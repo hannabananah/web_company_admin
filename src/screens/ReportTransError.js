@@ -41,10 +41,12 @@ const ReportTransError = () => {
   const postsPerPage = 10;
 
   // 데이트픽커
-  let newYear = "2023-01-01";
   let now = dayjs().format("YYYY-MM-DD");
-  const [start, setStart] = useState(dayjs(newYear));
-  const [end, setEnd] = useState(dayjs(now));
+  let newYear = "2023-01-01";
+  // const [start, setStart] = useState(dayjs(newYear));
+  // const [end, setEnd] = useState(dayjs(now));
+  const [start, setStart] = useState(null);
+  const [end, setEnd] = useState(null);
 
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -60,11 +62,9 @@ const ReportTransError = () => {
   const getTotalTransError = () => {
     axios
       .get(
-        `${
-          g.base_url
-        }api/error/total?s=${selectVal}&v=${inputVal}&st=${start.format(
-          "YYYY-MM-DD"
-        )}&et=${end.format("YYYY-MM-DD")}`,
+        `${g.base_url}api/error/total?s=${selectVal}&v=${inputVal}&st=${
+          start != null ? start.format("YYYY-MM-DD") : ""
+        }&et=${end != null ? end.format("YYYY-MM-DD") : ""}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -83,9 +83,9 @@ const ReportTransError = () => {
       .get(
         `${
           g.base_url
-        }api/error/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start.format(
-          "YYYY-MM-DD"
-        )}&et=${end.format("YYYY-MM-DD")}`,
+        }api/error/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${
+          start != null ? start.format("YYYY-MM-DD") : ""
+        }&et=${end != null ? end.format("YYYY-MM-DD") : ""}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),

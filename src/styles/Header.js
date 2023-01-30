@@ -57,12 +57,13 @@ const useStyles = makeStyles({
     wordBreak: "keep-all",
   },
   logoutBtn: {
-    // color: COLORS.COLOR.WRANING,
-    color: '#909090',
+    color: COLORS.COLOR.INFORMATION_GRAY,
     background: "transparent",
     border: "none",
     padding: "none",
-    textDecoration: "underline",
+    "&:hover": {
+      textDecoration: "underline",
+    },
   },
 });
 export default useStyles;
