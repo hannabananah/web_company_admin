@@ -161,9 +161,9 @@ const SideBar = () => {
 
   // 메인 메뉴 클릭
   const onToggle = (e, path) => {
-    if (e.target.attributes.open) {
-      navigate(path)
-    }
+    // if (e.target.attributes.open) {
+    //   navigate(path)
+    // }
   }
   // 서브 메뉴 클릭
   const onClickMenu = (path) => {
@@ -204,8 +204,9 @@ const SideBar = () => {
                         <details
                           key={index}
                           className={`${classes.details} details`}
-                          onToggle={(e)=>onToggle(e, item.subMenu[0].path)}
-                          open={window.location.pathname.includes(item.path)}
+                          // onToggle={(e)=>onToggle(e, item.subMenu[0].path)}
+                          // open={window.location.pathname.includes(item.path)}
+                          open={window.location.pathname.startsWith(item.path)}
                         >
                           <summary
                             className={
