@@ -54,7 +54,7 @@ const ReportAccTable = (props) => {
           {i.warning_gbn == "기타" ? "주식투자 권유" : "-"}
         </td>
         {/* 신고일 */}
-        <td className={classes.td}>{i.warning_dt}</td>
+        <td className={classes.td}>{renderBirth(i.warning_dt)}</td>
         {/* 처리 */}
         <td className={classes.td}>
           {/*<button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button>*/}
