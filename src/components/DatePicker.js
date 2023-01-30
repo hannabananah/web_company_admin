@@ -23,12 +23,12 @@ const DatePicker = (props) => {
           setStart(newValue);
         }}
         renderInput={(params) => <TextField {...params} sx={datepickerSX} 
-        // inputProps={
-        //   { 
-        //     ...params.inputProps, 
-        //     placeholder: "dddd" 
-        //   }
-        // }
+        inputProps={
+          { 
+            ...params.inputProps, 
+            placeholder: "" 
+          }
+        }
         />}
         // renderInput={({ inputRef, inputProps, InputProps }) => (
         // console.log( inputRef, inputProps, InputProps)
@@ -48,7 +48,14 @@ const DatePicker = (props) => {
         onChange={(newValue) => {
           setEnd(newValue);
         }}
-        renderInput={(params) => <TextField {...params} sx={datepickerSX} />}
+        renderInput={(params) => <TextField {...params} sx={datepickerSX} 
+        inputProps={
+          { 
+            ...params.inputProps, 
+            placeholder: "" 
+          }
+        }
+        />}
         inputFormat="YYYY-MM-DD"
       />
       {/* <DatePicker

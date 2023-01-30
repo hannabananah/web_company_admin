@@ -6,6 +6,7 @@ const useStyles = makeStyles({
     // justifyContent:'center',
     paddingTop:'50px',
     marginLeft:'80px',
+    paddingBottom:'100px',
     // padding:'0 100px',
     "& > div" :{
       width: '100%',
