@@ -53,9 +53,9 @@ const History = () => {
   const getTotalHistory = () => {
     axios
       .get(
-        `${
-          g.base_url
-        }api/access/total?s=${selectVal}&v=${inputVal}&st=${start != null ? start.format("YYYY-MM-DD"):''}&et=${end != null ? end.format("YYYY-MM-DD"):''}`,
+        `${g.base_url}api/access/total?s=${selectVal}&v=${inputVal}&st=${
+          start != null ? start.format("YYYY-MM-DD") : ""
+        }&et=${end != null ? end.format("YYYY-MM-DD") : ""}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -74,9 +74,9 @@ const History = () => {
       .get(
         `${
           g.base_url
-        }api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${start != null ? start.format(
-          "YYYY-MM-DD"
-        ):''}&et=${end != null ? end.format("YYYY-MM-DD"):''}`,
+        }api/access/pagination?size=${postsPerPage}&page=${page}&s=${selectVal}&v=${inputVal}&st=${
+          start != null ? start.format("YYYY-MM-DD") : ""
+        }&et=${end != null ? end.format("YYYY-MM-DD") : ""}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -93,9 +93,9 @@ const History = () => {
   const downloadExcel = () => {
     axios
       .get(
-        `${
-          g.base_url
-        }api/access/excel?s=${selectVal}&v=${inputVal}&st=${start ? start.format("YYYY-MM-DD"):''}&et=${end ? end.format("YYYY-MM-DD"):''}`,
+        `${g.base_url}api/access/excel?s=${selectVal}&v=${inputVal}&st=${
+          start ? start.format("YYYY-MM-DD") : ""
+        }&et=${end ? end.format("YYYY-MM-DD") : ""}`,
         {
           responseType: "blob",
           headers: {
@@ -111,9 +111,9 @@ const History = () => {
         link.href = url;
         link.setAttribute(
           "download",
-          `access-${start ? start.format("YYYY-MM-DD"):''}-${end ? end.format(
-            "YYYY-MM-DD"
-          ):''}.xlsx`
+          `access-${start ? start.format("YYYY-MM-DD") : ""}-${
+            end ? end.format("YYYY-MM-DD") : ""
+          }.xlsx`
         );
         document.body.appendChild(link);
         link.click();
