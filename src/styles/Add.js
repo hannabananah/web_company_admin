@@ -48,6 +48,7 @@ const useStyles = makeStyles({
     // minHeight: "64px",
     // height: "64px",
     display: "flex",
+    alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
     "&:last-child": {
       borderBottom: "none",
