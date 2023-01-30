@@ -77,7 +77,7 @@ const AppDetailVer = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>업데이트 유형</label>
             </th>
-            <td className={classes.contentStyle}>{fetchData.update_type}</td>
+            <td className={classes.contentStyle}>{fetchData.update_type === "compulsion" ? "강제" : "선택"}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
