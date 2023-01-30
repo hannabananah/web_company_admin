@@ -55,7 +55,7 @@ const DetailSettingNoti = () => {
             <td className={classes.contentStyle}>{fetchData.noti_title}</td>
           </tr>
           <tr className={classes.contentInput}>
-            <th className={classes.leftContentLayout}>
+            <th className={classes.leftDetailContentLayout}>
               <label className={classes.leftText}>공지 내용</label>
             </th>
             <td className={classes.contentStyle}>

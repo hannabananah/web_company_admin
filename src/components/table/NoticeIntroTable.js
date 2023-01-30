@@ -63,7 +63,7 @@ const NoticeIntroTable = (props) => {
                   <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
                   {/* APP Intro 공지 노출 기간 */}
                   <td className={classes.td}>
-                    {dateFormat(i.noti_start_dttm)} ~{" "}
+                    {dateFormat(i.noti_start_dttm)} ~
                     {dateFormat(i.noti_end_dttm)}
                   </td>
                   {/* 공지 유형 */}
