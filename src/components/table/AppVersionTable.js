@@ -77,7 +77,7 @@ const AppVersionTable = (props) => {
                     <td className={classes.td}>{dateFormat(i.upt_dttm)}</td>
                   ) : (
                     <td className={classes.td}>
-                      <span
+                      <div
                         onClick={() => openModal(index)}
                         className={
                           i.status == "N"
@@ -87,8 +87,18 @@ const AppVersionTable = (props) => {
                             : classes.uptActiveRed
                         }
                       >
-                        Update
-                      </span>
+                        <span
+                          className={
+                            i.status == "N"
+                              ? classes.uptInactive
+                              : i.update_type === "choice"
+                              ? classes.uptActiveBlueText
+                              : classes.uptActiveRedText
+                          }
+                        >
+                          Update
+                        </span>
+                      </div>
                     </td>
                   )}
                 </tr>
