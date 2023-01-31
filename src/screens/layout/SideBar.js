@@ -66,91 +66,57 @@ const SideBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const classes = useStyles();
-  // side bar width
-  // const [width, setWidth] = useState(300);
-  const style = {
-    borderRight: "1px solid rgba(188, 191, 204,0.8)",
-  };
-  const enable_option = {
-    top: false,
-    right: true,
-    bottom: false,
-    left: false,
-    topRight: false,
-    bottomRight: false,
-    bottomLeft: false,
-    topLeft: false,
-  };
-
   let isEmpty = false;
-
   const emptyList = ["/", "/index.html"];
 
   emptyList.map((url) => {
     if (url == location.pathname) isEmpty = true;
   });
 
+  const onClickMenuItems = (path) => {
+    if (window.location.pathname == path) {
+      window.location.reload(true);
+    }
+  } 
+
+  // 투뎁스 메뉴 안의 서브 메뉴
   const renderMenuItems = (subMenu) => {
     return subMenu.map((item, index) => {
       return (
         <li
           key={index}
           className={
-            // item.path == window.location.pathname
-            window.location.pathname.includes(item.path)
+            window.location.pathname.startsWith(item.path)
               ? classes.activesubMenuList
               : classes.subMenuList
           }
-          // onClick={() => navigate(item.path)}
         >
-          {/* {item.title} */}
-          <Link to={item.path}>{item.title}</Link>
+          <Link to={item.path} onClick={()=>onClickMenuItems(item.path)}>{item.title}</Link>
         </li>
       );
     });
   };
 
-  // details 눌렀을 때
-  document.querySelectorAll('details').forEach(function(item){
-    item.addEventListener("toggle", event => {
-      let toggled = event.target;
-      if (toggled.attributes.open) {/* 열었으면 */
-        item.classList.add('opened')
-        /* 나머지 다른 열린 아이템을 닫음 */
-        document.querySelectorAll('details[open]').forEach(function(opened){
-          if(toggled != opened) /* 현재 열려있는 요소가 아니면 */
-            opened.removeAttribute('open'); /* 열림 속성 삭제 */
-            // opened.classList.remove('opened')
-        });
-      }
-    })
-  });
-
   // 뒤로 가기
-  // useEffect(() => {
-  //   const details = document.querySelectorAll("details");
-  //   const collapseNavs = sidenav_data.filter((item) => {
-  //     return item["subMenu"];
-  //   });
+  useEffect(() => {
+    const details = document.querySelectorAll("details");
+    const collapseNavs = sidenav_data.filter((item) => {
+      return item["subMenu"];
+    });
 
-  //   collapseNavs.map((item, index) => {
-  //     if (window.location.pathname != "/") {
-  //       if (window.location.pathname.includes(item.path)) {
-  //         details[index].setAttribute("open", true);
-  //       } else {
-  //         // details[index].removeAttribute('open');
-  //       }
-  //     }
-  //   });
-  //   // for(let i=0; i<details.length; i++) {
-  //   //   if ( pathsArr(i).includes(window.location.pathname) ) {
-  //   //     details[i].setAttribute('open',true);
-  //   //   } else {
-  //   //     details[i].removeAttribute('open');
-  //   //   }
-  //   // }
-  // }, [window.location.pathname]);
+    collapseNavs.map((item, index) => {
+      if (window.location.pathname != "/") {
+        if (window.location.pathname.startsWith(item.path)) {
+          details[index].setAttribute("open", true);
+        } else {
+          details[index].removeAttribute('open');
+        }
+      }
+    });
 
+  }, [window.location.pathname]);
+
+  // 로고 클릭시 dashboard 페이지로 이동
   const onClickLogo = () => {
     navigate("/dashboard");
     const openedDetails = document.querySelectorAll("details[open]");
@@ -159,103 +125,88 @@ const SideBar = () => {
     }
   };
 
-  // 메인 메뉴 클릭
+  // 투뎁스 메뉴 클릭 ( details 눌렀을 때 )
   const onToggle = (e, path) => {
-    // if (e.target.attributes.open) {
-    //   navigate(path)
-    // }
   }
-  // 서브 메뉴 클릭
-  const onClickMenu = (path) => {
-    // console.log(path);
-    // window.location.href = path;
-    // navigate(path);
-    // document.querySelectorAll('summary').forEach((item)=>{
-    //   item.classList.remove('opened')
-    // })
+
+  // 원뎁스 메뉴 클릭시 현재 details 열려 있다면 접기
+  const onClickOneDepthMenu = () => {
+    if (document.querySelectorAll('details[open]')) {
+      const openedDetails = document.querySelectorAll('details[open]');
+  
+      openedDetails.forEach((item) => {
+        item.removeAttribute('open')
+      });
+    }
   }
 
   return (
     <>
-      {/* {allPaths.includes(window.location.pathname) &&  */}
       {isEmpty ? null : (
-        // <Resizable
-        //   style={style}
-        //   size={{ width }}
-        //   minWidth={200}
-        //   maxWidth={500}
-        //   enable={enable_option}
-        //   onResizeStop={(e, direction, ref, d) => {
-        //     setWidth(width + d.width);
-        //   }}
-        // >
-          <div className={classes.root}>
-            <div className={classes.container}>
-              <h1 className={classes.h1} onClick={onClickLogo}>
-                <img src={images.icons.ANYCHAT_LOGO} alt="anychat 관리시스템" />
-                <span>관리시스템</span>
-              </h1>
+        <div className={classes.root}>
+          <div className={classes.container}>
+            <h1 className={classes.h1} onClick={onClickLogo}>
+              <img src={images.icons.ANYCHAT_LOGO} alt="anychat 관리시스템" />
+              <span>관리시스템</span>
+            </h1>
 
-              <div className={classes.menuContainer}>
-                {sidenav_data.map((item, index) => {
-                  if (item.title != "대시보드") {
-                    if (item.subMenu) {
-                      return (
-                        <details
-                          key={index}
-                          className={`${classes.details} details`}
-                          // onToggle={(e)=>onToggle(e, item.subMenu[0].path)}
-                          // open={window.location.pathname.includes(item.path)}
-                          open={window.location.pathname.startsWith(item.path)}
-                        >
-                          <summary
-                            className={
-                              window.location.pathname === item.path
-                              // window.location.pathname.includes(item.path)
-                                ? classes.activeMenu
-                                : classes.menu
-                            }
-                            // onClick={()=> {
-                            //   window.location.href = item.subMenu[0].path
-                            // }}
-                          >
-                            <RenderIcons title={item.title} />
-                            {item.title}
-                            <img
-                              src={images.icons.EXPAND_MORE}
-                              className="expandMore"
-                              alt="메뉴 열기"
-                            />
-                          </summary>
-                          <ol className={classes.subMenuWrap}>
-                            {renderMenuItems(item.subMenu)}
-                          </ol>
-                        </details>
-                      );
-                    } else {
-                      return (
-                        <div
-                          key={index}
+            <div className={classes.menuContainer}>
+              {sidenav_data.map((item, index) => {
+                if (item.title != "대시보드") {
+                  if (item.subMenu) {
+                    return (
+                      <details
+                        key={index}
+                        className={`${classes.details} details`}
+                        onToggle={onToggle}
+                        // open={window.location.pathname.startsWith(item.path)}
+                      >
+                        <summary
                           className={
-                            item.path == window.location.pathname
-                              ? classes.activeMenuNoSub
-                              : classes.menuNoSub
+                            window.location.pathname === item.path
+                            // window.location.pathname.includes(item.path)
+                              ? classes.activeMenu
+                              : classes.menu
                           }
-                          // onClick={() => navigate(item.path)}
+                          // onClick={()=> {
+                          //   window.location.href = item.subMenu[0].path
+                          // }}
                         >
-                          <Link to={item.path}>
-                            <RenderIcons title={item.title} />{item.title}
-                          </Link>
-                        </div>
-                      );
-                    }
+                          <RenderIcons title={item.title} />
+                          {item.title}
+                          <img
+                            src={images.icons.EXPAND_MORE}
+                            className="expandMore"
+                            alt="메뉴 열기"
+                          />
+                        </summary>
+                        <ol className={classes.subMenuWrap}>
+                          {renderMenuItems(item.subMenu)}
+                        </ol>
+                      </details>
+                    );
+                  } else {
+                    return (
+                      <div
+                        key={index}
+                        className={
+                          item.path == window.location.pathname
+                            ? classes.activeMenuNoSub
+                            : classes.menuNoSub
+                        }
+                      >
+                        <Link to={item.path} onClick={onClickOneDepthMenu}>
+                          <RenderIcons title={item.title} />{item.title}
+                        </Link>
+                      </div>
+                    );
                   }
-                })}
-              </div>
-
+                }
+              })}
             </div>
+
           </div>
-        // </Resizable>
+        </div>
       )}
 
       {/* {isEmpty ? null : 

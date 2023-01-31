@@ -9,7 +9,6 @@ const BreadCrumbs = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useLocation();
-  // const params = useLocation()?.state?.urlParam;
 
   const pathMap = {};
   let currentLink = [];
@@ -128,7 +127,6 @@ const BreadCrumbs = () => {
     } // if subMenu
     
   })
-  // console.log('newPathObj__________________',newPathObj)
 
   const crumbs = location.pathname
     .split("/")
@@ -146,7 +144,7 @@ const BreadCrumbs = () => {
     /////-------------- 2 번째 ( 404는 해결 했는데 crumb링크 클릭시 useLocation 의 state값이 초기화돼서 오류 ) --------------/////
     return (
       <React.Fragment key={crumb}>
-        {currentLink.join('').includes("/setting_admin/user_account/details/")
+        {currentLink.join('').startsWith("/setting_admin/user_account/details/")
           ? null 
           : <img src={images.icons.ARROWRIGHT} alt="arrow right" /> }
         <Link to={obj[0]?.linkTo == false ? false : currentLink.join('')} 

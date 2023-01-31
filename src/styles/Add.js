@@ -59,7 +59,7 @@ const useStyles = makeStyles({
     width: "100%",
     minHeight: "450px",
     display: "flex",
-    alignItems: "center",
+    // alignItems: "center",
     borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
   },
   leftLayout: {
@@ -123,13 +123,14 @@ const useStyles = makeStyles({
     marginLeft: "30px",
     display: "flex",
     alignItems: "center",
-    height: "41px",
+    // height: "41px",
+    padding:'11.5px 0'
   },
   editorLayout: {
     boxSizing: "border-box",
     marginLeft: "30px",
-    // display: "flex",
-    // marginTop: "-35px",
+    display: "flex",
+    alignItems:'center',
   },
   inputStyle: {
     boxSizing: "border-box",
