@@ -17,15 +17,6 @@ const EditDetailAccount = () => {
   const [saveConfirm, setSaveConfirm] = useState(false);
 
   const [userInfo, setUserInfo] = useState({});
-  // const [userInfo, setUserInfo] = useState({
-  //   grade:user.grade,
-  //   pwd:user.pwd,
-  //   chkPwd: user.chkPwd,
-  //   phone: user.phone,
-  //   email: user.email,
-  //   allow_remote_ip:user.allow_remote_ip,
-  //   use_yn: user.use_yn,
-  // });
 
   const onChange = (e) => {
     const { name, value, checked } = e.target;
