@@ -150,7 +150,7 @@ const useStyles = makeStyles({
     color: COLORS.COLOR.WRANING,
     fontWeight: "500",
     fontSize: "14px",
-    lineHeight: "100%",
+    // lineHeight: "100%",
   },
   activeLiveBtn: {
     color: COLORS.COLOR.WRANING,
