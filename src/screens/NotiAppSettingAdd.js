@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import AppNotiAdd from "~/components/AddAppNotification";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/AppNoticeAdd";
 import "~/styles/Toggle.css";
 import draftToHtml from "draftjs-to-html";
 import { EditorState, convertToRaw } from "draft-js";
