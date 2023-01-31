@@ -20,7 +20,7 @@ export const formControlSX = {
     border: "none",
   },
   "& .MuiSelect-select.MuiSelect-outlined": {
-    lineHeight: "40px",
+    lineHeight: "35px",
     padding: "0 40px 0 14px",
   },
 };
