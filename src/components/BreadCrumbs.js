@@ -46,19 +46,6 @@ const BreadCrumbs = () => {
             itemsMenu = item.subMenu;
     
             for (let i=0; i<itemsMenu.length; i++) {
-
-
-              // if (itemsMenu[i].path.includes('/:')) {
-              //   // console.log('있음',itemsMenu[i])
-              //   // console.log(itemsMenu[i].path.split('/:')[0])
-                
-              //   pathArr.push(itemsMenu[i].path.split('/:')[0])
-              // } else {
-              //   // console.log('없음',itemsMenu[i])
-              //   pathArr.push(itemsMenu[i].path)
-              // }
-
-
               pathArr.push(itemsMenu[i].path)
               titleArr.push(item.subMenu[i].title)
             }
@@ -77,7 +64,6 @@ const BreadCrumbs = () => {
   })
  
   const newPathObj = [];
-
   // targetObj.map((item)=>{
   //   newPathObj.push(
   //     {
@@ -136,7 +122,6 @@ const BreadCrumbs = () => {
   //   i++;
   // }
 
-
   targetObj.map((item,index)=>{
     newPathObj.push(
       {
@@ -148,12 +133,12 @@ const BreadCrumbs = () => {
 
       const currPath = location.pathname.split('/')
       .filter((item)=>{return item !=''})
-      console.log('currPath.length -------->',currPath.length)  
+      // console.log('currPath.length -------->',currPath.length)  
 
 
     // 서브메뉴가 있으면 넣어주고, 그 아래 하위 서브메뉴가 또 있는지 찾음
     if (item.subMenu) {    
-      console.log('첫번째 submenu ----> ',item.subMenu) 
+      // console.log('첫번째 submenu ----> ',item.subMenu) 
       for (let i=0; i< item.subMenu.length; i++) {
         newPathObj.push(
           {
@@ -163,13 +148,13 @@ const BreadCrumbs = () => {
           }
         )
       }
-      console.log('첫번째 submenu 넣어준 상태 ----> ',newPathObj)
+      // console.log('첫번째 submenu 넣어준 상태 ----> ',newPathObj)
       item.subMenu.filter((item,index)=>{
 
 
 
         if (item.subMenu) {
-          console.log('두번째 submenu ----> ',item.subMenu)
+          // console.log('두번째 submenu ----> ',item.subMenu)
           for (let i=0; i< item.subMenu.length; i++) {
             newPathObj.push(
               {
@@ -179,13 +164,13 @@ const BreadCrumbs = () => {
               }
             )
           }
-          console.log('두번째 submenu 넣어준 상태 ----> ',newPathObj)
+          // console.log('두번째 submenu 넣어준 상태 ----> ',newPathObj)
           item.subMenu.filter((item,index)=>{
 
 
 
             if (item.subMenu) {
-              console.log('세번째 subMenuItems ----> ',item.subMenu)
+              // console.log('세번째 subMenuItems ----> ',item.subMenu)
               for (let i=0; i< item.subMenu.length; i++) {
                 newPathObj.push(
                   {
@@ -195,7 +180,7 @@ const BreadCrumbs = () => {
                   }
                 )
               }
-              console.log('세번째 submenu 넣어준 상태 ----> ',newPathObj)
+              // console.log('세번째 submenu 넣어준 상태 ----> ',newPathObj)
               item.subMenu.filter((item,index)=>{
 
 
@@ -234,12 +219,68 @@ const BreadCrumbs = () => {
       })
 
 
-      
+      // const testObj = [];
 
+      // targetObj.map((item, index) => {
+        
+      //   if (item.subMenu) {
 
+      //     item.subMenu.filter((item, index) => {
+      //       for (let i = 0; i < item.subMenu.length; i++) {
+      //         testObj.push({
+      //           path: item.subMenu[i].path,
+      //           title: item.subMenu[i].title
+      //         });
+      //       }
+      //       if (item.subMenu) {
 
+      //         item.subMenu.filter((item, index) => {
+      //           for (let i = 0; i < item.subMenu.length; i++) {
+      //             testObj.push({
+      //               path: item.subMenu[i].path,
+      //               title: item.subMenu[i].title
+      //             });
+      //           }
+      //           if (item.subMenu) {
 
-      
+      //             item.subMenu.filter((item, index) => {
+      //               for (let i = 0; i < item.subMenu.length; i++) {
+      //                 testObj.push({
+      //                   path: item.subMenu[i].path,
+      //                   title: item.subMenu[i].title
+      //                 });
+      //               }
+      //               if (item.subMenu) {
+        
+        
+      //                 item.subMenu.filter((item, index) => {
+      //                   for (let i = 0; i < item.subMenu.length; i++) {
+      //                     testObj.push({
+      //                       path: item.subMenu[i].path,
+      //                       title: item.subMenu[i].title
+      //                     });
+      //                   }
+      //                   if (item.subMenu) {
+            
+
+      //                   }
+      //                 });
+
+      //               }
+      //             });
+    
+                  
+      //           }
+      //         });
+
+      //       }
+      //     });
+
+      //   } 
+        
+      // }); // map
+     
+// ======================================
       // for (let i=0; i<currPath.length-1; i++){
       //   subMenuItems.filter((item,index)=>{
       //     if (item.subMenu) {
@@ -261,6 +302,39 @@ const BreadCrumbs = () => {
     } // if subMenu
   })
 
+
+
+
+  let arr = [];
+  const hasSubMenu = (item) => {
+    if (item.subMenu) {
+      func(item.subMenu)
+      item.subMenu.filter((item,index)=>{
+        arr.push({
+          title: item.title,
+          path: item.path,
+        })
+      })
+    } else {
+      return;
+    }
+  } 
+  const func = (subMenu) => {
+    subMenu.map((item, index)=>{
+      hasSubMenu(item)
+    })
+  }
+  targetObj.map((item,index)=>{
+    arr.push({
+      title: item.title,
+      path: item.path,
+    })
+    hasSubMenu(item)
+  })
+  console.log('__arr___________',arr)
+
+
+
   const crumbs = location.pathname
     .split("/")
     .filter((crumb) => crumb !== "")
@@ -271,7 +345,7 @@ const BreadCrumbs = () => {
       return item.path == currentLink.join('')
     })
     // console.log('currentLink_______________________',currentLink)
-    console.log('newPathObj_______________________',newPathObj)
+    // console.log('newPathObj_______________________',newPathObj)
     // console.log('obj_______________________',obj)
     // console.log('currentLink.join("")_______________________',currentLink.join(''))
 
