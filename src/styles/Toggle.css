@@ -13,11 +13,11 @@
   box-sizing: border-box;
   content: "";
   position: absolute;
-  left: 0;
+  top: -0.5px;
   width: 15.75px;
   height: 15.75px;
   border-radius: 100px;
-  transition: left 300ms linear;
+  transition: left 800ms linear;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
   background-color: #fff;
 }
