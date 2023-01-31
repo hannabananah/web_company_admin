@@ -57,7 +57,6 @@ const ReportAccTable = (props) => {
         <td className={classes.td}>{renderBirth(i.warning_dt)}</td>
         {/* 처리 */}
         <td className={classes.td}>
-          {/*<button className={classes.activeLive} onClick={()=>onClickDormancy(i)}>계정 휴면</button>*/}
           {i.state == 0 ? (
             <button
               className={classes.activeLiveBtn}
