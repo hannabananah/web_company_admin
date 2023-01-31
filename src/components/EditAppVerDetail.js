@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/AppVerstionEdit";
+import useStyles from "~/styles/AppVersionEdit";
 import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 import { dateFormat, g } from "~/util/global"
