@@ -99,12 +99,12 @@ function App() {
               <Route path="/service/app_version" element={<AppVersion />} />
               {/* 서비스 관리 > App 버전 관리 > 상세 */}
               <Route
-                path="/service/app_version/details"
+                path="/service/app_version/details/:id"
                 element={<DetailsAppVer />}
               />
               {/* 서비스 관리 > App 버전 관리 > 상세 > 수정 */}
               <Route
-                path="/service/app_version/details/edit"
+                path="/service/app_version/details/:id/edit"
                 element={<EditAppVer />}
               />
               {/* 서비스 관리 > App 버전 관리 > 등록 */}

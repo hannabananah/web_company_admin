@@ -76,7 +76,7 @@ export const sidenav_data = [
           {
             title: "상세",
             path: "/service/app_version/details",
-            linkTo: false,
+            // linkTo: false,
             subMenu: [
               {
                 title: "수정",

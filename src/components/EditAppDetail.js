@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
@@ -7,29 +7,30 @@ import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 import { dateFormat, g } from "~/util/global"
 
-const EditDetailAccount = ({ user }) => {
+const EditDetailAccount = ({ version }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const params =  useParams();
 
   const onChangeRadio = (e) => {
     const { name, value } = e.target;
+    console.log(name)
 
-    if (name == "upt_type") {
-      userInfo["update_type"] = value;
-    }
-    console.log(userInfo);
-    setUserInfo(userInfo);
+    setUserInfo({
+      ...userInfo,
+      ['update_type'] : value,
+    });
   };
 
-  //user info state
+  //version info state
   const [userInfo, setUserInfo] = useState({
-    store: user.store,
-    os: user.os,
-    late_app_version: user.late_app_version,
-    min_app_version: user.min_app_version,
-    update_type: user.update_type,
-    remark: user.remark,
-    reg_dttm: user.reg_dttm,
+    store: version?.store,
+    os: version?.os,
+    late_app_version: version?.late_app_version,
+    min_app_version: version?.min_app_version,
+    update_type: version?.update_type,
+    remark: version?.remark,
+    reg_dttm: version?.reg_dttm,
   });
 
   const handleSubmit = (e) => {
@@ -59,7 +60,7 @@ const EditDetailAccount = ({ user }) => {
 
   useEffect(() => {
     axios
-      .get(`${g.base_url}api/version/${user.version_idx}`, {
+      .get(`${g.base_url}api/version/${params.id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -124,7 +125,7 @@ const EditDetailAccount = ({ user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.late_app_version}
+                value={userInfo.late_app_version || ""}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
@@ -140,7 +141,7 @@ const EditDetailAccount = ({ user }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                value={userInfo.min_app_version}
+                value={userInfo.min_app_version || ""}
                 onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
@@ -162,8 +163,10 @@ const EditDetailAccount = ({ user }) => {
                   name="upt_type"
                   value="choice"
                   className={classes.radioBtn}
-                  onClick={onChangeRadio}
-                  defaultChecked={userInfo.update_type === "choice"}
+                  // onClick={onChangeRadio}
+                  checked={userInfo.update_type === "choice"}
+                  onChange={onChangeRadio}
+                  // defaultChecked={userInfo.update_type === "choice"}
                 />
                 <label htmlFor="choice">선택</label>
               </div>
@@ -174,8 +177,10 @@ const EditDetailAccount = ({ user }) => {
                   name="upt_type"
                   value="compulsion"
                   className={classes.radioBtn}
-                  onClick={onChangeRadio}
-                  defaultChecked={userInfo.update_type === "compulsion"}
+                  // onClick={onChangeRadio}
+                  checked={userInfo.update_type === "compulsion"}
+                  onChange={onChangeRadio}
+                  // defaultChecked={userInfo.update_type === "compulsion"}
                 />
                 <label htmlFor="compulsion">강제</label>
               </div>

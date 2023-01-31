@@ -2,9 +2,9 @@ import { useLocation } from "react-router-dom";
 import AppDetailVer from "~/components/AppDetailVer";
 
 const DetailsAppVer = () => {
-  const user = useLocation().state;
+  const version = useLocation().state;
   return (
-    <AppDetailVer user={user} />
+    <AppDetailVer version={version} />
   )
 }
 export default DetailsAppVer;
