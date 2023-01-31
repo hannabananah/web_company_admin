@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { dateFormat } from "~/util/global";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
-import EditDetailMyAccount from "~/components/EditDetailMyAccount";
+import useStyles from "~/styles/MyAccount";
 import TableHeader from "~/components/TableHeader";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 const MyAccountContent = () => {
   const classes = useStyles();
@@ -34,13 +33,13 @@ const MyAccountContent = () => {
   };
 
   const onClickEdit = () => {
-    // EditDetailAccount.js
+    // EditDetailMyAccount.js
     navigate(`/setting_admin/my_account/edit`, { state: admin });
   };
-  
+
   const onClickMailTo = (mail) => {
-    return window.location.href = `mailto:${mail}` 
-  }
+    return (window.location.href = `mailto:${mail}`);
+  };
 
   return (
     <figure className={classes.userAccContainer}>
@@ -73,21 +72,26 @@ const MyAccountContent = () => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>이메일</label>
             </th>
-            <td className={classes.linkStyle} onClick={()=> onClickMailTo(admin.email)}>{admin.email}</td>
+            <td
+              className={classes.linkStyle}
+              onClick={() => onClickMailTo(admin.email)}
+            >
+              {admin.email}
+            </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>접속허가 IP</label>
             </th>
-            <td className={classes.contentStyle}>
-              {admin.allow_remote_ip}
-            </td>
+            <td className={classes.contentStyle}>{admin.allow_remote_ip}</td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>사용여부</label>
             </th>
-            <td className={classes.contentStyle}>{admin.use_yn == "N" ?  "미사용" : "사용"}</td>
+            <td className={classes.contentStyle}>
+              {admin.use_yn == "N" ? "미사용" : "사용"}
+            </td>
           </tr>
           <tr className={classes.contentInput}>
             <th className={classes.leftLayout}>

@@ -8,8 +8,7 @@ import {
 import TableHeader from "~/components/TableHeader";
 import axios from "axios";
 import { dateFormat } from "~/util/global";
-import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/AccountDetail";
 import { DeleteModal } from "~/components/Modal";
 import { g } from "~/util/global";
 
@@ -88,33 +87,33 @@ const UserAccountDetails = () => {
   };
 
   return (
-    <figure className={classes.userAccContainer}>
+    <figure className={classes.detailAccContainer}>
       <TableHeader title="계정 상세" />
-      <table className={classes.tableStyle}>
+      <table className={classes.detailAccTableStyle}>
         <colgroup>
           <col />
           <col />
         </colgroup>
         <tbody>
-          <tr className={classes.contentInput}>
+          <tr className={classes.detailAccContentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>아이디</label>
             </th>
             <td className={classes.contentStyle}>{userData.id}</td>
           </tr>
-          <tr className={classes.contentInput}>
+          <tr className={classes.detailAccContentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>관리자 권한</label>
             </th>
             <td className={classes.contentStyle}>{userData.grade}</td>
           </tr>
-          <tr className={classes.contentInput}>
+          <tr className={classes.detailAccContentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>전화번호</label>
             </th>
             <td className={classes.contentStyle}>{userData.phone}</td>
           </tr>
-          <tr className={classes.contentInput}>
+          <tr className={classes.detailAccContentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>이메일</label>
             </th>
@@ -125,13 +124,13 @@ const UserAccountDetails = () => {
               {userData.email}
             </td>
           </tr>
-          <tr className={classes.contentInput}>
+          <tr className={classes.detailAccContentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>접속허가 IP</label>
             </th>
             <td className={classes.contentStyle}>{userData.allow_remote_ip}</td>
           </tr>
-          <tr className={classes.contentInput}>
+          <tr className={classes.detailAccContentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>사용여부</label>
             </th>
@@ -140,7 +139,7 @@ const UserAccountDetails = () => {
             </td>
           </tr>
 
-          <tr className={classes.contentInput}>
+          <tr className={classes.detailAccContentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록일</label>
             </th>
@@ -148,14 +147,14 @@ const UserAccountDetails = () => {
               {dateFormat(userData.createdAt)}
             </td>
           </tr>
-          <tr className={classes.contentInput}>
+          <tr className={classes.detailAccContentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록자</label>
             </th>
             <td className={classes.contentStyle}>{userData.reg_id}</td>
             {/* <td className={classes.contentStyle}>{params.id}</td> */}
           </tr>
-          <tr className={classes.contentInput}>
+          <tr className={classes.detailAccContentInput}>
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>수정일</label>
             </th>

@@ -23,7 +23,7 @@ const AppVersionTable = (props) => {
           <tr
             style={{
               borderBottom: "1px solid rgba(188, 191, 204, 0.2)",
-              backgroundColor: "#EFEFFE",
+              backgroundColor: "#F3F6FF",
             }}
           >
             <td className={classes.th_td} style={{ width: "40px" }}>
@@ -42,7 +42,7 @@ const AppVersionTable = (props) => {
               최신 APP 버전
             </td>
             <td className={classes.th_td} style={{ width: "80px" }}>
-              최소 앱 버전
+              최소 APP 버전
             </td>
             <td className={classes.th_td} style={{ width: "80px" }}>
               업데이트 유형

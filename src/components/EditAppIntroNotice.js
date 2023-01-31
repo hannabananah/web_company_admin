@@ -8,7 +8,7 @@ import { convertFromHTML } from "draft-convert";
 import Modifier from "draft-js/lib/DraftModifier";
 import draftToHtml from "draftjs-to-html";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/AppNoticeEdit";
 import TableHeader from "~/components/TableHeader";
 import DateWithTimePicker from "~/components/DateTimePicker";
 import { EditorTool } from "~/components/Editor";

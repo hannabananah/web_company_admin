@@ -24,7 +24,7 @@ const NoticeIntroTable = (props) => {
           <tr
             style={{
               borderBottom: "1px solid rgba(188, 191, 204, 0.2)",
-              backgroundColor: "#EFEFFE",
+              backgroundColor: "#FFF8F1",
             }}
           >
             <td className={classes.th_td} style={{ width: "40px" }}>

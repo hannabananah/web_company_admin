@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/AppVersionEdit";
 import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 import { dateFormat, g } from "~/util/global"
@@ -238,4 +238,4 @@ const EditDetailAccount = ({ version }) => {
     </figure>
   );
 };
-export default EditDetailAccount;
+export default EditAppVerDetail;
