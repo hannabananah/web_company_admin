@@ -179,6 +179,9 @@ const AppVersion = () => {
       <AppVersionTable
         fetchData={fetchData}
         isLoaded={isLoaded}
+        currentPage={currentPage}
+        totalUser={totalUser}
+        postsPerPage={postsPerPage}
         onClickTarget={onClickTarget}
         openModal={openModal}
       />

@@ -2,7 +2,15 @@ import useStyles from "~/styles/Table";
 import { dateFormat } from "~/util/global";
 
 const AppVersionTable = (props) => {
-  const { openModal, fetchData, isLoaded, onClickTarget } = props;
+  const { 
+    openModal, 
+    fetchData, 
+    isLoaded, 
+    onClickTarget, 
+    totalUser,
+    currentPage,
+    postsPerPage 
+  } = props;
   const classes = useStyles();
 
   console.log(fetchData);
@@ -50,7 +58,7 @@ const AppVersionTable = (props) => {
               return (
                 <tr key={index} className={classes.tableTr}>
                   {/* 번호 */}
-                  <td className={classes.td}>{i.version_idx}</td>
+                  <td className={classes.td}>{totalUser - index - (currentPage - 1) * postsPerPage}</td>
                   {/* 등록일 */}
                   <td className={classes.td}>{dateFormat(i.reg_dttm)}</td>
                   {/* 스토어 */}
