@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Pagination from "react-js-pagination";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/ScreenStyle";
 import MemberTable from "~/components/table/MemberTable";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";
 import TableHeader from "~/components/TableHeader";
-import { g } from "~/util/global"
+import { g } from "~/util/global";
 
 // filter select option
 const option = [
@@ -47,16 +47,13 @@ const MemberStatus = () => {
 
   const getTotalUserCnt = () => {
     axios
-      .get(
-        `${g.base_url}api/user/totalUserCnt?s=${selectVal}&v=${inputVal}`,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        }
-      )
+      .get(`${g.base_url}api/user/totalUserCnt?s=${selectVal}&v=${inputVal}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
       .then(({ data }) => {
-        console.log('getTotalUserCnt________',data.userCount);
+        console.log("getTotalUserCnt________", data.userCount);
         setTotalUser(data.userCount);
       });
   };
@@ -122,13 +119,19 @@ const MemberStatus = () => {
               검색
             </button>
             <p className={classes.memberNum}>
-            총 회원 수 :<span> {totalUser.toLocaleString()}명</span>
+              총 회원 수 :<span> {totalUser.toLocaleString()}명</span>
             </p>
           </>
         }
       />
 
-      <MemberTable fetchData={fetchData} isLoaded={isLoaded} currentPage={currentPage} postsPerPage={postsPerPage} totalUser={totalUser}/>
+      <MemberTable
+        fetchData={fetchData}
+        isLoaded={isLoaded}
+        currentPage={currentPage}
+        postsPerPage={postsPerPage}
+        totalUser={totalUser}
+      />
       <Pagination
         activePage={currentPage}
         totalItemsCount={totalUser} // 총 포스트 갯수

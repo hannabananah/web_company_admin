@@ -4,7 +4,7 @@ export const useStyles = makeStyles({
   root: {
     display:'flex',
     flexDirection:'column',
-    gap:'70px',
+    gap:'20px',
   },
   displayNone: {
     display:'none'
@@ -13,14 +13,13 @@ export const useStyles = makeStyles({
     background:'#FCFCFF',
     boxShadow:'0px 15px 24px rgba(0, 0, 0, 0.06), 0px -14px 15px #FFFFFF', 
     borderRadius: '30px',
-    padding:'55px 50px',
+    padding:'30px 50px',
     cursor:'default',
   },
   boxsWrapper: {
     display:'flex', 
     justifyContent:'center',
     gap:'40px', 
-    marginTop:'58px',
   },
   statusBoxs: {
     width:'100%', 

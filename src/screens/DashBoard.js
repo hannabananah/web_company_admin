@@ -7,9 +7,9 @@ const DashBoard = () => {
 
   return (
     <div className={classes.root}>
+      <TableHeader title="가입 및 탈퇴 현황" />
       <section className={classes.statusSection}>
         <h2 className={classes.displayNone}>가입 및 탈퇴 현황</h2>
-        <TableHeader title="가입 및 탈퇴 현황" />
         <div className={classes.boxsWrapper}>
           <figure className={classes.statusBoxs}>
             <figcaption className={classes.statusLabel}>당일 기준</figcaption>
@@ -36,7 +36,12 @@ const DashBoard = () => {
           </figure>
 
           <figure className={classes.statusBoxs}>
-            <figcaption className={classes.statusLabel} style={{textIndent:'-9999em'}}>전일 기준</figcaption>
+            <figcaption
+              className={classes.statusLabel}
+              style={{ textIndent: "-9999em" }}
+            >
+              전일 기준
+            </figcaption>
             <div>
               <h3>휴면 회원 수</h3>
               <span className={classes.memberCnt}>9</span>
@@ -45,7 +50,7 @@ const DashBoard = () => {
         </div>
       </section>
 
-      <section>
+      <section style={{ marginTop: "50px" }}>
         <h2 className={classes.displayNone}>그래프</h2>
         <LineChart />
       </section>
