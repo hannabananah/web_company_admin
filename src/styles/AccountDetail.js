@@ -124,13 +124,13 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     // height: "41px",
-    padding: "11.5px 0",
+    padding:'11.5px 0'
   },
   editorLayout: {
     boxSizing: "border-box",
     marginLeft: "30px",
     display: "flex",
-    alignItems: "center",
+    alignItems:'center',
   },
   inputStyle: {
     boxSizing: "border-box",

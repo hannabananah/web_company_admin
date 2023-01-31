@@ -8,8 +8,8 @@ import {
 import TableHeader from "~/components/TableHeader";
 import axios from "axios";
 import { dateFormat } from "~/util/global";
-import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+// import "~/styles/Toggle.css";
+import useStyles from "~/styles/AccountDetail";
 import { DeleteModal } from "~/components/Modal";
 import { g } from "~/util/global";
 
