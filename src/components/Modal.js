@@ -169,7 +169,7 @@ export const SaveConfirmModal = (props) => {
             <button className={classes.backBtn} onClick={onClickCancel}>
               취소
             </button>
-            <button className={classes.backBtn} onClick={onClickConfirm}>
+            <button className={classes.saveBtn} onClick={onClickConfirm}>
               확인
             </button>
           </footer>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/AccountEdit";
 import TableHeader from "~/components/TableHeader";
-// import EditDetailAccount from "~/components/EditDetailAccount";
 import "~/styles/Toggle.css";
 import axios from "axios";
 import { UptConfirmModal, SaveConfirmModal } from "~/components/Modal";
@@ -119,7 +118,8 @@ const UserAccountEdit = () => {
   };
 
   return (
-    <figure className={classes.userAccContainer}>
+    <figure className={classes.editAccContainer}>
+      <TableHeader title="계정 정보 수정" />
       <table className={classes.tableStyle}>
         <colgroup>
           <col />

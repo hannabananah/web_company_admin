@@ -17,7 +17,7 @@ import UserAccount from "~/screens/UserAccount";
 import UserAccountDetails from "~/screens/UserAccountDetails";
 import MyAccount from "~/screens/MyAccount";
 import EditMyAccount from "~/screens/EditMyAccount";
-import EditDetailAccount from "~/components/EditDetailAccount";
+import EditDetailMyAccount from "~/components/EditDetailMyAccount";
 import History from "~/screens/History";
 import MemberStatus from "~/screens/MemberStatus";
 import SubjectToReport from "~/screens/SubjectToReport";
@@ -85,7 +85,7 @@ function App() {
                 element={<EditMyAccount />}
               />
 
-              {/* <Route path="/setting_admin/edit_detail_account" element={<EditDetailAccount />} /> */}
+              {/* <Route path="/setting_admin/edit_detail_account" element={<EditDetailMyAccount />} /> */}
               <Route path="/setting_admin/history" element={<History />} />
               {/* <Route path="/member" element={<Member />} /> */}
               <Route path="/member/member_status" element={<MemberStatus />} />

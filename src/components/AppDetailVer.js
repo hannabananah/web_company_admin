@@ -3,7 +3,7 @@ import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { dateFormat } from "~/util/global";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/AppVersionDetail";
 import TableHeader from "~/components/TableHeader";
 import { g } from "~/util/global"
 
