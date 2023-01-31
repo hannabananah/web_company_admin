@@ -11,11 +11,11 @@ import { g } from "~/util/global"
 // filter select option
 const option = [
   {
-    value: "Phone",
+    value: "phone",
     name: "전화번호",
   },
   {
-    value: "Email",
+    value: "email",
     name: "이메일",
   },
 ];
@@ -38,7 +38,7 @@ const MemberStatus = () => {
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   // 필터
-  const [selectVal, setSelectVal] = useState("Phone");
+  const [selectVal, setSelectVal] = useState("phone");
   const [inputVal, setInputVal] = useState("");
 
   const handleNameChange = (e) => {
