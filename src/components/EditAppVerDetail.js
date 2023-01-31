@@ -7,7 +7,7 @@ import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 import { dateFormat, g } from "~/util/global"
 
-const EditDetailAccount = ({ version }) => {
+const EditAppVerDetail = ({ version }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const params =  useParams();

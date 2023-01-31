@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import EditAppVerDetail from "~/components/EditAppVerDetail";
+import EditAppDetail from "~/components/EditAppVerDetail";
 
 const EditAppVer = () => {
   const version = useLocation().state;
