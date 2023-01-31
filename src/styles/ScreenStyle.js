@@ -9,7 +9,6 @@ const useStyles = makeStyles({
   filterInput: {
     border: "1px solid #D1D1D1",
     borderRadius: "8px",
-    height: "100%",
     padding: "0 20px",
     width: "100%",
     maxWidth: "170px",

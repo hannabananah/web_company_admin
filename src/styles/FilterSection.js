@@ -5,7 +5,7 @@ export const useStyles = makeStyles({
   root: {
     display: "flex",
     alignItems: "center",
-    height: "40px",
+    height: "35px",
     justifyContent: "space-between",
     padding: "0 0 20px",
     "& button": {
