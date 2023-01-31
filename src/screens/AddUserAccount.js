@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import images from "~/assets/js/Images";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/AccountAdd";
 import TableHeader from "~/components/TableHeader";
 import { g } from "~/util/global";
 import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
@@ -15,10 +15,10 @@ const AddUserAccount = () => {
   const [doubleCheck, setDoubleCheck] = useState();
   const [pwdCheck, setPwdCheck] = useState(false);
   const [invalid, setInvalid] = useState({
-    state:false,
-    type:''
+    state: false,
+    type: "",
   });
-  console.log(invalid)
+  console.log(invalid);
 
   const [userInfo, setUserInfo] = useState({
     id: "",
@@ -42,7 +42,7 @@ const AddUserAccount = () => {
     const newInfo = {
       ...userInfo,
       // [name]: name == "use_yn" ? !userInfo.use_yn : value, //e.target의 name과 value이다.
-      [name]: name == "use_yn" ? checked ? "Y":"N" : value, //e.target의 name과 value이다.
+      [name]: name == "use_yn" ? (checked ? "Y" : "N") : value, //e.target의 name과 value이다.
     };
     setUserInfo(newInfo);
   };
@@ -67,7 +67,7 @@ const AddUserAccount = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSaveConfirm(false);
-    
+
     // if (userInfo.pwd != userInfo.chkPwd) {
     //   setPwdCheck(true)
     //   // setInvalid((pre) => {
@@ -104,19 +104,16 @@ const AddUserAccount = () => {
   };
 
   const onConfirm = () => {
-
     if (userInfo.pwd != userInfo.chkPwd) {
-      setPwdCheck(true)
+      setPwdCheck(true);
       // setInvalid((pre) => {
       //   return { ...pre, [invalid.state]:true, [invalid.type]:'password' };
       // });
       // alert("비밀번호 확인을 해주세요.");
       return false;
     }
-    setSaveConfirm(true)
-  } 
-
-
+    setSaveConfirm(true);
+  };
 
   // 아이디 중복체크
   const duplicationCheck = () => {
@@ -144,22 +141,22 @@ const AddUserAccount = () => {
   };
 
   return (
-    <figure className={classes.userAccContainer}>
+    <figure className={classes.adminAccContainer}>
       <TableHeader title="사용자 추가" />
-      <table className={classes.tableStyle}>
+      <table className={classes.adminTableStyle}>
         <colgroup>
           <col />
           <col />
         </colgroup>
         <tbody>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
+          <tr className={classes.adminContentInput}>
+            <th className={classes.adminLeftLayout}>
               <label className={classes.leftText}>아이디</label>
             </th>
             <td className={classes.inputLayout}>
               <input
                 type="text"
-                className={classes.inputStyle}
+                className={classes.adminInputStyle}
                 name="id"
                 id="id"
                 minLength="4"
@@ -208,14 +205,14 @@ const AddUserAccount = () => {
               )}
             </td>
           </tr>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
+          <tr className={classes.adminContentInput}>
+            <th className={classes.adminLeftLayout}>
               <label className={classes.leftText}>관리자 권한</label>
             </th>
             <td className={classes.inputLayout}>
               <input
                 type="text"
-                className={classes.inputStyle}
+                className={classes.adminInputStyle}
                 name="grade"
                 id="grade"
                 value={userInfo.grade}
@@ -224,14 +221,14 @@ const AddUserAccount = () => {
               />
             </td>
           </tr>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
+          <tr className={classes.adminContentInput}>
+            <th className={classes.adminLeftLayout}>
               <label className={classes.leftText}>비밀번호</label>
             </th>
             <td className={classes.inputLayout}>
               <input
                 type="password"
-                className={classes.inputStyle}
+                className={classes.adminInputStyle}
                 name="pwd"
                 id="pwd"
                 minLength="8"
@@ -257,14 +254,14 @@ const AddUserAccount = () => {
               )}
             </td>
           </tr>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
+          <tr className={classes.adminContentInput}>
+            <th className={classes.adminLeftLayout}>
               <label className={classes.leftText}>비밀번호 확인</label>
             </th>
             <td className={classes.inputLayout}>
               <input
                 type="password"
-                className={classes.inputStyle}
+                className={classes.adminInputStyle}
                 name="chkPwd"
                 id="chkPwd"
                 minLength="8"
@@ -275,14 +272,14 @@ const AddUserAccount = () => {
               />
             </td>
           </tr>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
+          <tr className={classes.adminContentInput}>
+            <th className={classes.adminLeftLayout}>
               <label className={classes.leftText}>전화번호</label>
             </th>
             <td className={classes.inputLayout}>
               <input
                 type="tel"
-                className={classes.inputStyle}
+                className={classes.adminInputStyle}
                 name="phone"
                 id="phone"
                 maxLength="50"
@@ -292,14 +289,14 @@ const AddUserAccount = () => {
               />
             </td>
           </tr>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
+          <tr className={classes.adminContentInput}>
+            <th className={classes.adminLeftLayout}>
               <label className={classes.leftText}>이메일</label>
             </th>
             <td className={classes.inputLayout}>
               <input
                 type="text"
-                className={classes.inputStyle}
+                className={classes.adminInputStyle}
                 name="email"
                 id="email"
                 required
@@ -308,14 +305,14 @@ const AddUserAccount = () => {
               />
             </td>
           </tr>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
+          <tr className={classes.adminContentInput}>
+            <th className={classes.adminLeftLayout}>
               <label className={classes.leftText}>접속허가 IP</label>
             </th>
             <td className={classes.inputLayout}>
               <input
                 type="text"
-                className={classes.inputStyle}
+                className={classes.adminInputStyle}
                 name="allow_remote_ip"
                 id="allow_remote_ip"
                 required
@@ -324,8 +321,8 @@ const AddUserAccount = () => {
               />
             </td>
           </tr>
-          <tr className={classes.contentInput}>
-            <th className={classes.leftLayout}>
+          <tr className={classes.adminContentInput}>
+            <th className={classes.adminLeftLayout}>
               <label className={classes.leftText}>사용여부</label>
             </th>
             <td className={classes.inputLayout}>
@@ -341,10 +338,10 @@ const AddUserAccount = () => {
                   // onClick={() => setInactive(!inactive)}
                 />
                 {/* {inactive ? ( */}
-                {userInfo.use_yn == 'N' ? (
-                  <span className={classes.toggleText2}>미사용</span>
+                {userInfo.use_yn == "N" ? (
+                  <span className={classes.adminToggleText2}>미사용</span>
                 ) : (
-                  <span className={classes.toggleText1}>사용</span>
+                  <span className={classes.adminToggleText1}>사용</span>
                 )}
               </label>
             </td>
