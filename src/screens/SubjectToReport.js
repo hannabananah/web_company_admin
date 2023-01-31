@@ -11,7 +11,7 @@ import { g } from "~/util/global";
 // filter select option
 const option = [
   {
-    value: "phone",
+    value: "phone_no",
     name: "전화번호",
   },
   {
@@ -25,7 +25,7 @@ const SubjectToReport = () => {
   const [fetchData, setFetchData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   // 필터
-  const [selectVal, setSelectVal] = useState("phone");
+  const [selectVal, setSelectVal] = useState("phone_no");
   const [inputVal, setInputVal] = useState("");
   // 페이지네이션
   const [totalUser, setTotalUser] = useState(0); //임시
