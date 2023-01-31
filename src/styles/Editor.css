@@ -21,3 +21,6 @@
 .public-DraftStyleDefault-block {
   margin: 0;
 }
+.public-DraftEditor-content {
+  line-height: 22px;
+}
