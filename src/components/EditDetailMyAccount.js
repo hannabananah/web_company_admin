@@ -1,85 +1,100 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/MyAccountEdit";
 import TableHeader from "~/components/TableHeader";
-import { g } from "~/util/global"
-import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
+import { UptConfirmModal, SaveConfirmModal } from "~/components/Modal";
+import { g } from "~/util/global";
 
-const EditDetailMyAccount = ({ goBackState, admin }) => {
+const EditDetailMyAccount = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const token = localStorage.getItem("access_token");
+  const user = useLocation().state;
 
-  useEffect(() => {
-    axios
-      .get(`${g.base_url}api/admin/${admin.id}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      })
-      .then(({ data }) => {
-        data.use_yn = data.use_yn === "Y" ? true : false;
-        // setUserData(data);
-        setUserInfo(data);
-        // console.log(userInfo.phone)
-      });
-  }, []);
+  // 모달
+  const [modalOpen, setModalOpen] = useState(false);
+  const [saveConfirm, setSaveConfirm] = useState(false);
 
   const [userInfo, setUserInfo] = useState({});
 
   const onChange = (e) => {
     const { name, value, checked } = e.target;
+    console.log("e.target.name:::::::", name);
+    console.log("e.target.value:::::::::", value);
+    console.log("e.target.checked:::::::::", checked);
 
     const newInfo = {
       ...userInfo,
-      [name]: name == "use_yn" ? !userInfo.use_yn : value, //e.target의 name과 value이다.
+      // [name]: name == "use_yn" ? userInfo.use_yn : value, //e.target의 name과 value이다.
+      [name]: name == "use_yn" ? (checked ? "Y" : "N") : value, //e.target의 name과 value이다.
     };
+    console.log(newInfo);
     setUserInfo(newInfo);
   };
 
+  useEffect(() => {
+    axios
+      .get(`${g.base_url}api/admin/${user.id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
+      .then(({ data }) => {
+        console.log("data----------------->", data);
+        // data.use_yn = data.use_yn == 'Y' ? true : false
+        setUserInfo(data);
+      });
+  }, []);
+
+  // const { auth, pwd, chkPwd, phone1, phone2, phone3, email, ip, use_yn } = userInfo;
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // delete userInfo["password"];
     setSaveConfirm(false);
-    delete userInfo["password"];
 
     if (userInfo.pwd != "") {
       if (userInfo.pwd != userInfo.chkPwd) {
         alert("비밀번호 확인을 해주세요.");
         return false;
+      } else {
+        const newInfo = {
+          ...userInfo,
+          password: userInfo.pwd,
+        };
+        setUserInfo(newInfo);
+
+        axios
+          .post(
+            `${g.base_url}api/admin/update`,
+            {
+              ...userInfo,
+            },
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+            }
+          )
+          .then(({ data }) => {
+            console.log(data);
+            openModal();
+            // window.location.reload();
+          });
       }
-      const newInfo = {
-        ...userInfo,
-        password: userInfo.pwd, //e.target의 name과 value이다.
-      };
-      setUserInfo(newInfo);
     }
 
-    // eslint-disable-next-line no-restricted-globals
-    // if (confirm("저장 하시겠습니까?")) {
-      axios
-        .post(
-          `${g.base_url}api/admin/update`,
-          {
-            ...userInfo,
-          },
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
-            },
-          }
-        )
-        .then(({ data }) => {
-          console.log(data);
-          openModal();
-          // window.location.reload();
-        });
-    // }
+    // delete userInfo['password'];
+    // delete userInfo['chkPwd'];
   };
 
-  // 저장완료 모달
-  const [modalOpen, setModalOpen] = useState(false);
-  const [saveConfirm, setSaveConfirm] = useState(false);
+  const onClickPrev = () => {
+    // UserAccount.js
+    navigate(-1);
+  };
 
   const openModal = () => {
     setModalOpen(true);
@@ -110,12 +125,12 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
+                defaultValue={userInfo.grade || ""}
+                onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
                 name="auth"
-                id="myAccount"
-                value={userInfo.grade}
-                onChange={onChange}
+                id="auth"
                 required
               />
             </td>
@@ -126,12 +141,13 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                type="text"
-                className={classes.inputStyle}
-                name="pwd"
-                id="myAccount"
-                value={userInfo.pwd}
+                value={user.pwd}
                 onChange={onChange}
+                type="password"
+                className={classes.inputStyle}
+                // name="password"
+                name="pwd"
+                id="password"
                 required
               />
             </td>
@@ -142,12 +158,12 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
-                type="text"
+                // value=""
+                onChange={onChange}
+                type="password"
                 className={classes.inputStyle}
                 name="chkPwd"
-                id="myAccount"
-                value={userInfo.chkPwd}
-                onChange={onChange}
+                id="chkPwd"
                 required
               />
             </td>
@@ -159,12 +175,12 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
             <td className={classes.inputLayout}>
               <input
                 type="tel"
+                value={userInfo.phone || ""}
+                onChange={onChange}
                 className={classes.inputStyle}
                 name="phone"
-                id="myAccount"
-                maxLength="30"
-                value={userInfo.phone}
-                onChange={onChange}
+                id="phone"
+                maxLength="50"
                 required
               />
             </td>
@@ -175,12 +191,12 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
             </th>
             <td className={classes.inputLayout}>
               <input
+                value={userInfo.email || ""}
+                onChange={onChange}
                 type="text"
                 className={classes.inputStyle}
                 name="email"
-                value={userInfo.email}
-                onChange={onChange}
-                id="myAccount"
+                id="email"
                 required
               />
             </td>
@@ -193,9 +209,9 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
               <input
                 type="text"
                 className={classes.inputStyle}
-                name="ip"
-                id="myAccount"
-                value={userInfo.allow_remote_ip}
+                name="allow_remote_ip"
+                id="allow_remote_ip"
+                value={userInfo.allow_remote_ip || ""}
                 onChange={onChange}
                 required
               />
@@ -208,39 +224,45 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
             <td className={classes.inputLayout}>
               <label className={`auggleToggle ${classes.userToggle}`}>
                 <input
+                  // value={userInfo.use_yn || ""}
                   // value={userInfo.use_yn}
-                  // onChange={onChange}
+                  checked={userInfo.use_yn == "Y" || ""}
+                  onChange={onChange}
                   role="switch"
                   type="checkbox"
                   name="use_yn"
-                  value={userInfo.use_yn}
-                  onChange={onChange}
+                  id="use_yn"
                   // defaultChecked={userInfo.use_yn}
-                  defaultChecked={true}
-                  id="myAccount"
+                  // defaultChecked={userInfo.use_yn == "Y" ? true : false}
                 />
-                {/* {userInfo.use_yn ? (
+                {userInfo.use_yn == "Y" ? (
                   <span className={classes.toggleText1}>사용</span>
                 ) : (
                   <span className={classes.toggleText2}>미사용</span>
-                )} */}
-                <span className={classes.toggleText1}>사용</span>
+                )}
               </label>
             </td>
           </tr>
         </tbody>
       </table>
       <div className={classes.submitBtns}>
-        <button onClick={goBackState} className={classes.backBtn}>
+        {/* <button onClick={gobackstate} className={classes.backBtn}> */}
+        <button onClick={onClickPrev} className={classes.backBtn}>
           이전
         </button>
-        <input
+        {/* <input
           type="submit"
           value="저장"
           className={classes.saveBtn}
-          // onClick={handleSubmit}
+          onClick={handleSubmit}
+        /> */}
+        <button
+          type="submit"
           onClick={() => setSaveConfirm(true)}
-        />
+          className={classes.saveBtn}
+        >
+          저장
+        </button>
       </div>
 
       <SaveConfirmModal
@@ -258,4 +280,5 @@ const EditDetailMyAccount = ({ goBackState, admin }) => {
     </figure>
   );
 };
+
 export default EditDetailMyAccount;

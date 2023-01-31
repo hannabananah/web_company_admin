@@ -33,7 +33,7 @@ const MyAccountContent = () => {
   };
 
   const onClickEdit = () => {
-    // EditDetailAccount.js
+    // EditDetailMyAccount.js
     navigate(`/setting_admin/my_account/edit`, { state: admin });
   };
 
