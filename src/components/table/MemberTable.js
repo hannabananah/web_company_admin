@@ -55,7 +55,7 @@ const MemberTable = (props) => {
                   {/* 전화번호 */}
                   <td className={classes.td}>{i.phone_no}</td>
                   {/* 국기 */}
-                  <td className={classes.td}>{i.locale_cd}</td>
+                  <td className={classes.td}>{i.user_locale_cd}</td>
                   {/* 계정 */}
                   <td className={classes.td}>{i.user_id}</td>
                   {/* OS */}
