@@ -1,8 +1,8 @@
-import EditDetailAccount from "~/components/EditDetailAccount";
+import EditDetailMyAccount from "~/components/EditDetailMyAccount";
 
 const EditMyAccount = () => {
   return (
-    <EditDetailAccount />
+    <EditDetailMyAccount />
   )
 }
 export default EditMyAccount;

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Pagination from "react-js-pagination";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/ScreenStyle";
 import UserAccountTable from "~/components/table/UserAccountTable";
 import SelectBox from "~/components/SelectBox";
 import FilterSection from "~/components/FilterSection";

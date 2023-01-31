@@ -7,7 +7,7 @@ import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 import { dateFormat, g } from "~/util/global"
 
-const EditDetailAccount = ({ user }) => {
+const EditDetailMyAccount = ({ user }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -233,4 +233,4 @@ const EditDetailAccount = ({ user }) => {
     </figure>
   );
 };
-export default EditDetailAccount;
+export default EditDetailMyAccount;

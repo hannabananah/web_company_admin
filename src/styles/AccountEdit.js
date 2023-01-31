@@ -2,13 +2,13 @@ import { makeStyles } from "@mui/styles";
 import { COLORS } from "~/assets/colors/colors";
 
 const useStyles = makeStyles({
-  adminAccContainer: {
+  editAccContainer: {
     maxWidth: "1320px",
     width: "100%",
     display: "flex",
     flexDirection: "column",
   },
-  adminTableStyle: {
+  tableStyle: {
     width: "100%",
     borderCollapse: "separate",
     borderSpacing: "0px",
@@ -18,14 +18,17 @@ const useStyles = makeStyles({
     borderRadius: "8px",
     boxShadow: "0 4px 22px 0 rgba(0, 0, 0, 0.05)",
   },
-  adminContentInput: {
+  contentInput: {
     boxSizing: "border-box",
     width: "100%",
-    height: "38px",
     display: "flex",
     alignItems: "center",
+    borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
+    "&:last-child": {
+      borderBottom: "none",
+    },
   },
-  adminLeftLayout: {
+  leftLayout: {
     boxSizing: "border-box",
     width: "100%",
     maxWidth: "250px",
@@ -33,7 +36,6 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     paddingLeft: "30px",
-    borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
     borderRight: `1px solid ${COLORS.STORKE.CONTENTS2}`,
     backgroundColor: "#f8f8ff",
   },
@@ -42,20 +44,23 @@ const useStyles = makeStyles({
     fontSize: "14px",
     lineHeight: "150%",
     color: "#272833",
-    "&:last-child": {
-      borderBottom: "none",
-    },
+  },
+  fixedLayout: {
+    boxSizing: "border-box",
+    marginLeft: "30px",
+    display: "flex",
+    alignItems: "center",
+    fontSize: "14px",
+    lineHeight: "150%",
+    color: COLORS.COLOR.INFORMATION_GRAY,
   },
   inputLayout: {
     boxSizing: "border-box",
-    paddingLeft: "30px",
+    marginLeft: "30px",
     display: "flex",
     alignItems: "center",
-    width: "100%",
-    height: "100%",
-    borderBottom: `1px solid ${COLORS.STORKE.CONTENTS2}`,
   },
-  adminInputStyle: {
+  inputStyle: {
     boxSizing: "border-box",
     width: "400px",
     height: "28px",
@@ -71,38 +76,6 @@ const useStyles = makeStyles({
       outline: "none",
     },
   },
-  checkBtnStyle: {
-    boxSizing: "border-box",
-    fontSize: "14px",
-    lineHeight: "150%",
-    textAlign: "center",
-    backgroundColor: COLORS.COLOR.BACKGROUND_GRAY,
-    border: "none",
-    borderRadius: "8px",
-    color: COLORS.COLOR.BLACK,
-    cursor: "pointer",
-    marginLeft: "30px",
-    padding: "4.5px 54px",
-  },
-  checkIconStyle: {
-    marginLeft: "30px",
-    display: "flex",
-    alignContent: "center",
-  },
-  checkNormalText: {
-    color: COLORS.COLOR.BLACK,
-    fontSize: "14px",
-    lineHeight: "200%",
-    textAlign: "center",
-    marginLeft: "6px",
-  },
-  checkErrorText: {
-    color: COLORS.COLOR.WRANING,
-    fontSize: "14px",
-    lineHeight: "200%",
-    textAlign: "center",
-    marginLeft: "6px",
-  },
   userToggle: {
     display: "inline-flex",
     alignItems: "center",
@@ -110,21 +83,21 @@ const useStyles = makeStyles({
     cursor: "pointer",
     position: "relative",
   },
-  adminToggleText1: {
+  toggleText1: {
     position: "absolute",
     color: COLORS.COLOR.WHITE,
-    fontSize: "5.63px",
-    letterSpacing: "0.06px",
-    // lineHeight: "100%",
+    fontSize: "10px",
+    lineHeight: "100%",
     left: "4px",
+    letterSpacing: "0.06px",
   },
-  adminToggleText2: {
+  toggleText2: {
     position: "absolute",
     color: COLORS.COLOR.DARK_GRAY,
-    fontSize: "5.63px",
-    letterSpacing: "0.06px",
-    // lineHeight: "100%",
+    fontSize: "10px",
+    lineHeight: "100%",
     right: "2px",
+    letterSpacing: "0.06px",
   },
   submitBtns: {
     width: "100%",
