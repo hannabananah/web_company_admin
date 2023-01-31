@@ -124,7 +124,19 @@ const BreadCrumbs = () => {
   //     }
   //   } // if subMenu
   // })
+ 
   
+
+  // var i = 0;
+  // while (i < item.subMenu.length) {
+  //   if (i > item.subMenu.length) {
+  //     break;
+  //   }
+  //   console.log(i);
+  //   i++;
+  // }
+
+
   targetObj.map((item,index)=>{
     newPathObj.push(
       {
@@ -133,6 +145,13 @@ const BreadCrumbs = () => {
         linkTo: item.linkTo 
       }
     )
+
+      const currPath = location.pathname.split('/')
+      .filter((item)=>{return item !=''})
+      console.log('currPath.length -------->',currPath.length)  
+
+
+    // 서브메뉴가 있으면 넣어주고, 그 아래 하위 서브메뉴가 또 있는지 찾음
     if (item.subMenu) {    
       console.log('첫번째 submenu ----> ',item.subMenu) 
       for (let i=0; i< item.subMenu.length; i++) {
@@ -145,48 +164,66 @@ const BreadCrumbs = () => {
         )
       }
       console.log('첫번째 submenu 넣어준 상태 ----> ',newPathObj)
-
-
-      
-
-
-
       item.subMenu.filter((item,index)=>{
+
+
+
         if (item.subMenu) {
           console.log('두번째 submenu ----> ',item.subMenu)
           for (let i=0; i< item.subMenu.length; i++) {
-          newPathObj.push(
-            {
-              path: item.subMenu[i].path,
-              title: item.subMenu[i].title,
-              linkTo: item.subMenu[i].linkTo
-            }
-          )
+            newPathObj.push(
+              {
+                path: item.subMenu[i].path,
+                title: item.subMenu[i].title,
+                linkTo: item.subMenu[i].linkTo
+              }
+            )
           }
           console.log('두번째 submenu 넣어준 상태 ----> ',newPathObj)
-
-
           item.subMenu.filter((item,index)=>{
+
+
+
             if (item.subMenu) {
               console.log('세번째 subMenuItems ----> ',item.subMenu)
               for (let i=0; i< item.subMenu.length; i++) {
-              newPathObj.push(
-                {
-                  path: item.subMenu[i].path,
-                  title: item.subMenu[i].title,
-                  linkTo: item.subMenu[i].linkTo
-                }
-              )
+                newPathObj.push(
+                  {
+                    path: item.subMenu[i].path,
+                    title: item.subMenu[i].title,
+                    linkTo: item.subMenu[i].linkTo
+                  }
+                )
               }
               console.log('세번째 submenu 넣어준 상태 ----> ',newPathObj)
-
-
-
-              // 서브메뉴가 있으면 넣어주고, 그 아래 하위 서브메뉴가 또 있는지 찾음
               item.subMenu.filter((item,index)=>{
-                if (item.subMenu) {
 
-                }
+
+
+
+
+
+                // for (let i=0; i<currPath.length; i++) {
+                //   console.log('네번째 subMenuItems ----> ',item.subMenu)
+                //   item.subMenu.filter((item,index)=>{
+                //     if (item.subMenu) {
+                //       for (let i=0; i< item.subMenu.length; i++) {
+                //         newPathObj.push(
+                //           {
+                //             path: item.subMenu[i].path,
+                //             title: item.subMenu[i].title,
+                //             linkTo: item.subMenu[i].linkTo
+                //           }
+                //         )
+                //       }
+                //       console.log('세번째 submenu 넣어준 상태 ----> ',newPathObj)
+                //     } // if item.subMenu
+                //   }) // filter
+                // } // currPath.length 만큼 반복문
+
+
+
+
               })
 
 
@@ -197,11 +234,9 @@ const BreadCrumbs = () => {
       })
 
 
-
-      const currPath = location.pathname.split('/')
-        .filter((item)=>{return item !=''})
       
-      console.log('currPath.length -------->',currPath.length)  
+
+
 
 
       
