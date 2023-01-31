@@ -8,10 +8,12 @@ const useStyles = makeStyles({
     marginLeft:'80px',
     paddingBottom:'100px',
     // padding:'0 100px',
-    "& > div" :{
+    "& > div, & > figure" :{
       width: '100%',
       // margin:'0 auto',
-      maxWidth: '1320px',
+      maxWidth: '1200px',
+      minWidth:'1000px',
+      
     }
   },
 });

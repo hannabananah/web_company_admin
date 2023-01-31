@@ -3,7 +3,7 @@ import { COLORS } from "~/assets/colors/colors";
 
 const useStyles = makeStyles({
   reportDetailContainer: {
-    maxWidth: "1320px",
+    // maxWidth: "1320px",
     width: "100%",
     display: "flex",
     flexDirection: "column",

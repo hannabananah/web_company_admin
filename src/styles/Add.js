@@ -4,10 +4,11 @@ import { COLORS } from "~/assets/colors/colors";
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    maxWidth: "1320px",
+    // maxWidth: "1200px",
   },
   userAccContainer: {
-    maxWidth: "1320px",
+    // maxWidth: "1200px",
+    // minWidth:'1000px',
     width: "100%",
     display: "flex",
     flexDirection: "column",
@@ -128,9 +129,10 @@ const useStyles = makeStyles({
   },
   editorLayout: {
     boxSizing: "border-box",
-    marginLeft: "30px",
     display: "flex",
     alignItems:'center',
+    width:'100%',
+    padding:'0 30px 0',
   },
   inputStyle: {
     boxSizing: "border-box",
