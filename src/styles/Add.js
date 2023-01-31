@@ -125,14 +125,14 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     // height: "41px",
-    padding:'11.5px 0'
+    padding: "11.5px 0",
   },
   editorLayout: {
     boxSizing: "border-box",
     display: "flex",
-    alignItems:'center',
-    width:'100%',
-    padding:'0 30px 0',
+    alignItems: "center",
+    width: "100%",
+    padding: "0 30px 0",
   },
   inputStyle: {
     boxSizing: "border-box",
@@ -307,7 +307,7 @@ const useStyles = makeStyles({
   },
   deleteBtn: {
     boxSizing: "border-box",
-    backgroundColor: "#fce8ed",
+    backgroundColor: "transparent",
     border: "none",
     fontSize: "14px",
     lineHeight: "150%",
@@ -317,6 +317,7 @@ const useStyles = makeStyles({
     borderRadius: "8px",
     height: "36px",
     wordBreak: "keep-all",
+    border: `1px solid ${COLORS.COLOR.WRANING}`,
   },
   filterInput: {
     border: "1px solid #D1D1D1",
