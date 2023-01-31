@@ -5,7 +5,7 @@ import "~/styles/Toggle.css";
 import useStyles from "~/styles/Add";
 import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
-import { g } from "~/util/global"
+import { dateFormat, g } from "~/util/global"
 
 const EditDetailAccount = ({ user }) => {
   const classes = useStyles();
@@ -201,7 +201,7 @@ const EditDetailAccount = ({ user }) => {
             <th className={classes.leftLayout}>
               <label className={classes.leftText}>등록일</label>
             </th>
-            <td className={classes.fixedLayout}>{userInfo.createdAt}</td>
+            <td className={classes.fixedLayout}>{dateFormat(userInfo.createdAt)}</td>
           </tr>
         </tbody>
       </table>
