@@ -38,7 +38,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     paddingLeft: "30px",
     borderRight: `1px solid ${COLORS.STORKE.CONTENTS2}`,
-    backgroundColor: "#FFF8F1",
+    backgroundColor: "#EBF0FF",
   },
   leftText: {
     wordBreak: "keep-all",
