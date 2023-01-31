@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { dateFormat } from "~/util/global";
 import "~/styles/Toggle.css";
@@ -9,7 +9,9 @@ import { g } from "~/util/global"
 
 const AppDetailVer = () => {
   const classes = useStyles();
-  const user = useLocation().state;
+  // const user = useLocation().state;
+  const version = useLocation().state;
+  const params = useParams();
   const navigate = useNavigate();
   const [fetchData, setFetchData] = useState([]);
 
@@ -18,12 +20,12 @@ const AppDetailVer = () => {
   };
   const onClickEdit = () => {
     // EditAppVer.js
-    navigate("/service/app_version/details/edit", { state: user });
+    navigate(`/service/app_version/details/${params.id}/edit`, { state: version });
   };
 
   useEffect(() => {
     axios
-      .get(`${g.base_url}api/version/${user.version_idx}`, {
+      .get(`${g.base_url}api/version/${params.id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },

@@ -78,8 +78,10 @@ const AppVersion = () => {
     navigate("/service/app_version/add");
   };
 
-  const onClickTarget = (user) => {
-    navigate("/service/app_version/details", { state: user });
+  const onClickTarget = (version) => {
+    // DetailsAppVer.js
+    // console.log(version.version_idx)
+    navigate(`/service/app_version/details/${version.version_idx}`, { state: version });
   };
 
   console.log(fetchData);
