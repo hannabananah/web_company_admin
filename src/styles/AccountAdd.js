@@ -10,7 +10,6 @@ const useStyles = makeStyles({
   },
   adminTableStyle: {
     width: "100%",
-    // marginTop: "70px",
     borderCollapse: "separate",
     borderSpacing: "0px",
     backgroundColor: COLORS.COLOR.WHITE,
