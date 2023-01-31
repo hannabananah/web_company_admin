@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
-import EditAppDetail from "~/components/EditAppDetail";
+import EditAppVerDetail from "~/components/EditAppVerDetail";
 
 const EditAppVer = () => {
   const user = useLocation().state;
-  return <EditAppDetail user={user} />;
+  return <EditAppVerDetail user={user} />;
 };
 export default EditAppVer;

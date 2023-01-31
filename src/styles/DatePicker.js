@@ -27,6 +27,7 @@ export const datepickerSX = {
     color: COLORS.COLOR.BLACK,
     fontSize: "14px",
     height: "100%",
+    padding: "11.5px 0",
   },
   "& .MuiInputAdornment-root.MuiInputAdornment-positionEnd": {
     position: "absolute",
@@ -39,7 +40,6 @@ export const datepickerSX = {
     maxHeight: "100%",
   },
   "& .MuiIconButton-edgeEnd.MuiIconButton-sizeMedium": {
-    // background:'teal',
     borderRadius: "0",
     width: "100%",
     padding: "0",

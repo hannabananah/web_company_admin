@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/AppVersionAdd";
 import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 import { g } from "~/util/global"

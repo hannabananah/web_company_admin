@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/AppVersionEdit";
 import { SaveConfirmModal, UptConfirmModal } from "~/components/Modal";
 import TableHeader from "~/components/TableHeader";
 import { dateFormat, g } from "~/util/global"
 
-const EditDetailMyAccount = ({ user }) => {
+const EditAppVerDetail = ({ user }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -233,4 +233,4 @@ const EditDetailMyAccount = ({ user }) => {
     </figure>
   );
 };
-export default EditDetailMyAccount;
+export default EditAppVerDetail;
