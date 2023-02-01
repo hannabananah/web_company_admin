@@ -9,12 +9,9 @@ const BreadCrumbs = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const currentPathArr = location.pathname.split('/').filter((item)=>{return item != ''})
-    console.log(' currentPathArr---------->>>>>', currentPathArr)
-
-
+  // crumb 누르고 새로고침 하면 state 사라짐..
+  // version_idx 는 useParams 에 저장된 값을 사용해야 함..
   const version_idx = location?.state?.version_idx;
-  // const version_idx = location?.state?.version_idx ? location?.state?.version_idx : currentPathArr[currentPathArr.length - 1];
   // console.log('version_idx ---------->>>>>', version_idx)
 
   const pathMap = {};
@@ -26,48 +23,7 @@ const BreadCrumbs = () => {
   })
   console.log('targetObj --------> ', targetObj)
 
-  // targetObj.map((item) => {
-  //   const pathArr = [];
-  //   const titleArr = [];
-
-  //   //일단 무조건 path키가 있으니까 넣어줌
-  //   pathArr.push(item.path);
-  //   titleArr.push(item.title);
-
-  //   if (item.subMenu) {
-  //     let itemsMenu;
-  //     itemsMenu = item.subMenu;
-
-  //     // 서브메뉴가 있으면 일단 path를 다 넣어야 함.
-  //     for (let i = 0; i < itemsMenu.length; i++) {
-  //       pathArr.push(itemsMenu[i].path);
-  //       titleArr.push(item.subMenu[i].title);
-  //     }
-
-  //     const currPath = location.pathname.split("/").filter((item) => {
-  //       return item != "";
-  //     });
-
-  //     for (let i = 0; i < currPath.length - 1; i++) {
-  //       itemsMenu.filter((item, index) => {
-  //         if (item.subMenu) {
-  //           itemsMenu = item.subMenu;
-    
-  //           for (let i=0; i<itemsMenu.length; i++) {
-  //             pathArr.push(itemsMenu[i].path)
-  //             titleArr.push(item.subMenu[i].title)
-  //           }
-  //         }
-  //       });
-  //       // console.log(`itemsMenu ${i}번째 출력 array ${itemsMenu.length}개 나와야함 --- >> `, itemsMenu)
-  //     }
-  //   } // if subMenu
-
-  //   for (let i = 0; i < pathArr.length; i++) {
-  //     pathMap[pathArr[i]] = titleArr[i];
-  //   }
-  // })
-
+// ========================== pathMap object ============================
   const pathArr = [];
   const titleArr = [];
 
@@ -94,7 +50,6 @@ const BreadCrumbs = () => {
   targetObj.map((item) => {
     pathArr.push(item.path);
     titleArr.push(item.title);
-
     hasSubMenu(item)
 
     for (let i = 0; i < pathArr.length; i++) {
@@ -102,68 +57,8 @@ const BreadCrumbs = () => {
     }
   })
   // console.log('pathMap___________',pathMap)
-
-
- 
+// ======================================================================
   const newPathObj = [];
-  // targetObj.map((item)=>{
-  //   newPathObj.push(
-  //     {
-  //       path: item.path,
-  //       title: item.title,
-  //       linkTo: item.linkTo 
-  //     }
-  //   )
-
-  //   if (item.subMenu) {    
-  //     let subMenuItems
-  //     subMenuItems = item.subMenu
-
-  //     // 서브메뉴가 있으면 일단 path를 다 넣어야 함.    
-  //     for (let i=0; i< subMenuItems.length; i++) {
-  //       newPathObj.push(
-  //         {
-  //           path: subMenuItems[i].path,
-  //           title: item.subMenu[i].title,
-  //           linkTo: item.subMenu[i].linkTo
-  //         }
-  //       )
-  //     }
-  //     const currPath = location.pathname.split('/')
-  //       .filter((item)=>{return item !=''})
-
-  //     for (let i=0; i<currPath.length-1; i++){
-  //       subMenuItems.filter((item,index)=>{
-  //         if (item.subMenu) {
-  //           subMenuItems = item.subMenu;
-    
-  //           for (let i=0; i<subMenuItems.length; i++) {
-  //             newPathObj.push(
-  //               {
-  //                 path: subMenuItems[i].path,
-  //                 title: item.subMenu[i].title,
-  //                 linkTo: item.subMenu[i].linkTo
-  //               }
-  //             )
-  //           }
-  //         }
-  //       })
-  //       // console.log(`subMenuItems ${i}번째 출력 array ${subMenuItems.length}개 나와야함 --- >> `, subMenuItems)
-  //     }
-  //   } // if subMenu
-  // })
- 
-  
-
-  // var i = 0;
-  // while (i < item.subMenu.length) {
-  //   if (i > item.subMenu.length) {
-  //     break;
-  //   }
-  //   console.log(i);
-  //   i++;
-  // }
-
   targetObj.map((item,index)=>{
     newPathObj.push(
       {
@@ -343,10 +238,7 @@ const BreadCrumbs = () => {
       // }
     } // if subMenu
   })
-
-
-
-// =========================완료=============================
+// ========================== path array object ============================
   // let arr = [];
   // const hasSubMenu = (item) => {
   //   if (item.subMenu) {
@@ -376,9 +268,7 @@ const BreadCrumbs = () => {
   //   hasSubMenu(item)
   // })
   // console.log('__arr___________',arr)
-// =========================완료=============================
-
-
+// =========================================================================
 
   const crumbs = location.pathname
     .split("/")
@@ -386,18 +276,17 @@ const BreadCrumbs = () => {
     .map((crumb) => {
       currentLink.push(`/${crumb}`);
 
-    // const obj = newPathObj.filter((item)=>{
-    //   return item.path == currentLink.join('')
-    // })
     // const arrObj = arr.filter((item,index)=>{
     //   return item.path == currentLink.join('')
     // })
 
     // console.log('currentLink_______________________',currentLink)
+    // console.log('currentLink.join("")_______________________',currentLink.join(''))
     // console.log('newPathObj_______________________',newPathObj)
     // console.log('obj_______________________',obj)
     // console.log('arrObj_______________________',arrObj)
-    // console.log('currentLink.join("")_______________________',currentLink.join(''))
+    // console.log('pathMap --->',pathMap)
+    // console.log(Object.keys(pathMap))
 
     // return (
     //   <React.Fragment key={crumb}>
@@ -412,12 +301,6 @@ const BreadCrumbs = () => {
     //   </React.Fragment>
     // )
     
-
-    console.log('currentLink --->',currentLink)
-    console.log(`currentLink.join('') --->`,currentLink.join(''))
-    console.log('pathMap --->',pathMap)
-    // console.log(Object.keys(pathMap))
- 
     return (
       <React.Fragment key={crumb}>
         {pathMap[currentLink.join('')] && <img src={images.icons.ARROWRIGHT} className={classes.arrowRightImg} alt="arrow right" />}
