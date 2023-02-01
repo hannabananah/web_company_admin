@@ -31,11 +31,11 @@ const pathsArr = (idx) => {
   return paths;
 };
 
-const RenderIcons = ({ title }) => {
+const RenderIcons = ({item}) => {
   const classes = useStyles();
   let imgSrc;
 
-  switch (title) {
+  switch (item.title) {
     case "관리자 설정":
       imgSrc = images.icons.SETTINGS_ADMIN;
       break;
@@ -57,7 +57,9 @@ const RenderIcons = ({ title }) => {
   }
   return (
     <div className={classes.iconsWrap}>
-      <img src={imgSrc} alt={title} className={classes.iconImg} />
+      <img src={imgSrc} alt={item.title} className={classes.iconImg} 
+        style={{filter: window.location.pathname.startsWith(item.path) && item.activeIconColor,}}
+      />
     </div>
   );
 };
@@ -91,7 +93,20 @@ const SideBar = () => {
               : classes.subMenuList
           }
         >
-          <Link to={item.path} onClick={()=>onClickMenuItems(item.path)}>{item.title}</Link>
+          <Link to={item.path} onClick={()=>onClickMenuItems(item.path)}
+            style={{
+              color: window.location.pathname.startsWith(item.path) && 
+                item.activeTextColor
+            }}
+          >
+            {item.title}
+          </Link>
+          <span style={{
+            background: window.location.pathname.startsWith(item.path) && 
+              item.activeBarColor,  
+            }}
+          className={classes.activeBar}
+          ></span>
         </li>
       );
     });
@@ -126,7 +141,24 @@ const SideBar = () => {
   };
 
   // 투뎁스 메뉴 클릭 ( details 눌렀을 때 )
-  const onToggle = (e, path) => {
+  const onToggle = (e, item) => {
+    if (e.target.open) {
+      e.target.style.background = item.activeSubBg;
+      e.target.firstChild.style.background = item.activeMainBg;
+      e.target.firstChild.style.color = item.activeTextColor;
+      e.target.firstChild.firstChild.firstChild.style.filter = item.activeIconColor;
+
+      document.querySelectorAll('details[open]').forEach((i)=>{
+        if(e.target != i) /* 현재 열려있는 요소가 아니면 */
+          i.removeAttribute('open'); /* 열림 속성 삭제 */
+      })
+
+    } else {
+      e.target.style.background = null;
+      e.target.firstChild.style.background = null;
+      e.target.firstChild.style.color = null;
+      e.target.firstChild.firstChild.firstChild.style.filter = null;
+    }
   }
 
   // 원뎁스 메뉴 클릭시 현재 details 열려 있다면 접기
@@ -158,7 +190,7 @@ const SideBar = () => {
                       <details
                         key={index}
                         className={`${classes.details} details`}
-                        onToggle={onToggle}
+                        onToggle={(e)=>onToggle(e, item)}
                         // open={window.location.pathname.startsWith(item.path)}
                       >
                         <summary
@@ -172,7 +204,7 @@ const SideBar = () => {
                           //   window.location.href = item.subMenu[0].path
                           // }}
                         >
-                          <RenderIcons title={item.title} />
+                          <RenderIcons item={item} />
                           {item.title}
                           <img
                             src={images.icons.EXPAND_MORE}
@@ -196,7 +228,7 @@ const SideBar = () => {
                         }
                       >
                         <Link to={item.path} onClick={onClickOneDepthMenu}>
-                          <RenderIcons title={item.title} />{item.title}
+                          <RenderIcons item={item} />{item.title}
                         </Link>
                       </div>
                     );
