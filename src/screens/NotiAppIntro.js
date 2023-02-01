@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Pagination from "react-js-pagination";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/ScreenStyle";
 import TableHeader from "~/components/TableHeader";
 import NoticeIntroTable from "~/components/table/NoticeIntroTable";
 import FilterSection from "~/components/FilterSection";
@@ -180,8 +180,8 @@ const NotiAppIntro = () => {
         fetchData={fetchData}
         isLoaded={isLoaded}
         openModal={openModal}
-        totalUser={totalUser} 
-        currentPage={currentPage} 
+        totalUser={totalUser}
+        currentPage={currentPage}
         postsPerPage={postsPerPage}
       />
       <Pagination

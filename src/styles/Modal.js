@@ -1,0 +1,52 @@
+import { makeStyles } from "@mui/styles";
+import { COLORS } from "~/assets/colors/colors";
+
+const useStyles = makeStyles({
+  backBtn: {
+    boxSizing: "border-box",
+    backgroundColor: "transparent",
+    fontSize: "14px",
+    cursor: "pointer",
+    color: COLORS.COLOR.BLACK,
+    borderRadius: "8px",
+    width: "120px",
+    height: "36px",
+    wordBreak: "keep-all",
+    border: `1px solid ${COLORS.COLOR.BLACK}`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  saveBtn: {
+    boxSizing: "border-box",
+    backgroundColor: "transparent",
+    border: "none",
+    fontSize: "14px",
+    lineHeight: "150%",
+    cursor: "pointer",
+    color: COLORS.COLOR.ANY_PURPLE,
+    borderRadius: "8px",
+    width: "120px",
+    height: "36px",
+    wordBreak: "keep-all",
+    border: `1px solid ${COLORS.COLOR.ANY_PURPLE}`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  deleteBtn: {
+    boxSizing: "border-box",
+    backgroundColor: "transparent",
+    border: "none",
+    fontSize: "14px",
+    lineHeight: "150%",
+    cursor: "pointer",
+    color: COLORS.COLOR.WRANING,
+    padding: "7.5px 47px",
+    borderRadius: "8px",
+    height: "36px",
+    wordBreak: "keep-all",
+    border: `1px solid ${COLORS.COLOR.WRANING}`,
+  },
+});
+export default useStyles;

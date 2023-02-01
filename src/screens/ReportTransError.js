@@ -6,7 +6,7 @@ import axios from "axios";
 
 import { g } from "~/util/global";
 import "~/styles/pagination.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/ScreenStyle";
 
 import ReportTransErrorTable from "~/components/table/ReportTransErrorTable";
 import SelectBox from "~/components/SelectBox";
