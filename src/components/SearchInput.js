@@ -18,5 +18,8 @@ const useStyles = makeStyles({
     width: "100%",
     maxWidth: "170px",
     boxSizing: "border-box",
+    "&:focus": {
+      outline: "none",
+    },
   },
 });
