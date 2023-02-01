@@ -69,7 +69,7 @@ const useStyles = makeStyles({
     padding: "15px 36px",
     background: "#EFEFFE",
     cursor: "pointer",
-    color: "#7C4DFF",
+    // color: "#7C4DFF",
     fontWeight: "bold",
     display: "flex",
     alignItems: "center",
@@ -120,7 +120,7 @@ const useStyles = makeStyles({
       bottom: "0",
     },
     "& a img": {
-      filter: 'invert(49%) sepia(74%) saturate(7493%) hue-rotate(245deg) brightness(105%) contrast(101%)',
+      // filter: 'invert(49%) sepia(74%) saturate(7493%) hue-rotate(245deg) brightness(105%) contrast(101%)',
     }
   },
 
@@ -133,7 +133,7 @@ const useStyles = makeStyles({
     "& a": {
       display:'block',
       textDecoration:'none',
-      color: "#47485B",
+      color: "#595A6C",
       padding: "14px 0 14px 84px",
     }
   },
@@ -144,20 +144,20 @@ const useStyles = makeStyles({
     fontSize: "13px",
     fontWeight:'bold',
     position: "relative",
-    "&:after": {
-      content: `""`,
-      width: "6px",
-      height: "100%",
-      background: "#7C4DFF",
-      position: "absolute",
-      right: "0",
-      top: "0",
-      bottom: "0",
-    },
+    // "&:after": {
+    //   content: `""`,
+    //   width: "6px",
+    //   height: "100%",
+    //   background: "#7C4DFF",
+    //   position: "absolute",
+    //   right: "0",
+    //   top: "0",
+    //   bottom: "0",
+    // },
     "& a": {
       display:'block',
       textDecoration:'none',
-      color: "#7C4DFF",
+      // color: "#7C4DFF",
       padding: "14px 0 14px 84px",
     },
   },
@@ -181,14 +181,14 @@ const useStyles = makeStyles({
     //   content: `" +"`,
     // },
     "&[open]": {
-      background:'#F8F8FF',
+      // background:'#F8F8FF',
       borderBottom:'1px solid #EFEFFE'
     },
     "&[open] summary": {
-      background:'#EFEFFE',
-      color: "#7C4DFF",
+      // background:'#EFEFFE',
+      // color: "#7C4DFF",
       "& img": {
-        filter: 'invert(49%) sepia(74%) saturate(7493%) hue-rotate(245deg) brightness(105%) contrast(101%)',
+        // filter: 'invert(49%) sepia(74%) saturate(7493%) hue-rotate(245deg) brightness(105%) contrast(101%)',
       }
     },
 
@@ -219,6 +219,13 @@ const useStyles = makeStyles({
     width: "20px",
     verticalAlign: "top",
   },
+  activeBar:{
+    width: "6px",
+    position: "absolute",
+    right: "0",
+    top: "0",
+    bottom: "0",
+  }
 });
 
 export default useStyles;
