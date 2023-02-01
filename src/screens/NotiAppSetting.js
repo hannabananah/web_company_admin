@@ -4,7 +4,7 @@ import Pagination from "react-js-pagination";
 import axios from "axios";
 import { g } from "~/util/global";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/ScreenStyle";
 
 import NoticeSettingTable from "~/components/table/NoticeSettingTable";
 import TableHeader from "~/components/TableHeader";
@@ -131,8 +131,8 @@ const NotiAppSetting = () => {
         fetchData={fetchData}
         isLoaded={isLoaded}
         onClickTarget={onClickTarget}
-        totalUser={totalUser} 
-        currentPage={currentPage} 
+        totalUser={totalUser}
+        currentPage={currentPage}
         postsPerPage={postsPerPage}
       />
       <Pagination
