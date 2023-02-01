@@ -12,6 +12,7 @@ const AppDetailVer = () => {
   // const user = useLocation().state;
   const version = useLocation().state;
   const params = useParams();
+  console.log(params)
   const navigate = useNavigate();
   const [fetchData, setFetchData] = useState([]);
 
@@ -20,12 +21,12 @@ const AppDetailVer = () => {
   };
   const onClickEdit = () => {
     // EditAppVer.js
-    navigate(`/service/app_version/details/${params.id}/edit`, { state: version });
+    navigate(`/service/app_version/details/${params.version_idx}/edit`, { state: version });
   };
 
   useEffect(() => {
     axios
-      .get(`${g.base_url}api/version/${params.id}`, {
+      .get(`${g.base_url}api/version/${params.version_idx}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
