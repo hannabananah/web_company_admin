@@ -18,6 +18,7 @@
     "apexcharts": "3.36.3",
     "axios": "^1.2.2",
     "chart.js": "4.2.0",
+    "cross-env": "^7.0.3",
     "date-fns-jalali": "2.29.3-0",
     "dayjs": "1.11.7",
     "draft-convert": "^2.1.13",
@@ -40,7 +41,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "set \"GENERATE_SOURCEMAP=false\" && craco build",
     "test": "craco test",
     "eject": "craco eject"
   },
