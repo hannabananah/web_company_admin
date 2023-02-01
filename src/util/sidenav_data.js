@@ -75,12 +75,13 @@ export const sidenav_data = [
         subMenu: [
           {
             title: "상세",
-            path: "/service/app_version/details",
-            // linkTo: false,
+            path: "/service/app_version/details/:version_idx",
+            linkTo: false,
             subMenu: [
               {
                 title: "수정",
-                path: "/service/app_version/details/edit",
+                path: "/service/app_version/details/:version_idx/edit",
+                linkTo: false,
               },
             ],
           },

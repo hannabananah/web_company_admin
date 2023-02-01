@@ -11,6 +11,7 @@ const EditAppVerDetail = ({ version }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const params =  useParams();
+  console.log('params ___________',params)
 
   const onChangeRadio = (e) => {
     const { name, value } = e.target;
@@ -60,7 +61,7 @@ const EditAppVerDetail = ({ version }) => {
 
   useEffect(() => {
     axios
-      .get(`${g.base_url}api/version/${params.id}`, {
+      .get(`${g.base_url}api/version/${params.version_idx}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
