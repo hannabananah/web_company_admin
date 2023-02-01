@@ -37,5 +37,8 @@ export const useStyles = makeStyles({
     width: "100%",
     maxWidth: "220px",
     boxSizing: "border-box",
+    "&:focus": {
+      outline: "none",
+    },
   },
 });
