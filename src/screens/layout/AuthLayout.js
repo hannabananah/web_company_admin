@@ -29,13 +29,16 @@ const AuthLayout = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  // let pathname = window.location.pathname;
 
   useEffect(() => {
     // if (!Cookies.get("id")) {
-    // if ( !localStorage.getItem("token") && path.includes(pathname) ) { // 토큰 없으면
-    //   navigate("/", { state: pathname });
-    // }
+    if ( !localStorage.getItem("access_token") ) { // 토큰 없으면
+      navigate("/", { state: pathname });
+
+    } else {  // 토큰 있으면
+
+      
+    }
 
     if (pathname == "/index.html" || pathname == "/index.html/") {
       navigate("/");

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import images from "~/assets/js/Images";
 import useStyles from "~/styles/Login";
@@ -10,6 +10,7 @@ const Login = () => {
   const [id, setId] = useState("admin");
   const [password, setPassword] = useState("11111111");
   const navigate = useNavigate();
+  const state = useLocation().state;
   const [invalid, setInvalid] = useState(false);
 
   const onChangeId = (e) => {
@@ -20,7 +21,6 @@ const Login = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    navigate("/dashboard");
 
     axios
       .post(`${g.base_url}api/auth/login`, { id, password })
@@ -30,7 +30,11 @@ const Login = () => {
           localStorage.setItem("id", result.data.id);
           localStorage.setItem("adminKey", result.data.adminKey);
           localStorage.setItem("access_token", result.data.access_token);
-          navigate("/dashboard");
+          if (state) {
+            navigate(state);
+          } else {
+            navigate("/dashboard");
+          }
         } else {
           setInvalid(true);
         }
