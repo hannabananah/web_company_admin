@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/ScreenStyle";
 import axios from "axios";
 import TableHeader from "~/components/TableHeader";
 import FilterSection from "~/components/FilterSection";
@@ -88,16 +88,13 @@ const SubjectToReport = () => {
     changePage(1);
   }, []);
 
-
-
-
   // 계정 휴면
   const onClickDormancy = (user) => {
-    setSaveConfirm(true)
-    setTargetUser(user)
+    setSaveConfirm(true);
+    setTargetUser(user);
     // axios
     //   .post(
-    //     `${g.base_url}api/warning/update`, 
+    //     `${g.base_url}api/warning/update`,
     //     {
     //       warning_his_seq : user.warning_his_seq,
     //       state: 1
@@ -111,18 +108,18 @@ const SubjectToReport = () => {
     //   .then(({ data }) => {
     //     console.log(data);
     //   })
-  }
+  };
 
   const handleSubmit = () => {
     setSaveConfirm(false);
-    console.log('targetUser ------>',targetUser)
+    console.log("targetUser ------>", targetUser);
 
     axios
       .post(
-        `${g.base_url}api/warning/update`, 
+        `${g.base_url}api/warning/update`,
         {
-          warning_his_seq : targetUser.warning_his_seq,
-          state: 1
+          warning_his_seq: targetUser.warning_his_seq,
+          state: 1,
         },
         {
           headers: {
@@ -133,7 +130,7 @@ const SubjectToReport = () => {
       .then(({ data }) => {
         console.log(data);
         openModal();
-      })
+      });
   };
 
   const openModal = () => {
@@ -141,7 +138,7 @@ const SubjectToReport = () => {
   };
   const closeModal = () => {
     setModalOpen(false);
-    setTargetUser()
+    setTargetUser();
   };
 
   return (
@@ -175,12 +172,12 @@ const SubjectToReport = () => {
         }
       />
 
-      <ReportAccTable 
-        fetchData={fetchData} 
-        isLoaded={isLoaded} 
-        totalUser={totalUser} 
-        currentPage={currentPage} 
-        postsPerPage={postsPerPage} 
+      <ReportAccTable
+        fetchData={fetchData}
+        isLoaded={isLoaded}
+        totalUser={totalUser}
+        currentPage={currentPage}
+        postsPerPage={postsPerPage}
         onClickDormancy={onClickDormancy}
       />
 
@@ -196,14 +193,21 @@ const SubjectToReport = () => {
 
       <SaveConfirmModal
         open={saveConfirm}
-        onClickCancel={() => {setSaveConfirm(false); setTargetUser();}}
+        onClickCancel={() => {
+          setSaveConfirm(false);
+          setTargetUser();
+        }}
         onClickConfirm={handleSubmit}
         header="휴면계정"
       >
         <main>휴면 계정 처리하시겠습니까?</main>
       </SaveConfirmModal>
 
-      <UptConfirmModal open={modalOpen} close={closeModal} header="휴면 처리 완료">
+      <UptConfirmModal
+        open={modalOpen}
+        close={closeModal}
+        header="휴면 처리 완료"
+      >
         <main>휴면 계정 처리 되었습니다.</main>
       </UptConfirmModal>
     </div>

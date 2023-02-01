@@ -4,7 +4,7 @@ import Pagination from "react-js-pagination";
 import axios from "axios";
 import { g } from "~/util/global";
 import "~/styles/Toggle.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/ScreenStyle";
 import DetailsAppVer from "~/screens/DetailsAppVer";
 import AddAppVersion from "~/components/AddAppVersion";
 import AppVersionTable from "~/components/table/AppVersionTable";
@@ -81,7 +81,9 @@ const AppVersion = () => {
   const onClickTarget = (version) => {
     // DetailsAppVer.js
     // console.log(version.version_idx)
-    navigate(`/service/app_version/details/${version.version_idx}`, { state: version });
+    navigate(`/service/app_version/details/${version.version_idx}`, {
+      state: version,
+    });
   };
 
   console.log(fetchData);
