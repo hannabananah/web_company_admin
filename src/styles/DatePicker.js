@@ -15,7 +15,7 @@ export const useStyles = makeStyles({
 });
 
 export const datepickerSX = {
-  "&.MuiFormControl-root.MuiTextField-root": {
+  "& .MuiFormControl-root.MuiTextField-root": {
     height: "100%",
     background: "#fff",
   },
