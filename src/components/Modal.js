@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import images from "~/assets/js/Images";
 import "~/styles/Modal.css";
-import useStyles from "~/styles/Add";
+import useStyles from "~/styles/Modal";
 import { g } from "~/util/global"
 
 export const DeleteModal = (props) => {
