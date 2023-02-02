@@ -101,10 +101,12 @@ const useStyles = makeStyles({
     position: "relative",
     cursor: "pointer",
     fontWeight:'bold',
-    background: "#EFEFFE",
+    // background: "#EFEFFE",
+    background: "#eee",
     "& a": {
       padding: "15px 36px",
-      color: "#7C4DFF",
+      // color: "#7C4DFF",
+      color: "#555",
       display:'flex',
       alignItems:'center',
       textDecoration:'none'
@@ -113,7 +115,7 @@ const useStyles = makeStyles({
       content: `""`,
       width: "6px",
       height: "100%",
-      background: "#7C4DFF",
+      // background: "#7C4DFF",
       position: "absolute",
       right: "0",
       top: "0",
