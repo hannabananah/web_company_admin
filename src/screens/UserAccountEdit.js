@@ -6,29 +6,35 @@ import "~/styles/Toggle.css";
 import axios from "axios";
 import { UptConfirmModal, SaveConfirmModal } from "~/components/Modal";
 import { g } from "~/util/global";
+import { validateMsgMap } from "~/util/utils";
+import images from "~/assets/js/Images";
 
 const UserAccountEdit = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
   const user = useLocation().state.state;
-
   console.log("user _________", user);
-
   // 모달
   const [saveConfirm, setSaveConfirm] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const [userInfo, setUserInfo] = useState({});
-  // const [userInfo, setUserInfo] = useState({
-  //   grade:user.grade,
-  //   pwd:user.pwd,
-  //   chkPwd: user.chkPwd,
-  //   phone: user.phone,
-  //   email: user.email,
-  //   allow_remote_ip:user.allow_remote_ip,
-  //   use_yn: user.use_yn,
-  // });
+  const [validate, setValidate] = useState({
+    isSubmit: false,
+    gradeWorning:false,
+    pwdWorning:false,
+    chkPwdWorning:false,
+    phoneWorning:false,
+    emailWorning:false,
+    allow_remote_ipWorning:false,
+    gradeValidateMsg:'',
+    pwdValidateMsg:'',
+    chkPwdValidateMsg:'',
+    phoneValidateMsg:'',
+    emailValidateMsg:'',
+    allow_remote_ipValidateMsg:'',
+  });
 
   const onChange = (e) => {
     const { name, value, checked } = e.target;
@@ -41,8 +47,15 @@ const UserAccountEdit = () => {
       // [name]: name == "use_yn" ? userInfo.use_yn : value, //e.target의 name과 value이다.
       [name]: name == "use_yn" ? (checked ? "Y" : "N") : value, //e.target의 name과 value이다.
     };
-    console.log(newInfo);
     setUserInfo(newInfo);
+
+    setValidate((pre)=> {
+      return {
+        ...pre,
+        [`${name}Worning`]: validateMsgMap[`${name}_empty`] == pre[`${name}ValidateMsg`] ? false : pre[`${name}Worning`],
+        [`${name}ValidateMsg`]: validateMsgMap[`${name}_empty`] == pre[`${name}ValidateMsg`] ? '' : pre[`${name}ValidateMsg`],
+      }
+    })
   };
 
   // 유저 정보 불러오기
@@ -67,37 +80,24 @@ const UserAccountEdit = () => {
     // delete userInfo["password"];
     setSaveConfirm(false);
 
-    if (userInfo.pwd != "") {
-      if (userInfo.pwd != userInfo.chkPwd) {
-        alert("비밀번호 확인을 해주세요.");
-        return false;
-      } else {
-        const newInfo = {
+    axios
+      .post(
+        `${g.base_url}api/admin/update`,
+        {
           ...userInfo,
-          password: userInfo.pwd,
-        };
-        setUserInfo(newInfo);
-
-        axios
-          .post(
-            `${g.base_url}api/admin/update`,
-            {
-              ...userInfo,
-            },
-            {
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("access_token"),
-              },
-            }
-          )
-          .then(({ data }) => {
-            console.log(data);
-            openModal();
-            // window.location.reload();
-          });
-      }
-    }
-
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+        openModal();
+        // window.location.reload();
+      });
+   
     // delete userInfo['password'];
     // delete userInfo['chkPwd'];
   };
@@ -116,6 +116,111 @@ const UserAccountEdit = () => {
     setModalOpen(false);
     navigate(-1);
   };
+
+  const onConfirm = () => {
+    // 비밀번호는 숫자,영문자,특수문자 조합 6자리 이상
+    const regPwd = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+
+    setValidate((pre)=>{return {...pre, isSubmit:true}})
+
+    if (!userInfo.grade) {
+      setValidate((pre)=>{
+        return {
+          ...pre,
+          gradeWorning:true, 
+          gradeValidateMsg:validateMsgMap['grade_empty'] 
+        }
+      })
+      return false;
+    }
+    if (!userInfo.phone) {
+      setValidate((pre)=>{
+        return {
+          ...pre,
+          phoneWorning:true, 
+          phoneValidateMsg:validateMsgMap['phone_empty'] 
+        }
+      })
+      return false;
+    }
+    if (!userInfo.email) {
+      setValidate((pre)=>{
+        return {
+          ...pre,
+          emailWorning:true, 
+          emailValidateMsg:validateMsgMap['email_empty'] 
+        }
+      })
+      return false;
+    }
+    if (!userInfo.allow_remote_ip) {
+      setValidate((pre)=>{
+        return {
+          ...pre,
+          allow_remote_ipWorning:true, 
+          allow_remote_ipValidateMsg:validateMsgMap['allow_remote_ip_empty'] 
+        }
+      })
+      return false;
+    }
+
+    if (userInfo.pwd) {
+      // console.log('비밀번호가 빈칸이 아닐때')
+      if (userInfo.pwd != userInfo.chkPwd) {
+        setValidate((pre)=>{
+          return {
+            ...pre,
+            chkPwdWorning:true,
+            chkPwdValidateMsg:validateMsgMap['chkPwd_inValid'],
+          }
+        })
+        return false;
+      } else {
+        if (!regPwd.test(userInfo.pwd)) {
+          setValidate((pre)=>{
+            return {
+              ...pre,
+              pwdWorning:true, 
+              chkPwdWorning:false, 
+              pwdValidateMsg:validateMsgMap['pwd_inValid'] 
+            }
+          })
+          return false;
+        } else {
+          setValidate((pre)=>{
+            return {
+              ...pre,
+              pwdWorning:false, 
+              chkPwdWorning:false, 
+            }
+          })
+          // 비밀번호 변경을 시도했고 유효성 통과 했을 때.
+          setSaveConfirm(true);
+        }
+      }
+    } else {
+      // console.log('비밀번호가 빈칸일때')
+    
+      if ( !validate.pwdWorning
+        && !validate.chkPwdWorning
+        && !validate.gradeWorning
+        && !validate.phoneWorning
+        && !validate.emailWorning
+        && !validate.allow_remote_ipWorning ) 
+      setSaveConfirm(true);
+    }
+
+    // 유효성 통과시
+    // if ( validate.isSubmit
+    //   && !validate.pwdWorning
+    //   && !validate.chkPwdWorning
+    //   && !validate.gradeWorning
+    //   && !validate.phoneWorning
+    //   && !validate.emailWorning
+    //   && !validate.allow_remote_ipWorning ) 
+    //   setSaveConfirm(true);
+  }
+  console.log('validate ------>>> ',validate)
 
   return (
     <figure className={classes.editAccContainer}>
@@ -146,6 +251,16 @@ const UserAccountEdit = () => {
                 id="grade"
                 required
               />
+              {validate.isSubmit && validate.gradeWorning && 
+                <div className={classes.checkIconStyle}>
+                  <img src={images.icons.LOGIN_INFO}
+                    alt="오류 아이콘"
+                    className={classes.checkErrorIcon} />
+                  <span className={classes.checkErrorText}>
+                    {validate.gradeValidateMsg}
+                  </span>
+                </div>
+                }
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -163,6 +278,16 @@ const UserAccountEdit = () => {
                 id="password"
                 required
               />
+              {validate.isSubmit && validate.pwdWorning && 
+                <div className={classes.checkIconStyle}>
+                  <img src={images.icons.LOGIN_INFO}
+                    alt="오류 아이콘"
+                    className={classes.checkErrorIcon} />
+                  <span className={classes.checkErrorText}>
+                    {validate.pwdValidateMsg}
+                  </span>
+                </div>
+              }
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -179,6 +304,16 @@ const UserAccountEdit = () => {
                 id="chkPwd"
                 required
               />
+              {validate.isSubmit && validate.chkPwdWorning && 
+                <div className={classes.checkIconStyle}>
+                  <img src={images.icons.LOGIN_INFO}
+                    alt="오류 아이콘"
+                    className={classes.checkErrorIcon} />
+                  <span className={classes.checkErrorText}>
+                    {validate.chkPwdValidateMsg}
+                  </span>
+                </div>
+              }
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -196,6 +331,16 @@ const UserAccountEdit = () => {
                 maxLength="50"
                 required
               />
+              {validate.isSubmit && validate.phoneWorning && 
+                <div className={classes.checkIconStyle}>
+                  <img src={images.icons.LOGIN_INFO}
+                    alt="오류 아이콘"
+                    className={classes.checkErrorIcon} />
+                  <span className={classes.checkErrorText}>
+                    {validate.phoneValidateMsg}
+                  </span>
+                </div>
+              }
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -212,6 +357,16 @@ const UserAccountEdit = () => {
                 id="email"
                 required
               />
+              {validate.isSubmit && validate.emailWorning && 
+                <div className={classes.checkIconStyle}>
+                  <img src={images.icons.LOGIN_INFO}
+                    alt="오류 아이콘"
+                    className={classes.checkErrorIcon} />
+                  <span className={classes.checkErrorText}>
+                    {validate.emailValidateMsg}
+                  </span>
+                </div>
+              }
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -228,6 +383,16 @@ const UserAccountEdit = () => {
                 onChange={onChange}
                 required
               />
+              {validate.isSubmit && validate.allow_remote_ipWorning && 
+                <div className={classes.checkIconStyle}>
+                  <img src={images.icons.LOGIN_INFO}
+                    alt="오류 아이콘"
+                    className={classes.checkErrorIcon} />
+                  <span className={classes.checkErrorText}>
+                    {validate.allow_remote_ipValidateMsg}
+                  </span>
+                </div>
+              }
             </td>
           </tr>
           <tr className={classes.contentInput}>
@@ -271,7 +436,8 @@ const UserAccountEdit = () => {
         /> */}
         <button
           type="submit"
-          onClick={() => setSaveConfirm(true)}
+          // onClick={() => setSaveConfirm(true)}
+          onClick={onConfirm}
           className={classes.saveBtn}
         >
           저장
