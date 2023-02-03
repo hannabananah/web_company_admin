@@ -13,14 +13,16 @@ const validateMsgMap = {
   id_not_dbChek : '아이디 중복체크를 하세요.',
   id_exists: '동일한 아이디가 존재합니다.',
   id_valid: '사용가능한 아이디입니다.',
+  // pwd_valid: '사용가능한 비밀번호입니다.',
   id_inValid: '아이디는 영문, 숫자 조합 4자리 이상 30자 미만이어야 합니다.',
   grade_empty: '관리자 권한명을 입력해 주세요.',
   pwd_empty: '비밀번호를 입력해 주세요.',
-  pwd_chek_empty: '비밀번호 확인을 입력해 주세요.',
+  chkPwd_empty: '비밀번호 확인을 입력해 주세요.',
   pwd_inValid: '비밀번호는 숫자,영문자,특수문자 조합 6자리 이상이어야 합니다.',
+  chkPwd_inValid: '비밀번호 확인을 해주세요.',
   phone_empty: '휴대폰 번호를 입력해 주세요.',
   email_empty: '이메일을 입력해 주세요.',
-  ip_empty: 'IP를 입력해 주세요.',
+  allow_remote_ip_empty: 'IP를 입력해 주세요.',
 }
 
 const AddUserAccount = () => {
@@ -29,13 +31,13 @@ const AddUserAccount = () => {
   const [inactive, setInactive] = useState(false);
   const [doubleCheck, setDoubleCheck] = useState();
   const [pwdCheck, setPwdCheck] = useState(false);
-
   const [userInfo, setUserInfo] = useState({
     id: "",
     grade: "",
     pwd: "",
     chkPwd: "",
     password: "",
+    phone:'',
     phone1: "",
     phone2: "",
     phone3: "",
@@ -45,33 +47,27 @@ const AddUserAccount = () => {
 
     isSubmit: false,
     isIdDbChek:'',
+
     idWorning:'',
     gradeWorning:'',
     pwdWorning:'',
-    // pwdWorning:'',
+    chkPwdWorning:'',
     phoneWorning:'',
     emailWorning:'',
-    ipWorning:'',
+    allow_remote_ipWorning:'',
 
     idValidateMsg:'',
     gradeValidateMsg:'',
     pwdValidateMsg:'',
-
+    chkPwdValidateMsg:'',
     phoneValidateMsg:'',
     emailValidateMsg:'',
-    ipValidateMsg:'',
+    allow_remote_ipValidateMsg:'',
   });
-
-  console.log(
-    Object.values(validateMsgMap)
-  )
 
   const onChange = (e) => {
     const { name, value, checked } = e.target;
     console.log('onChange name : ',name);
-
-    
-    // console.log(checked);
 
     // const newInfo = {
     //   ...userInfo,
@@ -81,16 +77,12 @@ const AddUserAccount = () => {
     // setUserInfo(newInfo);
 
     setUserInfo((pre)=> {
-      console.log(pre[`${name}ValidateMsg`])
-
       return {
         ...pre,
         [name]: name == "use_yn" ? (checked ? "Y" : "N") : value, //e.target의 name과 value이다.
-        isIdDbChek: name == "id" && false,
-        
-        [`${name}Worning`]: name == "id" ? pre.idWorning : false,
+        isIdDbChek: name == "id" ? false : pre.isIdDbChek,
+        [`${name}Worning`]: validateMsgMap[`${name}_empty`] == pre[`${name}ValidateMsg`] ? false : pre[`${name}Worning`],
         [`${name}ValidateMsg`]: validateMsgMap[`${name}_empty`] == pre[`${name}ValidateMsg`] ? '' : pre[`${name}ValidateMsg`],
-        //  id_empty: '아이디를 입력하세요.',
        }
     });
   };
@@ -116,94 +108,174 @@ const AddUserAccount = () => {
     e.preventDefault();
     setSaveConfirm(false);
 
-    // if (userInfo.pwd != userInfo.chkPwd) {
-    //   setPwdCheck(true)
-    //   // setInvalid((pre) => {
-    //   //   return { ...pre, [invalid.state]:true, [invalid.type]:'password' };
-    //   // });
-    //   // alert("비밀번호 확인을 해주세요.");
-    //   return false;
-    // }
-    const newInfo = {
-      ...userInfo,
-      password: userInfo.pwd, //e.target의 name과 value이다.
-    };
-    setUserInfo(newInfo);
+    // const newInfo = {
+    //   ...userInfo,
+    //   password: userInfo.pwd, //e.target의 name과 value이다.
+    // };
+    // setUserInfo(newInfo);
 
-    // eslint-disable-next-line no-restricted-globals
-    // if (confirm("저장 하시겠습니까?")) {
-    // axios
-    //   .post(
-    //     `${g.base_url}api/admin/create`,
-    //     {
-    //       ...userInfo,
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: "Bearer " + localStorage.getItem("access_token"),
-    //       },
-    //     }
-    //   )
-    //   .then(({ data }) => {
-    //     console.log(data);
-    //     openModal();
-    //   });
-    // }
+    axios
+      .post(
+        `${g.base_url}api/admin/create`,
+        {
+          id: userInfo.id,
+          grade: userInfo.grade,
+          pwd: userInfo.pwd,
+          chkPwd: userInfo.chkPwd,
+          password: userInfo.pwd,
+          phone: userInfo.phone,
+          // phone1: userInfo."",
+          // phone2: userInfo."",
+          // phone3: userInfo."",
+          email: userInfo.email,
+          allow_remote_ip: userInfo.allow_remote_ip,
+          use_yn: userInfo.use_yn,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+        openModal();
+      });
   };
 
   const onConfirm = (e) => {
     e.preventDefault();
+    // 비밀번호는 숫자,영문자,특수문자 조합 6자리 이상
+    const regPwd = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
 
     // 아이디 중복체크 안했을시
     if (!userInfo.isIdDbChek) {
       setUserInfo((pre) => {
-        return { ...pre, isSubmit:true, idWorning:true, idValidateMsg:validateMsgMap['id_not_dbChek'] };
+        return { 
+          ...pre, 
+          isSubmit:true, 
+          idWorning:true, 
+          idValidateMsg:validateMsgMap['id_not_dbChek'] 
+        };
       });
     }
 
     // 관리자 권한 값 없을시
     if (!userInfo.grade) {
       setUserInfo((pre) => {
-        return { ...pre, isSubmit:true, gradeWorning:true, gradeValidateMsg:validateMsgMap['grade_empty'] };
+        return { 
+          ...pre, 
+          isSubmit:true, 
+          gradeWorning:true, 
+          gradeValidateMsg:validateMsgMap['grade_empty'] 
+        };
       });
     }
 
     // 비밀번호 값 없을시
     if (!userInfo.pwd) {
       setUserInfo((pre) => {
-        return { ...pre, isSubmit: true, pwdWorning:true, pwdValidateMsg:validateMsgMap['pwd_empty'] };
+        return { 
+          ...pre, 
+          isSubmit:true, 
+          pwdWorning:true, 
+          pwdValidateMsg:validateMsgMap['pwd_empty'] 
+        };
       });
-
     } else {
-
+      // 비밀번호 확인 값 없을시 
+      if (!userInfo.chkPwd) {
+        setUserInfo((pre) => {
+          return { 
+            ...pre, 
+            isSubmit:true, 
+            chkPwdWorning:true, 
+            chkPwdValidateMsg:validateMsgMap['chkPwd_empty'] 
+          };
+        });
+      } else {
+        // 비밀번호 1차, 2차 다를시
+        if (userInfo.pwd != userInfo.chkPwd) {
+          setUserInfo((pre) => {
+            return { 
+              ...pre, 
+              isSubmit:true, 
+              chkPwdWorning:true, 
+              chkPwdValidateMsg:validateMsgMap['chkPwd_inValid'] 
+            };
+          });
+          // return false;
+        } else {
+          if (!regPwd.test(userInfo.pwd)){
+            setUserInfo((pre) => {
+              return { 
+                ...pre, 
+                isSubmit:true, 
+                chkPwdWorning:false, 
+                pwdWorning:true, 
+                pwdValidateMsg:validateMsgMap['pwd_inValid'] 
+              };
+            });
+          } else {
+            setUserInfo((pre) => {
+              return { 
+                ...pre, 
+                isSubmit:true, 
+                chkPwdWorning:false, 
+                pwdWorning:false 
+              };
+            });
+          }
+        }
+      }
     }
-
-
-    // 비밀번호 1차, 2차 다를시
-    if (userInfo.pwd != userInfo.chkPwd) {
-
-      setUserInfo((pre) => {
-        return { ...pre, isSubmit: true,  };
-      });
-      return false;
-    }
-
-    // 비밀번호 확인 값 없을시
 
     // 전화번호 값 없을시
-    
+    if (!userInfo.phone) {
+      setUserInfo((pre) => {
+        return { 
+          ...pre, 
+          isSubmit: true, 
+          phoneWorning:true, 
+          phoneValidateMsg:validateMsgMap['phone_empty'] 
+        };
+      });
+    }
+
     // 이메일 값 없을시
     if (!userInfo.email) {
       setUserInfo((pre) => {
-        return { ...pre, isSubmit:true, emailWorning:true, emailValidateMsg:validateMsgMap['email_empty'] };
+        return { 
+          ...pre, 
+          isSubmit:true, 
+          emailWorning:true, 
+          emailValidateMsg:validateMsgMap['email_empty'] 
+        };
+      });
+    } 
+
+    // 접속허가 ip 값 없을시
+    if (!userInfo.allow_remote_ip) {
+      setUserInfo((pre) => {
+        return { 
+          ...pre, 
+          isSubmit:true, 
+          allow_remote_ipWorning:true, 
+          allow_remote_ipValidateMsg:validateMsgMap['allow_remote_ip_empty'] 
+        };
       });
     }
 
-    // 접속허가 ip 값 없을시
-
-
-    // ?????? 이거뭐지 ?????????????????????????
-    // setSaveConfirm(true);
+    // 유효성 통과시
+    if ( userInfo.isSubmit
+      && !userInfo.idWorning
+      && !userInfo.gradeWorning
+      && !userInfo.pwdWorning
+      && !userInfo.chkPwdWorning
+      && !userInfo.phoneWorning
+      && !userInfo.emailWorning
+      && !userInfo.allow_remote_ipWorning ) 
+      setSaveConfirm(true);
   };
 
   // 아이디 중복체크
@@ -213,13 +285,25 @@ const AddUserAccount = () => {
 
     if (userInfo.id == "") {
       setUserInfo((pre) => {
-        return { ...pre, isSubmit:true, isIdDbChek:false, idWorning:true, idValidateMsg:validateMsgMap['id_empty'] };
+        return { 
+          ...pre, 
+          isSubmit:true, 
+          isIdDbChek:false, 
+          idWorning:true, 
+          idValidateMsg:validateMsgMap['id_empty'] 
+        };
       });
     } else {
       // 영문, 숫자 조합 4자리 이상 30자 미만
       if (!regId.test(userInfo.id) ) { 
         setUserInfo((pre) => {
-          return { ...pre, isSubmit:true, isIdDbChek:false, idWorning:true, idValidateMsg:validateMsgMap['id_inValid'] };
+          return { 
+            ...pre, 
+            isSubmit:true, 
+            isIdDbChek:false, 
+            idWorning:true, 
+            idValidateMsg:validateMsgMap['id_inValid'] 
+          };
         });
       } else {
         axios
@@ -231,11 +315,23 @@ const AddUserAccount = () => {
           .then(({ data }) => {
             if (data.adminKey) {
               setUserInfo((pre) => {
-                return { ...pre, isSubmit:true, isIdDbChek:false, idWorning:true, idValidateMsg:validateMsgMap['id_exists'] };
+                return { 
+                  ...pre, 
+                  isSubmit:true, 
+                  isIdDbChek:false, 
+                  idWorning:true, 
+                  idValidateMsg:validateMsgMap['id_exists'] 
+                };
               });
             } else {
               setUserInfo((pre) => {
-                return { ...pre, isSubmit:true, isIdDbChek:true,  idWorning:false, idValidateMsg:validateMsgMap['id_valid'] };
+                return { 
+                  ...pre, 
+                  isSubmit:true, 
+                  isIdDbChek:true, 
+                  idWorning:false, 
+                  idValidateMsg:validateMsgMap['id_valid'] 
+                };
               });
             }
           });
@@ -340,14 +436,12 @@ const AddUserAccount = () => {
                 onChange={onChange}
               />
               {/* 비밀번호 유효성 검사 결과 문구 */}
-              {userInfo.isSubmit && 
+              {userInfo.isSubmit && userInfo.pwdWorning &&
                <div className={classes.checkIconStyle}>
-                {userInfo.isSubmit && userInfo.pwdWorning &&
                   <img src={images.icons.LOGIN_INFO}
                     alt="오류 아이콘"
                     className={classes.checkErrorIcon} />
-                }
-                  <span className={userInfo.pwdWorning ? classes.checkErrorText : classes.checkNormalText}>
+                  <span className={classes.checkErrorText}>
                     {userInfo.pwdValidateMsg}
                   </span>
                 </div>
@@ -370,6 +464,17 @@ const AddUserAccount = () => {
                 value={userInfo.chkPwd}
                 onChange={onChange}
               />
+              {/* 비밀번호 확인 유효성 검사 결과 문구 */}
+              {userInfo.isSubmit && userInfo.chkPwdWorning &&
+               <div className={classes.checkIconStyle}>
+                  <img src={images.icons.LOGIN_INFO}
+                    alt="오류 아이콘"
+                    className={classes.checkErrorIcon} />
+                  <span className={classes.checkErrorText}>
+                    {userInfo.chkPwdValidateMsg}
+                  </span>
+                </div>
+              }
             </td>
           </tr>
           <tr className={classes.adminContentInput}>
@@ -387,6 +492,17 @@ const AddUserAccount = () => {
                 value={userInfo.phone}
                 onChange={onChange}
               />
+              {/* 전화번호 유효성 검사 결과 문구 */}
+              {userInfo.isSubmit && userInfo.phoneWorning &&
+               <div className={classes.checkIconStyle}>
+                  <img src={images.icons.LOGIN_INFO}
+                    alt="오류 아이콘"
+                    className={classes.checkErrorIcon} />
+                  <span className={classes.checkErrorText}>
+                    {userInfo.phoneValidateMsg}
+                  </span>
+                </div>
+              }
             </td>
           </tr>
           <tr className={classes.adminContentInput}>
@@ -446,6 +562,17 @@ const AddUserAccount = () => {
                 value={userInfo.allow_remote_ip}
                 onChange={onChange}
               />
+              {/* 접속허가 IP 유효성 검사 결과 문구 */}
+              {userInfo.isSubmit && userInfo.allow_remote_ipWorning &&
+               <div className={classes.checkIconStyle}>
+                  <img src={images.icons.LOGIN_INFO}
+                    alt="오류 아이콘"
+                    className={classes.checkErrorIcon} />
+                  <span className={classes.checkErrorText}>
+                    {userInfo.allow_remote_ipValidateMsg}
+                  </span>
+                </div>
+              }
             </td>
           </tr>
           <tr className={classes.adminContentInput}>
