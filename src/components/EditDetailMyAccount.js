@@ -79,37 +79,23 @@ const EditDetailMyAccount = () => {
     // delete userInfo["password"];
     // setSaveConfirm(false);
 
-    // if (userInfo.pwd != "") {
-    //   if (userInfo.pwd != userInfo.chkPwd) {
-    //     alert("비밀번호 확인을 해주세요.");
-    //     return false;
-    //   } else {
-    //     const newInfo = {
-    //       ...userInfo,
-    //       password: userInfo.pwd,
-    //     };
-    //     setUserInfo(newInfo);
-
-    //     axios
-    //       .post(
-    //         `${g.base_url}api/admin/update`,
-    //         {
-    //           ...userInfo,
-    //         },
-    //         {
-    //           headers: {
-    //             Authorization: "Bearer " + localStorage.getItem("access_token"),
-    //           },
-    //         }
-    //       )
-    //       .then(({ data }) => {
-    //         console.log(data);
-    //         openModal();
-    //         // window.location.reload();
-    //       });
-    //   }
-    // }
-
+    axios
+      .post(
+        `${g.base_url}api/admin/update`,
+        {
+          ...userInfo,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
+        console.log(data);
+        openModal();
+      });
+      
     // delete userInfo['password'];
     // delete userInfo['chkPwd'];
   };
