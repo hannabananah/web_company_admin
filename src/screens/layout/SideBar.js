@@ -178,7 +178,7 @@ const SideBar = () => {
         <div className={classes.root}>
           <div className={classes.container}>
             <h1 className={classes.h1} onClick={onClickLogo}>
-              <img src={images.icons.ANYCHAT_LOGO} alt="anychat 관리시스템" />
+              <img src={images.icons.COMPANY_LOGO} alt="company 관리시스템" />
               <span>관리시스템</span>
             </h1>
 
