@@ -47,8 +47,8 @@ const Login = () => {
       <div className={classes.loginContentStyle}>
         <img
           className={classes.loginLogo}
-          src={images.icons.ANYCHAT_LOGO_LOGIN}
-          alt="애니챗 로고"
+          src={images.icons.COMPANY_LOGO_LOGIN}
+          alt="회사 로고"
           width="70%"
         />
         {/* 로그인 창 박스 */}
@@ -130,17 +130,17 @@ const Login = () => {
             </p>
             <p className={classes.loginText}>
               <span>전화 : 000-0000-0000 </span>
-              <span>| Email : anychat79@anychat.com</span>
+              <span>| Email : company79@company.com</span>
             </p>
           </div>
         </fieldset>
       </div>
       <footer className={classes.notiTextStyle}>
         <p className={classes.notiText1}>
-          ANYCHAT 관리자 시스템은 Chrome 브라우저에 최적화 되어 있습니다.
+          COMPANY 관리자 시스템은 Chrome 브라우저에 최적화 되어 있습니다.
         </p>
         <p className={classes.notiText2}>
-          Copyright&#169; ANYCHAT ALL right reserved.
+          Copyright&#169; COMPANY ALL right reserved.
         </p>
       </footer>
     </div>
